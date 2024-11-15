@@ -1,0 +1,272 @@
+*{
+    box-sizing: border-box;
+}
+.tieude{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tieude h3{
+    margin-left: 10px ;
+}
+.muiten{
+    display: flex;
+    align-items: center;
+}
+.mt{
+    background-color: rgb(203, 203, 203);
+    border-radius: 50%;
+    margin: 5px ;
+    padding: 15px;
+    font-size: 15px;
+    width: 45px;
+    text-align: center;
+    cursor: pointer;
+    
+    
+}
+.mt:hover{
+    background-color:rgb(151, 151, 151) ;
+}
+.muiten h4{
+    margin-right: 10px;
+}
+.sptieude{
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    max-width: 100%;
+}
+.sanpham1{
+    min-width: 30%;
+    margin: 5px 10px;
+    width: fit-content;
+   
+    cursor: pointer;
+}
+.sanpham1-img{
+    width: 100%;
+   
+}
+.sanpham1 h3{
+    margin:0
+}
+.sanpham2 {
+    position: relative;
+    width: fit-content; /* Đảm bảo khung bao quanh vừa ảnh */
+    margin: 10px;
+}
+
+.sanpham2 img {
+    
+    width: 100%; 
+}
+
+
+.text-overlay {
+    position: absolute;
+    bottom: 30px; 
+    left: 30px; 
+    background-color: rgba(210, 210, 210, 0.8); 
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.text-overlay:hover{
+    background-color:rgb(151, 151, 151) ;
+}
+
+#loaisanpham {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin: auto;
+}
+.loai {
+    margin: 5px 50px;
+    width: fit-content;
+    
+}
+.loai ul {
+    list-style: none;
+    padding: 0;
+}
+.loai li {
+    color: rgb(144, 144, 144);
+    font-size: 18px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative; 
+}
+.loai h4 {
+    font-size: 25px;
+}
+.loai li:hover {
+    color: black;
+}
+
+
+
+
+.mota-sanpham{
+    border: 1px solid;
+    display: flex;
+    margin: 50px auto;
+    width: 1000px;
+    height: auto;
+    position: relative;
+    padding: 50px 20px 20px;
+    background-color:rgb(249, 249, 249)
+}
+.exit{
+    position: absolute;
+    top:0;
+    right: 15px;
+    font-size: 35px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.mota-trai img{
+    width: 100%;
+  
+}
+.mota-phai{
+
+    margin-left: 25px;
+}
+#l-right{
+   float: right;
+}
+.mota-phai h6{
+    font-size: 16px ;
+}
+#price{
+    font-size: 25px;
+}
+.row{
+    width: 400px;
+    display: flex;
+    margin-bottom: 40px;
+    padding: 10px 10px;
+}
+#size{
+    font-size: 16px;
+    padding: 5px 30px;
+}
+.kichco{
+    width: 50%;
+}
+#sl{
+    font-size: 16px;
+    width: 80px;
+    padding: 5px ;
+    text-align: center;
+    border: 2px solid black;
+    
+}
+.bot{
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+.them{
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+.addtocart{
+    font-size: 26px;
+    color: white;
+background-color: black;
+    padding: 10px 20px;
+    border: 2px solid black;
+    cursor: pointer;
+    width: 80%;
+    margin-bottom: 30px;
+
+}
+.buy{
+    font-size: 26px;
+    color: white;
+    background-color: rgb(255, 0, 0);
+    padding: 10px 20px;
+    border: 2px solid black;
+    cursor: pointer;
+    width: 80%;
+
+}
+.line {
+    border-top: 2px dashed #6e6e6e; /* Dòng đứt đoạn màu xám nhạt */
+    margin: 2px 0; /* Điều chỉnh khoảng cách trên và dưới nếu cần */
+}
+#sanpham-chitiet{
+    display: none;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 40;
+    background-color: rgba(0,0,0, 0.6);
+  
+}
+
+
+
+
+
+.danhsach-sanpham{
+    
+    display: flex;
+    background-color: white;
+    flex-wrap: wrap;
+    gap: 16px;
+   
+    
+}
+.sanpham3{
+    box-shadow: 3px 2px 5px black;
+     border: 1px groove;
+     text-align: center;
+     width:calc(25% - 16px) ;
+     overflow: hidden;
+     display: flex;
+     flex-direction: column;
+     
+ }
+.sanpham3 img{
+    width: 100%;
+    object-fit: cover;
+   height: auto;
+}
+
+.phantrang{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+.sotrang{
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    text-align: center;
+    font-size: 15px;
+    padding: 14px;
+    border: 1px groove  ;
+    border-radius: 15%;
+    
+
+}
+.sotrang:hover{
+    background-color: gold;
+}
+#menu-sanpham1 {
+    position: relative;
+}
+
