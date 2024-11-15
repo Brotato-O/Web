@@ -12,6 +12,24 @@
   </head>
   <body>
     <div id="header">
+      <div id="header-top">
+        <div id="title-header-top">
+          <p>CR7 cầu thủ vĩ đại nhất lịch sử bóng đá</p>
+        </div>
+        <div id="user">
+          <i class="bx bxs-user-circle"></i>
+          <span>Tài khoản</span>
+          <i class="bx bx-chevron-down"></i>
+          <div id="content-user">
+            <ul>
+              <li id="login">Đăng nhập</li>
+              <li id="register">Đăng kí</li>
+              <li id="heart">Yêu thích</li>
+              <li id="cart">Giỏ hàng</li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <!-- logo -->
       <span style="color: white">CR7</span>
       <!-- search -->
@@ -29,13 +47,13 @@
       <!-- start menu -->
       <div id="nav">
         <ul>
-          <li>Trang chủ</li>
+          <li id="trangChu">Trang chủ</li>
           <li>
             <span> Giày bóng đá <i class="bx bx-chevron-down"></i> </span>
             <ul>
               <li>Giày cỏ tự nhiên</li>
               <li>Giày cỏ nhân tạo</li>
-              <li>Giày bóng đá</li>
+              <li>Giày Futsal</li>
             </ul>
           </li>
           <li>
@@ -61,7 +79,65 @@
       </div>
       <!-- end menu -->
     </div>
-
+    <!-- login logout -->
+    <div id="register-form">
+      <h2 class="title-form">Tạo tài khoản</h2>
+      <div class="form">
+        <form action="">
+          <div id="firstNam">
+            <label for="txtHo"><i class="bx bx-user"></i></label>
+            <input type="text" name="txtHo" placeholder="Họ" />
+          </div>
+          <div id="lastName">
+            <label for="txtTen"><i class="bx bx-user"></i></label>
+            <input type="text" name="txtTen" placeholder="Tên" />
+          </div>
+          <div class="email">
+            <label for="txtEmail"><i class="bx bx-envelope"></i></label>
+            <input type="email" name="txtEmail" placeholder="Email" />
+          </div>
+          <div class="password">
+            <label for="txtPass"><i class="bx bx-lock"></i></label>
+            <input type="password" name="txtPass" placeholder="Mật khẩu" />
+          </div>
+          <button class="button">Đăng ký</button>
+          <span id="quayVe">Quay lại</span>
+        </form>
+      </div>
+    </div>
+    <div id="login-form">
+      <h2 class="title-form">Đăng nhập</h2>
+      <div class="form">
+        <form action="">
+          <div class="email">
+            <label for="txtEmail"><i class="bx bx-envelope"></i></label>
+            <input type="email" name="txtEmail" placeholder="Email" />
+          </div>
+          <div class="password">
+            <label for="txtPass"><i class="bx bx-lock"></i></label>
+            <input type="password" name="txtPass" placeholder="Mật khẩu" />
+          </div>
+          <button class="button">Đăng nhập</button>
+          <span id="quenPass">Quên mật khẩu?</span>
+          <span>hoặc</span>
+          <span id="login_">Đăng kí</span>
+        </form>
+      </div>
+    </div>
+    <div id="forgot-Pass">
+      <h2 class="title-form">Phục hồi mật khẩu</h2>
+      <div class="form">
+        <form action="">
+          <div class="email">
+            <label for="txtEmail"><i class="bx bx-envelope"></i></label>
+            <input type="email" name="txtEmail" placeholder="Email" />
+          </div>
+          <button class="button">Gửi</button>
+          <span id="cancel">Hủy</span>
+        </form>
+      </div>
+    </div>
+    <!-- end login logout -->
     <div id="content">
       <div id="banner">
         <div id="list-banner">
@@ -111,83 +187,29 @@
       </div>
       <div id="flash-sell">
         <div id="list-flash-sell">
-          <div class="product-card">
-            <span><i class="bx bxs-heart-circle"></i></span>
-            <span class="sale">-16%</span>
-            <div>
-              <img src="/image-product/DIAMOND+TURF+96+TD.png" alt="" />
-            </div>
-            <div class="name-product">Nike Diamond Turf 96 TD</div>
-            <span class="price">$220</span>
+          <!-- list product flash sell -->
+        </div>
+        <div class="btns">
+          <div class="btn-left btn">
+            <i class="bx bx-chevron-left"></i>
           </div>
-          <div class="product-card">
-            <span><i class="bx bxs-heart-circle"></i></span>
-            <span class="sale">-16%</span>
-            <div>
-              <img src="/image-product/NIKE+FORCE+SAVAGE+PRO+2.png" alt="" />
-            </div>
-            <div class="name-product">Nike Force Savage Pro 2</div>
-            <span class="price">$100</span>
+          <div class="btn-right btn">
+            <i class="bx bx-chevron-right"></i>
           </div>
-          <div class="product-card">
+        </div>
+      </div>
+      <div id="new">
+        <h2 id="title_new">Hàng mới về</h2>
+        <div id="list-new">
+          <!-- list product new  -->
+          <!-- <div class="product-card">
             <span><i class="bx bxs-heart-circle"></i></span>
-            <span class="sale">-16%</span>
             <div>
-              <img src="/image-product/NIKE+VAPOR+EDGE+360+UT.png" alt="" />
+              <img src="/image-product-new/productNew1.png" />
             </div>
-            <div class="name-product">Nike Vapor Edge 360 "Untouchable"</div>
-            <span class="price">$180</span>
-          </div>
-          <div class="product-card">
-            <span><i class="bx bxs-heart-circle"></i></span>
-            <span class="sale">-16%</span>
-            <div>
-              <img src="/image-product/NIKE+VAPOR+EDGE+PRO+360+2.png" alt="" />
-            </div>
-            <div class="name-product">Nike Vapor Edge Pro 360 2</div>
-            <span class="price">$135</span>
-          </div>
-          <div class="product-card">
-            <span><i class="bx bxs-heart-circle"></i></span>
-            <span class="sale">-16%</span>
-            <div>
-              <img src="/image-product/VAPOR+EDGE+PRO+2+_JC_+PE.png" alt="" />
-            </div>
-            <div class="name-product">
-              Nike Vapor Edge Pro 2 "Ja'Marr Chase"
-            </div>
-            <span class="price">$145</span>
-          </div>
-          <div class="product-card">
-            <span><i class="bx bxs-heart-circle"></i></span>
-            <span class="sale">-16%</span>
-            <div>
-              <img
-                src="/image-product/NIKE+VAPOR+EDGE+SPEED+360+2.png"
-                alt=""
-              />
-            </div>
-            <div class="name-product">Nike Vapor Edge Speed 360 2</div>
-            <span class="price">$110</span>
-          </div>
-          <div class="product-card">
-            <span><i class="bx bxs-heart-circle"></i></span>
-            <span class="sale">-16%</span>
-            <div>
-              <img src="/image-product/ZM+VAPOR+16+ELITE+FG.png" alt="" />
-            </div>
-            <div class="name-product">Nike Mercurial Vapor 16 Elite</div>
-            <span class="price">$260</span>
-          </div>
-          <div class="product-card">
-            <span><i class="bx bxs-heart-circle"></i></span>
-            <span class="sale">-16%</span>
-            <div>
-              <img src="/image-product/ZM+VAPOR+16+ELITE+FG.png" alt="" />
-            </div>
-            <div class="name-product">Nike Phantom GX 2 Elite</div>
-            <span class="price">$260</span>
-          </div>
+            <div class="name-product">hello</div>
+            <span class="price">100</span>
+          </div> -->
         </div>
         <div class="btns">
           <div class="btn-left btn">
