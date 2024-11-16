@@ -284,10 +284,10 @@ function cartDisplay(){
                     <td class="cart-item-image"><img src="${cartArray[i].image}" alt="product"></td>
                     <td class="cart-item-name">${cartArray[i].name}</td>
                     <td class="cart-item-quantity">
-                        <div class=>
-                            <button>+</button>
-                            <input>
-                            <button>-</button>
+                        <div class="">
+                            <button class="bot">-</button>
+                            <input type="text" id="sl" value="1">
+                            <button class="them">+</button>
                         <div>
                     </td>
                     <td class="cart-item-price">${cartArray[i].price}</td>
@@ -295,10 +295,10 @@ function cartDisplay(){
         }
         s= `<table class="cart-table">
             <tr>
-                <td class="cart-item-image">Hình ảnh</td>
-                <td class="cart-item-name">Tên sản phẩm</td>
-                <td class="cart-item-quantity">Số lượng</td>
-                <td class="cart-item-price">Thành tiền</td>
+                <td class="cart-item-image"><h3>Hình ảnh</h3></td>
+                <td class="cart-item-name"><h3>Tên sản phẩm</h3></td>
+                <td class="cart-item-quantity"><h3>Số lượng</h3></td>
+                <td class="cart-item-price"><h3>Thành tiền</h3></td>
             </tr>` + s +
         `</table>`;
         document.getElementById('wrap-cart').innerHTML=s;
@@ -306,7 +306,6 @@ function cartDisplay(){
             document.getElementsByClassName('cart-item-image')[i].style.width="20%";
             document.getElementsByClassName('cart-item-quantity')[i].style.width="20%";
             document.getElementsByClassName('cart-item-price')[i].style.width="20%";
-
         }
     }
 }
