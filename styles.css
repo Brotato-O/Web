@@ -729,3 +729,24 @@ td img{
     border: 2px solid black;
     cursor: pointer;
 }
+
+.count-quantity{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#total-bill{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #ffffff, #cecece);
+    position: sticky;
+    bottom: 0px;
+}
+
+@media screen {
+    
+}
