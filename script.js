@@ -137,38 +137,38 @@ var Cart = document.getElementById('Cart');
 //     CartForm.style.display = 'none';
 // });
 
-const productsPage1 = [
-    { image: 'img/1000.JPG', title: 'GIÀY XANH', price: '1.000.000$' },
-    { image: 'img/1003.JPG', title: 'GIÀY NIKE', price: '1.000.000$' },
-    { image: 'img/1007.JPG', title: 'TRAVISCOTT COLLECTION', price: '1.000.000$' },
-    { image: 'img/1009.JPG', title: 'COCACOLA', price: '1.000.000$' },
-    { image: 'img/1035.JPG', title: 'FANTA', price: '1.000.000$' },
-    { image: 'img/1036.JPG', title: 'PEPSI', price: '1.000.000$' },
-    { image: 'img/1037.JPG', title: 'TEPPY', price: '1.000.000$' },
-    { image: 'img/1021.JPG', title: 'JACK', price: '1.000.000$' }
-];
+// const productsPage1 = [
+//     { image: 'img/1000.JPG', title: 'GIÀY XANH', price: '1.000.000$' },
+//     { image: 'img/1003.JPG', title: 'GIÀY NIKE', price: '1.000.000$' },
+//     { image: 'img/1007.JPG', title: 'TRAVISCOTT COLLECTION', price: '1.000.000$' },
+//     { image: 'img/1009.JPG', title: 'COCACOLA', price: '1.000.000$' },
+//     { image: 'img/1035.JPG', title: 'FANTA', price: '1.000.000$' },
+//     { image: 'img/1036.JPG', title: 'PEPSI', price: '1.000.000$' },
+//     { image: 'img/1037.JPG', title: 'TEPPY', price: '1.000.000$' },
+//     { image: 'img/1021.JPG', title: 'JACK', price: '1.000.000$' }
+// ];
 
-const productsPage2 = [
-    { image: 'img/1011.JPG', title: 'MESSI', price: '1.000.000$' },
-    { image: 'img/1031.JPG', title: 'RONALDO', price: '1.000.000$' },
-    { image: 'img/1022.JPG', title: 'ROBERTO CARLOS', price: '1.000.000$' },
-    { image: 'img/1099.JPG', title: 'RONALDINHO', price: '1.000.000$' },
-    { image: 'img/1098.JPG', title: 'DAVID BECKHAM', price: '1.000.000$' },
-    { image: 'img/1086.JPG', title: 'GARNACHO', price: '1.000.000$' },
-    { image: 'img/1085.JPG', title: 'HARRY KANE', price: '1.000.000$' },
-    { image: 'img/1045.JPG', title: 'MITOMA', price: '1.000.000$' }
-];
+// const productsPage2 = [
+//     { image: 'img/1011.JPG', title: 'MESSI', price: '1.000.000$' },
+//     { image: 'img/1031.JPG', title: 'RONALDO', price: '1.000.000$' },
+//     { image: 'img/1022.JPG', title: 'ROBERTO CARLOS', price: '1.000.000$' },
+//     { image: 'img/1099.JPG', title: 'RONALDINHO', price: '1.000.000$' },
+//     { image: 'img/1098.JPG', title: 'DAVID BECKHAM', price: '1.000.000$' },
+//     { image: 'img/1086.JPG', title: 'GARNACHO', price: '1.000.000$' },
+//     { image: 'img/1085.JPG', title: 'HARRY KANE', price: '1.000.000$' },
+//     { image: 'img/1045.JPG', title: 'MITOMA', price: '1.000.000$' }
+// ];
 
-const productsPage3 = [
-    { image: 'img/1013.JPG', title: 'HỒ NGỌC HÀ', price: '1.000.000$' },
-    { image: 'img/1066.JPG', title: 'SOOBIN HOÀNG SƠN', price: '1.000.000$' },
-    { image: 'img/1067.JPG', title: 'NOO PHƯỚC THỊNH', price: '1.000.000$' },
-    { image: 'img/1068.JPG', title: 'ĐẠT G', price: '1.000.000$' },
-    { image: 'img/1069.JPG', title: 'BRAY', price: '1.000.000$' },
-    { image: 'img/1058.JPG', title: 'LOWER', price: '1.000.000$' },
-    { image: 'img/1042.JPG', title: 'TRAVISCOTT', price: '1.000.000$' },
-    { image: 'img/1005.JPG', title: 'DRAKE', price: '1.000.000$' }
-];
+// const productsPage3 = [
+//     { image: 'img/1013.JPG', title: 'HỒ NGỌC HÀ', price: '1.000.000$' },
+//     { image: 'img/1066.JPG', title: 'SOOBIN HOÀNG SƠN', price: '1.000.000$' },
+//     { image: 'img/1067.JPG', title: 'NOO PHƯỚC THỊNH', price: '1.000.000$' },
+//     { image: 'img/1068.JPG', title: 'ĐẠT G', price: '1.000.000$' },
+//     { image: 'img/1069.JPG', title: 'BRAY', price: '1.000.000$' },
+//     { image: 'img/1058.JPG', title: 'LOWER', price: '1.000.000$' },
+//     { image: 'img/1042.JPG', title: 'TRAVISCOTT', price: '1.000.000$' },
+//     { image: 'img/1005.JPG', title: 'DRAKE', price: '1.000.000$' }
+// ];
 
 // // Function to display products
 // function displayProducts(products) {
