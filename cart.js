@@ -12,7 +12,133 @@ function them(){
         { image: 'img/1098.JPG', id: "S010", name: "Giày Balenciaga Triple S", price: 8000000 }
     ];
     localStorage.setItem("cart", JSON.stringify(carttemp));
+}
 
+function thembill(){
+    const users = [
+        { username: "user1", password: "password1" },
+        { username: "user2", password: "password2" },
+        { username: "user3", password: "password3" },
+    ];
+    localStorage.setItem("user", JSON.stringify(users));
+
+    const loggeduser= { username: "user1", password: "password1" };
+    localStorage.setItem("loggeduser", JSON.stringify(loggeduser));
+
+    const bills = [
+        {
+            receiptId: 1,
+            customer: { username: "user1", password: "password1" },
+            status: "Chờ xác nhận",
+            orderDate: "2024-11-16",
+            paymentMethod: "Chuyển khoản",
+            totalAmount: 2000000,
+            products: [
+                { quantity: 3, name: "Giày Adidas UltraBoost" },
+                { quantity: 1, name: "Giày Nike Air Max" }
+            ]
+        },
+        {
+            receiptId: 2,
+            customer: { username: "user2", password: "password2" },
+            status: "Đã xác nhận",
+            orderDate: "2024-11-15",
+            paymentMethod: "Tiền mặt",
+            totalAmount: 2500000,
+            products: [
+                { quantity: 1, name: "Giày Converse Chuck Taylor" }
+            ]
+        },
+        {
+            receiptId: 3,
+            customer: { username: "user3", password: "password3" },
+            status: "Đã giao",
+            orderDate: "2024-11-14",
+            paymentMethod: "Chuyển khoản",
+            totalAmount: 1500000,
+            products: [
+                { quantity: 2, name: "Giày Vans Old Skool" }
+            ]
+        },
+        {
+            receiptId: 4,
+            customer: { username: "user1", password: "password1" },
+            status: "Đã giao",
+            orderDate: "2024-11-13",
+            paymentMethod: "Tiền mặt",
+            totalAmount: 1200000,
+            products: [
+                { quantity: 1, name: "Giày Puma Suede Classic" }
+            ]
+        },
+        {
+            receiptId: 5,
+            customer: { username: "user2", password: "password2" },
+            status: "Chờ xác nhận",
+            orderDate: "2024-11-12",
+            paymentMethod: "Chuyển khoản",
+            totalAmount: 1800000,
+            products: [
+                { quantity: 4, name: "Giày New Balance 574" }
+            ]
+        },
+        {
+            receiptId: 6,
+            customer: { username: "user3", password: "password3" },
+            status: "Đã xác nhận",
+            orderDate: "2024-11-11",
+            paymentMethod: "Tiền mặt",
+            totalAmount: 2100000,
+            products: [
+                { quantity: 1, name: "Giày Reebok Club C" }
+            ]
+        },
+        {
+            receiptId: 7,
+            customer: { username: "user1", password: "password1" },
+            status: "Đã giao",
+            orderDate: "2024-11-10",
+            paymentMethod: "Chuyển khoản",
+            totalAmount: 1700000,
+            products: [
+                { quantity: 2, name: "Giày Asics Gel-Lyte III" }
+            ]
+        },
+        {
+            receiptId: 8,
+            customer: { username: "user2", password: "password2" },
+            status: "Đã giao",
+            orderDate: "2024-11-09",
+            paymentMethod: "Tiền mặt",
+            totalAmount: 2200000,
+            products: [
+                { quantity: 1, name: "Giày Jordan 1" }
+            ]
+        },
+        {
+            receiptId: 9,
+            customer: { username: "user3", password: "password3" },
+            status: "Chờ xác nhận",
+            orderDate: "2024-11-08",
+            paymentMethod: "Chuyển khoản",
+            totalAmount: 3000000,
+            products: [
+                { quantity: 2, name: "Giày Balenciaga Triple S" }
+            ]
+        },
+        {
+            receiptId: 10,
+            customer: { username: "user1", password: "password1" },
+            status: "Đã xác nhận",
+            orderDate: "2024-11-07",
+            paymentMethod: "Tiền mặt",
+            totalAmount: 8000000,
+            products: [
+                { quantity: 1, name: "Giày Yeezy Boost 350" }
+            ]
+        }
+    ];
+    localStorage.setItem("bill", JSON.stringify(bills));
 }
 
 function cartDisplay(){    
@@ -73,8 +199,6 @@ function cartDisplay(){
     }
 }
 
-function mm() {}
-
 var carttemp=[];
 function checkcart(){
     carttemp=[];  
@@ -120,6 +244,61 @@ function buy(){
     document.getElementById("total-pay").innerHTML="Tổng thanh toán: " + s;
 }
 
+function notlogin(){
+    document.getElementById("wrap-cart").innerHTML=`
+        <a href="#">
+            <img src="img/anonymous-user.png" alt="anonymous-user">
+            <h2>Bạn phải đăng nhập để xem chức năng này</h2>
+            <span>Đi đến đăng nhập</span>
+        </a>
+    `
+}
+
+function showbill(){
+    var loggeduser = JSON.parse(localStorage.getItem('loggeduser'));
+    var bill= JSON.parse(localStorage.getItem('bill'));
+    var user = JSON.parse(localStorage.getItem('users'));
+    if(loggeduser == undefined ) notlogin();
+    else{
+        for(var i=0; i< bill.length; i++){
+            if(bill[i].customer.username == loggeduser.username && bill[i].customer.password== loggeduser.password){
+                var s="";
+                if(1==1){
+                    s=`
+                        <tr>
+                            <td>${bill[i].receiptId}</td>
+                            <td>`;
+                    for(var j=0; j< bill[i].products.length; j++){
+                        s+= `
+                            ${bill[i].products[j].quantity} X ${bill[i].products[j].name}
+                        `;      
+                    }
+                    s+= `</td>
+                    <td>${bill[i].orderDate}</td>
+                    <td>${bill[i].totalAmount}</td>
+                    <td>${bill[i].paymentMethod}</td>
+                    </tr>
+                    `;
+                    s= `
+                        <table>
+                            <tr>
+                                <th>Mã hóa đơn</th>
+                                <th>Sản phẩm đã đặt</th>
+                                <th>Ngày đặt</th>
+                                <th>Tổng tiền</th>
+                                <th>Phương thức thanh toán</th>
+                            <tr> `+ s + `
+
+                        </table>
+                    `
+                    document.getElementById("wrap-cart").innerHTML=s;   
+                }
+
+            }
+        }
+    }
+}
+
 window.onload = function(){
     var temp= location.href.split("?")[1];
     if(temp ==undefined || temp=="") cartDisplay();
@@ -128,6 +307,6 @@ window.onload = function(){
         if(temp==0) cartDisplay();
         else if(temp==1){}
         else if(temp==2){}
-        else if(temp==3){}
+        else if(temp==3) showbill();
     }
 }
