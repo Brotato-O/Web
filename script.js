@@ -294,7 +294,7 @@ function cartDisplay(){
                         <div>
                     </td>
                     <td class="cart-item-price">${cartArray[i].price}</td>
-                    <td><button onclick="deletecartitems(${i})">X</button></td>
+                    <td><button onclick="deletecartitem(${cartArray[i].id})">X</button></td>
                 </tr>`
         }
         s= `<table class="cart-table">
@@ -309,8 +309,8 @@ function cartDisplay(){
         `</table> 
         <div id="total-bill">
             <div>
-                <input type="checkbox" id="select-all"> 
-                <label for="select-all">Chọn tất cả</label>
+                <input type="checkbox" id="check-all" onchange="checkallitems()"> 
+                <label for="check-all">Chọn tất cả</label>
             </div>
             <button onclick="deletecheckeditems()">Xóa</button>
             <span id="bill">Tổng thanh toán: </span>
@@ -328,28 +328,41 @@ function cartDisplay(){
 
 var carttemp=[];
 function checkcart(){
+    carttemp=[];  
     var cartArray= JSON.parse(localStorage.getItem('cart'));
     for(var i=0; i<cartArray.length; i++){
         var check= document.getElementById(cartArray[i].id);
-        if(check.checked) carttemp.push(cartArray[i]);
+        if(check.checked== true) carttemp.push(cartArray[i]);
     }
+}
+
+function checkallitems(){
+    var cartArray= JSON.parse(localStorage.getItem('cart'));
+    var check= document.getElementById("check-all");
+    if(check.checked== true)
+        for(var i=0; i<cartArray.length; i++)
+            document.getElementById(cartArray[i].id).checked= true;
+    else
+        for(var i=0; i<cartArray.length; i++)
+            document.getElementById(cartArray[i].id).checked= false;
 }
 
 function deletecheckeditems(){
     checkcart();
-    deletecartitems(carttemp.length);
+    for (let i=0; i < carttemp.length; i++)
+        deletecartitem(carttemp[i].id);
 }
 
-function deletecartitems(i){
+function deletecartitem(id){
     var cartArray= JSON.parse(localStorage.getItem('cart'));
-    cartArray.splice(i, 1);
-    localStorage.setItem("cart", JSON.stringify(cartArray));
+    for(let i=0; i < cartArray.length; i++)
+        if (cartArray[i].id==id)
+            cartArray.splice(i, 1);
+    localStorage.setItem('cart',JSON.stringify(cartArray));
     cartDisplay();
 }
 
 window.onload = function(){
     cartDisplay();
-    deletecartitems(0);
-   // deletecheckeditems();
 }
 
