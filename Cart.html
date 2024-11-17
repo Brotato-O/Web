@@ -25,6 +25,16 @@
     <div id="hero-image">
         <img src="img/cart-background.jpg" alt="Hinh nen">
     </div>
+    <div id="status-cart">
+        <div class="container">
+            <ul>
+                <li><a href="cart.html"><h3>Giỏ hàng</h3></a></li>
+                <li><a href="cart.html?status&0"><h3>Chờ xác nhận</h3></a></li>
+                <li><a href="cart.html?status&1"><h3>Đã xác nhận</h3></a></li>
+                <li><a href="cart.html?status&2"><h3>Đã giao</h3></a></li>
+            </ul>
+        </div>
+    </div>
     <div id="main-cart">
         <div class="container">
             <div id="wrap-cart">
@@ -72,5 +82,6 @@
                 </ul>
             </div>
     </section>
+    <button onclick="them()">Thêm (tạm)</button>
     <script src="script.js"></script>
 </body>
