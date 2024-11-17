@@ -30,13 +30,13 @@ function cartDisplay(){
         for(let i=0;i<cartArray.length;i++){
             
             s+= `<tr>
-                    <td><input type="checkbox" id="${cartArray[i].id}"></td>
+                    <td><input type="checkbox" id="${cartArray[i].id}" onchange="buy()"></td>
                     <td class="cart-item-image"><img src="${cartArray[i].image}" alt="product"></td>
                     <td class="cart-item-name"><label for="${cartArray[i].id}">${cartArray[i].name}</label</td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
                             <button class="bot">-</button>
-                            <input type="text" id="sl" value="1">
+                            <input type="text" id="sl" class="quantity" value="1">
                             <button class="them">+</button>
                         <div>
                     </td>
@@ -60,7 +60,7 @@ function cartDisplay(){
                 <label for="check-all">Chọn tất cả</label>
             </div>
             <button onclick="deletecheckeditems()">Xóa</button>
-            <span id="bill">Tổng thanh toán: </span>
+            <span id="total-pay">Tổng thanh toán: </span>
             <button>Thanh toán</button>
         </div>
         `;
@@ -102,14 +102,23 @@ function deletecheckeditems(){
         deletecartitem(carttemp[i].id);
 }
 
-    function deletecartitem(id){
+function deletecartitem(id){
     var cartArray= JSON.parse(localStorage.getItem('cart'));
     for(let i=0; i < cartArray.length; i++)
     if (cartArray[i].id==id)
         cartArray.splice(i, 1);
     localStorage.setItem('cart',JSON.stringify(cartArray));
     cartDisplay();
-    }
+}
+
+function buy(){
+    checkcart();
+    var s=0;
+    console.log(parseInt(document.getElementsByClassName('quantity')[0].value))
+    for(let i=0; i <carttemp.length; i++)
+        s+= parseInt(document.getElementsByClassName('quantity')[i].value) * carttemp[i].price;
+    document.getElementById("total-pay").innerHTML="Tổng thanh toán: " + s;
+}
 
 window.onload = function(){
     var temp= location.href.split("?")[1];

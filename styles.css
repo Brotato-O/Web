@@ -682,7 +682,6 @@ body{
 
 #status-cart li{
     list-style-type: none;
-    
     box-sizing: border-box;
 }
 
@@ -757,6 +756,7 @@ td img{
     border: 2px solid black;
     
 }
+
 .bot{
     font-size: 16px;
     width: 30px;
