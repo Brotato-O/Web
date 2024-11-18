@@ -179,7 +179,7 @@ function cartDisplay(){
                         <div>
                     </td>
                     <td class="cart-item-price">${cartArray[i].price}</td>
-                    <td><button onclick="deleteCartItem('${cartArray[i].id}')">X</button></td>
+                    <td><button onclick="checkDelete('${cartArray[i].id}')">X</button></td>
                 </tr>`
         }
         s= `<table class="cart-table">
@@ -246,18 +246,20 @@ function deleteCheckedItems(){
             deleteCartItem(carttemp[i].id);
 }
 
+function checkDelete(id){
+    if (warning()== false) return;
+    deleteCartItem(id);
+}
+
 function deleteCartItem(id){
-    if(warning()== false) return;
-    else{
-        var cartArray= JSON.parse(localStorage.getItem('cart'));
-        for(let i=0; i < cartArray.length; i++)
-            if (cartArray[i].id==id){
-                cartArray.splice(i, 1);
-                break;
-            }
-        localStorage.setItem('cart',JSON.stringify(cartArray));
-        cartDisplay();
-    }
+    var cartArray= JSON.parse(localStorage.getItem('cart'));
+    for(let i=0; i < cartArray.length; i++)
+        if (cartArray[i].id==id){
+            cartArray.splice(i, 1);
+            break;
+        }
+    localStorage.setItem('cart',JSON.stringify(cartArray));
+    cartDisplay();
 }
 
 function buy(){
@@ -426,8 +428,9 @@ function showPaymentMethodBox() {
     hideAllBoxes(); 
     paymentMethodBox.style.display = 'block';
     confirmPaymentButton.style.display = 'block';
-  }
+}
 
+//tài kết thúc 
 window.onload = function(){
     var temp= location.href.split("?")[1];
     if(temp ==undefined || temp=="") cartDisplay();
