@@ -88,5 +88,73 @@
     <button onclick="them()">Thêm giỏ hàng (tạm)</button>
     <button onclick="thembill()">Thêm bill tạm</button>
     <button onclick="xoabill()">Xóa bill tạm</button>
-    <script src="cart.js"></script>
+    <!-- tài -->
+
+    <div class="overlay" id="overlay" style="display: none;">
+        <div class="checkout-box">
+          <div id="address-box" style="display: block;">
+            <h4>Chọn địa chỉ giao hàng</h4>
+            <button id="use-saved-address" onclick="useSavedAddress()">Sử dụng địa chỉ đã lưu</button>
+            <button id="add-new-address" onclick="addNewAddress()">Nhập địa chỉ mới</button>
+          </div>
+    
+          <!-- Box nhập địa chỉ mới -->
+          <div id="new-address-box" style="display: none;">
+            <h4>Nhập địa chỉ giao hàng</h4>
+            <form id="address-form">
+              <input type="text" id="name" placeholder="Họ tên người nhận hàng" required>
+              <input type="text" id="phone" placeholder="Số điện thoại" required pattern="^[0-9]{10,11}$">
+              <input type="text" id="house-number" placeholder="Số nhà" required>
+              <input type="text" id="street" placeholder="Đường" required>
+              <input type="text" id="ward" placeholder="Phường/Xã" required>
+              <input type="text" id="district" placeholder="Quận/Huyện" required>
+              <input type="text" id="city" placeholder="Tỉnh/Thành phố" required>
+            </form>
+            <button onclick="saveAddress()">Lưu địa chỉ</button>
+            <button onclick="goBackToAddress()">Quay lại</button>
+          </div>
+    
+          <!-- Box phương thức thanh toán -->
+          <div id="payment-method-box" style="display: none;">
+            <h3>Chọn phương thức thanh toán</h3>
+            <div id="payment-methods">
+              <label>
+                <input type="radio" name="payment-method" value="Tiền mặt" onclick="PaymentMethodSelection()">
+                <i class="fas fa-money-bill-wave"></i> Tiền mặt khi nhận hàng
+              </label>
+              <label>
+                <input type="radio" name="payment-method" value="Thẻ ngân hàng" onclick="PaymentMethodSelection()">
+                <i class="fas fa-credit-card"></i> Thẻ ngân hàng
+              </label>
+              <label>
+                <input type="radio" name="payment-method" value="Chuyển khoản" onclick="PaymentMethodSelection()">
+                <i class="fas fa-university"></i> Chuyển khoản
+              </label>
+            </div>
+            
+            <div id="payment-image-container" style="display: none;">
+              <img src="../img/Chuyenkhoan.jpg" alt="Chuyển khoản">
+            </div>
+    
+            <button onclick="goBackToAddress()">Quay lại</button>
+          </div>
+            <div id="cash-payment-box" style="display: none;">
+            <p id="cash-payment-amount"></p>
+            </div>
+          <!-- Box thông tin thẻ ngân hàng -->
+          <div id="card-info-box" style="display: none;">
+            <h4>Thông tin thẻ ngân hàng</h4>
+            <form id="card-info-form">
+              <input type="text" id="card-number" placeholder="Số thẻ" required pattern="\d{16}" maxlength="16">
+              <input type="text" id="card-holder" placeholder="Tên chủ thẻ" required>
+              <input type="tel" id="card-phone" placeholder="Số điện thoại chủ thẻ" required pattern="^[0-9]{10,11}$">
+              <input type="text" id="card-expiry" placeholder="Ngày phát hành (MM/YY)" required>
+            </form>
+          </div>
+    
+          <button id="confirm-payment-button" onclick="checkout()" style="display: none;">Xác nhận thanh toán</button>
+          <button id="close-checkout-button" onclick="closeCheckout()">X</button>
+        </div>
+      </div>
+      <script src="cart.js"></script>
 </body>

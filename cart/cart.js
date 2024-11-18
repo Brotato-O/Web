@@ -1,3 +1,10 @@
+const openCheckoutButton = document.getElementById('open-checkout-button');
+const paymentMethodBox = document.getElementById('payment-method-box');
+const confirmPaymentButton = document.getElementById('confirm-payment-button');
+const newAddressBox = document.getElementById('new-address-box');
+const addressBox = document.getElementById('address-box');
+const cardInfoBox = document.getElementById('card-info-box');
+const paymentImageContainer = document.getElementById('payment-image-container');
 
 function them(){
     var carttemp = [
@@ -172,7 +179,7 @@ function cartDisplay(){
                         <div>
                     </td>
                     <td class="cart-item-price">${cartArray[i].price}</td>
-                    <td><button onclick="deletecartitem('${cartArray[i].id}')">X</button></td>
+                    <td><button onclick="deleteCartItem('${cartArray[i].id}')">X</button></td>
                 </tr>`
         }
         s= `<table class="cart-table">
@@ -192,7 +199,7 @@ function cartDisplay(){
             </div>
             <button onclick="deleteCheckedItems()">Xóa</button>
             <span id="total-pay">Tổng thanh toán: </span>
-            <button>Thanh toán</button>
+            <button id="open-checkout-button" onclick="openCheckout()">Thanh toán</button>
         </div>
         `;
         document.getElementById('wrap-cart').innerHTML=s;
@@ -225,13 +232,23 @@ function checkAllItems(){
             document.getElementById(cartArray[i].id).checked= false;
 }
 
-function deleteCheckedItems(){
-    checkCart();
-    for (let i=0; i < carttemp.length; i++)
-        deletecartitem(carttemp[i].id);
+function warning() {
+    var result = window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này?");
+    if (result == true) return true; 
+    else return false;
 }
 
-    function deletecartitem(id){
+function deleteCheckedItems(){
+    checkCart();
+    if(warning()== false) return;
+    else 
+        for (let i=0; i < carttemp.length; i++)
+            deleteCartItem(carttemp[i].id);
+}
+
+function deleteCartItem(id){
+    if(warning()== false) return;
+    else{
         var cartArray= JSON.parse(localStorage.getItem('cart'));
         for(let i=0; i < cartArray.length; i++)
             if (cartArray[i].id==id){
@@ -241,6 +258,7 @@ function deleteCheckedItems(){
         localStorage.setItem('cart',JSON.stringify(cartArray));
         cartDisplay();
     }
+}
 
 function buy(){
     checkCart();
@@ -249,6 +267,7 @@ function buy(){
     for(let i=0; i <carttemp.length; i++)
         s+= parseInt(document.getElementsByClassName('quantity')[i].value) * carttemp[i].price;
     document.getElementById("total-pay").innerHTML="Tổng thanh toán: " + s;
+    return s;
 }
 
 function notLogin(){
@@ -291,20 +310,123 @@ function showBill(number){
             }
         }
         s= `
-                        <table>
-                            <tr>
-                                <th>Mã hóa đơn</th>
-                                <th>Sản phẩm đã đặt</th>
-                                <th>Ngày đặt</th>
-                                <th>Tổng tiền</th>
-                                <th>Phương thức thanh toán</th>
-                            <tr> `+ s + `
+            <table>
+                <tr>
+                    <th>Mã hóa đơn</th>
+                    <th>Sản phẩm đã đặt</th>
+                    <th>Ngày đặt</th>
+                    <th>Tổng tiền</th>
+                    <th>Phương thức thanh toán</th>
+                <tr> `+ s + `
 
-                        </table>
-                    `
-                    document.getElementById("wrap-cart").innerHTML=s;   
+            </table>
+        `
+        document.getElementById("wrap-cart").innerHTML=s;   
     }
 }
+
+//tài
+function hideAllBoxes() {
+    addressBox.style.display = 'none';
+    paymentMethodBox.style.display = 'none';
+    cardInfoBox.style.display = 'none';
+    newAddressBox.style.display = 'none';
+    confirmPaymentButton.style.display = 'none';
+    paymentImageContainer.style.display = 'none'; 
+    document.getElementById('cash-payment-box').style.display = 'none';
+}
+
+function openCheckout() {
+    if (carttemp.length === 0) {
+      alert('Giỏ hàng trống! Vui lòng thêm sản phẩm.');
+    } else {
+      overlay.style.display = 'flex';
+      showAddressBox();
+    }
+};
+
+function showAddressBox() {
+    hideAllBoxes(); 
+    addressBox.style.display = 'block';
+}
+
+function closeCheckout() {
+    overlay.style.display = 'none';
+};
+
+function useSavedAddress() {
+    hideAllBoxes();  
+    paymentMethodBox.style.display = 'block';
+    confirmPaymentButton.style.display = 'block'; 
+}
+
+function addNewAddress() {
+    hideAllBoxes();  
+    newAddressBox.style.display = 'block';
+}
+
+function goBackToAddress() {
+    hideAllBoxes();  
+    addressBox.style.display = 'block';
+    paymentMethodBox.style.display = 'none';
+    cardInfoBox.style.display = 'none';
+    confirmPaymentButton.style.display = 'none'; 
+}
+
+function saveAddress() {
+    const address = {
+      name: document.getElementById('name').value,
+      phone: document.getElementById('phone').value,
+      houseNumber: document.getElementById('house-number').value,
+      street: document.getElementById('street').value,
+      ward: document.getElementById('ward').value,
+      district: document.getElementById('district').value,
+      city: document.getElementById('city').value,
+    };
+    console.log('Địa chỉ đã lưu:', address);
+    
+    newAddressBox.style.display = 'none';
+    showPaymentMethodBox(); 
+}
+
+function PaymentMethodSelection() {
+  const selectedMethod = document.querySelector('input[name="payment-method"]:checked');
+
+  cardInfoBox.style.display = 'none';
+  paymentImageContainer.style.display = 'none'; 
+  document.getElementById('cash-payment-box').style.display = 'none'; 
+
+  if (selectedMethod && selectedMethod.value === 'Thẻ ngân hàng') {
+    cardInfoBox.style.display = 'block'; 
+  } else if (selectedMethod && selectedMethod.value === 'Chuyển khoản') {
+    paymentImageContainer.style.display = 'block';  
+  } else if (selectedMethod && selectedMethod.value === 'Tiền mặt') {
+    document.getElementById('cash-payment-box').style.display = 'block'; 
+    document.getElementById('cash-payment-amount').textContent = `Số tiền cần thanh toán: ${buy()}`;
+  }
+}
+
+function checkout() {
+    const selectedMethod = document.querySelector('input[name="payment-method"]:checked');  
+    if (!selectedMethod) {
+      alert('Vui lòng chọn phương thức thanh toán!');
+      return; 
+    }
+    cart.length = 0; 
+    updateCart(); 
+    const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
+    paymentMethods.forEach((method) => method.checked = false);
+    hideAllBoxes();  
+    overlay.style.display = 'none';
+    alert('Thanh toán thành công!');
+    closeCheckout(); 
+}
+
+function showPaymentMethodBox() {
+    hideAllBoxes(); 
+    paymentMethodBox.style.display = 'block';
+    confirmPaymentButton.style.display = 'block';
+  }
 
 window.onload = function(){
     var temp= location.href.split("?")[1];
