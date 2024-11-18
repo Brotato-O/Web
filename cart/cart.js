@@ -169,7 +169,7 @@ function cartDisplay(){
         for(let i=0;i<cartArray.length;i++){
             s+= `<tr>
                     <td><input type="checkbox" id="${cartArray[i].id}" onchange="buy()"></td>
-                    <td class="cart-item-image"><img src="../img/s${cartArray[i].image}" alt="product"></td>
+                    <td class="cart-item-image"><img src="../${cartArray[i].image}" alt="product"></td>
                     <td class="cart-item-name"><label for="${cartArray[i].id}">${cartArray[i].name}</label</td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
