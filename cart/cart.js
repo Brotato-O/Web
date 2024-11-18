@@ -187,10 +187,10 @@ function cartDisplay(){
         `</table> 
         <div id="total-bill">
             <div>
-                <input type="checkbox" id="check-all" onchange="checkallitems(), buy()"> 
+                <input type="checkbox" id="check-all" onchange="checkAllItems(), buy()"> 
                 <label for="check-all">Chọn tất cả</label>
             </div>
-            <button onclick="deletecheckeditems()">Xóa</button>
+            <button onclick="deleteCheckedItems()">Xóa</button>
             <span id="total-pay">Tổng thanh toán: </span>
             <button>Thanh toán</button>
         </div>
@@ -205,7 +205,7 @@ function cartDisplay(){
 }
 
 var carttemp=[];
-function checkcart(){
+function checkCart(){
     carttemp=[];  
     var cartArray= JSON.parse(localStorage.getItem('cart'));
     for(var i=0; i<cartArray.length; i++){
@@ -214,7 +214,7 @@ function checkcart(){
     }
 }
 
-function checkallitems(){
+function checkAllItems(){
     var cartArray= JSON.parse(localStorage.getItem('cart'));
     var check= document.getElementById("check-all");
     if(check.checked== true)
@@ -225,8 +225,8 @@ function checkallitems(){
             document.getElementById(cartArray[i].id).checked= false;
 }
 
-function deletecheckeditems(){
-    checkcart();
+function deleteCheckedItems(){
+    checkCart();
     for (let i=0; i < carttemp.length; i++)
         deletecartitem(carttemp[i].id);
 }
@@ -243,7 +243,7 @@ function deletecheckeditems(){
     }
 
 function buy(){
-    checkcart();
+    checkCart();
     var s=0;
     console.log(parseInt(document.getElementsByClassName('quantity')[0].value))
     for(let i=0; i <carttemp.length; i++)
@@ -251,7 +251,7 @@ function buy(){
     document.getElementById("total-pay").innerHTML="Tổng thanh toán: " + s;
 }
 
-function notlogin(){
+function notLogin(){
     document.getElementById("wrap-cart").innerHTML=`
         <a href="#">
             <img src="../img/anonymous-user.png" alt="anonymous-user">
@@ -261,10 +261,10 @@ function notlogin(){
     `
 }
 
-function showbill(number){
+function showBill(number){
     var loggeduser = JSON.parse(localStorage.getItem('loggeduser'));
     var bill= JSON.parse(localStorage.getItem('bill'));
-    if(loggeduser == undefined ) notlogin();
+    if(loggeduser == undefined ) notLogin();
     else{
         var variable= "";
         if (number== 1) variable="Chờ xác nhận";
@@ -312,8 +312,8 @@ window.onload = function(){
     else{
         temp=temp.split("&")[1];
         if(temp==0) cartDisplay();
-        else if(temp== 1) showbill(1); 
-        else if(temp== 2) showbill(2); 
-        else showbill(3); 
+        else if(temp== 1) showBill(1); 
+        else if(temp== 2) showBill(2); 
+        else showBill(3); 
     }
 }
