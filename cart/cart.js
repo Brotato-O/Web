@@ -325,7 +325,7 @@ function showBill(number){
     }
 }
 
-//tài
+//Code của Tài
 function hideAllBoxes() {
     addressBox.style.display = 'none';
     paymentMethodBox.style.display = 'none';
