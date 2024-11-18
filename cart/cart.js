@@ -1,3 +1,4 @@
+
 function them(){
     var carttemp = [
         { image: 'img/1013.jpg', id: "S001", name: "Giày Adidas UltraBoost", price: 2000000 },
@@ -12,6 +13,11 @@ function them(){
         { image: 'img/1098.JPG', id: "S010", name: "Giày Balenciaga Triple S", price: 8000000 }
     ];
     localStorage.setItem("cart", JSON.stringify(carttemp));
+}
+
+function xoabill(){
+    localStorage.removeItem("bill");
+    localStorage.removeItem("loggeduser");
 }
 
 function thembill(){
@@ -144,8 +150,8 @@ function thembill(){
 function cartDisplay(){    
     var cartArray= JSON.parse(localStorage.getItem('cart'));
     if (cartArray== undefined || cartArray.length==0){
-        var s=`<a href="index.html">
-            <img src="img/emty-cart.png" alt="emty-cart">
+        var s=`<a href="../index.html">
+            <img src="../img/emty-cart.png" alt="emty-cart">
             <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
             <span>Quay lại trang chủ</span>
         </a>`;
@@ -154,10 +160,9 @@ function cartDisplay(){
     else{
         var s ="";
         for(let i=0;i<cartArray.length;i++){
-            
             s+= `<tr>
                     <td><input type="checkbox" id="${cartArray[i].id}" onchange="buy()"></td>
-                    <td class="cart-item-image"><img src="${cartArray[i].image}" alt="product"></td>
+                    <td class="cart-item-image"><img src="../${cartArray[i].image}" alt="product"></td>
                     <td class="cart-item-name"><label for="${cartArray[i].id}">${cartArray[i].name}</label</td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
@@ -167,7 +172,7 @@ function cartDisplay(){
                         <div>
                     </td>
                     <td class="cart-item-price">${cartArray[i].price}</td>
-                    <td><button onclick="deletecartitem(${cartArray[i].id})">X</button></td>
+                    <td><button onclick="deletecartitem('${cartArray[i].id}')">X</button></td>
                 </tr>`
         }
         s= `<table class="cart-table">
@@ -182,7 +187,7 @@ function cartDisplay(){
         `</table> 
         <div id="total-bill">
             <div>
-                <input type="checkbox" id="check-all" onchange="checkallitems()"> 
+                <input type="checkbox" id="check-all" onchange="checkallitems(), buy()"> 
                 <label for="check-all">Chọn tất cả</label>
             </div>
             <button onclick="deletecheckeditems()">Xóa</button>
@@ -226,14 +231,16 @@ function deletecheckeditems(){
         deletecartitem(carttemp[i].id);
 }
 
-function deletecartitem(id){
-    var cartArray= JSON.parse(localStorage.getItem('cart'));
-    for(let i=0; i < cartArray.length; i++)
-    if (cartArray[i].id==id)
-        cartArray.splice(i, 1);
-    localStorage.setItem('cart',JSON.stringify(cartArray));
-    cartDisplay();
-}
+    function deletecartitem(id){
+        var cartArray= JSON.parse(localStorage.getItem('cart'));
+        for(let i=0; i < cartArray.length; i++)
+            if (cartArray[i].id==id){
+                cartArray.splice(i, 1);
+                break;
+            }
+        localStorage.setItem('cart',JSON.stringify(cartArray));
+        cartDisplay();
+    }
 
 function buy(){
     checkcart();
@@ -247,30 +254,32 @@ function buy(){
 function notlogin(){
     document.getElementById("wrap-cart").innerHTML=`
         <a href="#">
-            <img src="img/anonymous-user.png" alt="anonymous-user">
+            <img src="../img/anonymous-user.png" alt="anonymous-user">
             <h2>Bạn phải đăng nhập để xem chức năng này</h2>
             <span>Đi đến đăng nhập</span>
         </a>
     `
 }
 
-function showbill(){
+function showbill(number){
     var loggeduser = JSON.parse(localStorage.getItem('loggeduser'));
     var bill= JSON.parse(localStorage.getItem('bill'));
-    var user = JSON.parse(localStorage.getItem('users'));
     if(loggeduser == undefined ) notlogin();
     else{
+        var variable= "";
+        if (number== 1) variable="Chờ xác nhận";
+        else if (number== 2) variable="Đã xác nhận";
+        else variable="Đã giao";
+        var s="";
         for(var i=0; i< bill.length; i++){
-            if(bill[i].customer.username == loggeduser.username && bill[i].customer.password== loggeduser.password){
-                var s="";
-                if(1==1){
-                    s=`
+            if(bill[i].customer.username == loggeduser.username && bill[i].customer.password== loggeduser.password && bill[i].status== variable){
+                    s+=`
                         <tr>
                             <td>${bill[i].receiptId}</td>
-                            <td>`;
+                            <td class="billname">`;
                     for(var j=0; j< bill[i].products.length; j++){
                         s+= `
-                            ${bill[i].products[j].quantity} X ${bill[i].products[j].name}
+                            <div>${bill[i].products[j].quantity} X ${bill[i].products[j].name}</div>
                         `;      
                     }
                     s+= `</td>
@@ -279,7 +288,9 @@ function showbill(){
                     <td>${bill[i].paymentMethod}</td>
                     </tr>
                     `;
-                    s= `
+            }
+        }
+        s= `
                         <table>
                             <tr>
                                 <th>Mã hóa đơn</th>
@@ -292,10 +303,6 @@ function showbill(){
                         </table>
                     `
                     document.getElementById("wrap-cart").innerHTML=s;   
-                }
-
-            }
-        }
     }
 }
 
@@ -305,8 +312,8 @@ window.onload = function(){
     else{
         temp=temp.split("&")[1];
         if(temp==0) cartDisplay();
-        else if(temp==1){}
-        else if(temp==2){}
-        else if(temp==3) showbill();
+        else if(temp== 1) showbill(1); 
+        else if(temp== 2) showbill(2); 
+        else showbill(3); 
     }
 }
