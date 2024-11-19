@@ -155,34 +155,33 @@ function thembill(){
 }
 
 function cartDisplay(){    
-    var cartArray= JSON.parse(localStorage.getItem('cart'));
-    if (cartArray== undefined || cartArray.length==0){
-        var s=`<a href="../index.html">
+    var cartArray = JSON.parse(localStorage.getItem('cart'));
+    if (cartArray == undefined || cartArray.length == 0) {
+        var s = `<a href="../index.html">
             <img src="../img/emty-cart.png" alt="emty-cart">
             <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
             <span>Quay lại trang chủ</span>
         </a>`;
-        document.getElementById('wrap-cart').innerHTML=s;
-    }
-    else{
-        var s ="";
-        for(let i=0;i<cartArray.length;i++){
-            s+= `<tr>
+        document.getElementById('wrap-cart').innerHTML = s;
+    } else {
+        var s = "";
+        for (let i = 0; i < cartArray.length; i++) {
+            s += `<tr>
                     <td><input type="checkbox" id="${cartArray[i].id}" onchange="buy()"></td>
                     <td class="cart-item-image"><img src="../${cartArray[i].image}" alt="product"></td>
-                    <td class="cart-item-name"><label for="${cartArray[i].id}">${cartArray[i].name}</label</td>
+                    <td class="cart-item-name"><label for="${cartArray[i].id}">${cartArray[i].name}</label></td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
-                            <button class="bot">-</button>
-                            <input type="text" id="sl" class="quantity" value="1">
-                            <button class="them">+</button>
-                        <div>
+                            <button class="bot" onclick="adjustQuantity('${cartArray[i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
+                            <input type="text" id="sl-${cartArray[i].id}" class="quantity" value="1" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center;">
+                            <button class="them" onclick="adjustQuantity('${cartArray[i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
+                        </div>
                     </td>
-                    <td class="cart-item-price">${cartArray[i].price}</td>
+                    <td class="cart-item-price" id="price-${cartArray[i].id}">${cartArray[i].price}</td>
                     <td><button onclick="checkDelete('${cartArray[i].id}')">X</button></td>
-                </tr>`
+                </tr>`;
         }
-        s= `<table class="cart-table">
+        s = `<table class="cart-table">
             <tr>
                 <td></td>
                 <th class="cart-item-image">Hình ảnh</th>
@@ -200,16 +199,17 @@ function cartDisplay(){
             <button onclick="deleteCheckedItems()">Xóa</button>
             <span id="total-pay">Tổng thanh toán: </span>
             <button id="open-checkout-button" onclick="openCheckout()">Thanh toán</button>
-        </div>
-        `;
-        document.getElementById('wrap-cart').innerHTML=s;
-        for(let i = 0; i <=cartArray.length; i++) {
-            document.getElementsByClassName('cart-item-image')[i].style.width="20%";
-            document.getElementsByClassName('cart-item-quantity')[i].style.width="20%";
-            document.getElementsByClassName('cart-item-price')[i].style.width="20%";
+        </div>`;
+        document.getElementById('wrap-cart').innerHTML = s;
+
+        for (let i = 0; i <= cartArray.length; i++) {
+            document.getElementsByClassName('cart-item-image')[i].style.width = "20%";
+            document.getElementsByClassName('cart-item-quantity')[i].style.width = "20%";
+            document.getElementsByClassName('cart-item-price')[i].style.width = "20%";
         }
     }
 }
+
 
 var carttemp=[];
 function checkCart(){
@@ -264,11 +264,16 @@ function deleteCartItem(id){
 
 function buy(){
     checkCart();
-    var s=0;
-    console.log(parseInt(document.getElementsByClassName('quantity')[0].value))
-    for(let i=0; i <carttemp.length; i++)
-        s+= parseInt(document.getElementsByClassName('quantity')[i].value) * carttemp[i].price;
-    document.getElementById("total-pay").innerHTML="Tổng thanh toán: " + s;
+    var s = 0;
+    
+    for (let i = 0; i < carttemp.length; i++) {
+        var quantity = parseInt(document.getElementById(`sl-${carttemp[i].id}`).value);
+        
+        s += quantity * carttemp[i].price;
+    }
+
+    document.getElementById("total-pay").innerHTML = "Tổng thanh toán: " + s;
+    
     return s;
 }
 
@@ -430,7 +435,7 @@ function showPaymentMethodBox() {
     confirmPaymentButton.style.display = 'block';
 }
 
-//tài kết thúc 
+//tài
 window.onload = function(){
     var temp= location.href.split("?")[1];
     if(temp ==undefined || temp=="") cartDisplay();
@@ -441,4 +446,28 @@ window.onload = function(){
         else if(temp== 2) showBill(2); 
         else showBill(3); 
     }
+}
+// Hàm điều chỉnh số lượng 
+function adjustQuantity(itemId, change) {
+    var cartArray = JSON.parse(localStorage.getItem('cart'));
+    for (let i = 0; i < cartArray.length; i++) {
+        if (cartArray[i].id === itemId) {
+            let quantityInput = document.getElementById(`sl-${itemId}`);
+            let currentQuantity = parseInt(quantityInput.value);
+            let newQuantity = currentQuantity + change;
+
+            if (newQuantity < 1) {
+                alert('Số lượng tối thiểu là 1');
+                return;
+            }
+
+            quantityInput.value = newQuantity;
+            document.getElementById(`price-${itemId}`).textContent = cartArray[i].price * newQuantity;
+
+            cartArray[i].quantity = newQuantity;
+            localStorage.setItem('cart', JSON.stringify(cartArray));
+            break;
+        }
+    }
+    buy();
 }
