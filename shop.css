@@ -377,6 +377,61 @@ body{
     cursor: pointer;
 }
 
+#footer{
+    height: 50vh;
+    width: 100%;
+    background: linear-gradient(to right, #333, #555, #333);
+}
+
+#footer-items{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer-item{
+    margin: 20px 60px;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.footer-item p{
+    margin: 10px 0;
+}
+
+.fiheadline{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 20px 0;
+}
+
+.ficontent{
+    font-size: 1rem;
+    font-weight: 300;
+    color: #fff;
+    padding-top: 20px;
+}
+
+.ficont{
+    margin-top: 60px;
+    font-size: 1rem;
+}
+
+.ficont2{
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: space-between;
+}
+
+.footer-item ul li{
+    margin: 5px 0;
+    list-style: none;
+    font-style: italic;
+}
+
+
+
 /*
 css của sản phẩm
 */
