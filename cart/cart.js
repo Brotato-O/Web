@@ -154,6 +154,7 @@ function thembill(){
     localStorage.setItem("bill", JSON.stringify(bills));
 }
 
+//hiển thị giỏ hàng
 function cartDisplay(){    
     var cartArray= JSON.parse(localStorage.getItem('cart'));
     if (cartArray== undefined || cartArray.length==0){
@@ -211,6 +212,7 @@ function cartDisplay(){
     }
 }
 
+//kiểm tra sản phẩm được chọn
 var carttemp=[];
 function checkCart(){
     carttemp=[];  
@@ -221,6 +223,7 @@ function checkCart(){
     }
 }
 
+//chọn tất cả sản phẩm
 function checkAllItems(){
     var cartArray= JSON.parse(localStorage.getItem('cart'));
     var check= document.getElementById("check-all");
@@ -232,12 +235,14 @@ function checkAllItems(){
             document.getElementById(cartArray[i].id).checked= false;
 }
 
+//hàm cảnh báo xóa
 function warning() {
     var result = window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này?");
     if (result == true) return true; 
     return false;
 }
 
+//xóa sản phẩm được chọn
 function deleteCheckedItems(){
     checkCart();
     if(carttemp.length==0 || carttemp== undefined) {
@@ -249,6 +254,7 @@ function deleteCheckedItems(){
         deleteCartItem(carttemp[i].id);
 }
 
+//xóa sản phẩm
 function checkDelete(id){
     if (warning()== false) return;
     deleteCartItem(id);
@@ -265,6 +271,7 @@ function deleteCartItem(id){
     cartDisplay();
 }
 
+//hiển thị giá tiền
 function buy(){
     checkCart();
     var s=0;
@@ -275,12 +282,14 @@ function buy(){
     return s;
 }
 
+//cảnh báo hủy đơn
 function warning1() {
     var result = window.confirm("Bạn có chắc chắn muốn hủy đơn này?");
     if (result == true) return true; 
     return false;
 }
 
+//hủy đơn
 function huy(id){
     if(warning1()== false) return;
     var bill= JSON.parse(localStorage.getItem('bill'));
@@ -294,6 +303,7 @@ function huy(id){
     showBill(1);
 }
 
+//hiển thị nếu người dùng chưa đăng nhập
 function notLogin(){
     document.getElementById("wrap-cart").innerHTML=`
         <a href="#">
@@ -304,6 +314,7 @@ function notLogin(){
     `
 }
 
+//hiển thị tình trạng đơn
 function showBill(number){
     var loggeduser = JSON.parse(localStorage.getItem('loggeduser'));
     var bill= JSON.parse(localStorage.getItem('bill'));
