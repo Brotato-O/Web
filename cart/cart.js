@@ -154,6 +154,10 @@ function thembill(){
     localStorage.setItem("bill", JSON.stringify(bills));
 }
 
+function select(){
+
+}
+
 function cartDisplay(){    
     var cartArray= JSON.parse(localStorage.getItem('cart'));
     if (cartArray== undefined || cartArray.length==0){
@@ -235,15 +239,14 @@ function checkAllItems(){
 function warning() {
     var result = window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này?");
     if (result == true) return true; 
-    else return false;
+    return false;
 }
 
 function deleteCheckedItems(){
     checkCart();
     if(warning()== false) return;
-    else 
-        for (let i=0; i < carttemp.length; i++)
-            deleteCartItem(carttemp[i].id);
+    for (let i=0; i < carttemp.length; i++)
+        deleteCartItem(carttemp[i].id);
 }
 
 function checkDelete(id){
@@ -272,6 +275,25 @@ function buy(){
     return s;
 }
 
+function warning1() {
+    var result = window.confirm("Bạn có chắc chắn muốn hủy đơn này?");
+    if (result == true) return true; 
+    return false;
+}
+
+function huy(id){
+    if(warning1()== false) return;
+    var bill= JSON.parse(localStorage.getItem('bill'));
+    for(let i=0; i< bill.length; i++){
+        if(bill[i].receiptId == id){
+            bill[i].status = "Đã hủy";
+            break;
+        }
+    }
+    localStorage.setItem('bill',JSON.stringify(bill));
+    showBill(1);
+}
+
 function notLogin(){
     document.getElementById("wrap-cart").innerHTML=`
         <a href="#">
@@ -290,7 +312,8 @@ function showBill(number){
         var variable= "";
         if (number== 1) variable="Chờ xác nhận";
         else if (number== 2) variable="Đã xác nhận";
-        else variable="Đã giao";
+        else if (number== 3) variable="Đã giao";
+        else variable="Đã hủy";
         var s="";
         for(var i=0; i< bill.length; i++){
             if(bill[i].customer.username == loggeduser.username && bill[i].customer.password== loggeduser.password && bill[i].status== variable){
@@ -306,13 +329,13 @@ function showBill(number){
                     s+= `</td>
                     <td>${bill[i].orderDate}</td>
                     <td>${bill[i].totalAmount}</td>
-                    <td>${bill[i].paymentMethod}</td>
-                    </tr>
-                    `;
+                    <td>${bill[i].paymentMethod}</td>`
+                    if (number==1)
+                        s+=`<td><button onclick="huy('${bill[i].receiptId}')" value=>Hủy đơn</button></td>`
+                    s+=`</tr>`;
             }
         }
-        s= `
-            <table>
+        s= `<table>
                 <tr>
                     <th>Mã hóa đơn</th>
                     <th>Sản phẩm đã đặt</th>
@@ -324,6 +347,19 @@ function showBill(number){
             </table>
         `
         document.getElementById("wrap-cart").innerHTML=s;   
+    }
+}
+            
+window.onload = function(){
+    var temp= location.href.split("?")[1];
+    if(temp ==undefined || temp=="") cartDisplay();
+    else{
+        temp=temp.split("&")[1];
+        if(temp==0) cartDisplay();
+        else if(temp== 1) showBill(1); 
+        else if(temp== 2) showBill(2); 
+        else if(temp== 3)showBill(3); 
+        else showBill(4); 
     }
 }
 
@@ -431,14 +467,3 @@ function showPaymentMethodBox() {
 }
 
 //tài kết thúc 
-window.onload = function(){
-    var temp= location.href.split("?")[1];
-    if(temp ==undefined || temp=="") cartDisplay();
-    else{
-        temp=temp.split("&")[1];
-        if(temp==0) cartDisplay();
-        else if(temp== 1) showBill(1); 
-        else if(temp== 2) showBill(2); 
-        else showBill(3); 
-    }
-}
