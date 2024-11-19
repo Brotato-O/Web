@@ -15,6 +15,7 @@
     white-space: nowrap;
   }
   #txt {
+    margin-top: 7px;
     border: 1px solid;
     border-radius: 999px;
     font-size: 26px;
@@ -23,6 +24,7 @@
     position: relative;
   }
   #icon {
+    margin-top: 7px;
     top: 20px;
     right: 220px;
     font-size: 26px;
@@ -50,6 +52,7 @@
     margin: 20px;
   }
   #maintable {
+    border:1px solid black;
     width: 85%;
     display: flex;
     justify-content: space-between;
@@ -58,6 +61,8 @@
    
   }
   .cot {
+    background-color: pink;
+    border:1px solid black;
     flex-grow: 1;
     text-align: center;
     width: calc(17% - 16px);
@@ -74,6 +79,7 @@
     width: 40%;
   }
   .cot1 {
+    border:1px solid black;
     border-bottom: 2px groove;
     flex-grow: 1;
     text-align: center;
@@ -87,6 +93,7 @@
     width: 40%;
   }
   .cotchinhsua{
+    border:1px solid black;
     flex-grow: 1;
     border-bottom:2px groove ;
     text-align: center;
@@ -166,12 +173,17 @@
     cursor: pointer;
     text-align: center;
     font-size: 15px;
-    padding: 14px;
-    border: 1px groove  ;
+    padding: 10px;
+    border: 1px solid black ;
     border-radius: 15%;
     
 
 }
 .sotrang:hover{
     background-color: gold;
+}
+ #nav-logo{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
 }

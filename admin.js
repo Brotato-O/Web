@@ -130,6 +130,8 @@ function hienthitatcasp1(){
   var totalPages = Math.ceil(combinedArray.length / productsPerPage);
   var pageNumbers = "";
 
+
+  
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers += `
                 <div class="sotrang" onclick="goToPage(${i})">
@@ -147,8 +149,11 @@ function hienthitatcasp1(){
         <div class="cot">GIÁ</div>
         <div class="cot"></div>
                       ${s}
+                     
         <div class="phantrang">
+       
                     ${pageNumbers}
+        
         </div>
 
                 
