@@ -154,10 +154,6 @@ function thembill(){
     localStorage.setItem("bill", JSON.stringify(bills));
 }
 
-function select(){
-
-}
-
 function cartDisplay(){    
     var cartArray= JSON.parse(localStorage.getItem('cart'));
     if (cartArray== undefined || cartArray.length==0){
@@ -244,6 +240,10 @@ function warning() {
 
 function deleteCheckedItems(){
     checkCart();
+    if(carttemp.length==0 || carttemp== undefined) {
+        alert("Bạn chưa chọn sản phẩm để xóa!");
+        return;
+    };
     if(warning()== false) return;
     for (let i=0; i < carttemp.length; i++)
         deleteCartItem(carttemp[i].id);
