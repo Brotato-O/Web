@@ -1,11 +1,397 @@
+*{
+  
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+#navbar{
+    align-items: center;
+    padding: 20px 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #ffffff, #cecece);
+    position: fixed;
+    top: 0;
+    left: 0;
+   z-index: 2000;
+    right: 0;
+    
+    
+
+}
+
+#nav-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+#navbar #nav-logo{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+#navbar ul{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#navbar ul li{
+    margin-right: 20px;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+#navbar ul li a{
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+#navbar ul li a:hover{
+    position: relative;
+}
+
+#navbar ul li a:hover::after {
+    width: 120%;
+    left: -10%;
+    background: #333;
+}
+
+#navbar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 20px;
+    right: 0;
+    background: #333;
+    transition: width 0.4s ease;
+}
+
+#overlay{
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: none;
+}
+
+#SignForm{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    z-index: 1001;
+    display: none;
+}
+
+#SignForm-title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#SignForm button:hover{
+    background: #555;
+}
+
+#SignForm-inputs input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    border-radius: 0.3rem;
+}
+
+#SignForm-submit{
+    position: relative;
+    padding: 20px 20px;
+    border: none;
+    background: #333;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#SignForm-submit div{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#SignForm-close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+}
+
+#SignForm #SignForm-close:hover{
+    color: #555;
+}
+
+#SignForm-APT{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 20px;
+}
+
+#SignForm-APT a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#RegisterForm{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    z-index: 1001;
+    display: none;
+}
+
+#RegisterForm-title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#RegisterForm button:hover{
+    background: #555;
+}
+
+#RegisterForm-inputs input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    border-radius: 0.3rem;
+}
+
+#RegisterForm-submit{
+    position: relative;
+    padding: 20px 20px;
+    border: none;
+    background: #333;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#RegisterForm-submit div{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#RegisterForm-close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+}
+
+#RegisterForm #RegisterForm-close:hover{
+    color: #555;
+}
+
+#RegisterForm-APT{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 20px;
+}
+
+#RegisterForm-APT a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#CartForm{
+    position: fixed;
+    top: 33%;
+    left: 80%;
+    height: auto;
+    width: 500px;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 10px;
+    z-index: 1001;
+    display: none;
+}
+
+#CartForm-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#CartForm-close{
+    position: absolute;
+    margin-top: 10px;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+}
+
+#CartForm-title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    background-color: #f1f1f1;
+}
+
+#CartForm-items{
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0px;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#CartForm-items-list li{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#CartForm-items-list li div{
+    margin-left: 20px;
+}
+
+#CartForm-items img{
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+#CartForm-actions{
+    display: flex;
+    align-items: center;
+}
+
+#CartForm-view{
+    padding: 20px 200px;
+    border: none;
+    background: #723232;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#CartForm-view:hover{
+    opacity: 0.95;
+}
+
+#SearchBar{
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 200px;
+    top: 60px;
+    height: 70px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+}
+
+#SearchBar input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 0.3rem;
+}
+
+#SearchBar-submit{
+    padding: 10px 10px;
+    border: none;
+    background: #333;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*
+css của sản phẩm
+*/
 #toan1{
 
-    margin-top: 130px;
+    margin-top: 80px;
 }
+
 .tieude{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.tieude h3{
+    margin-left: 10px ;
 }
 .sptieude{
     display: flex;
@@ -13,11 +399,32 @@
     scroll-behavior: smooth;
     max-width: 100%;
 }
+.sanpham1{
+    min-width: 30%;
+    margin: 5px 10px;
+    width: fit-content;
+   
+    cursor: pointer;
+}
+.sanpham1-img{
+    width: 100%;
+   
+}
+.sanpham1 h3{
+    margin:0
+}
 .sanpham2 {
     position: relative;
     width: fit-content; /* Đảm bảo khung bao quanh vừa ảnh */
     margin: 10px;
 }
+
+.sanpham2 img {
+    
+    width: 100%; 
+}
+
+
 .text-overlay {
     position: absolute;
     bottom: 30px; 
@@ -27,4 +434,222 @@
     border-radius: 15px;
     font-weight: bold;
     cursor: pointer;
+}
+.text-overlay:hover{
+    background-color:rgb(151, 151, 151) ;
+}
+
+
+
+
+
+.mota-sanpham{
+    border: 1px solid;
+    display: flex;
+    margin: 50px auto;
+    width: 1000px;
+    height: auto;
+    position: relative;
+    padding: 50px 20px 20px;
+    background-color:rgb(249, 249, 249)
+}
+.exit{
+    position: absolute;
+    top:0;
+    right: 15px;
+    font-size: 35px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.mota-trai img{
+    width: 100%;
+  
+}
+.mota-phai{
+
+    margin-left: 25px;
+}
+#l-right{
+   float: right;
+}
+.mota-phai h6{
+    font-size: 16px ;
+}
+#price{
+    font-size: 25px;
+}
+.row{
+    width: 400px;
+    display: flex;
+    margin-bottom: 40px;
+    padding: 10px 10px;
+}
+#size{
+    font-size: 16px;
+    padding: 5px 30px;
+}
+.kichco{
+    width: 50%;
+}
+#sl{
+    font-size: 16px;
+    width: 80px;
+    padding: 5px ;
+    text-align: center;
+    border: 2px solid black;
+    
+}
+.bot{
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+.them{
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+.addtocart{
+    font-size: 26px;
+    color: white;
+background-color: black;
+    padding: 10px 20px;
+    border: 2px solid black;
+    cursor: pointer;
+    width: 80%;
+    margin-bottom: 30px;
+
+}
+.buy{
+    font-size: 26px;
+    color: white;
+    background-color: rgb(255, 0, 0);
+    padding: 10px 20px;
+    border: 2px solid black;
+    cursor: pointer;
+    width: 80%;
+
+}
+.line {
+    border-top: 2px dashed #6e6e6e; /* Dòng đứt đoạn màu xám nhạt */
+    margin: 2px 0; /* Điều chỉnh khoảng cách trên và dưới nếu cần */
+}
+#sanpham-chitiet{
+    display: none;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 40;
+    margin-top: 60px; ;
+    background-color: rgba(0,0,0, 0.6);
+  
+}
+
+.danhsach-sanpham{
+    
+    display: flex;
+    background-color: white;
+    flex-wrap: wrap;
+    gap: 16px;
+   
+    
+}
+.sanpham3{
+    box-shadow: 3px 2px 5px black;
+     border: 1px groove;
+     text-align: center;
+     width:calc(25% - 16px) ;
+     overflow: hidden;
+     display: flex;
+     flex-direction: column;
+     
+ }
+.sanpham3 img{
+    width: 100%;
+    object-fit: cover;
+   height: auto;
+}
+
+.phantrang{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+.sotrang{
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    text-align: center;
+    font-size: 15px;
+    padding: 14px;
+    border: 1px groove  ;
+    border-radius: 15%;
+    
+
+}
+.sotrang:hover{
+    background-color: gold;
+}
+#menu-sanpham1 {
+    position: relative;
+}
+.cuahang-sp{
+    position: relative;
+}
+#phanloai{
+    display: none;
+    position: absolute;
+    background-color: rgba(122, 122, 122, 0.5);
+    border-radius: 5px;
+   
+}
+.phanloai-item{
+    text-align: center;
+    border-bottom:1px groove ;
+    padding: 20px;
+    margin: 5px;
+    cursor: pointer;
+    min-width: 60px;
+    
+}
+.phanloai-item:hover{
+    color: #ffffff;
+}
+#cuahang-sp:hover > #phanloai{
+    display: flex;
+    flex-direction: column;
+    
+}
+#phanloai-giay{
+    display: none;
+    position: absolute;
+    background-color: rgba(122, 122, 122, 0.5);
+    border-radius: 5px;
+    left: 119px;
+    top:0;
+   
+}
+.pl-giay{
+    text-align: center;
+    border-bottom:1px groove ;
+    padding: 20px;
+    margin: 5px;
+    cursor: pointer;
+    min-width: 150px; 
+    white-space: nowrap;
+    color: #333;
+}
+.pl-giay:hover{
+    color: #ffffff;
+}
+.phanloai-item:hover> #phanloai-giay{
+    display: flex;
+    flex-direction: column;
 }
