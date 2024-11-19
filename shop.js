@@ -38,69 +38,69 @@ var productArrays = [
     { name: "PUMA Future 1.4 Pro Cage TT Fastest", price: 1790000, img: "img/1036.jpg", productId: 1036,brand:"Giày cỏ nhân tạo" },
     { name: "PUMA Ultra 1.4 Pro Cage TT Instinct", price: 1550000, img: "img/1037.jpg", productId: 1037 ,brand:"Giày cỏ nhân tạo"}
       ];
-        var productArray1 = [
-          {name: "Găng Tay Thủ Môn Tập Luyện Predator",price: 800000,img: "img/1040.jpg",productId:1040,},
-          {name: "Bóng UCL League 24/25 League Phase",price: 950000,img: "img/1041.jpg",productId:1041,},
-          {name: "Bóng UCL Training 24/25 League Phase",price: 650000,img: "img/1042.jpg",productId:1042,},
-          {name: "Bóng UCL Pro 24/25 League Phase",price: 3300000,img: "img/1043.jpg",productId:1043,},
-          {name: "Mũ Bóng Chày Sân Nhà Manchester United",price: 500000,img: "img/1044.jpg",productId:1044,},
-          {name: "Bóng CLB Sân Nhà Manchester United",price: 600000,img: "img/1045.jpg",productId:1045,},
-          {name: "Ba Lô Sân Nhà Manchester United",price: 900000,img: "img/1046.jpg",productId:1046,},
-          {name: "Tất Sân Nhà Manchester United",price: 450000,img: "img/1047.jpg",productId:1047,},
-          {name: "Ba Lô Sân Nhà Arsenal",price: 900000,img: "img/1048.jpg",productId:1048,},
-          {name: "Bóng Messi Club",price: 600000,img: "img/1049.jpg",productId:1049,},
-          {name: "Tất Sân Nhà Real Madrid 24/25",price: 450000,img: "img/1050.jpg",productId:1050,},
-          {name: "Bóng Starlancer Club",price: 400000,img: "img/1051.jpg",productId:1051,},
-          {name: "Bóng Tập Luyện Predator",price: 650000,img: "img/1052.jpg",productId:1052,},
-          {name: "Bóng Starlancer Club",price: 400000,img: "img/1053.jpg",productId:1053,},
-          {name: "Bóng Mini Starlancer",price: 300000,img: "img/1054.jpg",productId:1054,},
-          {name: "ADI 24 SOCK",price: 350000,img: "img/1055.jpg",productId:1055,},
-          {name: "Tất Sân Nhà Arsenal 24/25",price: 450000,img: "img/1056.jpg",productId:1056,},
-          {name: "Tất Sân Nhà Đội Tuyển Italy 24",price: 450000,img: "img/1057.jpg",productId:1057,},
-          {name: "Ốp Bảo Vệ Ống Chân Tiro Club",price: 300000,img: "img/1059.jpg",productId:1059,},
-          {name: "Ốp Bảo Vệ Ống Chân Thi Đấu Tiro",price: 500000,img: "img/1060.jpg",productId:1060,},
-          {name: "Bóng Tập Luyện Foil Fussballliebe",price: 700000,img: "img/1061.jpg",productId:1061,},
-          {name: "Tất Sân Nhà Real Madrid 23/24",price: 450000,img: "img/1062.jpg",productId:1062,},
-          {name: "Tất adi 23",price: 350000,img: "img/1063.jpg",productId:1063,},
-          {name: "Bóng EPP Club",price: 400000,img: "img/1064.jpg",productId:1064,},
-          {name: "Túi Đựng Giày Tiro League",price: 450000,img: "img/1065.jpg",productId:1065,},
-          {name: "Tất Milano 23",price: 300000,img: "img/1066.jpg",productId:1066,},
-          {name: "Tất Milano 23",price: 300000,img: "img/1067.jpg",productId:1067,},
-          {name: "Bóng Club EPP",price: 400000,img: "img/1068.jpg",productId:1068,}, 
-          {name: "Bóng Thi Đấu Tiro",price: 1000000,img: "img/1069.jpg",productId:1069,}
-        ];
-        var productArray2 = [
-          {name: "Áo Thun 3 Sọc Adicolor Classics Real Madrid",price: 1100000,img: "img/1070.jpg",productId:1070,}, 
-          {name: "Áo Jersey David Beckham Originals",price: 1800000,img: "img/1071.jpg",productId:1071,}, 
-          {name: "DB OG 3S TEE",price: 1100000,img: "img/1072.jpg",productId:1072,}, 
-          {name: "DB 3S SHO",price: 1100000,img: "img/1073.jpg",productId:1073,}, 
-          {name: "DB OG TT",price: 2500000,img: "img/1074.jpg",productId:1074,}, 
-          {name: "Áo Thun Originals Real Madrid",price: 1000000,img: "img/1075.jpg",productId:1075,}, 
-          {name: "Áo Đấu Thứ Ba Manchester United 24/25",price: 2200000,img: "img/1076.jpg",productId:1076,}, 
-          {name: "Áo Đấu Thứ Ba FC Bayern 24/25",price: 2200000,img: "img/1077.jpg",productId:1077,}, 
-          {name: "Áo Đấu Thứ Ba Arsenal 24/25",price: 2200000,img: "img/1078.jpg",productId:1078,}, 
-          {name: "Áo Đấu Thứ Ba Real Madrid 24/25",price: 2200000,img: "img/1079.jpg",productId:1079,}, 
-          {name: "Áo Đấu Thứ Ba Juventus 24/25",price: 2200000,img: "img/1080.jpg",productId:1080,}, 
-          {name: "Áo Thun Originals Manchester United",price: 1000000,img: "img/1081.jpg",productId:1081,}, 
-          {name: "Quần Track Pant Manchester United Originals",price: 1700000,img: "img/1082.jpg",productId:1082,}, 
-          {name: "Áo Đấu Thứ Ba Arsenal Trẻ Em 24/25",price: 1500000,img: "img/1083.jpg",productId:1083,}, 
-          {name: "Quần Short Thứ Ba Arsenal 24/25",price: 1100000,img: "img/1084.jpg",productId:1084,}, 
-          {name: "Quần Short Thứ Ba Manchester United 24/25",price: 1500000,img: "img/1085.jpg",productId:1085,}, 
-          {name: "Áo Đấu Sân Khách Juventus 24/25",price: 2200000,img: "img/1086.jpg",productId:1086,}, 
-          {name: "Áo Đấu Sân Khách Manchester United 24/25",price: 2200000,img: "img/1087.jpg",productId:1087,}, 
-          {name: "Áo Đấu Sân Khách Real Madrid 24/25",price: 2200000,img: "img/1088.jpg",productId:1088,}, 
-          {name: "Áo Đấu Sân Khách Arsenal 24/25 Trẻ Em",price: 1500000,img: "img/1089.jpg",productId:1089,}, 
-          {name: "Áo Jersey Trước Trận Arsenal",price: 1500000,img: "img/1090.jpg",productId:1090,}, 
-          {name: "Áo Đấu Sân Khách FC Bayern 24/25",price: 2200000,img: "img/1091.jpg",productId:1091,}, 
-          {name: "Áo Đấu Sân Nhà Juventus 24/25",price: 2200000,img: "img/1092.jpg",productId:1092,}, 
-          {name: "Quần Short Sân Nhà Manchester United 24/25",price: 1100000,img: "img/1093.jpg",productId:1093,}, 
-          {name: "Áo Jersey Tập Luyện Messi",price: 800000,img: "img/1094.jpg",productId:1094,}, 
-          {name: "Áo Jersey Tập Luyện Arsenal Tiro 24",price: 1100000,img: "img/1095.jpg",productId:1095,}, 
-          {name: "Áo Đấu Sân Nhà Newcastle United FC 24/25",price: 2200000,img: "img/1096.jpg",productId:1096,},
-          {name: "Áo Khoác Đồng Phục Real Madrid",price: 2500000,img: "img/1097.jpg",productId:1097,}, 
-          {name: "Quần Short Sân Nhà Real Madrid 24/25",price: 1100000,img: "img/1098.jpg",productId:1098,}, 
-          {name: "Áo Đấu Sân Nhà Real Madrid 24/25",price: 2200000,img: "img/1099.jpg",productId:1099,},
-        ];
+      var productArray1 = [
+        {name: "Găng Tay Thủ Môn Tập Luyện Predator",price: 800000,img: "img/1040.jpg",productId:1040,brand:"Phụ kiện"},
+        {name: "Bóng UCL League 24/25 League Phase",price: 950000,img: "img/1041.jpg",productId:1041,brand:"Phụ kiện"},
+        {name: "Bóng UCL Training 24/25 League Phase",price: 650000,img: "img/1042.jpg",productId:1042,brand:"Phụ kiện"},
+        {name: "Bóng UCL Pro 24/25 League Phase",price: 3300000,img: "img/1043.jpg",productId:1043,brand:"Phụ kiện"},
+        {name: "Mũ Bóng Chày Sân Nhà Manchester United",price: 500000,img: "img/1044.jpg",productId:1044,brand:"Phụ kiện"},
+        {name: "Bóng CLB Sân Nhà Manchester United",price: 600000,img: "img/1045.jpg",productId:1045,brand:"Phụ kiện"},
+        {name: "Ba Lô Sân Nhà Manchester United",price: 900000,img: "img/1046.jpg",productId:1046,brand:"Phụ kiện"},
+        {name: "Tất Sân Nhà Manchester United",price: 450000,img: "img/1047.jpg",productId:1047,brand:"Phụ kiện"},
+        {name: "Ba Lô Sân Nhà Arsenal",price: 900000,img: "img/1048.jpg",productId:1048,brand:"Phụ kiện"},
+        {name: "Bóng Messi Club",price: 600000,img: "img/1049.jpg",productId:1049,brand:"Phụ kiện"},
+        {name: "Tất Sân Nhà Real Madrid 24/25",price: 450000,img: "img/1050.jpg",productId:1050,brand:"Phụ kiện"},
+        {name: "Bóng Starlancer Club",price: 400000,img: "img/1051.jpg",productId:1051,brand:"Phụ kiện"},
+        {name: "Bóng Tập Luyện Predator",price: 650000,img: "img/1052.jpg",productId:1052,brand:"Phụ kiện"},
+        {name: "Bóng Starlancer Club",price: 400000,img: "img/1053.jpg",productId:1053,brand:"Phụ kiện"},
+        {name: "Bóng Mini Starlancer",price: 300000,img: "img/1054.jpg",productId:1054,brand:"Phụ kiện"},
+        {name: "ADI 24 SOCK",price: 350000,img: "img/1055.jpg",productId:1055,brand:"Phụ kiện"},
+        {name: "Tất Sân Nhà Arsenal 24/25",price: 450000,img: "img/1056.jpg",productId:1056,brand:"Phụ kiện"},
+        {name: "Tất Sân Nhà Đội Tuyển Italy 24",price: 450000,img: "img/1057.jpg",productId:1057,brand:"Phụ kiện"},
+        {name: "Ốp Bảo Vệ Ống Chân Tiro Club",price: 300000,img: "img/1059.jpg",productId:1059,brand:"Phụ kiện"},
+        {name: "Ốp Bảo Vệ Ống Chân Thi Đấu Tiro",price: 500000,img: "img/1060.jpg",productId:1060,brand:"Phụ kiện"},
+        {name: "Bóng Tập Luyện Foil Fussballliebe",price: 700000,img: "img/1061.jpg",productId:1061,brand:"Phụ kiện"},
+        {name: "Tất Sân Nhà Real Madrid 23/24",price: 450000,img: "img/1062.jpg",productId:1062,brand:"Phụ kiện"},
+        {name: "Tất adi 23",price: 350000,img: "img/1063.jpg",productId:1063,brand:"Phụ kiện"},
+        {name: "Bóng EPP Club",price: 400000,img: "img/1064.jpg",productId:1064,brand:"Phụ kiện"},
+        {name: "Túi Đựng Giày Tiro League",price: 450000,img: "img/1065.jpg",productId:1065,brand:"Phụ kiện"},
+        {name: "Tất Milano 23",price: 300000,img: "img/1066.jpg",productId:1066,brand:"Phụ kiện"},
+        {name: "Tất Milano 23",price: 300000,img: "img/1067.jpg",productId:1067,brand:"Phụ kiện"},
+        {name: "Bóng Club EPP",price: 400000,img: "img/1068.jpg",productId:1068,brand:"Phụ kiện"}, 
+        {name: "Bóng Thi Đấu Tiro",price: 1000000,img: "img/1069.jpg",productId:1069,brand:"Phụ kiện"}
+      ];
+      var productArray2 = [
+        {name: "Áo Thun 3 Sọc Adicolor Classics Real Madrid",price: 1100000,img: "img/1070.jpg",productId:1070,brand:"Quần áo"}, 
+        {name: "Áo Jersey David Beckham Originals",price: 1800000,img: "img/1071.jpg",productId:1071,brand:"Quần áo"}, 
+        {name: "DB OG 3S TEE",price: 1100000,img: "img/1072.jpg",productId:1072,brand:"Quần áo"}, 
+        {name: "DB 3S SHO",price: 1100000,img: "img/1073.jpg",productId:1073,brand:"Quần áo"}, 
+        {name: "DB OG TT",price: 2500000,img: "img/1074.jpg",productId:1074,brand:"Quần áo"}, 
+        {name: "Áo Thun Originals Real Madrid",price: 1000000,img: "img/1075.jpg",productId:1075,brand:"Quần áo"}, 
+        {name: "Áo Đấu Thứ Ba Manchester United 24/25",price: 2200000,img: "img/1076.jpg",productId:1076,brand:"Quần áo"}, 
+        {name: "Áo Đấu Thứ Ba FC Bayern 24/25",price: 2200000,img: "img/1077.jpg",productId:1077,brand:"Quần áo"}, 
+        {name: "Áo Đấu Thứ Ba Arsenal 24/25",price: 2200000,img: "img/1078.jpg",productId:1078,brand:"Quần áo"}, 
+        {name: "Áo Đấu Thứ Ba Real Madrid 24/25",price: 2200000,img: "img/1079.jpg",productId:1079,brand:"Quần áo"}, 
+        {name: "Áo Đấu Thứ Ba Juventus 24/25",price: 2200000,img: "img/1080.jpg",productId:1080,brand:"Quần áo"}, 
+        {name: "Áo Thun Originals Manchester United",price: 1000000,img: "img/1081.jpg",productId:1081,brand:"Quần áo"}, 
+        {name: "Quần Track Pant Manchester United Originals",price: 1700000,img: "img/1082.jpg",productId:1082,brand:"Quần áo"}, 
+        {name: "Áo Đấu Thứ Ba Arsenal Trẻ Em 24/25",price: 1500000,img: "img/1083.jpg",productId:1083,brand:"Quần áo"}, 
+        {name: "Quần Short Thứ Ba Arsenal 24/25",price: 1100000,img: "img/1084.jpg",productId:1084,brand:"Quần áo"}, 
+        {name: "Quần Short Thứ Ba Manchester United 24/25",price: 1500000,img: "img/1085.jpg",productId:1085,brand:"Quần áo"}, 
+        {name: "Áo Đấu Sân Khách Juventus 24/25",price: 2200000,img: "img/1086.jpg",productId:1086,brand:"Quần áo"}, 
+        {name: "Áo Đấu Sân Khách Manchester United 24/25",price: 2200000,img: "img/1087.jpg",productId:1087,brand:"Quần áo"}, 
+        {name: "Áo Đấu Sân Khách Real Madrid 24/25",price: 2200000,img: "img/1088.jpg",productId:1088,brand:"Quần áo"}, 
+        {name: "Áo Đấu Sân Khách Arsenal 24/25 Trẻ Em",price: 1500000,img: "img/1089.jpg",productId:1089,brand:"Quần áo"}, 
+        {name: "Áo Jersey Trước Trận Arsenal",price: 1500000,img: "img/1090.jpg",productId:1090,brand:"Quần áo"}, 
+        {name: "Áo Đấu Sân Khách FC Bayern 24/25",price: 2200000,img: "img/1091.jpg",productId:1091,brand:"Quần áo"}, 
+        {name: "Áo Đấu Sân Nhà Juventus 24/25",price: 2200000,img: "img/1092.jpg",productId:1092,brand:"Quần áo"}, 
+        {name: "Quần Short Sân Nhà Manchester United 24/25",price: 1100000,img: "img/1093.jpg",productId:1093,brand:"Quần áo"}, 
+        {name: "Áo Jersey Tập Luyện Messi",price: 800000,img: "img/1094.jpg",productId:1094,brand:"Quần áo"}, 
+        {name: "Áo Jersey Tập Luyện Arsenal Tiro 24",price: 1100000,img: "img/1095.jpg",productId:1095,brand:"Quần áo"}, 
+        {name: "Áo Đấu Sân Nhà Newcastle United FC 24/25",price: 2200000,img: "img/1096.jpg",productId:1096,brand:"Quần áo"},
+        {name: "Áo Khoác Đồng Phục Real Madrid",price: 2500000,img: "img/1097.jpg",productId:1097,brand:"Quần áo"}, 
+        {name: "Quần Short Sân Nhà Real Madrid 24/25",price: 1100000,img: "img/1098.jpg",productId:1098,brand:"Quần áo"}, 
+        {name: "Áo Đấu Sân Nhà Real Madrid 24/25",price: 2200000,img: "img/1099.jpg",productId:1099,brand:"Quần áo"},
+      ];
         const combinedArray = [...productArrays, ...productArray1, ...productArray2];
         localStorage.setItem("shoes", JSON.stringify(productArrays));
         localStorage.setItem("clothing", JSON.stringify(productArray1));
@@ -115,15 +115,44 @@ var productArrays = [
         function closesp() {
             document.getElementById("sanpham-chitiet").style.display = "none";
             hienthisanpham1();
-            phanloaigiay();
-            
-            
           }
 
         function hienthisanpham1(){
             var url=window.location.href;
             var bien=url.split("?")[1];
-            var selectArrays=getProductArray(bien)
+            var tmp=[];
+            if(bien=="shoes"){
+              for(i=0;i<combinedArray.length;i++){
+                if((combinedArray[i].brand=="Giày cỏ tự nhiên") || (combinedArray[i].brand=="Giày cỏ nhân tạo")){
+                tmp.push(combinedArray[i]);
+                }
+           }
+            }else if (bien=="phukien") {
+              for(i=0;i<combinedArray.length;i++){
+                if(combinedArray[i].brand=="Phụ kiện"){
+                tmp.push(combinedArray[i]);
+                }
+           }
+            }else if(bien=="quanao"){
+              for(i=0;i<combinedArray.length;i++){
+                if(combinedArray[i].brand=="Quần áo"){
+                tmp.push(combinedArray[i]);
+                }
+            }
+          }else if(bien=="giaynt"){
+            for(i=0;i<combinedArray.length;i++){
+              if(combinedArray[i].brand=="Giày cỏ nhân tạo"){
+              tmp.push(combinedArray[i]);
+              }
+          }
+          }else if(bien=="giaytn"){
+            for(i=0;i<combinedArray.length;i++){
+              if(combinedArray[i].brand=="Giày cỏ tự nhiên"){
+              tmp.push(combinedArray[i]);
+              }
+          }
+        }
+            var selectArrays=tmp;
             if (!bien) {
               return;
             }
@@ -211,19 +240,6 @@ var productArrays = [
                     </div>
                 `;
                   }
-
-         function getProductArray(category) {
-              switch (category) {
-                case "shoes":
-                  return productArrays;
-                case "phukien":
-                  return productArray1;
-                case "quanao":
-                  return productArray2;
-                default:
-            return []; 
-              }
-            }
   
         function giamsl(){
               if(document.getElementById("sl").value>1){
@@ -233,191 +249,7 @@ var productArrays = [
         function tangsl(){
               document.getElementById("sl").value++;
             }
-          function phanloaigiay(){
-            var url=window.location.href;
-            var bien1=url.split("?")[1];
-            var temp=[];
-            if(bien1=="giaytn"){
-              var s="";
-              for(i=0;i<productArrays.length;i++){
-                   if(productArrays[i].brand=="Giày cỏ tự nhiên"){
-                   temp.push(productArrays[i]);
-                   }
-              }
-              var selectArrays=temp;
-              var startIndex=(currentPage-1)*productsPerPage;
-              var endIndex=startIndex+productsPerPage;
-              if (endIndex > selectArrays.length) {
-                endIndex = selectArrays.length;
-              }
-              for (let i = startIndex; i < endIndex; i++) {
-                s += `
-                            <div class="sanpham3" onclick="show2(${selectArrays[i].productId})" >
-                                <img src="${selectArrays[i].img}" />
-                                <h3>${selectArrays[i].name}</h3>
-                                <h3>${selectArrays[i].price} VND</h3>
-                            </div>
-                        `;
-            }
-            var totalPages = Math.ceil(selectArrays.length / productsPerPage);
-            var pageNumbers = "";
-  
-            for (let i = 1; i <= totalPages; i++) {
-              pageNumbers += `
-                          <div class="sotrang" onclick="goToPage(${i})">
-                              ${i}
-                          </div>
-                      `;
-            }
-  
-            document.getElementById("toan1").innerHTML = `
-                      <div class="menu-sanpham" id="menu-sanpham1">
-                          <div class="danhsach-sanpham" id="danhsach-sanpham1">${s}</div>
-  
-                          <div class="phantrang">
-                              ${pageNumbers}
-                          </div>
-                          <div id="sanpham-chitiet">
-                            <div class="mota-sanpham">
-                              <button type="button" class="exit" onclick="closesp();">x</button>
-                              <div class="mota-trai">
-                                <img id="img-sp" src="1000.jpg" />
-                              </div>
-                              <div class="mota-phai">
-                                <h1 id="name-sp">chua co</h1>
-                                <h6>
-                                  <span>
-                                    Mã sản phẩm:
-                                    <strong id="ma-sp">chua co</strong>
-                                  </span>
-                                </h6>
-                                <h4 id="price">chua co </h4>
-                                <div class="line"></div>
-                                <div class="row">
-                                  <div class="kichco">
-                                    <h4>SIZE</h4>
-                                    <select id="size">
-                                      <option value="31" selected>31</option>
-                                      <option value="32">32</option>
-                                      <option value="33">33</option>
-                                      <option value="34">34</option>
-                                      <option value="35">35</option>
-                                      <option value="36">36</option>
-                                      <option value="37">37</option>
-                                    </select>
-                                  </div>
-                                  <div class="soluong">
-                                    <h4>Số lượng</h4>
-                                    <button class="bot" onclick="giamsl()">-</button>
-                                    <input type="text" id="sl" value="1">
-                                    <button class="them" onclick=tangsl()>+</button>
-                                  </div>
-                                </div>
-                                <div>
-                                 <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
-  
-                                </div>
-                                <div>
-                                  <button class="buy">THANH TOÁN</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-                  `;
-                    
-            }else if(bien1=="giaynt"){
-              var s="";
-              for(i=0;i<productArrays.length;i++){
-                   if(productArrays[i].brand=="Giày cỏ nhân tạo"){
-                   temp.push(productArrays[i]);
-                   }
-              }
-              var selectArrays=temp;
-              var startIndex=(currentPage-1)*productsPerPage;
-              var endIndex=startIndex+productsPerPage;
-              if (endIndex > selectArrays.length) {
-                endIndex = selectArrays.length;
-              }
-              for (let i = startIndex; i < endIndex; i++) {
-                s += `
-                            <div class="sanpham3" onclick="show2(${selectArrays[i].productId})" >
-                                <img src="${selectArrays[i].img}" />
-                                <h3>${selectArrays[i].name}</h3>
-                                <h3>${selectArrays[i].price.toLocaleString()} VND</h3>
-                            </div>
-                        `;
-            }
-            var totalPages = Math.ceil(selectArrays.length / productsPerPage);
-            var pageNumbers = "";
-  
-            for (let i = 1; i <= totalPages; i++) {
-              pageNumbers += `
-                          <div class="sotrang" onclick="goToPage(${i})">
-                              ${i}
-                          </div>
-                      `;
-            }
-  
-            document.getElementById("toan1").innerHTML = `
-                      <div class="menu-sanpham" id="menu-sanpham1">
-                          <div class="danhsach-sanpham" id="danhsach-sanpham1">${s}</div>
-  
-                          <div class="phantrang">
-                              ${pageNumbers}
-                          </div>
-                          <div id="sanpham-chitiet">
-                            <div class="mota-sanpham">
-                              <button type="button" class="exit" onclick="closesp();">x</button>
-                              <div class="mota-trai">
-                                <img id="img-sp" src="1000.jpg" />
-                              </div>
-                              <div class="mota-phai">
-                                <h1 id="name-sp">chua co</h1>
-                                <h6>
-                                  <span>
-                                    Mã sản phẩm:
-                                    <strong id="ma-sp">chua co</strong>
-                                  </span>
-                                </h6>
-                                <h4 id="price">chua co </h4>
-                                <div class="line"></div>
-                                <div class="row">
-                                  <div class="kichco">
-                                    <h4>SIZE</h4>
-                                    <select id="size">
-                                      <option value="31" selected>31</option>
-                                      <option value="32">32</option>
-                                      <option value="33">33</option>
-                                      <option value="34">34</option>
-                                      <option value="35">35</option>
-                                      <option value="36">36</option>
-                                      <option value="37">37</option>
-                                    </select>
-                                  </div>
-                                  <div class="soluong">
-                                    <h4>Số lượng</h4>
-                                    <button class="bot" onclick="giamsl()">-</button>
-                                    <input type="text" id="sl" value="1">
-                                    <button class="them" onclick=tangsl()>+</button>
-                                  </div>
-                                </div>
-                                <div>
-                                 <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
-  
-                                </div>
-                                <div>
-                                  <button class="buy">THANH TOÁN</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-                  `;
-
-            }
-
-          }
+          
           function show2(ID) {
            
             var product = combinedArray.find(item => item.productId == ID);
@@ -520,15 +352,14 @@ var productArrays = [
       function goToPage(pageNumber) {
         currentPage = pageNumber;
         hienthisanpham1();
-        phanloaigiay();
         hienthitatcasp();
       }
       window.onload = function () {
         hienthisanpham1();
     };
     
-    setTimeout(phanloaigiay, 30); 
-    setTimeout(hienthitatcasp, 20); 
+    
+    setTimeout(hienthitatcasp, 10); 
    
 
 
