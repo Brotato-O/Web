@@ -1,0 +1,30 @@
+#toan1{
+
+    margin-top: 130px;
+}
+.tieude{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sptieude{
+    display: flex;
+    
+    scroll-behavior: smooth;
+    max-width: 100%;
+}
+.sanpham2 {
+    position: relative;
+    width: fit-content; /* Đảm bảo khung bao quanh vừa ảnh */
+    margin: 10px;
+}
+.text-overlay {
+    position: absolute;
+    bottom: 30px; 
+    left: 30px; 
+    background-color: rgba(210, 210, 210, 0.8); 
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
