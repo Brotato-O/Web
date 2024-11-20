@@ -178,7 +178,7 @@ function cartDisplay(){
                             <button class="them" onclick="adjustQuantity('${cartArray[i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
-                    <td class="cart-item-price" id="price-${cartArray[i].id}">${cartArray[i].price}</td>
+                    <td class="cart-item-price">${cartArray[i].price}</td>
                     <td><button onclick="checkDelete('${cartArray[i].id}')">X</button></td>
                 </tr>`;
         }
@@ -275,15 +275,12 @@ function deleteCartItem(id){
 function buy(){
     checkCart();
     var s = 0;
-    
     for (let i = 0; i < carttemp.length; i++) {
-        var quantity = parseInt(document.getElementById(`sl-${carttemp[i].id}`).value);
-        
+        var quantity = parseInt(document.getElementById(`sl-${carttemp[i].id}`).value); 
         s += quantity * carttemp[i].price;
     }
-
     document.getElementById("total-pay").innerHTML = "Tổng thanh toán: " + s;
-    
+    console.log(s);
     return s;
 }
 
@@ -490,15 +487,11 @@ function adjustQuantity(itemId, change) {
             let quantityInput = document.getElementById(`sl-${itemId}`);
             let currentQuantity = parseInt(quantityInput.value);
             let newQuantity = currentQuantity + change;
-
             if (newQuantity < 1) {
                 alert('Số lượng tối thiểu là 1');
                 return;
             }
-
             quantityInput.value = newQuantity;
-            document.getElementById(`price-${itemId}`).textContent = cartArray[i].price * newQuantity;
-
             cartArray[i].quantity = newQuantity;
             localStorage.setItem('cart', JSON.stringify(cartArray));
             break;
