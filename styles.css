@@ -666,6 +666,8 @@ body{
 
 .link-shop:visited, .link-shop:link{
     color: black;
+    animation: hightlight 
 }
+
 
 

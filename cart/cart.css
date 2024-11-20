@@ -775,3 +775,12 @@ td img{
     height: auto;
     object-fit: contain; 
   }
+
+  @keyframes highlight {
+    from {
+        background-color: grey;
+    }
+    to {
+        background-color: transparent;
+    }
+}

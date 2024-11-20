@@ -366,8 +366,14 @@ function showBill(number){
             
 window.onload = function(){
     var temp= location.href.split("?")[1];
-    if(temp ==undefined || temp=="") {
+    if(temp ==undefined || temp=="" || temp.search("focus")==0) {
         cartDisplay();
+        if(temp!= undefined && temp!="" && temp.search("focus")==0 ) {
+            var temp1= temp.split("&")[1];
+            document.getElementById(temp1).focus();
+            var tr= document.getElementById(temp1).parentNode.parentNode;
+            tr.style.animation="highlight 2s ease-in-out";
+        }
         //ngăn cart vẫn giữ sl trc reload 
         var cartArray= JSON.parse(localStorage.getItem("cart"));
         for(var i=0; i<cartArray.length; i++)
