@@ -482,9 +482,7 @@ function showPaymentMethodBox() {
     confirmPaymentButton.style.display = 'block';
 }
 
-//tài
-
-// Hàm điều chỉnh số lượng 
+//Hàm điều chỉnh số lượng 
 function adjustQuantity(itemId, change) {
     var cartArray = JSON.parse(localStorage.getItem('cart'));
     for (let i = 0; i < cartArray.length; i++) {
