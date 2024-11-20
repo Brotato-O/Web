@@ -154,6 +154,7 @@ function thembill(){
     localStorage.setItem("bill", JSON.stringify(bills));
 }
 
+//hiển thị giỏ hàng
 function cartDisplay(){    
     var cartArray = JSON.parse(localStorage.getItem('cart'));
     if (cartArray == undefined || cartArray.length == 0) {
@@ -211,6 +212,7 @@ function cartDisplay(){
 }
 
 
+//kiểm tra sản phẩm được chọn
 var carttemp=[];
 function checkCart(){
     carttemp=[];  
@@ -221,6 +223,7 @@ function checkCart(){
     }
 }
 
+//chọn tất cả sản phẩm
 function checkAllItems(){
     var cartArray= JSON.parse(localStorage.getItem('cart'));
     var check= document.getElementById("check-all");
@@ -232,20 +235,26 @@ function checkAllItems(){
             document.getElementById(cartArray[i].id).checked= false;
 }
 
+//hàm cảnh báo xóa
 function warning() {
     var result = window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này?");
     if (result == true) return true; 
-    else return false;
+    return false;
 }
 
+//xóa sản phẩm được chọn
 function deleteCheckedItems(){
     checkCart();
+    if(carttemp.length==0 || carttemp== undefined) {
+        alert("Bạn chưa chọn sản phẩm để xóa!");
+        return;
+    };
     if(warning()== false) return;
-    else 
-        for (let i=0; i < carttemp.length; i++)
-            deleteCartItem(carttemp[i].id);
+    for (let i=0; i < carttemp.length; i++)
+        deleteCartItem(carttemp[i].id);
 }
 
+//xóa sản phẩm
 function checkDelete(id){
     if (warning()== false) return;
     deleteCartItem(id);
@@ -262,6 +271,7 @@ function deleteCartItem(id){
     cartDisplay();
 }
 
+//hiển thị giá tiền
 function buy(){
     checkCart();
     var s = 0;
@@ -277,6 +287,28 @@ function buy(){
     return s;
 }
 
+//cảnh báo hủy đơn
+function warning1() {
+    var result = window.confirm("Bạn có chắc chắn muốn hủy đơn này?");
+    if (result == true) return true; 
+    return false;
+}
+
+//hủy đơn
+function huy(id){
+    if(warning1()== false) return;
+    var bill= JSON.parse(localStorage.getItem('bill'));
+    for(let i=0; i< bill.length; i++){
+        if(bill[i].receiptId == id){
+            bill[i].status = "Đã hủy";
+            break;
+        }
+    }
+    localStorage.setItem('bill',JSON.stringify(bill));
+    showBill(1);
+}
+
+//hiển thị nếu người dùng chưa đăng nhập
 function notLogin(){
     document.getElementById("wrap-cart").innerHTML=`
         <a href="#">
@@ -287,6 +319,7 @@ function notLogin(){
     `
 }
 
+//hiển thị tình trạng đơn
 function showBill(number){
     var loggeduser = JSON.parse(localStorage.getItem('loggeduser'));
     var bill= JSON.parse(localStorage.getItem('bill'));
@@ -295,7 +328,8 @@ function showBill(number){
         var variable= "";
         if (number== 1) variable="Chờ xác nhận";
         else if (number== 2) variable="Đã xác nhận";
-        else variable="Đã giao";
+        else if (number== 3) variable="Đã giao";
+        else variable="Đã hủy";
         var s="";
         for(var i=0; i< bill.length; i++){
             if(bill[i].customer.username == loggeduser.username && bill[i].customer.password== loggeduser.password && bill[i].status== variable){
@@ -311,13 +345,13 @@ function showBill(number){
                     s+= `</td>
                     <td>${bill[i].orderDate}</td>
                     <td>${bill[i].totalAmount}</td>
-                    <td>${bill[i].paymentMethod}</td>
-                    </tr>
-                    `;
+                    <td>${bill[i].paymentMethod}</td>`
+                    if (number==1)
+                        s+=`<td><button onclick="huy('${bill[i].receiptId}')" value=>Hủy đơn</button></td>`
+                    s+=`</tr>`;
             }
         }
-        s= `
-            <table>
+        s= `<table>
                 <tr>
                     <th>Mã hóa đơn</th>
                     <th>Sản phẩm đã đặt</th>
@@ -329,6 +363,19 @@ function showBill(number){
             </table>
         `
         document.getElementById("wrap-cart").innerHTML=s;   
+    }
+}
+            
+window.onload = function(){
+    var temp= location.href.split("?")[1];
+    if(temp ==undefined || temp=="") cartDisplay();
+    else{
+        temp=temp.split("&")[1];
+        if(temp==0) cartDisplay();
+        else if(temp== 1) showBill(1); 
+        else if(temp== 2) showBill(2); 
+        else if(temp== 3)showBill(3); 
+        else showBill(4); 
     }
 }
 
@@ -436,17 +483,7 @@ function showPaymentMethodBox() {
 }
 
 //tài
-window.onload = function(){
-    var temp= location.href.split("?")[1];
-    if(temp ==undefined || temp=="") cartDisplay();
-    else{
-        temp=temp.split("&")[1];
-        if(temp==0) cartDisplay();
-        else if(temp== 1) showBill(1); 
-        else if(temp== 2) showBill(2); 
-        else showBill(3); 
-    }
-}
+
 // Hàm điều chỉnh số lượng 
 function adjustQuantity(itemId, change) {
     var cartArray = JSON.parse(localStorage.getItem('cart'));
