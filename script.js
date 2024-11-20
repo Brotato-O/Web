@@ -249,6 +249,10 @@ function updatePagination(index){
     }
 }
 
-//CART START
+//Nhàn
+var shopBttn= document.getElementById('CartForm-view');
+shopBttn.addEventListener('click', function() {
+    window.location.href="cart/cart.html"
+});
 
 

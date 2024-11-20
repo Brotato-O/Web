@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FINAL!!!</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="shop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="shop.js"> </script>
 </head>
 <body>
     <section id="navbar">
@@ -33,12 +34,12 @@
                    </div>
                 </div>
                 </li>
-            <li><a href="#services">Thông tin</a></li>
-            <li><a href="#contact">Liên hệ</a></li>
+            <li><a href="#services">Dịch vụ</a></li>
+            <li><a href="#footer">Liên hệ</a></li>
             <ul id="nav-links-function">
                 <li id="search"><a><i class="fa-solid fa-magnifying-glass"></i></a></li>
                 <li id="Sign" name="Sign"><a><i class="fa-solid fa-user"></i></a></li>
-                <li id="Cart" name="Cart"><a><i class="fa-solid fa-bag-shopping"></i></i></a></li>
+                <li id="Cart" name="Cart"><a href="cart/cart.html"><i class="fa-solid fa-bag-shopping"></i></i></a></li>
             </ul>
         </ul>
     </section>
@@ -75,6 +76,7 @@
             <div id="RegisterForm-APT">Đã có tài khoản? <a id="RegisterForm-login">Đăng nhập</a></div>
         </div>
     </div>
+
     <div id="CartForm">
         <div id="CartForm-content"></div>
             <div id="CartForm-close"><i class="fa-solid fa-xmark"></i></div>
@@ -96,7 +98,78 @@
         </div>
     </div>
 
-    <h1>chuaw lam</h1>
+
+
+
+    <div id="toan1" class="toan">
+        <div class="tieude">
+          <h3>Shop By Sport</h3>
+        </div>
+  
+        <div class="sptieude">
+          <div class="sanpham2">
+            <img src="img/ao.jpg" alt="Quan ao" />
+            <div class="text-overlay"><a href="shop.html?quanao" style="text-decoration: none; color: inherit">Quần áo</a></div>
+          </div>
+          <div class="sanpham2">
+            <img src="img/giay1.jpg" alt="Giay" />
+            <div class="text-overlay">
+              <a href="shop.html?shoes"style="text-decoration: none; color: inherit">Giày</a>
+            </div>
+          </div>
+          <div class="sanpham2">
+            <img src="img/phukien.jpg" alt="Phu kien" />
+            <div class="text-overlay">
+              <a href="shop.html?phukien" style="text-decoration: none; color: inherit">Phụ kiện</a></div>
+          </div>
+        </div>
+        <div class="tieude">
+            <div id="allsp"></div>
+          </div>
+      </div>
+      <div class="endline"></div>
+
+  
+      <section id="footer">
+              <div id="footer-items">
+                  <div class="footer-item">
+                      <div class="fiheadline">GIỚI THIỆU</div>
+                          
+                  </div>
+                  <div class="footer-item">
+                      <div class="fiheadline">HỆ THỐNG CHI NHÁNH</div>
+                          <ul><p class="ficontent">TP HỒ CHÍ MINH:</p>
+                              <li>Số 123, Đường ABC, Phường 3, Quận 5</li>
+                              <li>Số 123, Đường ABC, Phường 21, TP Thủ Đức</li>
+                              <li>Số 123, Đường ABC, Phường 5, Quận 2</li>
+                              <li>Số 123, Đường ABC, Phường Võ Thị Sáu, Quận 1</li>
+                          </ul>
+                          <ul><p class="ficontent">NHA TRANG:</p>
+                              <li>Số 97, Đường Hồng Bàng, Phường Phước Long</li>
+                              <li>Số 1, Đường Lạc Long Quân, Phường Phước Thọ</li>
+                          </ul>
+                          <div class="ficont">
+                              <div><i class="fa-solid fa-phone"></i>: 0796137759</i></div>
+                              <div><i class="fa-solid fa-envelope"></i>: hyykhai2607@gmail.com</div>
+                          </div>
+                      </div>
+                  <div class="footer-item">
+                      <div class="fiheadline">MẠNG XÃ HỘI</div>
+                      <div class="ficont2">
+                          <div><i class="fa-brands fa-facebook"></i></div>
+                          <div><i class="fa-brands fa-instagram"></i></div>
+                          <div><i class="fa-brands fa-twitter"></i></div>
+                          <div><i class="fa-brands fa-youtube"></i></div>
+                      </div>
+                      <div class="fiheadline">CHÍNH SÁCH</div>
+                      <ul>
+                          <li>Chính sách bảo mật</li>
+                          <li>Chính sách đổi trả</li>
+                          <li>Chính sách vận chuyển</li>
+                          <li>Chính sách thanh toán</li>
+                      </ul>
+                  </div>
+      </section>
 </body>
-    <script src="script.js"></script>
+   
 </html>

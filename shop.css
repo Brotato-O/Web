@@ -1,6 +1,5 @@
 *{
-    padding: 0;
-    margin: 0;
+  
     box-sizing: border-box;
 }
 
@@ -17,27 +16,37 @@ body{
     padding: 20px 200px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background: linear-gradient(to right, #ffffff, #cecece);
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 2000;
+   z-index: 2000;
+    right: 0;
+    
+    
+
 }
 
 #nav-links{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 #navbar #nav-logo{
     font-size: 1.5rem;
     font-weight: 600;
     color: #333;
+    padding: 0;
+    margin: 0;
 }
 
 #navbar ul{
     display: flex;
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 #navbar ul li{
@@ -368,241 +377,6 @@ body{
     cursor: pointer;
 }
 
-#hero {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    height: 110vh;
-    width: 100%;
-    background-color: #fff;
-    background-image: url(img/8669547.jpg);
-    background-size: cover;
-    
-}
-
-#hero-content{
-    text-align: left;
-    position: absolute;
-    margin-left: 60px;
-}
-
-#hero-title{
-    font-size: 4.2rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #f1f1f1;
-    text-shadow: 4px 6px 8px rgba(0, 0, 0, 0.5);
-}
-
-#hero-subtitle{
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: #fff;
-    text-shadow: 4px 6px 8px rgba(0, 0, 0, 0.5);
-}
-
-#hero-button{
-    padding: 15px 220px;
-    border: none;
-    background: linear-gradient(to right, #333, #555);
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 500;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#hero-button:hover{
-    background: transparent;
-    border: solid 2px #333;
-}
-
-#shop{
-    display: flex;
-    justify-content: center;
-    height: auto;
-    width: 100%;
-    /* background: linear-gradient(to right, #f5f5f5, #bdbdbd); */
-}
-
-#shop-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#shop-title{
-    display: flex;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: 600;
-    background-image: url(img/giphy.webp);
-    background-size:unset;
-    background-position: left;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 40px;
-    font-family: 'Poppins', sans-serif;
-}
-
-#shop-items{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.shop-item{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 380px;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
-.shop-item img{
-    width: 280px;
-    height: 280px;
-    padding-bottom: 50px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.shop-item-title{
-    font-size: 1rem;
-    color: #333;
-    overflow-y: hidden;
-}
-
-.shop-item-price{
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.shop-item:hover .shop-item-title::after{
-    width: 80%;
-}
-
-.shop-item-title::after {
-    content: '';
-    display: block;
-    margin-left: 10%;
-    width: 0;
-    height: 1px;
-    background: #333;
-    transition: width 0.4s ease;
-}
-
-#shop-button{
-    padding: 15px 220px;
-    border: none;
-    background: linear-gradient(to right, #333, #555, #333);
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 500;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-#shop-button:hover{
-    opacity: 0.9;
-}
-
-#pagination{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-}
-
-.page{
-    padding: 10px 20px;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: #fff;
-    color: #333;
-    font-size: 1.2rem;
-    font-weight: 500;
-    cursor: pointer;
-    margin: 20px 5px;
-}
-
-.page:hover,
-.pageactive{
-    background: #333;
-    color: #fff;
-}
-
-.endline{
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    content: '';
-    height: 1px;
-    width: 30%;
-    display: flex;
-    background: #333;
-    margin: 40px 0;
-}
-
-#services{
-    display: flex;
-    justify-content: center;
-    height: 20vh;
-    width: 100%;
-}
-
-#services-content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#services-title{
-    font-size: 3rem;
-    font-weight: 600;
-    color: linear-gradient(to right, #333, #555, #333);
-    font-family: 'Poppins', sans-serif;
-}
-
-#services-items{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    justify-self: center;
-    margin: 40px 0;
-}
-
-.services-item{
-    display: flex;
-    font-size: 20px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-}
-
-.services-item i{
-    margin-right: 10px;
-}
-
-.poster{
-    width: 80%;
-    height: 60vh;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    background-size: contain;
-    background-position: center;
-}
-
 #footer{
     height: 50vh;
     width: 100%;
@@ -658,3 +432,279 @@ body{
 
 
 
+/*
+css của sản phẩm
+*/
+#toan1{
+
+    margin-top: 80px;
+}
+
+.tieude{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tieude h3{
+    margin-left: 10px ;
+}
+.sptieude{
+    display: flex;
+    
+    scroll-behavior: smooth;
+    max-width: 100%;
+}
+.sanpham1{
+    min-width: 30%;
+    margin: 5px 10px;
+    width: fit-content;
+   
+    cursor: pointer;
+}
+.sanpham1-img{
+    width: 100%;
+   
+}
+.sanpham1 h3{
+    margin:0
+}
+.sanpham2 {
+    position: relative;
+    width: fit-content; /* Đảm bảo khung bao quanh vừa ảnh */
+    margin: 10px;
+}
+
+.sanpham2 img {
+    
+    width: 100%; 
+}
+
+
+.text-overlay {
+    position: absolute;
+    bottom: 30px; 
+    left: 30px; 
+    background-color: rgba(210, 210, 210, 0.8); 
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.text-overlay:hover{
+    background-color:rgb(151, 151, 151) ;
+}
+
+
+
+
+
+.mota-sanpham{
+    border: 1px solid;
+    display: flex;
+    margin: 50px auto;
+    width: 1000px;
+    height: auto;
+    position: relative;
+    padding: 50px 20px 20px;
+    background-color:rgb(249, 249, 249)
+}
+.exit{
+    position: absolute;
+    top:0;
+    right: 15px;
+    font-size: 35px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.mota-trai img{
+    width: 100%;
+  
+}
+.mota-phai{
+
+    margin-left: 25px;
+}
+#l-right{
+   float: right;
+}
+.mota-phai h6{
+    font-size: 16px ;
+}
+#price{
+    font-size: 25px;
+}
+.row{
+    width: 400px;
+    display: flex;
+    margin-bottom: 40px;
+    padding: 10px 10px;
+}
+#size{
+    font-size: 16px;
+    padding: 5px 30px;
+}
+.kichco{
+    width: 50%;
+}
+#sl{
+    font-size: 16px;
+    width: 80px;
+    padding: 5px ;
+    text-align: center;
+    border: 2px solid black;
+    
+}
+.bot{
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+.them{
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+.addtocart{
+    font-size: 26px;
+    color: white;
+background-color: black;
+    padding: 10px 20px;
+    border: 2px solid black;
+    cursor: pointer;
+    width: 80%;
+    margin-bottom: 30px;
+
+}
+.buy{
+    font-size: 26px;
+    color: white;
+    background-color: rgb(255, 0, 0);
+    padding: 10px 20px;
+    border: 2px solid black;
+    cursor: pointer;
+    width: 80%;
+
+}
+.line {
+    border-top: 2px dashed #6e6e6e; /* Dòng đứt đoạn màu xám nhạt */
+    margin: 2px 0; /* Điều chỉnh khoảng cách trên và dưới nếu cần */
+}
+#sanpham-chitiet{
+    display: none;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 2001;
+   
+    background-color: rgba(0,0,0, 0.6);
+  
+}
+
+.danhsach-sanpham{
+    
+    display: flex;
+    background-color: white;
+    flex-wrap: wrap;
+    gap: 16px;
+   
+    
+}
+.sanpham3{
+    box-shadow: 3px 2px 5px black;
+     border: 1px groove;
+     text-align: center;
+     width:calc(25% - 16px) ;
+     overflow: hidden;
+     display: flex;
+     flex-direction: column;
+     
+ }
+.sanpham3 img{
+    width: 100%;
+    object-fit: cover;
+   height: auto;
+}
+
+.phantrang{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+.sotrang{
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    text-align: center;
+    font-size: 15px;
+    padding: 14px;
+    border: 1px groove  ;
+    border-radius: 15%;
+    
+
+}
+.sotrang:hover{
+    background-color: gold;
+}
+#menu-sanpham1 {
+    position: relative;
+}
+.cuahang-sp{
+    position: relative;
+}
+#phanloai{
+    display: none;
+    position: absolute;
+    background-color: rgba(122, 122, 122, 0.5);
+    border-radius: 5px;
+   
+}
+.phanloai-item{
+    text-align: center;
+    border-bottom:1px groove ;
+    padding: 20px;
+    margin: 5px;
+    cursor: pointer;
+    min-width: 60px;
+    
+}
+.phanloai-item:hover{
+    color: #ffffff;
+}
+#cuahang-sp:hover > #phanloai{
+    display: flex;
+    flex-direction: column;
+    
+}
+#phanloai-giay{
+    display: none;
+    position: absolute;
+    background-color: rgba(122, 122, 122, 0.5);
+    border-radius: 5px;
+    left: 119px;
+    top:0;
+   
+}
+.pl-giay{
+    text-align: center;
+    border-bottom:1px groove ;
+    padding: 20px;
+    margin: 5px;
+    cursor: pointer;
+    min-width: 150px; 
+    white-space: nowrap;
+    color: #333;
+}
+.pl-giay:hover{
+    color: #ffffff;
+}
+.phanloai-item:hover> #phanloai-giay{
+    display: flex;
+    flex-direction: column;
+}
