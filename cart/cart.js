@@ -168,7 +168,7 @@ function cartDisplay(){
         var s = "";
         for (let i = 0; i < cartArray.length; i++) {
             s += `<tr>
-                    <td><input type="checkbox" id="${cartArray[i].id}" onchange="buy()"></td>
+                    <td><input type="checkbox" id="${cartArray[i].id}" onchange="adjustQuantity('${cartArray[i].id}', 0)"></td>
                     <td class="cart-item-image"><img src="../${cartArray[i].image}" alt="product"></td>
                     <td class="cart-item-name"><label for="${cartArray[i].id}">${cartArray[i].name}</label></td>
                     <td class="cart-item-quantity">
@@ -221,6 +221,7 @@ function checkCart(){
         var check= document.getElementById(cartArray[i].id);
         if(check.checked== true) carttemp.push(cartArray[i]);
     }
+    console.log(carttemp);
 }
 
 //chọn tất cả sản phẩm
@@ -280,7 +281,6 @@ function buy(){
         s += quantity * carttemp[i].price;
     }
     document.getElementById("total-pay").innerHTML = "Tổng thanh toán: " + s;
-    console.log(s);
     return s;
 }
 
