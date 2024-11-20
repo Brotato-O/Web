@@ -119,6 +119,23 @@ Cart.addEventListener('click', function(event){
     SignForm.style.display = 'none';
     RegisterForm.style.display = 'none';
     SearchBar.style.display = 'none';
+    //nhàn 
+    var cartArray = JSON.parse(localStorage.getItem('cart'));
+    var s="";
+    var display= cartArray.length; 
+    if (cartArray.length == undefined) display= 0;
+    else if (cartArray.length >5) display= 5;
+    for(var i=0; i< display; i++){
+        s+=`
+            <li><a href="cart/cart.html" class="link-shop">
+                <img src="${cartArray[i].image}" alt="sp">
+                <div>${cartArray[i].name}</div>
+                <div>${cartArray[i].price}</div>
+                </a>
+            </li>
+        `
+    }
+    document.getElementById("CartForm-items-list").innerHTML=s;
 });
 
 var CartFormClose = document.getElementById('CartForm-close');

@@ -250,7 +250,8 @@ body{
 
 #CartForm{
     position: fixed;
-    top: 33%;
+    top: 30%;
+    margin-top: 60px;
     left: 80%;
     height: auto;
     width: 500px;
@@ -299,7 +300,8 @@ body{
 
 #CartForm-items-list li{
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    padding-left: 10%;
     align-items: center;
     margin-bottom: 20px;
 }
@@ -655,6 +657,14 @@ body{
     list-style: none;
     font-style: italic;
 }
+.link-shop{
+    text-decoration: none;
+    display: flex;
+    flex-wrap: nowrap;
+}
 
+.link-shop:visited, .link-shop:link{
+    color: black;
+}
 
 
