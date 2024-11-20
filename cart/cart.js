@@ -188,7 +188,7 @@ function cartDisplay(){
                 <th class="cart-item-image">Hình ảnh</th>
                 <th class="cart-item-name">Tên sản phẩm</th>
                 <th class="cart-item-quantity">Số lượng</th>
-                <th class="cart-item-price">Thành tiền</th>
+                <th class="cart-item-price">Đơn giá</th>
                 <td></td>
             </tr>` + s +
         `</table> 
