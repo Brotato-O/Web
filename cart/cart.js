@@ -372,6 +372,7 @@ window.onload = function(){
             var temp1= temp.split("&")[1];
             document.getElementById(temp1).focus();
             var tr= document.getElementById(temp1).parentNode.parentNode;
+            tr.scrollIntoView();
             tr.style.animation="highlight 2s ease-in-out";
         }
         //ngăn cart vẫn giữ sl trc reload 
