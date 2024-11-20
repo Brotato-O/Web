@@ -168,7 +168,7 @@ function cartDisplay(){
         var s = "";
         for (let i = 0; i < cartArray.length; i++) {
             s += `<tr>
-                    <td><input type="checkbox" id="${cartArray[i].id}" onchange="adjustQuantity('${cartArray[i].id}', 0)"></td>
+                    <td><input type="checkbox" id="${cartArray[i].id}" onchange="buy()"></td>
                     <td class="cart-item-image"><img src="../${cartArray[i].image}" alt="product"></td>
                     <td class="cart-item-name"><label for="${cartArray[i].id}">${cartArray[i].name}</label></td>
                     <td class="cart-item-quantity">
@@ -194,7 +194,7 @@ function cartDisplay(){
         `</table> 
         <div id="total-bill">
             <div>
-                <input type="checkbox" id="check-all" onchange="checkAllItems(), buy()"> 
+                <input type="checkbox" id="check-all" onchange="checkAllItems()"> 
                 <label for="check-all">Chọn tất cả</label>
             </div>
             <button onclick="deleteCheckedItems()">Xóa</button>
@@ -234,6 +234,7 @@ function checkAllItems(){
     else
         for(var i=0; i<cartArray.length; i++)
             document.getElementById(cartArray[i].id).checked= false;
+    buy();
 }
 
 //hàm cảnh báo xóa
@@ -344,7 +345,7 @@ function showBill(number){
                     <td>${bill[i].totalAmount}</td>
                     <td>${bill[i].paymentMethod}</td>`
                     if (number==1)
-                        s+=`<td><button onclick="huy('${bill[i].receiptId}')" value=>Hủy đơn</button></td>`
+                        s+=`<td><button onclick="huy('${bill[i].receiptId}')">Hủy đơn</button></td>`
                     s+=`</tr>`;
             }
         }
@@ -365,11 +366,16 @@ function showBill(number){
             
 window.onload = function(){
     var temp= location.href.split("?")[1];
-    if(temp ==undefined || temp=="") cartDisplay();
+    if(temp ==undefined || temp=="") {
+        cartDisplay();
+        //ngăn cart vẫn giữ sl trc reload 
+        var cartArray= JSON.parse(localStorage.getItem("cart"));
+        for(var i=0; i<cartArray.length; i++)
+            cartArray[i].quantity= 1;
+        localStorage.setItem("cart", JSON.stringify(cartArray));
+    }
     else{
-        temp=temp.split("&")[1];
-        if(temp==0) cartDisplay();
-        else if(temp== 1) showBill(1); 
+        if(temp== 1) showBill(1); 
         else if(temp== 2) showBill(2); 
         else if(temp== 3)showBill(3); 
         else showBill(4); 
@@ -388,6 +394,7 @@ function hideAllBoxes() {
 }
 
 function openCheckout() {
+    checkCart();
     if (carttemp.length === 0) {
       alert('Giỏ hàng trống! Vui lòng thêm sản phẩm.');
     } else {
