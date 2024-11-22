@@ -475,7 +475,7 @@ function search1() {
       // Tìm kiếm cơ bản
       for (var i = 0; i < productArray.length; i++) {
         document.getElementById("h3tieude").innerText="Lọc theo sản phẩm";
-          if (productArray[i].name.toLowerCase().includes(productsearch) ) {
+          if ((productArray[i].name.toLowerCase().search(productsearch)!=-1||productArray[i].brand.toLowerCase().search(productsearch) != -1) && productsearch != '' ) {
                 s += `
                                     <div class="sanpham3" onclick="show2(${productArray[i].productId})">
                                        <img src="${productArray[i].img}" />
@@ -488,26 +488,33 @@ function search1() {
   } else {
       // Tìm kiếm nâng cao
       var brandsearch = document.getElementById('brandsearch').value;
-      var priceform = parseInt(document.getElementById('priceform').value) || 0;
-      var priceto = parseInt(document.getElementById('priceto').value) || Infinity;
-
-      for (var i = 0; i < productArray.length; i++) {
-          if (
-              productArray[i].name.toLowerCase().includes(productsearch) &&
-              (brandsearch === 'all' || productArray[i].brand === brandsearch) &&
-              productArray[i].price >= priceform &&
-              productArray[i].price <= priceto
-          ) {
+      if (brandsearch=='tatcagiay') {
+        for(var i = 0; i<productArray.length; i++){
+          if (productArray[i].name.toLowerCase().search("Giày") != -1) {
+            s += `
+                                    <div class="sanpham3" onclick="show2(${productArray[i].productId})">
+                                       <img src="${productArray[i].img}" />
+                                         <h3>${productArray[i].name}</h3>
+                                         <h3>${productArray[i].price.toLocaleString()} VND</h3>
+                                     </div>
+                                 `;
+          }
+        }
+      }
+      else {
+        for(var i = 0; i<productArray.length; i++){
+          if (productArray[i].brand.toLowerCase().search(brandsearch) != -1) {
             s += `
             <div class="sanpham3" onclick="show2(${productArray[i].productId})">
                <img src="${productArray[i].img}" />
                  <h3>${productArray[i].name}</h3>
                  <h3>${productArray[i].price.toLocaleString()} VND</h3>
              </div>
-         `;
+            `;
           }
+        }
       }
-  }
+    }
  
   if (s === '') {
     document.getElementById('allsp').innerHTML = '<p>Không tìm thấy sản phẩm nào phù hợp.</p>';
@@ -567,6 +574,7 @@ function search1() {
             
   }
 }
+
 
 
 

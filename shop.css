@@ -628,8 +628,11 @@ background-color: black;
     flex-direction: column;
 }
 #searchextend {
-    display: none;
+    margin-left: 5px;
+    position: relative;
+    display: flex;
+    gap: 16px;
 }
 #searchextend.active {
-    display: block;
+    display: flex;
 }

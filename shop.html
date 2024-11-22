@@ -81,13 +81,24 @@
         <input type="text" id="txtSearch" placeholder="Tìm kiếm " oninput="search1()"/>
         <div id="searchhead">
             <div id="searchextend" class="">
-                <input id="brandsearch" type="text" placeholder="Thương hiệu (hoặc 'all')">
-                <input id="priceform" type="number" placeholder="Giá từ">
-                <input id="priceto" type="number" placeholder="Giá đến">
+                <select id="brandsearch" onchange="search1()"> 
+                    <option value=" "></option>
+                    <option value="tatcagiay">Tất cả giày</option>
+                    <option value="Giày cỏ tự nhiên">Giày cỏ tự nhiên</option>
+                    <option value="Giày cỏ nhân tạo">Giày cỏ nhân tạo</option>
+                    <option value="Quần áo">Áo Quần</option>
+                    <option value="Phụ kiện">Phụ Kiện</option>
+                </select>
+                <input id="priceform" type="number" placeholder="Giá từ" >
+                <input id="priceto" type="number" placeholder="Giá đến" >
             </div>
         </div>
         <div id="SearchBar-submit">
             <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div
+          style=" margin-right: 25px; margin-top: 18px; font-size: 30px;cursor: pointer; " onclick="showmenuloai()" id="menuloai">
+          <i class="fa-solid fa-bars"></i>
         </div>
     </div>
 
