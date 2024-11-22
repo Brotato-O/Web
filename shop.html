@@ -37,7 +37,7 @@
             <li><a href="#services">Dịch vụ</a></li>
             <li><a href="#footer">Liên hệ</a></li>
             <ul id="nav-links-function">
-                <li id="search" onclick="showTK()"><a><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                <li id="search" onclick="showTK()"><a href="#allsp"><i class="fa-solid fa-magnifying-glass"></i></a></li>
                 <li id="Sign" name="Sign" onclick="showDN()" ><a><i class="fa-solid fa-user"></i></a></li>
                 <li id="Cart" name="Cart"><a href="cart/Cart.html"><i class="fa-solid fa-bag-shopping"></i></i></a></li>
             </ul>
@@ -78,7 +78,14 @@
     </div>
 
     <div id="SearchBar">
-        <input type="text" id="txtSearch" placeholder="Tìm kiếm">
+        <input type="text" id="txtSearch" placeholder="Tìm kiếm " oninput="search1()"/>
+        <div id="searchhead">
+            <div id="searchextend" class="">
+                <input id="brandsearch" type="text" placeholder="Thương hiệu (hoặc 'all')">
+                <input id="priceform" type="number" placeholder="Giá từ">
+                <input id="priceto" type="number" placeholder="Giá đến">
+            </div>
+        </div>
         <div id="SearchBar-submit">
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
@@ -86,7 +93,7 @@
 
     <div id="toan1" class="toan">
         <div class="tieude">
-          <h3>Shop By Sport</h3>
+          <h3>Sản phẩm </h3>
         </div>
   
         <div class="sptieude">
@@ -107,8 +114,10 @@
           </div>
         </div>
         <div class="tieude">
+            <h3 id="h3tieude">Tất cả sản phẩm</h3>
+        </div>
             <div id="allsp"></div>
-          </div>
+          
       </div>
       <div class="endline"></div>
 

@@ -293,7 +293,8 @@ body{
 }
 
 #footer{
-    height: 50vh;
+ 
+    height: 60vh;
     width: 100%;
     background: linear-gradient(to right, #333, #555, #333);
 }
@@ -351,8 +352,7 @@ body{
 css của sản phẩm
 */
 #toan1{
-
-    margin-top: 80px;
+    margin-top: 65px;
 }
 
 .tieude{
@@ -361,7 +361,8 @@ css của sản phẩm
     align-items: center;
 }
 .tieude h3{
-    margin-left: 10px ;
+    margin-left: 5px ;
+    font-size:30px;
 }
 .sptieude{
     display: flex;
@@ -409,7 +410,10 @@ css của sản phẩm
     background-color:rgb(151, 151, 151) ;
 }
 
-
+#allsp{
+    width: 95%;
+    margin: auto;
+}
 
 
 
@@ -622,4 +626,10 @@ background-color: black;
 .phanloai-item:hover> #phanloai-giay{
     display: flex;
     flex-direction: column;
+}
+#searchextend {
+    display: none;
+}
+#searchextend.active {
+    display: block;
 }
