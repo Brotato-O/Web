@@ -18,7 +18,16 @@
             <li><a href="#footer">Liên hệ</a></li>
             <ul id="nav-links-function">
                 <li id="search"><a><i class="fa-solid fa-magnifying-glass"></i></a></li>
-                <li id="Sign" name="Sign"><a><i class="fa-solid fa-user"></i></a></li>
+                <li id="Sign">
+                    <div id="img-user" name="Sign">
+                      <a><i class="fa-solid fa-user"></i></a>
+                      <!-- <div id="list">
+                            <button class="user__">Account</button>
+                            <button class="user__" id="logout">Logout</button>
+                        </div> -->
+                    </div>
+                  </li>
+        
                 <li id="Cart" name="Cart"><a><i class="fa-solid fa-bag-shopping"></i></i></a></li>
             </ul>
         </ul>
@@ -32,7 +41,9 @@
             <div id="SignForm-title">ĐĂNG NHẬP</div>
             <div id="SignForm-inputs">
                 <input type="text" id="txtUsername" placeholder="Tên đăng nhập">
+                <div style="color:red"></div>
                 <input type="password" id="txtPassword" placeholder="Mật khẩu">
+                <div style="color:red"></div>
             </div>
             <div id="SignForm-submit">
                 <div>Đăng nhập</div>
@@ -47,8 +58,11 @@
             <div id="RegisterForm-title">ĐĂNG KÝ</div>
             <div id="RegisterForm-inputs">
                 <input type="text" id="txtRUsername" placeholder="Tên đăng nhập">
+                <div style="color:red"></div>
                 <input type="password" id="txtRPassword" placeholder="Mật khẩu">
+                <div style="color:red"></div>
                 <input type="password" id="txtRPassword2" placeholder="Nhập lại mật khẩu">
+                <div style="color:red"></div>
             </div>
             <div id="RegisterForm-submit">
                 <div>Đăng ký</div>
@@ -58,31 +72,30 @@
     </div>
 
     <div id="CartForm">
-            <div id="CartForm-close"><i class="fa-solid fa-xmark"></i></div>
-            <div id="CartForm-title"><div>GIỎ HÀNG</div></div>
-            <div id="CartForm-items">
-                <ul id="CartForm-items-list">
-                    <!-- <li><img src="img/SP1.JPG" alt="SP1" id="CartForm-item-image">
-                        <div>Sản phẩm limited</div>
-                        <div>1.000.000$</div>
-                    </li>
-                    <li><img src="img/SP2.JPG" alt="SP2" id="CartForm-item-image">
-                        <div>Sản phẩm limited</div>
-                        <div>1.000.000$</div>
-                    </li>
-                    <li><img src="img/SP3.JPG" alt="SP3" id="CartForm-item-image">
-                        <div>Sản phẩm limited</div>
-                        <div>1.000.000$</div>
-                    </li>
-                    <li><img src="img/SP4.JPG" alt="SP4" id="CartForm-item-image">
-                        <div>Sản phẩm limited</div>
-                        <div>1.000.000$</div>
-                    </li> -->
-                </ul>
-            </div>
-            <div id="CartForm-actions">
-                <button id="CartForm-view">Xem giỏ hàng</button>
-            </div>
+        <div id="CartForm-close"><i class="fa-solid fa-xmark"></i></div>
+        <div id="CartForm-title"><div>GIỎ HÀNG</div></div>
+        <div id="CartForm-items">
+            <ul id="CartForm-items-list">
+                <!-- <li><img src="img/SP1.JPG" alt="SP1" id="CartForm-item-image">
+                    <div>Sản phẩm limited</div>
+                    <div>1.000.000$</div>
+                </li>
+                <li><img src="img/SP2.JPG" alt="SP2" id="CartForm-item-image">
+                    <div>Sản phẩm limited</div>
+                    <div>1.000.000$</div>
+                </li>
+                <li><img src="img/SP3.JPG" alt="SP3" id="CartForm-item-image">
+                    <div>Sản phẩm limited</div>
+                    <div>1.000.000$</div>
+                </li>
+                <li><img src="img/SP4.JPG" alt="SP4" id="CartForm-item-image">
+                    <div>Sản phẩm limited</div>
+                    <div>1.000.000$</div>
+                </li> -->
+            </ul>
+        </div>
+        <div id="CartForm-actions">
+            <button id="CartForm-view">Xem giỏ hàng</button>
         </div>
     </div>
 
@@ -110,7 +123,7 @@
                 <!-- Products will be inserted here by JavaScript -->
             </div>
             <div id="pagination">
-                <button class="page" onclick="scrollSlider(-1)"><</button>
+                <button class="page" onclick="scrollSlider(-1)"></button>
                 <button class="page" onclick="goToPage(0)">1</button>
                 <button class="page" onclick="goToPage(1)">2</button>
                 <button class="page" onclick="goToPage(2)">3</button>
