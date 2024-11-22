@@ -219,23 +219,13 @@ SignFormClose.addEventListener("click", closeSignForm);
 RegisterFormClose.addEventListener("click", closeRegisterForm);
 overlay.addEventListener("click", closeOverlay);
 
-SignSubmit.addEventListener("click", function (event) {
-  if (validateSignForm()) {
-    event.preventDefault();
-    username = "";
-    password = "";
-    alert("Đăng nhập thành công!");
-
-    closeSignForm();
-  }
-});
-
 // test
 window.addEventListener("DOMContentLoaded", () => {
   SignSubmit.addEventListener("click", function (event) {
     if (validateSignForm()) {
       event.preventDefault();
       alert("Đăng nhập thành công!");
+      console.log(username.value);
       checklogin(username.value);
       username.value = "";
       password.value = "";

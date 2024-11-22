@@ -74,7 +74,44 @@ body {
   background: #333;
   transition: width 0.4s ease;
 }
+/* test */
+#Sign {
+  position: relative;
+}
 
+#img-user {
+  position: relative;
+}
+
+#list {
+  position: absolute;
+  top: 100%;
+  left: -100%;
+  background-color: #f9f9f9;
+  border: 1px solid black;
+  border-radius: 5px;
+  z-index: 10;
+  padding: 0;
+  list-style: none;
+  display: none;
+}
+
+#list .user__ {
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+  color: black;
+  display: block;
+  width: 100%;
+}
+#img-user:hover #list {
+  display: block;
+}
+
+#list .user__:hover {
+  background-color: firebrick;
+  color: white;
+}
+/*  */
 #overlay {
   position: fixed;
   top: 70px;
