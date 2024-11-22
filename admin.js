@@ -332,22 +332,25 @@ function lookUpBillDisplay(){
   const billDate= document.getElementById("dateMethod");
   const billPrice= document.getElementById("priceMethod");
   const method= document.getElementById("method");
-  if(method.value!="all"){
-    if (method.value== "id" || method.value== "phone"){
-      billText.style.display="block";
-      billDate.style.display="none";
-      billPrice.style.display="none";
-    }
-    else if (method.value== "date"){
-      billText.style.display="none";
-      billDate.style.display="flex";
-      billPrice.style.display="none";
-    }
-    else {
-      billText.style.display="none";
-      billDate.style.display="none";
-      billPrice.style.display="flex";
-    }
+  if(method.value=="all"){
+    billText.style.display="none";
+    billDate.style.display="none";
+    billPrice.style.display="none";
+  }
+  else if (method.value== "id" || method.value== "phone"){
+    billText.style.display="block";
+    billDate.style.display="none";
+    billPrice.style.display="none";
+  }
+  else if (method.value== "date"){
+    billText.style.display="none";
+    billDate.style.display="flex";
+    billPrice.style.display="none";
+  }
+  else {
+    billText.style.display="none";
+    billDate.style.display="none";
+    billPrice.style.display="flex";
   }
 }
 
@@ -355,6 +358,7 @@ function lookUpBill(){
     var billText= document.getElementById("textMethod").value;
     var from = document.getElementById("pricefrom").value;
     var to = document.getElementById("priceto").value;
+    var billDate= document.getElementById("dateMethod").value;
     var method= document.getElementById("method");
     if(method.value== "all") billDisplay (billText,0, 0);
     if(method.value== "id") billDisplay(billText, 0, 2);
