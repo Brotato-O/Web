@@ -28,20 +28,11 @@ function xoabill(){
 }
 
 function thembill(){
-    const users = [
-        { username: "user1", password: "password1" },
-        { username: "user2", password: "password2" },
-        { username: "user3", password: "password3" },
-    ];
-    localStorage.setItem("user", JSON.stringify(users));
-
-    const loggeduser= { username: "user1", password: "password1" };
-    localStorage.setItem("loggeduser", JSON.stringify(loggeduser));
 
     const bills = [
         {
             receiptId: 1,
-            customer: { username: "user1", password: "password1" },
+            customer: { username: "NHP", password: "NHP" },
             status: "Chờ xác nhận",
             orderDate: "2024-11-16",
             paymentMethod: "Chuyển khoản",

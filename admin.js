@@ -301,12 +301,14 @@ function thembill(){
 
 //nhàn
 function billDisplay(from, to, n){
-    document.getElementById("themsp").style.display = "none";
-    document.getElementById("selectbill").style.display = "block";
+  document.getElementById("themsp").style.display = "none";
+  document.getElementById("selectbill").style.display = "block";
+  console.log();
   var bill= JSON.parse(localStorage.getItem('bill'));
   var s="";
   for(var i=0;i<bill.length; i++){
-    if( (n==0) ||(bill[i].customer.sdt.includes(from) && n==1) || (String(bill[i].receiptId).includes(from) && n==2) || ((bill[i].totalAmount>=from && bill[i].totalAmount<=to) && n==3)) {
+    if( (n==0) ||(bill[i].customer.sdt.includes(from) && n==1) || (String(bill[i].receiptId).includes(from) && n==2) || 
+    ((bill[i].totalAmount>=from && bill[i].totalAmount<=to) && n==3) || ((new Date(bill[i].orderDate) >=from && new Date(bill[i].orderDate<=to)) && n==4)) {
         console.log("AAA");
         s+=`<tr>
           <td>${bill[i].orderDate}</td>
@@ -358,10 +360,12 @@ function lookUpBill(){
     var billText= document.getElementById("textMethod").value;
     var from = document.getElementById("pricefrom").value;
     var to = document.getElementById("priceto").value;
-    var billDate= document.getElementById("dateMethod").value;
+    var billDateFrom= new Date(document.getElementById("dateFrom").value);
+    var billDateTo= new Date(document.getElementById("dateTo").value);
     var method= document.getElementById("method");
     if(method.value== "all") billDisplay (billText,0, 0);
     if(method.value== "id") billDisplay(billText, 0, 2);
     if(method.value== "phone") billDisplay(billText, 0, 1);
     if(method.value== "price") billDisplay(from, to, 3);
+    if(method.value== "date") billDisplay(billDateFrom, billDateTo, 4);
 }

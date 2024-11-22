@@ -70,6 +70,7 @@ function checklogin(name) {
     var s = "";
     for (var i = 0; i < listUser.length; i++) {
       if (listUser[i].username == name) {
+        console.log("AA");
         s = ` <li id="search"><a><i class="fa-solid fa-magnifying-glass"></i></a></li>
               <li id="Sign">
                 <div id="img-user" name="Sign">
@@ -427,9 +428,9 @@ shopBttn.addEventListener("click", function () {
 });
 
 // test
-var eToggle = document.querySelector("#toggle");
-eToggle.addEventListener("click", () => {
-  document.querySelector("#menu").style.display = "block";
-  eToggle.style.display = "none";
-  document.querySelector(".fa-xmark1").style.display = "block";
-});
+// var eToggle = document.querySelector("#toggle");
+// eToggle.addEventListener("click", () => {
+//   document.querySelector("#menu").style.display = "block";
+//   eToggle.style.display = "none";
+//   document.querySelector(".fa-xmark1").style.display = "block";
+// });
