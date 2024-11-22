@@ -360,26 +360,6 @@ var productArrays = [
     
     
      setTimeout(hienthitatcasp, 10); 
-
-
-
-    var Sign = document.getElementById('Sign');
-    //var SignForm = document.getElementById('SignForm');
-    var RegisterForm = document.getElementById('RegisterForm');
-    var SignFormRegister = document.getElementById('SignForm-register');
-    var RegisterFormLogin = document.getElementById('RegisterForm-login');
-    var SignFormClose = document.getElementById('SignForm-close');
-    var RegisterFormClose = document.getElementById('RegisterForm-close');
-    
-    var SignSubmit = document.getElementById('SignForm-submit');
-    var RegisterSubmit = document.getElementById('RegisterForm-submit');
-    var Search = document.getElementById('search');
-    var Cart = document.getElementById('Cart');
-    var username = document.getElementById('txtUsername').value;
-    var password = document.getElementById('txtPassword').value;
-    var rusername = document.getElementById('txtRUsername').value;
-    var rpassword = document.getElementById('txtRPassword').value;
-    var rpassword2 = document.getElementById('txtRPassword2').value;
     
     function validateSignForm(event) {
       var username = document.getElementById('txtUsername').value;
