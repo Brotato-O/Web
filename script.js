@@ -218,23 +218,13 @@ SignFormClose.addEventListener("click", closeSignForm);
 RegisterFormClose.addEventListener("click", closeRegisterForm);
 overlay.addEventListener("click", closeOverlay);
 
-SignSubmit.addEventListener("click", function (event) {
-  if (validateSignForm()) {
-    event.preventDefault();
-    username = "";
-    password = "";
-    alert("Đăng nhập thành công!");
-
-    closeSignForm();
-  }
-});
-
 // test
 window.addEventListener("DOMContentLoaded", () => {
   SignSubmit.addEventListener("click", function (event) {
     if (validateSignForm()) {
       event.preventDefault();
       alert("Đăng nhập thành công!");
+      console.log(username.value);
       checklogin(username.value);
       username.value = "";
       password.value = "";
@@ -426,10 +416,9 @@ shopBttn.addEventListener("click", function () {
   window.location.href = "cart/cart.html";
 });
 
-// test
-var eToggle = document.querySelector("#toggle");
-eToggle.addEventListener("click", () => {
-  document.querySelector("#menu").style.display = "block";
-  eToggle.style.display = "none";
-  document.querySelector(".fa-xmark1").style.display = "block";
-});
+// var eToggle = document.querySelector("#toggle");
+// eToggle.addEventListener("click", () => {
+//   document.querySelector("#menu").style.display = "block";
+//   eToggle.style.display = "none";
+//   document.querySelector(".fa-xmark1").style.display = "block";
+// });
