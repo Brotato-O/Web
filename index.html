@@ -18,7 +18,16 @@
             <li><a href="#footer">Liên hệ</a></li>
             <ul id="nav-links-function">
                 <li id="search"><a><i class="fa-solid fa-magnifying-glass"></i></a></li>
-                <li id="Sign" name="Sign"><a><i class="fa-solid fa-user"></i></a></li>
+                <li id="Sign">
+                    <div id="img-user" name="Sign">
+                      <a><i class="fa-solid fa-user"></i></a>
+                      <!-- <div id="list">
+                            <button class="user__">Account</button>
+                            <button class="user__" id="logout">Logout</button>
+                        </div> -->
+                    </div>
+                  </li>
+        
                 <li id="Cart" name="Cart"><a><i class="fa-solid fa-bag-shopping"></i></i></a></li>
             </ul>
         </ul>
@@ -32,7 +41,9 @@
             <div id="SignForm-title">ĐĂNG NHẬP</div>
             <div id="SignForm-inputs">
                 <input type="text" id="txtUsername" placeholder="Tên đăng nhập">
+                <div style="color:red"></div>
                 <input type="password" id="txtPassword" placeholder="Mật khẩu">
+                <div style="color:red"></div>
             </div>
             <div id="SignForm-submit">
                 <div>Đăng nhập</div>
@@ -47,8 +58,11 @@
             <div id="RegisterForm-title">ĐĂNG KÝ</div>
             <div id="RegisterForm-inputs">
                 <input type="text" id="txtRUsername" placeholder="Tên đăng nhập">
+                <div style="color:red"></div>
                 <input type="password" id="txtRPassword" placeholder="Mật khẩu">
+                <div style="color:red"></div>
                 <input type="password" id="txtRPassword2" placeholder="Nhập lại mật khẩu">
+                <div style="color:red"></div>
             </div>
             <div id="RegisterForm-submit">
                 <div>Đăng ký</div>
