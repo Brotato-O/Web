@@ -354,13 +354,126 @@ var productArrays = [
         hienthisanpham1();
         hienthitatcasp();
       }
-      window.onload = function () {
-        hienthisanpham1();
-    };
+       window.onload = function () {
+         hienthisanpham1();
+     };
     
     
-    setTimeout(hienthitatcasp, 10); 
-   
+     setTimeout(hienthitatcasp, 10); 
+
+
+
+    var Sign = document.getElementById('Sign');
+    //var SignForm = document.getElementById('SignForm');
+    var RegisterForm = document.getElementById('RegisterForm');
+    var SignFormRegister = document.getElementById('SignForm-register');
+    var RegisterFormLogin = document.getElementById('RegisterForm-login');
+    var SignFormClose = document.getElementById('SignForm-close');
+    var RegisterFormClose = document.getElementById('RegisterForm-close');
+    
+    var SignSubmit = document.getElementById('SignForm-submit');
+    var RegisterSubmit = document.getElementById('RegisterForm-submit');
+    var Search = document.getElementById('search');
+    var Cart = document.getElementById('Cart');
+    var username = document.getElementById('txtUsername').value;
+    var password = document.getElementById('txtPassword').value;
+    var rusername = document.getElementById('txtRUsername').value;
+    var rpassword = document.getElementById('txtRPassword').value;
+    var rpassword2 = document.getElementById('txtRPassword2').value;
+    
+    function validateSignForm(event) {
+      var username = document.getElementById('txtUsername').value;
+      var password = document.getElementById('txtPassword').value;
+      
+      // Kiểm tra các trường nhập liệu
+      if (username == '' || password == '') {
+          alert('Vui lòng điền đầy đủ thông tin!');
+          return false;  // Ngừng xử lý nếu form không hợp lệ
+      }
+  
+      // Nếu form hợp lệ, ngừng gửi form và xử lý đăng nhập
+      event.preventDefault();  // Ngừng gửi form nếu có
+  
+      // Xóa dữ liệu đã nhập
+      document.getElementById('txtUsername').value = '';
+      document.getElementById('txtPassword').value = '';
+      
+      // Thông báo đăng nhập thành công
+      alert('Đăng nhập thành công!');
+      
+      
+      closeDN();
+      
+      return true;  // Form hợp lệ
+  }
+  
+  
+    
+    function validateRegisterForm(event) {
+        var rusername = document.getElementById('txtRUsername').value;
+        var rpassword = document.getElementById('txtRPassword').value;
+        var rpassword2 = document.getElementById('txtRPassword2').value;
+        if (rusername == '' || rpassword == '' || rpassword2 == '') {
+            alert('Vui lòng điền đầy đủ thông tin!');
+            return false;
+        }
+        else if (rpassword != rpassword2) {
+            alert('Mật khẩu không khớp!');
+            rpassword2 = '';
+            document.getElementById('txtRPassword2').focus();
+            return false;
+        }
+        
+          event.preventDefault();
+  
+          alert('Đăng ký thành công!');
+          document.getElementById('txtRUsername').value = '';
+          document.getElementById('txtRPassword').value = '';
+          document.getElementById('txtRPassword2').value = '';
+          closeDK();
+      
+        return true;
+    }
+    
+    function showDN() {
+       document.getElementById('overlay').style.display = "block";
+      document.getElementById('SignForm').style.display="block";
+      document.getElementById('SearchBar').style.display="none";
+
+  }
+  
+  
+    function closeDN() {
+      document.getElementById('overlay').style.display = "none";
+      document.getElementById('SignForm').style.display="none";
+    }
+     function showDK(){
+        document.getElementById('overlay').style.display = "block";
+      document.getElementById('RegisterForm').style.display="block"
+      document.getElementById('SearchBar').style.display="none";
+     }
+     function closeDK() {
+      document.getElementById('overlay').style.display = "none";
+      document.getElementById('RegisterForm').style.display="none";
+      document.getElementById('SignForm').style.display="none";
+    }
+    function showTK(){
+      document.getElementById('overlay').style.display = "block";
+      document.getElementById('SearchBar').style.display="flex";
+      document.getElementById('SignForm').style.display="none";
+      document.getElementById('RegisterForm').style.display="none";
+    }
+    function closeTK(){
+      document.getElementById('overlay').style.display = "none";
+      document.getElementById('SearchBar').style.display="none";
+      document.getElementById('SignForm').style.display="none";
+      document.getElementById('RegisterForm').style.display="none";
+      
+    }
+    
+    
+ 
+    
 
 
       
