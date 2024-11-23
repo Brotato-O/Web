@@ -1,6 +1,12 @@
 window.onload = function () {
   createAdmin();
+  loadProfile();
 };
+
+window.addEventListener("load", () => {
+  clickSubmitProfile("#luu");
+  setupImageUpload("#img-user1", 'input[type="file"]', "#avatar", ".bxs-user");
+});
 
 var Sign = document.getElementById("Sign");
 var SignForm = document.getElementById("SignForm");
@@ -70,13 +76,12 @@ function checklogin(name) {
     var s = "";
     for (var i = 0; i < listUser.length; i++) {
       if (listUser[i].username == name) {
-        console.log("AA");
         s = ` <li id="search"><a><i class="fa-solid fa-magnifying-glass"></i></a></li>
               <li id="Sign">
                 <div id="img-user" name="Sign">
                   <a><i class="fa-solid fa-user"></i></a>
                   <div id="list">
-                      <button class="user__">Account</button>
+                      <button class="user__" id="account">Account</button>
                       <button class="user__" id="logout" onClick="logout(\'index.html\')">Logout</button>
                   </div>
                 </div>
@@ -87,6 +92,7 @@ function checklogin(name) {
     }
     document.querySelector("#nav-links-function").innerHTML = s;
   }
+  OpenProfile();
 }
 
 function validateSignForm() {
@@ -225,7 +231,6 @@ window.addEventListener("DOMContentLoaded", () => {
     if (validateSignForm()) {
       event.preventDefault();
       alert("Đăng nhập thành công!");
-      console.log(username.value);
       checklogin(username.value);
       username.value = "";
       password.value = "";
@@ -417,10 +422,141 @@ shopBttn.addEventListener("click", function () {
   window.location.href = "cart/cart.html";
 });
 
-// test
-// var eToggle = document.querySelector("#toggle");
-// eToggle.addEventListener("click", () => {
-//   document.querySelector("#menu").style.display = "block";
-//   eToggle.style.display = "none";
-//   document.querySelector(".fa-xmark1").style.display = "block";
-// });
+// 23/11 PHÚC
+function loadProfile() {
+  var s = "";
+  s = `<div id="top-profile">
+        <h2 id="title">THÔNG TIN KHÁCH HÀNG</h2>
+        <div style="background-color: rgb(102, 212, 177)">
+          <div class="rotate-icon">+</div>
+        </div>
+      </div>
+      <div id="content">
+        <div id="img-user1">
+          <img src="default-avatar.png" alt="" id="avatar" />
+          <i class="bx bxs-user"></i>
+        </div>
+        <input type="file" />
+        <form id="form">
+          <div class="col">
+            <label for="txtName">Họ tên :</label>
+            <input type="text" name="txtName" required />
+            <label for="nPhone">SĐT :</label>
+            <input type="tel" name="nPhone" required />
+            <div style="color: red; display: none">
+              SĐT không đúng định dạng
+            </div>
+          </div>
+          <div class="col">
+            <label for="txtAddress">Địa chỉ:</label>
+            <input type="text" name="txtAddress" required />
+            <label for="txtEmail">Email :</label>
+            <input type="text" name="txtEmail" required />
+            <div style="color: red; display: none">
+              Email không đúng định dạng
+            </div>
+          </div>
+          <div id="btn">
+            <button type="reset" id="xoa">Xóa</button>
+            <button type="submit" id="luu">Lưu</button>
+          </div>
+        </form>
+      </div>
+    </div>`;
+  document.querySelector("#account-profile").innerHTML = s;
+  CloseProfile();
+}
+const checkGmail = /^[a-z0-9]+([._]?[a-z0-9]+)*@gmail\.com$/i;
+const checkPhone = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
+
+function setupImageUpload(par1, par2, par3, par4) {
+  var imgUser = document.querySelector(par1);
+  var inputFile = document.querySelector(par2);
+  var avatar = document.querySelector(par3);
+  var icon = document.querySelector(par4);
+
+  imgUser.addEventListener("click", () => {
+    inputFile.click();
+  });
+
+  inputFile.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imgURL = URL.createObjectURL(file);
+      avatar.src = imgURL;
+      icon.style.display = "none";
+    }
+  });
+}
+
+function OpenProfile() {
+  var eAccount = document.querySelector("#account");
+  eAccount.addEventListener("click", () => {
+    document.querySelector("#account-profile").style.display = "block";
+    overlay.style.display = "block";
+  });
+}
+
+function CloseProfile() {
+  var eCloseAccount = document.querySelector(".rotate-icon");
+  eCloseAccount.addEventListener("click", () => {
+    document.querySelector("#account-profile").style.display = "none";
+    overlay.style.display = "none";
+  });
+}
+
+function validateFormProfile() {
+  var hoTen = document.querySelector("input[name=txtName]");
+  var address = document.querySelector("input[name=txtAddress]");
+  var phone = document.querySelector("input[name=nPhone]");
+  var email = document.querySelector("input[name=txtEmail]");
+  if (!checkGmail.test(email.value)) {
+    email.nextElementSibling.style.display = "block";
+    email.focus();
+    return false;
+  }
+  if (!checkPhone.test(phone.value)) {
+    phone.nextElementSibling.style.display = "block";
+    phone.focus();
+    return false;
+  }
+
+  email.nextElementSibling.style.display = "none";
+  phone.nextElementSibling.style.display = "none";
+
+  var profileUser = JSON.parse(localStorage.getItem("userlogin"));
+
+  var profile = {
+    username: profileUser.username,
+    password: profileUser.password,
+    hoTen: hoTen.value,
+    address: address.value,
+    phone: phone.value,
+    email: email.value,
+  };
+  localStorage.setItem("userlogin", JSON.stringify(profile));
+  return true;
+}
+
+function clickSubmitProfile(par1) {
+  submit = document.querySelector(par1);
+  submit.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (validateFormProfile()) {
+      var listUser = JSON.parse(localStorage.getItem("user"));
+      var user = JSON.parse(localStorage.getItem("userlogin"));
+      for (var i = 0; i < listUser.length; i++) {
+        if (listUser[i].username == user.username) {
+          listUser[i] = user;
+          localStorage.setItem("user", JSON.stringify(listUser));
+          break;
+        }
+      }
+      alert("Thêm thông tin thành công");
+    }
+    document.querySelector("#account-profile").style.display = "none";
+    overlay.style.display = "none";
+  });
+}
+
+//
