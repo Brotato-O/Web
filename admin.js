@@ -1,42 +1,41 @@
-var productArrays = [
-    { name: "Zoom Mercurial Vapor 16 Elite AG-PRO Mad Voltage", price: 5700000, img: "img/1000.jpg", productId: 1000,brand:"Giày cỏ tự nhiên" },
-    { name: "Zoom Mercurial Vapor 16 Academy MG Shadow", price: 2150000, img: "img/1001.jpg", productId: 1001,brand:"Giày cỏ tự nhiên" },
-    { name: "Adidas Copa Gloro II TF", price: 1950000, img: "img/1016.jpg", productId: 1016,brand:"Giày cỏ nhân tạo" },
-    { name: "Phantom GX II Academy MG Mad Ambition", price: 2150000, img: "img/1003.jpg", productId: 1003,brand:"Giày cỏ tự nhiên" },
-    { name: "Tiempo Legend 10 Elite FG Mad Brilliance", price: 5190000, img: "img/1004.jpg", productId: 1004,brand:"Giày cỏ tự nhiên" },
-    { name: "Zoom Mercurial Vapor 16 Academy TF Mbappé Personal Edition", price: 2050000, img: "img/1005.jpg", productId: 1005,brand:"Giày cỏ nhân tạo" },
-    { name: "Phantom Luna II Academy TF Mad Ready", price: 1950000, img: "img/1007.jpg", productId: 1007,brand:"Giày cỏ nhân tạo" },
-    { name: "Tiempo Legend 10 Pro FG Mad Ambition", price: 3490000, img: "img/1008.jpg", productId: 1008,brand:"Giày cỏ tự nhiên" },
-    { name: "Tiempo Legend 10 Elite FG Ready", price: 4390000, img: "img/1009.jpg", productId: 1009,brand:"Giày cỏ tự nhiên" },
-    { name: "Zoom Mercurial Superfly 9 Academy MG XXV", price: 1950000, img: "img/1010.jpg", productId: 1010,brand:"Giày cỏ tự nhiên" },
-    { name: "Zoom Mercurial Superfly 9 Club TF Mad Ready", price: 1590000, img: "img/1011.jpg", productId: 1011,brand:"Giày cỏ nhân tạo" },
-    { name: "React Phantom GX Pro TF Ready", price: 2250000, img: "img/1012.jpg", productId: 1012,brand:"Giày cỏ nhân tạo" },
-    { name: "Adidas F50 Elite FG Advancement", price: 3950000, img: "img/1013.jpg", productId: 1013,brand:"Giày cỏ tự nhiên" },
-    { name: "Adidas Predator Elite FG Advancement", price: 3950000, img: "img/1014.jpg", productId: 1014,brand:"Giày cỏ tự nhiên" },
-    { name: "Adidas Copa Pure 2 Elite FG Advancement", price: 3950000, img: "img/1015.jpg", productId: 1015,brand:"Giày cỏ tự nhiên" },
-    { name: "Adidas X Crazyfast .3 FG Marinerush", price: 1690000, img: "img/1018.jpg", productId: 1018,brand:"Giày cỏ nhân tạo" },
-    { name: "Adidas Copa Pure .1 FG Crazyrush", price: 2990000, img: "img/1019.jpg", productId: 1019,brand:"Giày cỏ tự nhiên" },
-    { name: "Adidas F50 Messi League TF Triunfo Dorado", price: 1890000, img: "img/1020.jpg", productId: 1020,brand:"Giày cỏ nhân tạo" },
-    { name: "Adidas Copa Pure 2 League TF Energy Citrus", price: 1690000, img: "img/1021.jpg", productId: 1021 ,brand:"Giày cỏ nhân tạo"},
-    { name: "Adidas F50 League TF Advancement", price: 1890000, img: "img/1022.jpg", productId: 1022,brand:"Giày cỏ nhân tạo" },
-    { name: "Adidas Copa Gloro TF", price: 1850000, img: "img/1023.jpg", productId: 1023,brand:"Giày cỏ nhân tạo" },
-    { name: "Adidas Predator League L TF", price: 1690000, img: "img/1024.jpg", productId: 1024,brand:"Giày cỏ nhân tạo" },
-    { name: "Adidas Predator Accuracy .4 TF Crazyrush", price: 1190000, img: "img/1025.jpg", productId: 1025,brand:"Giày cỏ nhân tạo" },
-    { name: "Adidas Copa Pure 2 Elite TF Solar Energy", price: 2350000, img: "img/1018.jpg", productId: 1018,brand:"Giày cỏ nhân tạo" },
-    { name: "PUMA Ultra 5 Pro FG/AG Formula", price: 3190000, img: "img/1026.jpg", productId: 1026 ,brand:"Giày cỏ tự nhiên"},
-    { name: "PUMA Future 7 Pro FG/AG Formula", price: 3190000, img: "img/1027.jpg", productId: 1027 ,brand:"Giày cỏ tự nhiên"},
-    { name: "PUMA Future Ultimate FG/AG Voltage", price: 3490000, img: "img/1028.jpg", productId: 1028,brand:"Giày cỏ tự nhiên" },
-    { name: "PUMA Ultra Ultimate FG/AG Gear Up", price: 3190000, img: "img/1029.jpg", productId: 1029 ,brand:"Giày cỏ tự nhiên"},
-    { name: "PUMA Future Ultimate FG/AG Gear Up", price: 3190000, img: "img/1030.jpg", productId: 1030,brand:"Giày cỏ tự nhiên" },
-    { name: "PUMA Future Ultimate FG/AG Breakthrough", price: 3490000, img: "img/1031.jpg", productId: 1031 ,brand:"Giày cỏ tự nhiên"},
-    { name: "PUMA Future 7 Match TT Vol. Up", price: 2030000, img: "img/1032.jpg", productId: 1032,brand:"Giày cỏ nhân tạo" },
-    { name: "PUMA Ultra 5 Pro Cage TT Formula", price: 2789000, img: "img/1033.jpg", productId: 1033 ,brand:"Giày cỏ nhân tạo"},
-    { name: "PUMA Future 7 Pro Cage TT Formula", price: 2789000, img: "img/1034.jpg", productId: 1034,brand:"Giày cỏ nhân tạo" },
-    { name: "PUMA Ultra Ultimate Cage TT Breakthrough", price: 1950000, img: "img/1035.jpg", productId: 1035 ,brand:"Giày cỏ nhân tạo"},
-    { name: "PUMA Future 1.4 Pro Cage TT Fastest", price: 1790000, img: "img/1036.jpg", productId: 1036,brand:"Giày cỏ nhân tạo" },
-    { name: "PUMA Ultra 1.4 Pro Cage TT Instinct", price: 1550000, img: "img/1037.jpg", productId: 1037 ,brand:"Giày cỏ nhân tạo"}
-      ];
-        var productArray1 = [
+
+        var combinedArray = [  
+          { name: "Zoom Mercurial Vapor 16 Elite AG-PRO Mad Voltage", price: 5700000, img: "img/1000.jpg", productId: 1000,brand:"Giày cỏ tự nhiên" },
+          { name: "Zoom Mercurial Vapor 16 Academy MG Shadow", price: 2150000, img: "img/1001.jpg", productId: 1001,brand:"Giày cỏ tự nhiên" },
+          { name: "Adidas Copa Gloro II TF", price: 1950000, img: "img/1016.jpg", productId: 1016,brand:"Giày cỏ nhân tạo" },
+          { name: "Phantom GX II Academy MG Mad Ambition", price: 2150000, img: "img/1003.jpg", productId: 1003,brand:"Giày cỏ tự nhiên" },
+          { name: "Tiempo Legend 10 Elite FG Mad Brilliance", price: 5190000, img: "img/1004.jpg", productId: 1004,brand:"Giày cỏ tự nhiên" },
+          { name: "Zoom Mercurial Vapor 16 Academy TF Mbappé Personal Edition", price: 2050000, img: "img/1005.jpg", productId: 1005,brand:"Giày cỏ nhân tạo" },
+          { name: "Phantom Luna II Academy TF Mad Ready", price: 1950000, img: "img/1007.jpg", productId: 1007,brand:"Giày cỏ nhân tạo" },
+          { name: "Tiempo Legend 10 Pro FG Mad Ambition", price: 3490000, img: "img/1008.jpg", productId: 1008,brand:"Giày cỏ tự nhiên" },
+          { name: "Tiempo Legend 10 Elite FG Ready", price: 4390000, img: "img/1009.jpg", productId: 1009,brand:"Giày cỏ tự nhiên" },
+          { name: "Zoom Mercurial Superfly 9 Academy MG XXV", price: 1950000, img: "img/1010.jpg", productId: 1010,brand:"Giày cỏ tự nhiên" },
+          { name: "Zoom Mercurial Superfly 9 Club TF Mad Ready", price: 1590000, img: "img/1011.jpg", productId: 1011,brand:"Giày cỏ nhân tạo" },
+          { name: "React Phantom GX Pro TF Ready", price: 2250000, img: "img/1012.jpg", productId: 1012,brand:"Giày cỏ nhân tạo" },
+          { name: "Adidas F50 Elite FG Advancement", price: 3950000, img: "img/1013.jpg", productId: 1013,brand:"Giày cỏ tự nhiên" },
+          { name: "Adidas Predator Elite FG Advancement", price: 3950000, img: "img/1014.jpg", productId: 1014,brand:"Giày cỏ tự nhiên" },
+          { name: "Adidas Copa Pure 2 Elite FG Advancement", price: 3950000, img: "img/1015.jpg", productId: 1015,brand:"Giày cỏ tự nhiên" },
+          { name: "Adidas X Crazyfast .3 FG Marinerush", price: 1690000, img: "img/1018.jpg", productId: 1018,brand:"Giày cỏ nhân tạo" },
+          { name: "Adidas Copa Pure .1 FG Crazyrush", price: 2990000, img: "img/1019.jpg", productId: 1019,brand:"Giày cỏ tự nhiên" },
+          { name: "Adidas F50 Messi League TF Triunfo Dorado", price: 1890000, img: "img/1020.jpg", productId: 1020,brand:"Giày cỏ nhân tạo" },
+          { name: "Adidas Copa Pure 2 League TF Energy Citrus", price: 1690000, img: "img/1021.jpg", productId: 1021 ,brand:"Giày cỏ nhân tạo"},
+          { name: "Adidas F50 League TF Advancement", price: 1890000, img: "img/1022.jpg", productId: 1022,brand:"Giày cỏ nhân tạo" },
+          { name: "Adidas Copa Gloro TF", price: 1850000, img: "img/1023.jpg", productId: 1023,brand:"Giày cỏ nhân tạo" },
+          { name: "Adidas Predator League L TF", price: 1690000, img: "img/1024.jpg", productId: 1024,brand:"Giày cỏ nhân tạo" },
+          { name: "Adidas Predator Accuracy .4 TF Crazyrush", price: 1190000, img: "img/1025.jpg", productId: 1025,brand:"Giày cỏ nhân tạo" },
+          { name: "Adidas Copa Pure 2 Elite TF Solar Energy", price: 2350000, img: "img/1018.jpg", productId: 1018,brand:"Giày cỏ nhân tạo" },
+          { name: "PUMA Ultra 5 Pro FG/AG Formula", price: 3190000, img: "img/1026.jpg", productId: 1026 ,brand:"Giày cỏ tự nhiên"},
+          { name: "PUMA Future 7 Pro FG/AG Formula", price: 3190000, img: "img/1027.jpg", productId: 1027 ,brand:"Giày cỏ tự nhiên"},
+          { name: "PUMA Future Ultimate FG/AG Voltage", price: 3490000, img: "img/1028.jpg", productId: 1028,brand:"Giày cỏ tự nhiên" },
+          { name: "PUMA Ultra Ultimate FG/AG Gear Up", price: 3190000, img: "img/1029.jpg", productId: 1029 ,brand:"Giày cỏ tự nhiên"},
+          { name: "PUMA Future Ultimate FG/AG Gear Up", price: 3190000, img: "img/1030.jpg", productId: 1030,brand:"Giày cỏ tự nhiên" },
+          { name: "PUMA Future Ultimate FG/AG Breakthrough", price: 3490000, img: "img/1031.jpg", productId: 1031 ,brand:"Giày cỏ tự nhiên"},
+          { name: "PUMA Future 7 Match TT Vol. Up", price: 2030000, img: "img/1032.jpg", productId: 1032,brand:"Giày cỏ nhân tạo" },
+          { name: "PUMA Ultra 5 Pro Cage TT Formula", price: 2789000, img: "img/1033.jpg", productId: 1033 ,brand:"Giày cỏ nhân tạo"},
+          { name: "PUMA Future 7 Pro Cage TT Formula", price: 2789000, img: "img/1034.jpg", productId: 1034,brand:"Giày cỏ nhân tạo" },
+          { name: "PUMA Ultra Ultimate Cage TT Breakthrough", price: 1950000, img: "img/1035.jpg", productId: 1035 ,brand:"Giày cỏ nhân tạo"},
+          { name: "PUMA Future 1.4 Pro Cage TT Fastest", price: 1790000, img: "img/1036.jpg", productId: 1036,brand:"Giày cỏ nhân tạo" },
+          { name: "PUMA Ultra 1.4 Pro Cage TT Instinct", price: 1550000, img: "img/1037.jpg", productId: 1037 ,brand:"Giày cỏ nhân tạo"},
           {name: "Găng Tay Thủ Môn Tập Luyện Predator",price: 800000,img: "img/1040.jpg",productId:1040,brand:"Phụ kiện"},
           {name: "Bóng UCL League 24/25 League Phase",price: 950000,img: "img/1041.jpg",productId:1041,brand:"Phụ kiện"},
           {name: "Bóng UCL Training 24/25 League Phase",price: 650000,img: "img/1042.jpg",productId:1042,brand:"Phụ kiện"},
@@ -65,9 +64,7 @@ var productArrays = [
           {name: "Tất Milano 23",price: 300000,img: "img/1066.jpg",productId:1066,brand:"Phụ kiện"},
           {name: "Tất Milano 23",price: 300000,img: "img/1067.jpg",productId:1067,brand:"Phụ kiện"},
           {name: "Bóng Club EPP",price: 400000,img: "img/1068.jpg",productId:1068,brand:"Phụ kiện"}, 
-          {name: "Bóng Thi Đấu Tiro",price: 1000000,img: "img/1069.jpg",productId:1069,brand:"Phụ kiện"}
-        ];
-        var productArray2 = [
+          {name: "Bóng Thi Đấu Tiro",price: 1000000,img: "img/1069.jpg",productId:1069,brand:"Phụ kiện"},
           {name: "Áo Thun 3 Sọc Adicolor Classics Real Madrid",price: 1100000,img: "img/1070.jpg",productId:1070,brand:"Quần áo"}, 
           {name: "Áo Jersey David Beckham Originals",price: 1800000,img: "img/1071.jpg",productId:1071,brand:"Quần áo"}, 
           {name: "DB OG 3S TEE",price: 1100000,img: "img/1072.jpg",productId:1072,brand:"Quần áo"}, 
@@ -99,35 +96,51 @@ var productArrays = [
           {name: "Quần Short Sân Nhà Real Madrid 24/25",price: 1100000,img: "img/1098.jpg",productId:1098,brand:"Quần áo"}, 
           {name: "Áo Đấu Sân Nhà Real Madrid 24/25",price: 2200000,img: "img/1099.jpg",productId:1099,brand:"Quần áo"},
         ];
-        const combinedArray = [...productArrays, ...productArray1, ...productArray2];
+        localStorage.setItem("all", JSON.stringify(combinedArray));
         var currentPage = 1;
         const productsPerPage = 12;
         function currency(value) { return value.toLocaleString('vi-VN'); }
 function hienthitatcasp1(){
+  var productArrays=JSON.parse(localStorage.getItem('all'));
     var startIndex=(currentPage-1)*productsPerPage;
     var endIndex=startIndex+productsPerPage;
-    if(endIndex>combinedArray.length){
-      endIndex=combinedArray.length;
+    if(endIndex>productArrays.length){
+      endIndex=productArrays.length;
     }
     var s="";
     for (let i = startIndex; i < endIndex; i++) {
       s += `
-        <div class="cot1" style="border-left: 10px gold solid; border-bottom:2px groove ;">${combinedArray[i].productId}</div>
-        <div class="cot1"><img src="${combinedArray[i].img}" alt="" /></div>
-        <div class="cot1">${combinedArray[i].name}</div>
-        <div class="cot1">${combinedArray[i].brand}</div>
-        <div class="cot1">${combinedArray[i].price.toLocaleString()} VND</div>
+        <div class="cot1" style="border-left: 10px gold solid; border-bottom:2px groove ;">${productArrays[i].productId}</div>
+        <div class="cot1"><img src="${productArrays[i].img}" alt="" /></div>
+        <div class="cot1">${productArrays[i].name}</div>
+        <div class="cot1">${productArrays[i].brand}</div>
+        <div class="cot1">${productArrays[i].price.toLocaleString()} VND</div>
         <div class="cotchinhsua">
-          <div class="button" style="background-color: rgb(213, 75, 0);" >
+          <div class="button" style="background-color: rgb(213, 75, 0);" onclick="deleteproduct('${productArrays[i].productId}')"
+>
               x
           </div>
-          <div class="button" style="background-color: rgba(196, 196, 20, 0.81)" >
+          <div class="button" style="background-color: rgba(196, 196, 20, 0.81)" onclick=showsetting(${productArrays[i].productId}); >
               sửa
           </div>
         </div>
+        <div id="bao" style=" top:0;bottom:0;left: 0;;right: 0;  background: rgba(0, 0, 0, 0.7);z-index: 5000;position: fixed; display: none;">
+        <div id="bao1" style="width: 60%; margin: 200px auto; border: 1px solid; background-color: white;">
+            <div style="float: right; margin: 5px 10px; font-size: 50px; transform: rotate(45deg);cursor: pointer;" onclick="closesetting()">+</div>
+            <div id="infor">
+                <label for="txtname" style="font-size: 30px; margin-left: 15px ;">Tên sản phẩm</label>
+                <input type="text" id="txtname" value="a" size="30px" style="font-size: 30px;margin:30px 10px 15px 100px ;border: none; border-bottom: 2px solid ;" /> <br/>
+                <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá (VND)</label>
+                <input type="text" id="txtprice" value="b" size="30px" style="font-size: 30px; margin:0px 10px 15px 150px;border: none; border-bottom: 2px solid ;"/><br/>
+                <label style="font-size: 30px; margin-left: 15px ;">Ảnh</label>
+                <input type="file"  id="imgbefore"  value=" "style="font-size: 20px;margin:15px 10px 15px 250px ;">
+            </div>
+            <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct(${productArrays[i].productId})">Xác nhận</div>
+        </div> 
+    </div>
               `;
   }
-  var totalPages = Math.ceil(combinedArray.length / productsPerPage);
+  var totalPages = Math.ceil(productArrays.length / productsPerPage);
   var pageNumbers = "";
 
 
@@ -155,8 +168,6 @@ function hienthitatcasp1(){
                     ${pageNumbers}
         
         </div>
-
-                
         `;
           
   }
@@ -368,4 +379,66 @@ function lookUpBill(){
     if(method.value== "phone") billDisplay(billText, 0, 1);
     if(method.value== "price") billDisplay(from, to, 3);
     if(method.value== "date") billDisplay(billDateFrom, billDateTo, 4);
+}
+
+
+
+function showsetting(productid){
+  document.getElementById('bao').style.display="block";
+	var productArray = JSON.parse(localStorage.getItem('all'));
+	for(var i=0;i<productArray.length;i++){
+		if(productArray[i].productId == productid){
+			document.getElementById('txtname').value=productArray[i].name;
+			document.getElementById('txtprice').value=productArray[i].price;
+			
+		}
+	}
+}
+function changeproduct(productid) {
+  document.getElementById("bao").style.display = "none";
+  var productArray = JSON.parse(localStorage.getItem('all'));
+  for (var i = 0; i < productArray.length; i++) {
+    if (productArray[i].productId == productid) {
+      productArray[i].name = document.getElementById("txtname").value;
+      productArray[i].price = parseFloat(document.getElementById("txtprice").value);
+        localStorage.setItem("all", JSON.stringify(productArray));
+        hienthitatcasp1();
+    }
+  }
+}
+function closesetting(){
+  document.getElementById('bao').style.display="none";
+}
+function deleteproduct(productIddelete){
+  var productArrays=JSON.parse(localStorage.getItem('all'));
+  for(var i=0;i<productArrays.length;i++){
+		if(productArrays[i].productId == productIddelete){
+			if(confirm('Bạn có muốn xóa sản phẩm này?')){
+				productArrays.splice(i, 1);
+			}
+    }
+
+  }
+  localStorage.setItem('all', JSON.stringify(productArrays));
+  hienthitatcasp1();
+}
+function addProduct(){
+	var productArray = JSON.parse(localStorage.getItem('all'));
+	var productid = '150000'
+	var productname = document.getElementById('txtnamesp');
+	var brand = document.getElementById('brand');
+	var price = document.getElementById('txtprice');
+	if(!brand.value || !productname.value || !price.value){
+		customAlert('Bạn chưa nhập đủ thông tin sản phẩm','warning');
+		return false;
+	   }
+	if(isNaN(Number(price.value))){
+		customAlert('Giá không hợp lệ','warning');
+		return false;
+	   }
+	var producttemp = {productId: productid, brand: brand.value, img:'', name: productname.value, price: price.value};
+	productArray.push(producttemp);
+	localStorage.setItem('all',JSON.stringify(productArray));
+	hienthitatcasp1();
+	customAlert('Thêm sản phẩm thành công','success');
 }
