@@ -561,6 +561,29 @@ td img{
     flex-wrap: nowrap;
 }
 
+@keyframes highlight {
+    from {
+        background-color: grey;
+    }
+    to {
+        background-color: transparent;
+    }
+}
+
+@media  only screen and (max-width: 600px){
+    .container{
+        width: 90%;
+    }
+    td, th{
+        padding: 4px;
+    }
+    td img{
+        max-width: 70px;
+        max-height: 70px;
+    }
+    .count-quantity button, {}
+}
+
 /* tài */
 .checkout-box {
     background-color: #fff;
@@ -776,11 +799,4 @@ td img{
     object-fit: contain; 
   }
 
-  @keyframes highlight {
-    from {
-        background-color: grey;
-    }
-    to {
-        background-color: transparent;
-    }
-}
+  

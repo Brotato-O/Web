@@ -169,6 +169,17 @@ function cartDisplay(){
                             <button class="them" onclick="adjustQuantity('${cartArray[i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
+                    <td class= "cart-item-size">
+                        <select onchange= adjustSize(this)>
+                            <option value= "31">31</option>
+                            <option value= "32">32</option>
+                            <option value= "33">33</option>
+                            <option value= "34">34</option>
+                            <option value= "35">35</option>
+                            <option value= "36">36</option>
+                            <option value= "37">37</option>
+                        </select>
+                    </td>
                     <td class="cart-item-price">${cartArray[i].price}</td>
                     <td><button onclick="checkDelete('${cartArray[i].id}')">X</button></td>
                 </tr>`;
@@ -179,6 +190,7 @@ function cartDisplay(){
                 <th class="cart-item-image">Hình ảnh</th>
                 <th class="cart-item-name">Tên sản phẩm</th>
                 <th class="cart-item-quantity">Số lượng</th>
+                <th class="cart-item-size">Size</th>
                 <th class="cart-item-price">Đơn giá</th>
                 <td></td>
             </tr>` + s +
@@ -202,6 +214,71 @@ function cartDisplay(){
     }
 }
 
+function cartDisplayMobile(){    
+    var cartArray = JSON.parse(localStorage.getItem('cart'));
+    if (cartArray == undefined || cartArray.length == 0) {
+        var s = `<a href="../index.html">
+            <img src="../img/emty-cart.png" alt="emty-cart">
+            <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
+            <span>Quay lại trang chủ</span>
+        </a>`;
+        document.getElementById('wrap-cart').innerHTML = s;
+    } else {
+        var s = "";
+        for (let i = 0; i < cartArray.length; i++) {
+            s += `<tr>
+                    <td rowspan="2"><input type="checkbox" id="${cartArray[i].id}" onchange="buy()"></td>
+                    <td rowspan="2" class="cart-item-image"><img src="../${cartArray[i].image}" alt="product"></td>
+                    <td rowspan="2" class="cart-item-name"><label for="${cartArray[i].id}">${cartArray[i].name}</label></td>
+                    <td class="cart-item-quantity">
+                        <div class="count-quantity">
+                            <button class="bot" onclick="adjustQuantity('${cartArray[i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
+                            <input type="text" id="sl-${cartArray[i].id}" class="quantity" value="1" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center;">
+                            <button class="them" onclick="adjustQuantity('${cartArray[i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
+                        </div>
+                    </td>
+                    <td class="cart-item-price">${cartArray[i].price}</td>
+                </tr>
+                <td class= "cart-item-size">
+                        <select onchange= adjustSize(this)>
+                            <option value= "31">31</option>
+                            <option value= "32">32</option>
+                            <option value= "33">33</option>
+                            <option value= "34">34</option>
+                            <option value= "35">35</option>
+                            <option value= "36">36</option>
+                            <option value= "37">37</option>
+                        </select>
+                </td>`;
+        }
+        s = `<table class="cart-table">
+            <tr>
+                <td></td>
+                <th class="cart-item-image">Hình ảnh</th>
+                <th class="cart-item-name">Tên sản phẩm</th>
+                <th class="cart-item-quantity">Tùy chỉnh</th>
+                <th class="cart-item-price">Đơn giá</th>
+                <td></td>
+            </tr>` + s +
+        `</table> 
+        <div id="total-bill">
+            <div>
+                <input type="checkbox" id="check-all" onchange="checkAllItems()"> 
+                <label for="check-all">Chọn tất cả</label>
+            </div>
+            <button onclick="deleteCheckedItems()">Xóa</button>
+            <span id="total-pay">Tổng thanh toán: </span>
+            <button id="open-checkout-button" onclick="openCheckout()">Thanh toán</button>
+        </div>`;
+        document.getElementById('wrap-cart').innerHTML = s;
+
+        for (let i = 0; i <= cartArray.length; i++) {
+            document.getElementsByClassName('cart-item-image')[i].style.width = "20%";
+            document.getElementsByClassName('cart-item-quantity')[i].style.width = "20%";
+            document.getElementsByClassName('cart-item-price')[i].style.width = "20%";
+        }
+    }
+}
 
 //kiểm tra sản phẩm được chọn
 var carttemp=[];
@@ -354,11 +431,19 @@ function showBill(number){
         document.getElementById("wrap-cart").innerHTML=s;   
     }
 }
+
+//hàm hiển thị điện thoại
+function displayMobile(){
+    if(window.innerWidth< 600)cartDisplayMobile();
+    else cartDisplay();
+}
+
+window.addEventListener("resize",displayMobile);
             
 window.onload = function(){
     var temp= location.href.split("?")[1];
     if(temp ==undefined || temp=="" || temp.search("focus")==0) {
-        cartDisplay();
+        displayMobile();
         if(temp!= undefined && temp!="" && temp.search("focus")==0 ) {
             var temp1= temp.split("&")[1];
             var tr= document.getElementById(temp1).parentNode.parentNode;

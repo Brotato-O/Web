@@ -314,7 +314,7 @@ function thembill(){
 function billDisplay(from, to, n){
   document.getElementById("themsp").style.display = "none";
   document.getElementById("selectbill").style.display = "block";
-  if(new Date(bill[i].orderDate) >= from) console.log("AA");
+//  if(new Date(bill[i].orderDate) >= from) console.log("AA");
   var bill= JSON.parse(localStorage.getItem('bill'));
   var s="";
   for(var i=0;i<bill.length; i++){
