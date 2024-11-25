@@ -289,7 +289,7 @@ function lookUpStatus() {
 
   //SHOW CHI TIẾT HÓA ĐƠN
   function showDetail(obj){
-   console.log(obj.id);
+   console.log(obj);
    var billtemp= JSON.parse(localStorage.getItem("billtemp"));
     document.getElementById("detail-container").style.display= "block";
     for(let i=0; i< billtemp.length; i++){
@@ -321,9 +321,24 @@ function lookUpStatus() {
           <div>
             <p style="inline-block">Trạng thái</p>
             <p style="inline-block">${billtemp[i].status}</p>
-            <button>AAAAAAAAAA</button>
+            <button value="${obj.id}" onclick="changeStatus(this)">AAAAAAAAAA</button>
           </div>
         `;
         }
     }
+  }
+
+  function changeStatus(obj){
+    var bill= JSON.parse(localStorage.getItem('bill'));
+    for(let i=0; i <bill.length; i++){
+      if (obj.value== bill[i].receiptId){
+        if(bill[i].status=="Chờ xác nhận") bill[i].status="Đã xác nhận";
+        else if(bill[i].status=="Đã xác nhận") bill[i].status="Chờ xác nhận";
+      }
+    }
+    localStorage.setItem('bill', JSON.stringify(bill));
+    var p= document.getElementById(obj.value);
+    console.log(p);
+    change();
+    showDetail(p);
   }

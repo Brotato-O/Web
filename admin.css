@@ -192,3 +192,6 @@
 #selectbill{
   width: 30%;
 }
+#billTable tr:hover{
+  cursor: pointer;
+}
