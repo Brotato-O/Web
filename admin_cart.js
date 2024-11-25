@@ -308,15 +308,15 @@ function lookUpStatus() {
           document.getElementById("detail-bill").innerHTML+=`</div>
           <div>
             <p style="inline-block">Mã khách hàng</p>
-            <p style="inline-block">${obj.id}</p>
+            <p style="inline-block">${billtemp[i].customer.id}</p>
           </div>
           <div>
             <p style="inline-block">Tên khách hàng</p>
-            <p style="inline-block">${obj.id}</p>
+            <p style="inline-block">${billtemp[i].customer.username}</p>
           </div>
           <div>
             <p style="inline-block">Số điện thoại</p>
-            <p style="inline-block">${obj.id}</p>
+            <p style="inline-block">${billtemp[i].customer.sdt}</p>
           </div>
           <div>
             <p style="inline-block">Trạng thái</p>
