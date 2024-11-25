@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <script src="admin.js"></script>
+    <script src="admin_cart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
     <link
@@ -100,53 +101,8 @@
           </div>
 
           <!-- nhàn -->
-          <div id="selectbill" style="display: none">
-            <div><h3>Tìm kiếm hóa đơn</h3></div>
-
-            <div>
-              <form oninput="lookUpBill()" onchange="lookUpBill()">
-                <input type="search" id="textMethod" />
-                <div>
-                  <span>Tìm kiếm theo</span>
-
-                  <select id="method" onchange="lookUpBillDisplay()">
-                    <option value="all">Tất cả</option>
-                    <option value="id">Mã đơn hàng</option>
-                    <option value="phone">Sdt</option>
-                    <option value="price">Khoảng giá</option>
-                    <option value="date">Ngày đặt</option>
-                  </select>
-
-                  <div id="dateMethod">
-                    <div>
-                      <span>Từ ngày</span>
-                      <input type="date" id="dateFrom" />
-                    </div>
-                    <div>
-                      <span>Đến ngày</span>
-                      <input type="date" id="dateTo" />
-                    </div>
-                  </div>
-
-                  <div id="priceMethod">
-                    <div>
-                      <span>Từ</span>
-                      <input type="number" id="pricefrom" />
-                    </div>
-                    <div>
-                      <span>Đến</span>
-                      <input type="number" id="priceto" />
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
+          
+        
 
     <button onclick="thembill()">THêm bill tạm</button>
     <button onclick="xoabill()">Xóa bill tạm</button>

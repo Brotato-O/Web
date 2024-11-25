@@ -8,141 +8,23 @@ const paymentImageContainer = document.getElementById('payment-image-container')
 
 function them(){
     var carttemp = [
-        { image: 'img/1013.jpg', id: "S001", name: "Giày Adidas UltraBoost", price: 2000000 },
-        { image: 'img/1066.jpg', id: "S002", name: "Giày Nike Air Max", price: 2500000 },
-        { image: 'img/1067.JPG', id: "S003", name: "Giày Converse Chuck Taylor", price: 1500000 },
-        { image: 'img/1068.JPG', id: "S004", name: "Giày Vans Old Skool", price: 1200000 },
-        { image: 'img/1069.JPG', id: "S005", name: "Giày Puma Suede Classic", price: 1800000 },
-        { image: 'img/1058.JPG', id: "S006", name: "Giày New Balance 574", price: 2100000 },
-        { image: 'img/1096.JPG', id: "S007", name: "Giày Reebok Club C", price: 1700000 },
-        { image: 'img/1097.JPG', id: "S008", name: "Giày Asics Gel-Lyte III", price: 2200000 },
-        { image: 'img/1099.JPG', id: "S009", name: "Giày Jordan 1", price: 3000000 },
-        { image: 'img/1098.JPG', id: "S010", name: "Giày Balenciaga Triple S", price: 8000000 }
+        { image: 'img/1013.jpg', id: "S001", name: "Giày Adidas UltraBoost", price: 2000000, quantity: 1, size: 31},
+        { image: 'img/1066.jpg', id: "S002", name: "Giày Nike Air Max", price: 2500000, quantity: 1, size: 31 },
+        { image: 'img/1067.JPG', id: "S003", name: "Giày Converse Chuck Taylor", price: 1500000, quantity: 1, size: 31 },
+        { image: 'img/1068.JPG', id: "S004", name: "Giày Vans Old Skool", price: 1200000, quantity: 1, size: 31 },
+        { image: 'img/1069.JPG', id: "S005", name: "Giày Puma Suede Classic", price: 1800000, quantity: 1, size: 31 },
+        { image: 'img/1058.JPG', id: "S006", name: "Giày New Balance 574", price: 2100000, quantity: 1, size: 31 },
+        { image: 'img/1096.JPG', id: "S007", name: "Giày Reebok Club C", price: 1700000, quantity: 1, size: 31 },
+        { image: 'img/1097.JPG', id: "S008", name: "Giày Asics Gel-Lyte III", price: 2200000, quantity: 1,size: 31 },
+        { image: 'img/1099.JPG', id: "S009", name: "Giày Jordan 1", price: 3000000, quantity: 1 ,size: 31 },
+        { image: 'img/1098.JPG', id: "S010", name: "Giày Balenciaga Triple S", price: 8000000, quantity: 1,size: 31 }
     ];
     localStorage.setItem("cart", JSON.stringify(carttemp));
 }
 
 function xoabill(){
     localStorage.removeItem("bill");
-    localStorage.removeItem("loggeduser");
-}
-
-function thembill(){
-
-    const bills = [
-        {
-            receiptId: 1,
-            customer: { username: "NHP", password: "NHP" },
-            status: "Chờ xác nhận",
-            orderDate: "2024-11-16",
-            paymentMethod: "Chuyển khoản",
-            totalAmount: 2000000,
-            products: [
-                { quantity: 3, name: "Giày Adidas UltraBoost" },
-                { quantity: 1, name: "Giày Nike Air Max" }
-            ]
-        },
-        {
-            receiptId: 2,
-            customer: { username: "user2", password: "password2" },
-            status: "Đã xác nhận",
-            orderDate: "2024-11-15",
-            paymentMethod: "Tiền mặt",
-            totalAmount: 2500000,
-            products: [
-                { quantity: 1, name: "Giày Converse Chuck Taylor" }
-            ]
-        },
-        {
-            receiptId: 3,
-            customer: { username: "user3", password: "password3" },
-            status: "Đã giao",
-            orderDate: "2024-11-14",
-            paymentMethod: "Chuyển khoản",
-            totalAmount: 1500000,
-            products: [
-                { quantity: 2, name: "Giày Vans Old Skool" }
-            ]
-        },
-        {
-            receiptId: 4,
-            customer: { username: "user1", password: "password1" },
-            status: "Đã giao",
-            orderDate: "2024-11-13",
-            paymentMethod: "Tiền mặt",
-            totalAmount: 1200000,
-            products: [
-                { quantity: 1, name: "Giày Puma Suede Classic" }
-            ]
-        },
-        {
-            receiptId: 5,
-            customer: { username: "user2", password: "password2" },
-            status: "Chờ xác nhận",
-            orderDate: "2024-11-12",
-            paymentMethod: "Chuyển khoản",
-            totalAmount: 1800000,
-            products: [
-                { quantity: 4, name: "Giày New Balance 574" }
-            ]
-        },
-        {
-            receiptId: 6,
-            customer: { username: "user3", password: "password3" },
-            status: "Đã xác nhận",
-            orderDate: "2024-11-11",
-            paymentMethod: "Tiền mặt",
-            totalAmount: 2100000,
-            products: [
-                { quantity: 1, name: "Giày Reebok Club C" }
-            ]
-        },
-        {
-            receiptId: 7,
-            customer: { username: "user1", password: "password1" },
-            status: "Đã giao",
-            orderDate: "2024-11-10",
-            paymentMethod: "Chuyển khoản",
-            totalAmount: 1700000,
-            products: [
-                { quantity: 2, name: "Giày Asics Gel-Lyte III" }
-            ]
-        },
-        {
-            receiptId: 8,
-            customer: { username: "user2", password: "password2" },
-            status: "Đã giao",
-            orderDate: "2024-11-09",
-            paymentMethod: "Tiền mặt",
-            totalAmount: 2200000,
-            products: [
-                { quantity: 1, name: "Giày Jordan 1" }
-            ]
-        },
-        {
-            receiptId: 9,
-            customer: { username: "user3", password: "password3" },
-            status: "Chờ xác nhận",
-            orderDate: "2024-11-08",
-            paymentMethod: "Chuyển khoản",
-            totalAmount: 3000000,
-            products: [
-                { quantity: 2, name: "Giày Balenciaga Triple S" }
-            ]
-        },
-        {
-            receiptId: 10,
-            customer: { username: "user1", password: "password1" },
-            status: "Đã xác nhận",
-            orderDate: "2024-11-07",
-            paymentMethod: "Tiền mặt",
-            totalAmount: 8000000,
-            products: [
-                { quantity: 1, name: "Giày Yeezy Boost 350" }
-            ]
-        }
-    ];
-    localStorage.setItem("bill", JSON.stringify(bills));
+    localStorage.removeItem("userlogin");
 }
 
 //hiển thị giỏ hàng
@@ -165,23 +47,23 @@ function cartDisplay(){
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
                             <button class="bot" onclick="adjustQuantity('${cartArray[i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
-                            <input type="text" id="sl-${cartArray[i].id}" class="quantity" value="1" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center;">
+                            <input type="text" id="sl-${cartArray[i].id}" class="quantity" value="${cartArray[i].quantity}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
                             <button class="them" onclick="adjustQuantity('${cartArray[i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
-                    <td class= "cart-item-size">
-                        <select onchange= adjustSize(this)>
-                            <option value= "31">31</option>
-                            <option value= "32">32</option>
-                            <option value= "33">33</option>
-                            <option value= "34">34</option>
-                            <option value= "35">35</option>
-                            <option value= "36">36</option>
-                            <option value= "37">37</option>
-                        </select>
-                    </td>
+                    <td>
+                    <select onchange="adjustSize(this, '${cartArray[i].id}')">
+                        <option value="31" ${cartArray[i].size === '31' ? 'selected' : ''}>31</option>
+                        <option value="32" ${cartArray[i].size === '32' ? 'selected' : ''}>32</option>
+                        <option value="33" ${cartArray[i].size === '33' ? 'selected' : ''}>33</option>
+                        <option value="34" ${cartArray[i].size === '34' ? 'selected' : ''}>34</option>
+                        <option value="35" ${cartArray[i].size === '35' ? 'selected' : ''}>35</option>
+                        <option value="36" ${cartArray[i].size === '36' ? 'selected' : ''}>36</option>
+                        <option value="37" ${cartArray[i].size === '37' ? 'selected' : ''}>37</option>
+                </select>
+            </td>
                     <td class="cart-item-price">${cartArray[i].price}</td>
-                    <td><button onclick="checkDelete('${cartArray[i].id}')">X</button></td>
+                    <td><button class="delete" onclick="checkDelete('${cartArray[i].id}')">X</button></td>
                 </tr>`;
         }
         s = `<table class="cart-table">
@@ -200,17 +82,11 @@ function cartDisplay(){
                 <input type="checkbox" id="check-all" onchange="checkAllItems()"> 
                 <label for="check-all">Chọn tất cả</label>
             </div>
-            <button onclick="deleteCheckedItems()">Xóa</button>
+            <button class="delete" onclick="deleteCheckedItems()">Xóa</button>
             <span id="total-pay">Tổng thanh toán: </span>
             <button id="open-checkout-button" onclick="openCheckout()">Thanh toán</button>
         </div>`;
         document.getElementById('wrap-cart').innerHTML = s;
-
-        for (let i = 0; i <= cartArray.length; i++) {
-            document.getElementsByClassName('cart-item-image')[i].style.width = "20%";
-            document.getElementsByClassName('cart-item-quantity')[i].style.width = "20%";
-            document.getElementsByClassName('cart-item-price')[i].style.width = "20%";
-        }
     }
 }
 
@@ -233,23 +109,23 @@ function cartDisplayMobile(){
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
                             <button class="bot" onclick="adjustQuantity('${cartArray[i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
-                            <input type="text" id="sl-${cartArray[i].id}" class="quantity" value="1" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center;">
+                            <input type="text" id="sl-${cartArray[i].id}" class="quantity" value="${cartArray[i].quantity}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
                             <button class="them" onclick="adjustQuantity('${cartArray[i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
                     <td class="cart-item-price">${cartArray[i].price}</td>
                 </tr>
-                <td class= "cart-item-size">
-                        <select onchange= adjustSize(this)>
-                            <option value= "31">31</option>
-                            <option value= "32">32</option>
-                            <option value= "33">33</option>
-                            <option value= "34">34</option>
-                            <option value= "35">35</option>
-                            <option value= "36">36</option>
-                            <option value= "37">37</option>
-                        </select>
-                </td>`;
+                <td class="cart-item-size">
+                <select onchange="adjustSize(this, '${cartArray[i].id}')">
+                    <option value="31" ${cartArray[i].size === '31' ? 'selected' : ''}>31</option>
+                    <option value="32" ${cartArray[i].size === '32' ? 'selected' : ''}>32</option>
+                    <option value="33" ${cartArray[i].size === '33' ? 'selected' : ''}>33</option>
+                    <option value="34" ${cartArray[i].size === '34' ? 'selected' : ''}>34</option>
+                    <option value="35" ${cartArray[i].size === '35' ? 'selected' : ''}>35</option>
+                    <option value="36" ${cartArray[i].size === '36' ? 'selected' : ''}>36</option>
+                    <option value="37" ${cartArray[i].size === '37' ? 'selected' : ''}>37</option>
+                </select>
+            </td>`;
         }
         s = `<table class="cart-table">
             <tr>
@@ -266,18 +142,23 @@ function cartDisplayMobile(){
                 <input type="checkbox" id="check-all" onchange="checkAllItems()"> 
                 <label for="check-all">Chọn tất cả</label>
             </div>
-            <button onclick="deleteCheckedItems()">Xóa</button>
+            <button onclick="deleteCheckedItems()" class="delete">Xóa</button>
             <span id="total-pay">Tổng thanh toán: </span>
             <button id="open-checkout-button" onclick="openCheckout()">Thanh toán</button>
         </div>`;
         document.getElementById('wrap-cart').innerHTML = s;
+    }
+}
 
-        for (let i = 0; i <= cartArray.length; i++) {
-            document.getElementsByClassName('cart-item-image')[i].style.width = "20%";
-            document.getElementsByClassName('cart-item-quantity')[i].style.width = "20%";
-            document.getElementsByClassName('cart-item-price')[i].style.width = "20%";
+function adjustSize(obj, id){
+    var cart= JSON.parse(localStorage.getItem('cart'));
+    for(var i=0; i<cart.length; i++){
+        if(cart[i].id== id) {
+            cart[i].size= obj.value;
+            obj.value= cart[i].size;
         }
     }
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 //kiểm tra sản phẩm được chọn
@@ -387,9 +268,9 @@ function notLogin(){
 
 //hiển thị tình trạng đơn
 function showBill(number){
-    var loggeduser = JSON.parse(localStorage.getItem('loggeduser'));
+    var userlogin = JSON.parse(localStorage.getItem('userlogin'));
     var bill= JSON.parse(localStorage.getItem('bill'));
-    if(loggeduser == undefined ) notLogin();
+    if(userlogin == undefined ) notLogin();
     else{
         var variable= "";
         if (number== 1) variable="Chờ xác nhận";
@@ -398,7 +279,7 @@ function showBill(number){
         else variable="Đã hủy";
         var s="";
         for(var i=0; i< bill.length; i++){
-            if(bill[i].customer.username == loggeduser.username && bill[i].customer.password== loggeduser.password && bill[i].status== variable){
+            if(bill[i].customer.id == userlogin.id && bill[i].status== variable){
                     s+=`
                         <tr>
                             <td>${bill[i].receiptId}</td>
@@ -417,13 +298,13 @@ function showBill(number){
                     s+=`</tr>`;
             }
         }
-        s= `<table>
+        s= `<table class="status-table">
                 <tr>
                     <th>Mã hóa đơn</th>
-                    <th>Sản phẩm đã đặt</th>
+                    <th>Sản phẩm</th>
                     <th>Ngày đặt</th>
                     <th>Tổng tiền</th>
-                    <th>Phương thức thanh toán</th>
+                    <th>Phương thức</th>
                 <tr> `+ s + `
 
             </table>
@@ -434,8 +315,10 @@ function showBill(number){
 
 //hàm hiển thị điện thoại
 function displayMobile(){
-    if(window.innerWidth< 600)cartDisplayMobile();
-    else cartDisplay();
+    var temp= location.href.split("?")[1];
+    if (temp ==undefined || temp=="" || temp.search("focus")==0)
+        if(window.innerWidth< 768)cartDisplayMobile();
+        else  cartDisplay();
 }
 
 window.addEventListener("resize",displayMobile);
@@ -443,18 +326,14 @@ window.addEventListener("resize",displayMobile);
 window.onload = function(){
     var temp= location.href.split("?")[1];
     if(temp ==undefined || temp=="" || temp.search("focus")==0) {
-        displayMobile();
+        if(window.innerWidth< 768) cartDisplayMobile();
+        else cartDisplay();
         if(temp!= undefined && temp!="" && temp.search("focus")==0 ) {
             var temp1= temp.split("&")[1];
             var tr= document.getElementById(temp1).parentNode.parentNode;
             tr.scrollIntoView();
             tr.style.animation="highlight 2s ease-in-out";
-        }
-        //ngăn cart vẫn giữ sl trc reload 
-        var cartArray= JSON.parse(localStorage.getItem("cart"));
-        for(var i=0; i<cartArray.length; i++)
-            cartArray[i].quantity= 1;
-        localStorage.setItem("cart", JSON.stringify(cartArray));
+        };
     }
     else{
         if(temp== 1) showBill(1); 
