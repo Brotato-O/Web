@@ -129,13 +129,13 @@ function create(){
             <div><h3>Tìm kiếm hóa đơn</h3></div>
 
             <div>
-              <form oninput="lookUpBill()" onchange="lookUpBill()">
+              <form oninput="lookUpBill()" onchange="change(event)">
                 <input type="search" id="textMethod" />
                 <div>
                   <span>Tìm kiếm theo</span>
 
-                  <select id="method" onchange="lookUpBillDisplay()">
-                    <option value="all">Tất cả</option>
+                  <select id="method" onchange="lookUpBillDisplay(), lookUpBill()">
+                    <option value="all" selected>Tất cả</option>
                     <option value="id">Mã đơn hàng</option>
                     <option value="phone">Sdt</option>
                     <option value="price">Khoảng giá</option>
@@ -164,40 +164,69 @@ function create(){
                     </div>
                   </div>
                 </div>
+                <div> 
+                  <h2>Tình trạng hóa đơn</h2>
+                  <select id="status" lookUpStatus(this)>
+                      <option value="Chờ xác nhận">Chờ xác nhận</option>
+                      <option value="Đã xác nhận">Đã xác nhận</option>
+                      <option value="Đã giao">Đã giao</option>
+                      <option value="all" selected>Tất cả</option>
+                  </select>
+                </div>
               </form>
             </div>
 `;
     document.getElementById('themsp').innerHTML ="";
     document.getElementById("themsp").appendChild(temp);
-    document.getElementById("themsp").innerHTML +=`
-        <div> 
-            <h2>Tình trạng hóa đơn</h2>
-            <select>
-                <option value="chua_xn">Chưa xác nhận</option>
-                <option value="da_xn">Đã xác nhận</option>
-                <option value="huy">Đã hủy</option>
-            </select>
-        </div>
-    `;
+}
+
+function change(event){
+  if(event.target.id=="method")
+    lookUpBill();
+  if(event.target.id=="status"){
+    lookUpStatus(event.target);
+    lookUpBill();
+  }
 }
 
 window.onload = function(){
     create();
     lookUpBill();
+    lookUpBillDisplay();
+}
+
+
+function lookUpStatus(obj) {
+  console.log(obj.value);
+  var carttemp=[];
+    var bill= JSON.parse(localStorage.getItem("bill"));
+    if(obj.value !="all")
+    for (var i = 0; i < bill.length; i++) {
+      if (bill[i].status === obj.value) {
+        carttemp.push(bill[i]);
+      }
+    }
+    else{
+      for (var i = 0; i < bill.length; i++) {
+        carttemp.push(bill[i]);
+      }
+    }
+    localStorage.setItem("carttemp",JSON.stringify(carttemp));
 }
 
   function billDisplay(from, to, n){
-    var bill= JSON.parse(localStorage.getItem('bill'));
+    var carttemp= JSON.parse(localStorage.getItem('carttemp'));
     var s="";
-    for(var i=0;i<bill.length; i++){
-      if((bill[i].customer.sdt.includes(from) && n==1) || (String(bill[i].receiptId).includes(from) && n==2) || ((bill[i].totalAmount>=from && bill[i].totalAmount<=to) && n==3) || (n==5)) {
-          console.log("AAA");
-          s+=`<tr id="${bill[i].id}">
-            <td>${bill[i].orderDate}</td>
-            <td>${bill[i].receiptId}</td>
-            <td>${bill[i].customer.sdt}</td>
-            <td>${bill[i].totalAmount}</td>
-            <td>${bill[i].status}</td>
+    console.log(carttemp);
+    for(var i=0;i<carttemp.length; i++){
+      if((carttemp[i].customer.sdt.includes(from) && n=="phone") || (String(carttemp[i].receiptId).includes(from) && n=="id") 
+        || ((carttemp[i].totalAmount>=from && carttemp[i].totalAmount<=to) && n=="price") || (from<= new Date(carttemp[i].orderDate) && to>= new Date(carttemp[i].orderDate) ) || (n=="all")) {
+          s+=`<tr id="${carttemp[i].id}" onclick="seeDetail(this)" class="billRow">
+            <td>${carttemp[i].orderDate}</td>
+            <td>${carttemp[i].receiptId}</td>
+            <td>${carttemp[i].customer.sdt}</td>
+            <td>${carttemp[i].totalAmount}</td>
+            <td>${carttemp[i].status}</td>
         </tr>
         `;
       }
@@ -208,7 +237,12 @@ window.onload = function(){
             <td>Sdt</td>
             <td>Giá tiền</td>
             <td>Trạng thái</td>
-            </tr>` + s + `</table>`
+            </tr>` + s + `</table>`;
+  }
+
+  function seeDetail(obj){
+    var overlay = document.getElementById("detail-container");
+
   }
   
   function lookUpBillDisplay(){
@@ -242,10 +276,14 @@ window.onload = function(){
       var billText= document.getElementById("textMethod").value;
       var from = document.getElementById("pricefrom").value;
       var to = document.getElementById("priceto").value;
+      var dateFrom = document.getElementById("dateFrom").value;
+      var dateTo = document.getElementById("dateTo").value;
+      var billFrom= new Date(dateFrom);
+      var billTo= new Date(dateTo);
       var method= document.getElementById("method");
       if(method.value== "phone") billDisplay(billText, 0, "phone");
       if(method.value== "id") billDisplay(billText, 0, "id");
       if(method.value== "price") billDisplay(from, to, "price");
-      if(method.value== "date") billDisplay(billText, billText, "date");
+      if(method.value== "date") billDisplay(billFrom, billTo, "date");
       if(method.value== "all") billDisplay(0, 0, "all");
   }

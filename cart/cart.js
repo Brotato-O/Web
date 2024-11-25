@@ -170,7 +170,6 @@ function checkCart(){
         var check= document.getElementById(cartArray[i].id);
         if(check.checked== true) carttemp.push(cartArray[i]);
     }
-    console.log(carttemp);
 }
 
 //chọn tất cả sản phẩm
