@@ -323,6 +323,7 @@ function displayMobile(){
 window.addEventListener("resize",displayMobile);
             
 window.onload = function(){
+    addCSS();
     var temp= location.href.split("?")[1];
     if(temp ==undefined || temp=="" || temp.search("focus")==0) {
         if(window.innerWidth< 768) cartDisplayMobile();
@@ -339,6 +340,38 @@ window.onload = function(){
         else if(temp== 2) showBill(2); 
         else if(temp== 3)showBill(3); 
         else showBill(4); 
+    }
+}
+
+function addCSS(){
+    var li= document.getElementsByClassName('status-li');
+    var temp= location.href.split("?")[1];
+    if(temp ==undefined || temp=="" || temp.search("focus")==0) {
+        li[0].style.backgroundColor="white";
+        li[0].style.borderRadius="20px";
+        li[0].style.border="1px solid black";
+    }
+    else{
+        if(temp== 1){
+            li[1].style.backgroundColor="white";
+            li[1].style.borderRadius="20px";
+            li[1].style.border="1px solid black";
+        }
+        else if(temp== 2){
+            li[2].style.backgroundColor="white";
+            li[2].style.borderRadius="20px";
+            li[2].style.border="1px solid black";
+        }
+        else if(temp== 3){
+            li[3].style.backgroundColor="white";
+            li[3].style.borderRadius="20px";
+            li[3].style.border="1px solid black";
+        }
+        else{
+            li[4].style.backgroundColor="white";
+            li[4].style.borderRadius="20px";
+            li[4].style.border="1px solid black";
+        }
     }
 }
 

@@ -284,7 +284,7 @@ function lookUpStatus() {
       if(method.value== "date") billDisplay(billFrom, billTo, "date");
       if(method.value== "all") billDisplay(0, 0, "all"); 
   }
-  //KẾT THỨC TÌM KIẾM HÓA ĐƠN
+  //KẾT THÚC TÌM KIẾM HÓA ĐƠN
 
 
   //SHOW CHI TIẾT HÓA ĐƠN
