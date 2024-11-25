@@ -121,7 +121,9 @@ function xoabill(){
   }
 const temp= document.getElementById("maintable");
 const temp2= document.getElementById("themsp");
-  
+ 
+
+//BẮT ĐẦU TÌM KIẾM HÓA ĐƠN
 function create(){
     var temp= document.createElement("div");
       temp.setAttribute("id", "select-bill");
@@ -129,12 +131,12 @@ function create(){
             <div><h3>Tìm kiếm hóa đơn</h3></div>
 
             <div>
-              <form oninput="lookUpBill()" onchange="change(event)">
-                <input type="search" id="textMethod" />
+              <form oninput=change() onchange=change()>
+                <input type="search" id="textMethod">
                 <div>
                   <span>Tìm kiếm theo</span>
 
-                  <select id="method" onchange="lookUpBillDisplay(), lookUpBill()">
+                  <select id="method" onchange="lookUpBillDisplay()">
                     <option value="all" selected>Tất cả</option>
                     <option value="id">Mã đơn hàng</option>
                     <option value="phone">Sdt</option>
@@ -156,17 +158,17 @@ function create(){
                   <div id="priceMethod">
                     <div>
                       <span>Từ</span>
-                      <input type="number" id="pricefrom" />
+                      <input type="number" id="pricefrom"/>
                     </div>
                     <div>
                       <span>Đến</span>
-                      <input type="number" id="priceto" />
+                      <input type="number" id="priceto"/>
                     </div>
                   </div>
                 </div>
                 <div> 
                   <h2>Tình trạng hóa đơn</h2>
-                  <select id="status" lookUpStatus(this)>
+                  <select id="status">
                       <option value="Chờ xác nhận">Chờ xác nhận</option>
                       <option value="Đã xác nhận">Đã xác nhận</option>
                       <option value="Đã giao">Đã giao</option>
@@ -180,57 +182,57 @@ function create(){
     document.getElementById("themsp").appendChild(temp);
 }
 
-function change(event){
-  if(event.target.id=="method")
-    lookUpBill();
-  if(event.target.id=="status"){
-    lookUpStatus(event.target);
-    lookUpBill();
-  }
-}
-
 window.onload = function(){
-    create();
-    lookUpBill();
-    lookUpBillDisplay();
+  create();
+  lookUpBillDisplay();
+  lookUpStatus();
+  lookUpBill();
 }
 
+function change(){
+  lookUpStatus();
+  lookUpBill();
+}
 
-function lookUpStatus(obj) {
+function lookUpStatus() {
+  var obj=document.getElementById("status");
+  var billtemp=[];
   console.log(obj.value);
-  var carttemp=[];
     var bill= JSON.parse(localStorage.getItem("bill"));
     if(obj.value !="all")
     for (var i = 0; i < bill.length; i++) {
       if (bill[i].status === obj.value) {
-        carttemp.push(bill[i]);
+        billtemp.push(bill[i]);
       }
     }
     else{
       for (var i = 0; i < bill.length; i++) {
-        carttemp.push(bill[i]);
+        billtemp.push(bill[i]);
       }
     }
-    localStorage.setItem("carttemp",JSON.stringify(carttemp));
+    localStorage.setItem("billtemp",JSON.stringify(billtemp));
 }
 
   function billDisplay(from, to, n){
-    var carttemp= JSON.parse(localStorage.getItem('carttemp'));
+    var billtemp= JSON.parse(localStorage.getItem('billtemp'));
+    var temp= [];
     var s="";
-    console.log(carttemp);
-    for(var i=0;i<carttemp.length; i++){
-      if((carttemp[i].customer.sdt.includes(from) && n=="phone") || (String(carttemp[i].receiptId).includes(from) && n=="id") 
-        || ((carttemp[i].totalAmount>=from && carttemp[i].totalAmount<=to) && n=="price") || (from<= new Date(carttemp[i].orderDate) && to>= new Date(carttemp[i].orderDate) ) || (n=="all")) {
-          s+=`<tr id="${carttemp[i].id}" onclick="seeDetail(this)" class="billRow">
-            <td>${carttemp[i].orderDate}</td>
-            <td>${carttemp[i].receiptId}</td>
-            <td>${carttemp[i].customer.sdt}</td>
-            <td>${carttemp[i].totalAmount}</td>
-            <td>${carttemp[i].status}</td>
+    for(var i=0;i<billtemp.length; i++){
+      if((billtemp[i].customer.sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
+        || ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) && n=="price") || (from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate) ) || (n=="all")) {
+          temp.push(billtemp[i]);
+          s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
+            <td>${billtemp[i].orderDate}</td>
+            <td>${billtemp[i].receiptId}</td>
+            <td>${billtemp[i].customer.sdt}</td>
+            <td>${billtemp[i].totalAmount}</td>
+            <td>${billtemp[i].status}</td>
         </tr>
         `;
       }
     }
+    billtemp= temp;
+    localStorage.setItem("billtemp",JSON.stringify(billtemp));
     document.getElementById("maintable").innerHTML=`<table id="billTable"><tr>
             <td>Ngày đặt</td>
             <td>Mã hóa đơn</td>
@@ -238,11 +240,6 @@ function lookUpStatus(obj) {
             <td>Giá tiền</td>
             <td>Trạng thái</td>
             </tr>` + s + `</table>`;
-  }
-
-  function seeDetail(obj){
-    var overlay = document.getElementById("detail-container");
-
   }
   
   function lookUpBillDisplay(){
@@ -285,5 +282,48 @@ function lookUpStatus(obj) {
       if(method.value== "id") billDisplay(billText, 0, "id");
       if(method.value== "price") billDisplay(from, to, "price");
       if(method.value== "date") billDisplay(billFrom, billTo, "date");
-      if(method.value== "all") billDisplay(0, 0, "all");
+      if(method.value== "all") billDisplay(0, 0, "all"); 
+  }
+  //KẾT THỨC TÌM KIẾM HÓA ĐƠN
+
+
+  //SHOW CHI TIẾT HÓA ĐƠN
+  function showDetail(obj){
+   console.log(obj.id);
+   var billtemp= JSON.parse(localStorage.getItem("billtemp"));
+    document.getElementById("detail-container").style.display= "block";
+    for(let i=0; i< billtemp.length; i++){
+      if(obj.id== billtemp[i].receiptId){
+        document.getElementById("detail-bill").innerHTML=`
+          <h2>Thông tin hóa đơn</h2>
+          <div>
+            <p style="inline-block">Mã hóa đơn</p>
+            <p style="inline-block">${obj.id}</p>
+          </div>
+          <div>
+            <p style="inline-block">Sản phẩm</p>`;
+            for(let j=0; j< billtemp[i].products.length; j++){
+              document.getElementById("detail-bill").innerHTML+=`<p style="inline-block">${billtemp[i].products[j].name}</p>`;
+            }
+          document.getElementById("detail-bill").innerHTML+=`</div>
+          <div>
+            <p style="inline-block">Mã khách hàng</p>
+            <p style="inline-block">${obj.id}</p>
+          </div>
+          <div>
+            <p style="inline-block">Tên khách hàng</p>
+            <p style="inline-block">${obj.id}</p>
+          </div>
+          <div>
+            <p style="inline-block">Số điện thoại</p>
+            <p style="inline-block">${obj.id}</p>
+          </div>
+          <div>
+            <p style="inline-block">Trạng thái</p>
+            <p style="inline-block">${billtemp[i].status}</p>
+            <button>AAAAAAAAAA</button>
+          </div>
+        `;
+        }
+    }
   }
