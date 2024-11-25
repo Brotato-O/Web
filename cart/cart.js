@@ -352,26 +352,14 @@ function addCSS(){
         li[0].style.border="1px solid black";
     }
     else{
-        if(temp== 1){
-            li[1].style.backgroundColor="white";
-            li[1].style.borderRadius="20px";
-            li[1].style.border="1px solid black";
+        for(var i=1; i < 5; i++){
+            if(temp==i){
+            li[i].style.backgroundColor="white";
+            li[i].style.borderRadius="20px";
+            li[i].style.border="1px solid black";
+            }
         }
-        else if(temp== 2){
-            li[2].style.backgroundColor="white";
-            li[2].style.borderRadius="20px";
-            li[2].style.border="1px solid black";
-        }
-        else if(temp== 3){
-            li[3].style.backgroundColor="white";
-            li[3].style.borderRadius="20px";
-            li[3].style.border="1px solid black";
-        }
-        else{
-            li[4].style.backgroundColor="white";
-            li[4].style.borderRadius="20px";
-            li[4].style.border="1px solid black";
-        }
+        
     }
 }
 
