@@ -1,3 +1,5 @@
+
+
 function xoabill(){
     localStorage.removeItem("bill");
   }
@@ -182,14 +184,15 @@ function create(){
     document.getElementById("themsp").appendChild(temp);
 }
 
-window.onload = function(){
-  
+window.addEventListener("load", function () {
+  var temp= location.href.split("?");
+  if(temp[1]== "bill") {
     create();
     lookUpBillDisplay();
     lookUpStatus();
     lookUpBill();
-  
-}
+    }
+})
 
 function change(){
   lookUpStatus();

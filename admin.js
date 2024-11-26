@@ -175,11 +175,12 @@ function hienthitatcasp1(){
     currentPage = pageNumber;
     hienthitatcasp1();
   }
-  window.onload = function () {
-    
-      hienthitatcasp1();
-      
-};
+  window.addEventListener("load", function () {
+    var temp= location.href.split("?");
+  if(temp[1]== undefined) {
+    hienthitatcasp1();
+  }
+});
 function showmenu() {
     document.getElementById("hai").style.display = "block";
 }
