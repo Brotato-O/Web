@@ -832,3 +832,5 @@ function addProduct() {
   hienthitatcasp1();
   customAlert("Thêm sản phẩm thành công", "success");
 }
+
+// test

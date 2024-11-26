@@ -494,6 +494,18 @@ function OpenProfile() {
   eAccount.addEventListener("click", () => {
     document.querySelector("#account-profile").style.display = "block";
     overlay.style.display = "block";
+    var profileUser = JSON.parse(localStorage.getItem("userlogin"));
+
+    if (profileUser) {
+      document.querySelector("input[name=txtName]").value =
+        profileUser.hoTen || "";
+      document.querySelector("input[name=txtAddress]").value =
+        profileUser.address || "";
+      document.querySelector("input[name=nPhone]").value =
+        profileUser.phone || "";
+      document.querySelector("input[name=txtEmail]").value =
+        profileUser.email || "";
+    }
   });
 }
 
