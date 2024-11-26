@@ -374,14 +374,3 @@ function lookUpStatus() {
   function closeDetail(){
     document.getElementById("detail-container").style.display= "none";
   }
-
-  //THỐNG KÊ
-  function onCustomer(){
-    var bill= JSON.parse(localStorage.getItem('bill'));
-    var user= JSON.parse(localStorage.getItem('user'));
-    var count= [];
-    for(let i=0; i< user.length; i++){
-        count.push({customerId: user[i].id, billId:"", totalAmount: ""})
-    }
-    console.log(count);
-}

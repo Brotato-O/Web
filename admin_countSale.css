@@ -1,0 +1,21 @@
+#detail-count{
+    width:80%;
+    border: 1px solid black;
+    margin: auto;
+    display: flex;
+    flex-direction: column; 
+}
+#head-count{
+    display: flex;
+    justify-content: space-around;
+}
+.row-count{
+    display: flex;
+}
+.row-count div{
+    width: 50%;
+    text-align: center;
+}
+.count-wrap{
+    display: flex;
+}

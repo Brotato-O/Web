@@ -3,6 +3,7 @@
   <head>
     <script src="admin.js"></script>
     <script src="admin_cart.js"></script>
+    <script src="admin_countSale.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
     <link
@@ -11,6 +12,7 @@
     />
     <link rel="stylesheet" href="admin.css" />
     <link rel="stylesheet" href="admin_cart.css" />
+    <link rel="stylesheet" href="admin_countSale.css" />
   </head>
   <body>
     <div id="admin">
@@ -26,7 +28,7 @@
             <li><a href="admin.html?bill">Đơn hàng</a></li>
             <li>Khách hàng</li>
             <li>Quản lý thông tin</li>
-            <li>Thống kê</li>
+            <li><a href="admin.html?count">Thống kê</a></li>
           </ul>
         </div>
       </div>
@@ -110,6 +112,11 @@
           </div>
          </div> 
         
+         <div id="count-container" style="display: none">
+          <div id="detail-count">
+
+          </div>
+         </div>
 
     <button onclick="thembill()">THêm bill tạm</button>
     <button onclick="xoabill()">Xóa bill tạm</button>
