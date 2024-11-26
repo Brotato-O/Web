@@ -96,7 +96,9 @@
           {name: "Quần Short Sân Nhà Real Madrid 24/25",price: 1100000,img: "img/1098.jpg",productId:1098,brand:"Quần áo"}, 
           {name: "Áo Đấu Sân Nhà Real Madrid 24/25",price: 2200000,img: "img/1099.jpg",productId:1099,brand:"Quần áo"},
         ];
-        localStorage.setItem("all", JSON.stringify(combinedArray));
+        if (!localStorage.getItem("all")) {
+          localStorage.setItem("all", JSON.stringify(combinedArray));
+        };
         var currentPage = 1;
         const productsPerPage = 12;
         function currency(value) { return value.toLocaleString('vi-VN'); }
