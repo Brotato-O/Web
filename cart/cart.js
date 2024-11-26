@@ -11,13 +11,13 @@ function them(){
         { image: 'img/1013.jpg', id: "S001", name: "Giày Adidas UltraBoost", price: 2000000, quantity: 1, size: 31},
         { image: 'img/1066.jpg', id: "S002", name: "Giày Nike Air Max", price: 2500000, quantity: 1, size: 31 },
         { image: 'img/1067.JPG', id: "S003", name: "Giày Converse Chuck Taylor", price: 1500000, quantity: 1, size: 31 },
-        { image: 'img/1068.JPG', id: "S004", name: "Giày Vans Old Skool", price: 1200000, quantity: 1, size: 31 },
-        { image: 'img/1069.JPG', id: "S005", name: "Giày Puma Suede Classic", price: 1800000, quantity: 1, size: 31 },
-        { image: 'img/1058.JPG', id: "S006", name: "Giày New Balance 574", price: 2100000, quantity: 1, size: 31 },
-        { image: 'img/1096.JPG', id: "S007", name: "Giày Reebok Club C", price: 1700000, quantity: 1, size: 31 },
-        { image: 'img/1097.JPG', id: "S008", name: "Giày Asics Gel-Lyte III", price: 2200000, quantity: 1,size: 31 },
-        { image: 'img/1099.JPG', id: "S009", name: "Giày Jordan 1", price: 3000000, quantity: 1 ,size: 31 },
-        { image: 'img/1098.JPG', id: "S010", name: "Giày Balenciaga Triple S", price: 8000000, quantity: 1,size: 31 }
+        { image: 'img/1068.jpg', id: "S004", name: "Giày Vans Old Skool", price: 1200000, quantity: 1, size: 31 },
+        { image: 'img/1069.jpg', id: "S005", name: "Giày Puma Suede Classic", price: 1800000, quantity: 1, size: 31 },
+        { image: 'img/1058.jpg', id: "S006", name: "Giày New Balance 574", price: 2100000, quantity: 1, size: 31 },
+        { image: 'img/1096.jpg', id: "S007", name: "Giày Reebok Club C", price: 1700000, quantity: 1, size: 31 },
+        { image: 'img/1097.jpg', id: "S008", name: "Giày Asics Gel-Lyte III", price: 2200000, quantity: 1,size: 31 },
+        { image: 'img/1099.jpg', id: "S009", name: "Giày Jordan 1", price: 3000000, quantity: 1 ,size: 31 },
+        { image: 'img/1098.jpg', id: "S010", name: "Giày Balenciaga Triple S", price: 8000000, quantity: 1,size: 31 }
     ];
     localStorage.setItem("cart", JSON.stringify(carttemp));
 }
