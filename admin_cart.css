@@ -1,0 +1,32 @@
+#detail-container{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    background-color: grey;
+}
+#detail-bill{
+    text-align: center;
+    width:50%;
+    background-color: aliceblue;
+    margin: auto;
+    position: relative;
+    top : 50%;
+    transform: translate(0%, -50%);
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+#detail-bill p{
+    display: inline-block;
+    width: 50%;
+}
+.infor-wrap{
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+}
+.infor-wrap div{
+    width: 50%;
+}

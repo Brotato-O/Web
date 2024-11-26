@@ -176,7 +176,9 @@ function hienthitatcasp1(){
     hienthitatcasp1();
   }
   window.onload = function () {
-    hienthitatcasp1();
+    
+      hienthitatcasp1();
+      
 };
 function showmenu() {
     document.getElementById("hai").style.display = "block";

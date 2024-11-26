@@ -122,8 +122,8 @@ function xoabill(){
 const temp= document.getElementById("maintable");
 const temp2= document.getElementById("themsp");
  
-
 //BẮT ĐẦU TÌM KIẾM HÓA ĐƠN
+//hiển thị bảng tìm kiếm
 function create(){
     var temp= document.createElement("div");
       temp.setAttribute("id", "select-bill");
@@ -183,10 +183,12 @@ function create(){
 }
 
 window.onload = function(){
-  create();
-  lookUpBillDisplay();
-  lookUpStatus();
-  lookUpBill();
+  
+    create();
+    lookUpBillDisplay();
+    lookUpStatus();
+    lookUpBill();
+  
 }
 
 function change(){
@@ -194,6 +196,7 @@ function change(){
   lookUpBill();
 }
 
+//lọc trạng thái bill
 function lookUpStatus() {
   var obj=document.getElementById("status");
   var billtemp=[];
@@ -213,6 +216,7 @@ function lookUpStatus() {
     localStorage.setItem("billtemp",JSON.stringify(billtemp));
 }
 
+//hiển thị kế quả tìm kiếm dựa trên kq lọc
   function billDisplay(from, to, n){
     var billtemp= JSON.parse(localStorage.getItem('billtemp'));
     var temp= [];
@@ -241,7 +245,8 @@ function lookUpStatus() {
             <td>Trạng thái</td>
             </tr>` + s + `</table>`;
   }
-  
+
+  //hiển thị ô nhập liệu tìm kiếm
   function lookUpBillDisplay(){
     const billText= document.getElementById("textMethod");
     const billDate= document.getElementById("dateMethod");
@@ -269,6 +274,7 @@ function lookUpStatus() {
     }
   }
   
+  //xác định phương thức tìm
   function lookUpBill(){
       var billText= document.getElementById("textMethod").value;
       var from = document.getElementById("pricefrom").value;
@@ -295,35 +301,44 @@ function lookUpStatus() {
     for(let i=0; i< billtemp.length; i++){
       if(obj.id== billtemp[i].receiptId){
         document.getElementById("detail-bill").innerHTML=`
-          <h2>Thông tin hóa đơn</h2>
-          <div>
-            <p style="inline-block">Mã hóa đơn</p>
-            <p style="inline-block">${obj.id}</p>
+          <h2 >Thông tin hóa đơn</h2>
+          <div class="infor-wrap">
+            <p>Mã hóa đơn</p>
+            <p>${obj.id}</p>
           </div>
-          <div>
-            <p style="inline-block">Sản phẩm</p>`;
+          <div class="infor-wrap">
+            <p>Ngày lập hóa đơn</p>
+            <p>${billtemp[i].orderDate}</p>
+          </div>
+          
+          `;
             for(let j=0; j< billtemp[i].products.length; j++){
-              document.getElementById("detail-bill").innerHTML+=`<p style="inline-block">${billtemp[i].products[j].name}</p>`;
+              var s=`<p>${billtemp[i].products[j].name}</p>`;
+              
             }
-          document.getElementById("detail-bill").innerHTML+=`</div>
-          <div>
-            <p style="inline-block">Mã khách hàng</p>
-            <p style="inline-block">${billtemp[i].customer.id}</p>
+          document.getElementById("detail-bill").innerHTML+= `
+            <div class="infor-wrap">
+             <p>Sản phẩm</p>
+             <div>` + s + `</div>
+            </div>
+          <div class="infor-wrap">
+            <p>Mã khách hàng</p>
+            <p>${billtemp[i].customer.id}</p>
           </div>
-          <div>
-            <p style="inline-block">Tên khách hàng</p>
-            <p style="inline-block">${billtemp[i].customer.username}</p>
+          <div class="infor-wrap">
+            <p>Tên khách hàng</p>
+            <p>${billtemp[i].customer.username}</p>
           </div>
-          <div>
-            <p style="inline-block">Số điện thoại</p>
-            <p style="inline-block">${billtemp[i].customer.sdt}</p>
+          <div class="infor-wrap">
+            <p>Số điện thoại</p>
+            <p>${billtemp[i].customer.sdt}</p>
           </div>
-          <div>
-            <p style="inline-block">Trạng thái</p>
-            <p style="inline-block">${billtemp[i].status}</p>
-            <button value="${obj.id}" onclick="changeStatus(this)">AAAAAAAAAA</button>
-          </div>
-        `;
+          <div class="infor-wrap">
+            <p>Trạng thái</p>
+            <p>${billtemp[i].status}</p>
+          </div>`
+          if (billtemp[i].status =="Đã xác nhận" || billtemp[i].status=="Chờ xác nhận")
+           document.getElementById("detail-bill").innerHTML+= `<button value="${obj.id}" onclick="changeStatus(this)">AAAAAAAAAA</button>`;
         }
     }
   }
@@ -341,4 +356,11 @@ function lookUpStatus() {
     console.log(p);
     change();
     showDetail(p);
+  }
+
+  function an(event){
+    var obj= event.target;
+    if (obj.id== "detail-container")
+      if(obj.style.display=="none") obj.style.display="block";
+      else obj.style.display="none";
   }
