@@ -1,10 +1,12 @@
+
 #detail-container{
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     bottom: 0px;
     width: 100%;
-    background-color: grey;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.632);
 }
 #detail-bill{
     text-align: center;
@@ -22,6 +24,13 @@
     display: inline-block;
     width: 50%;
 }
+#closeDetail{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 10%;
+    height: 10%;
+}
 .infor-wrap{
     display: flex;
     align-items: center;
@@ -29,4 +38,29 @@
 }
 .infor-wrap div{
     width: 50%;
+}
+#billTable{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px;
+}
+#billTable th, td{
+    text-align: center;
+    padding: 20px 0px;
+}
+#billTable tr{
+    border-bottom: 1px solid black;
+
+}
+#billTable tr:hover{
+    background-color: rgba(126, 125, 125, 0.332);
+}
+
+@media only screen and (max-width: 768px){
+    #container{
+        flex-direction: column-reverse;
+    }
+    #maintable{
+        width: 90%;
+    }
 }

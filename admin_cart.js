@@ -191,6 +191,7 @@ window.addEventListener("load", function () {
     lookUpBillDisplay();
     lookUpStatus();
     lookUpBill();
+    onCustomer();
     }
 })
 
@@ -241,11 +242,11 @@ function lookUpStatus() {
     billtemp= temp;
     localStorage.setItem("billtemp",JSON.stringify(billtemp));
     document.getElementById("maintable").innerHTML=`<table id="billTable"><tr>
-            <td>Ngày đặt</td>
-            <td>Mã hóa đơn</td>
-            <td>Sdt</td>
-            <td>Giá tiền</td>
-            <td>Trạng thái</td>
+            <th>Ngày đặt</th>
+            <th>Mã hóa đơn</th>
+            <th>Sdt</th>
+            <th>Giá tiền</th>
+            <th>Trạng thái</th>
             </tr>` + s + `</table>`;
   }
 
@@ -304,7 +305,10 @@ function lookUpStatus() {
     for(let i=0; i< billtemp.length; i++){
       if(obj.id== billtemp[i].receiptId){
         document.getElementById("detail-bill").innerHTML=`
-          <h2 >Thông tin hóa đơn</h2>
+          <div>
+            <h2 >Thông tin hóa đơn</h2>
+            <button id="closeDetail" onclick="closeDetail()">X</button>
+          </div>
           <div class="infor-wrap">
             <p>Mã hóa đơn</p>
             <p>${obj.id}</p>
@@ -364,6 +368,20 @@ function lookUpStatus() {
   function an(event){
     var obj= event.target;
     if (obj.id== "detail-container")
-      if(obj.style.display=="none") obj.style.display="block";
-      else obj.style.display="none";
+      obj.style.display="none";
   }
+
+  function closeDetail(){
+    document.getElementById("detail-container").style.display= "none";
+  }
+
+  //THỐNG KÊ
+  function onCustomer(){
+    var bill= JSON.parse(localStorage.getItem('bill'));
+    var user= JSON.parse(localStorage.getItem('user'));
+    var count= [];
+    for(let i=0; i< user.length; i++){
+        count.push({customerId: user[i].id, billId:"", totalAmount: ""})
+    }
+    console.log(count);
+}
