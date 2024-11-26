@@ -277,7 +277,7 @@ Cart.addEventListener("click", function (event) {
   else if (cartArray.length > 5) display = 5;
   for (var i = 0; i < display; i++) {
     s += `
-            <li><a href="cart/Cart.html?focus&${cartArray[i].id}" class="link-shop">
+            <li><a href="cart/cart.html?focus&${cartArray[i].id}" class="link-shop">
                 <img src="${cartArray[i].image}" alt="sp">
                 <div>${cartArray[i].name}</div>
                 <div>${cartArray[i].price}</div>
