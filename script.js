@@ -604,7 +604,7 @@ function addToCartForUser(username, product) {
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('add-to-cart')){
         if (checkLoginCart()) {
-            const product = button.parentElement;
+            const product = event.target.parentElement;
             const image = product.querySelector('img').src;
             const title = product.querySelector('h3').innerText;
             const price = product.querySelector('p').innerText;
