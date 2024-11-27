@@ -6,6 +6,8 @@ const addressBox = document.getElementById('address-box');
 const cardInfoBox = document.getElementById('card-info-box');
 const paymentImageContainer = document.getElementById('payment-image-container');
 
+
+
 function them(){
     var carttemp = [
         { image: 'img/1013.jpg', id: "S001", name: "Giày Adidas UltraBoost", price: 2000000, quantity: 1, size: 31},
