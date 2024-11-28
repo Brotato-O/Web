@@ -324,7 +324,7 @@ function displayMobile(){
 
 window.addEventListener("resize",displayMobile);
             
-window.onload = function(){
+window.addEventListener("load", function(){
     addCSS();
     var temp= location.href.split("?")[1];
     if(temp ==undefined || temp=="" || temp.search("focus")==0) {
@@ -343,11 +343,12 @@ window.onload = function(){
         else if(temp== 3)showBill(3); 
         else showBill(4); 
     }
-}
+})
 
 function addCSS(){
     var li= document.getElementsByClassName('status-li');
     var temp= location.href.split("?")[1];
+    console.log(temp);
     if(temp ==undefined || temp=="" || temp.search("focus")==0) {
         li[0].style.backgroundColor="white";
         li[0].style.borderRadius="20px";
