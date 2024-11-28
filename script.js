@@ -541,8 +541,6 @@ function displayProducts(products) {
     });
 }
 
-
-
 // <---------------<Products>----------------->
 
 // <---------------<CART>----------------->
@@ -583,7 +581,7 @@ Cart.addEventListener('click', function(event){
 });
 
 // Thêm sản phẩm vào giỏ hàng
-//Hàm thêm sản phẩm vào giỏ hàng cho mỗi user kèm theo hàm check sản phẩm trùng sẽ chỉ xuất hiện 1 lần 
+//Hàm thêm sản phẩm vào giỏ hàng cho mỗi user kèm theo hàm check sản phẩm trùng sẽ chỉ xuất hiện 1 lần
 //Giỏ hàng chi tiết sẽ được thể hiện ở Cart.html
 
 //Event click thêm sản phẩm vào giỏ hàng
@@ -603,13 +601,10 @@ function addToCartForUser(username, product) {
     localStorage.setItem('userCarts', JSON.stringify(userCarts));
 }
 
-addToCartButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        if (!checkLoginCart()) {
-            toast({ title: 'Thất bại', message: 'Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng !', type: 'error', duration: 3000 });
-            return;
-        } else {
-            const product = button.parentElement;
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('add-to-cart')){
+        if (checkLoginCart()) {
+            const product = event.target.parentElement;
             const image = product.querySelector('img').src;
             const title = product.querySelector('h3').innerText;
             const price = product.querySelector('p').innerText;
@@ -619,10 +614,15 @@ addToCartButtons.forEach(button => {
             if (currentUser) {
                 addToCartForUser(currentUser.username, cartItem);
                 toast({ title: 'Thành công', message: 'Đã thêm sản phẩm vào giỏ hàng !', type: 'success', duration: 3000 });
+                displayCart(currentUser.username);
             }
+        } else {
+            toast({ title: 'Thất bại', message: 'Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng !', type: 'error', duration: 3000 });
+            return;
         }
-    });
+    }
 });
+
 
 // Hiển thị sản phẩm được thêm vào CartForm
 function displayCart(username) {
@@ -708,17 +708,17 @@ function removeFromCart(productTitle) {
 }
 
 // // Event click thêm sản phẩm vào giỏ hàng
-// document.addEventListener('click', function(event) {
-//     if (event.target.classList.contains('add-to-cart')) {
-//         const productElement = event.target.parentElement;
-//         const image = productElement.querySelector('img').src;
-//         const title = productElement.querySelector('h3').innerText;
-//         const price = productElement.querySelector('p').innerText;
-//         const cartItem = { image, title, price };
-//         addToCart(cartItem);
-//         toast({ title: 'Thành công', message: 'Đã thêm sản phẩm vào giỏ hàng !', type: 'success', duration: 3000 });
-//     }
-// });
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('add-to-cart')) {
+        const productElement = event.target.parentElement;
+        const image = productElement.querySelector('img').src;
+        const title = productElement.querySelector('h3').innerText;
+        const price = productElement.querySelector('p').innerText;
+        const cartItem = { image, title, price };
+        addToCart(cartItem);
+        toast({ title: 'Thành công', message: 'Đã thêm sản phẩm vào giỏ hàng !', type: 'success', duration: 3000 });
+    }
+});
 
 
 // <---------------<CART>----------------->
