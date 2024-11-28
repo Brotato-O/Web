@@ -529,6 +529,7 @@ function test(){
 
 //Sản phẩm trong phần trang chính
 let products = JSON.parse(localStorage.getItem('products')) || [];
+let tmp = JSON.parse(localStorage.getItem('all')) || [];
 
 function displayProducts(products) {
     const productContainer = document.getElementById('productContainer');
@@ -539,12 +540,33 @@ function displayProducts(products) {
         productElement.innerHTML = `
             <img src="${product.img}" alt="${product.name}">
             <h3>${product.name}</h3>
-            <p>${product.price}</p>
+            <p>${product.price.toLocaleString()} VND</p>
             <button class="add-to-cart">Thêm vào giỏ hàng</button>
-        `;
+            `;
         productContainer.appendChild(productElement);
+        productElement.addEventListener('click', () => show2(product.productId));
     });
 }
+//hien thi chi tiet san pham o trang chinh
+function show2(ID) {
+         
+    var product = tmp.find(item => item.productId == ID);
+    if (product) {
+        
+        document.getElementById("img-sp").src = product.img;
+        document.getElementById("name-sp").innerHTML = product.name;
+        document.getElementById("ma-sp").innerHTML = `${product.productId || "N/A"}`;
+        document.getElementById("price").innerHTML = `${product.price.toLocaleString()} VND`;
+        document.getElementById("sanpham-chitiet").style.display = "block";
+    } else {
+        console.error("Sản phẩm không tồn tại!");
+    }
+}
+function currency(value) { return value.toLocaleString('vi-VN'); }
+function closesp() {
+    document.getElementById("sanpham-chitiet").style.display = "none";
+    hienthisanpham1();
+  }
 
 // <---------------<Products>----------------->
 

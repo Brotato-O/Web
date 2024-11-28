@@ -1098,4 +1098,124 @@ input[type="file"] {
   background-color: #ccc;
   transform: scale(1.05);
 }
+/*Viet*/
+.mota-sanpham{
+  border: 1px solid;
+  display: flex;
+  margin: 50px auto;
+  width: 1000px;
+  height: auto;
+  position: relative;
+  padding: 50px 20px 20px;
+  background-color:rgb(249, 249, 249);
+}
+.exit{
+  position: absolute;
+  top:0;
+  right: 15px;
+  font-size: 35px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.mota-trai img{
+  width: 100%;
 
+}
+.mota-phai{
+
+  margin-left: 25px;
+}
+
+.mota-phai h6{
+  color: rgba(0, 0, 0, 0.499);
+  text-align: center;
+  font-size: 16px ;
+  margin: 50px;
+}
+#price{
+  text-align: center;
+  margin: 30px;
+  font-size: 25px;
+}
+.row{
+  width: 400px;
+  display: flex;
+  margin-bottom: 40px;
+  padding: 10px 10px;
+}
+#size{
+  
+  font-size: 16px;
+  padding: 5px 30px;
+}
+.kichco{
+  width: 50%;
+}
+.kichco h4{
+  margin: 20px;
+}
+#sl{
+  font-size: 16px;
+  width: 80px;
+  padding: 5px ;
+  text-align: center;
+  border: 2px solid black;
+  
+}
+.soluong h4{
+  margin: 20px;
+}
+.bot{
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid black;
+  cursor: pointer;
+}
+.them{
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid black;
+  cursor: pointer;
+}
+.addtocart{
+ 
+  font-size: 26px;
+  color: white;
+background-color: black;
+  padding: 10px 20px;
+  border: 2px solid black;
+  cursor: pointer;
+  width: 80%;
+  margin-bottom: 30px;
+
+}
+
+.buy{
+  font-size: 26px;
+  color: white;
+  background-color: rgb(255, 0, 0);
+  padding: 10px 20px;
+  border: 2px solid black;
+  cursor: pointer;
+  width: 80%;
+
+}
+.line {
+  border-top: 2px dashed #6e6e6e; /* Dòng đứt đoạn màu xám nhạt */
+  margin: 2px 0; /* Điều chỉnh khoảng cách trên và dưới nếu cần */
+}
+#sanpham-chitiet{
+  display: none;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 2001;
+  background-color: rgba(0,0,0, 0.6);
+  overflow-x: scroll;
+
+}
