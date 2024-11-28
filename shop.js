@@ -166,7 +166,7 @@ var productArrays = [
 
         for (let i = startIndex; i < endIndex; i++) {
           s += `
-                      <div class="sanpham3" onclick="show2(${selectArrays[i].productId})">
+                      <div class="product" onclick="show2(${selectArrays[i].productId})">
                           <img src="${selectArrays[i].img}" />
                           <h3>${selectArrays[i].name}</h3>
                           <h3>${selectArrays[i].price.toLocaleString()} VND</h3>
@@ -228,11 +228,11 @@ var productArrays = [
                                 <button class="them" onclick=tangsl()>+</button>
                               </div>
                             </div>
-                            <div>
+                            <div style="text-align: center">
                              <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
 
                             </div>
-                            <div>
+                            <div style="text-align: center">
                               <button class="buy">THANH TOÁN</button>
                             </div>
                           </div>
@@ -275,7 +275,7 @@ var productArrays = [
         var s="";
         for (let i = startIndex; i < endIndex; i++) {
           s += `
-                      <div class="sanpham3" onclick="show2(${tmp[i].productId})">
+                      <div class="product" onclick="show2(${tmp[i].productId})">
                           <img src="${tmp[i].img}" />
                           <h3>${tmp[i].name}</h3>
                           <h3>${tmp[i].price.toLocaleString()} VND</h3>
@@ -336,11 +336,11 @@ var productArrays = [
                               <button class="them" onclick=tangsl()>+</button>
                             </div>
                           </div>
-                          <div>
+                          <div style="text-align: center">
                            <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
 
                           </div>
-                          <div>
+                          <div style="text-align: center">
                             <button class="buy">THANH TOÁN</button>
                           </div>
                         </div>
@@ -386,7 +386,7 @@ function search1() {
         document.getElementById("h3tieude").innerText="Lọc theo sản phẩm";
           if ((productArray[i].name.toLowerCase().search(productsearch)!=-1||productArray[i].brand.toLowerCase().search(productsearch) != -1) && productsearch != '' ) {
                 s += `
-                                    <div class="sanpham3" onclick="show2(${productArray[i].productId})">
+                                    <div class="product" onclick="show2(${productArray[i].productId})">
                                        <img src="${productArray[i].img}" />
                                          <h3>${productArray[i].name}</h3>
                                          <h3>${productArray[i].price.toLocaleString()} VND</h3>
@@ -438,11 +438,11 @@ function search1() {
                               <button class="them" onclick=tangsl()>+</button>
                             </div>
                           </div>
-                          <div>
+                          <div style="text-align: center">
                            <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
 
                           </div>
-                          <div>
+                          <div style="text-align: center">
                             <button class="buy">THANH TOÁN</button>
                           </div>
                         </div>
