@@ -929,7 +929,7 @@ background-color: black;
 /*tuấn*/
 
 
- @media (max-width: 1000px) {
+@media only screen and (max-width: 1000px) {
      .product {
         flex: 1 1 calc(33.33% - 20px);
     }
@@ -951,7 +951,7 @@ background-color: black;
    
 }
 
-@media (max-width: 768px) {
+@media only screen and  (max-width: 768px) {
     .product {
         flex: 1 1 calc(60% - 20px); 
     }
