@@ -567,6 +567,14 @@ function closesp() {
     document.getElementById("sanpham-chitiet").style.display = "none";
     hienthisanpham1();
   }
+  function giamsl(){
+    if(document.getElementById("sl").value>1){
+      document.getElementById("sl").value--;
+    }
+  }
+function tangsl(){
+    document.getElementById("sl").value++;
+  }
 
 // <---------------<Products>----------------->
 
