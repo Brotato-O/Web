@@ -151,6 +151,7 @@
             <div id="shop-items">
                 <div id="productContainer"></div>
                     <!-- show item o day -->
+                     
             </div>
             <div id="pagination">
             </div>
@@ -250,7 +251,7 @@
                                 </a>
                             </li>
                             <li class="widget-contact-item">
-                                <a href="">
+                                <a href="shop.html">
                                     <i class="fa-regular fa-arrow-right"></i>
                                     <span>Cửa hàng</span>
                                 </a>
@@ -273,25 +274,25 @@
                         <h3 class="widget-title">SẢN PHẨM</h3>
                         <ul class="widget-contact">
                             <li class="widget-contact-item">
-                                <a href="">
+                                <a href="shop.html?giaynt">
                                     <i class="fa-regular fa-arrow-right"></i>
                                     <span>Giày cỏ nhân tạo</span>
                                 </a>
                             </li>
                             <li class="widget-contact-item">
-                                <a href="">
+                                <a href="shop.html?giaytn">
                                     <i class="fa-regular fa-arrow-right"></i>
                                     <span>Giày cỏ tự nhiên</span>
                                 </a>
                             </li>
                             <li class="widget-contact-item">
-                                <a href="">
+                                <a href="shop.html?quanao">
                                     <i class="fa-regular fa-arrow-right"></i>
                                     <span>Quần áo</span>
                                 </a>
                             </li>
                             <li class="widget-contact-item">
-                                <a href="">
+                                <a href="shop.html?phukien">
                                     <i class="fa-regular fa-arrow-right"></i>
                                     <span>Phụ kiện</span>
                                 </a>
@@ -348,6 +349,53 @@
 
 
     <div id="toast"></div>
+    <div id="sanpham-chitiet">
+        <div class="mota-sanpham">
+          <button type="button" class="exit" onclick="closesp();">x</button>
+          <div class="mota-trai">
+            <img id="img-sp" src="1000.jpg" />
+          </div>
+          <div class="mota-phai">
+            <h1 id="name-sp">chua co</h1>
+            <h6>
+              <span>
+                Mã sản phẩm:
+                <strong id="ma-sp">chua co</strong>
+              </span>
+            </h6>
+            <h4 id="price">chua co </h4>
+            <div class="line"></div>
+            <div class="row">
+              <div class="kichco">
+                <h4>SIZE</h4>
+                <select id="size">
+                  <option value="31" selected>31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                </select>
+              </div>
+              <div class="soluong">
+                <h4>Số lượng</h4>
+                <button class="bot" onclick="giamsl()">-</button>
+                <input type="text" id="sl" value="1">
+                <button class="them" onclick=tangsl()>+</button>
+              </div>
+            </div>
+            <div style="text-align: center">
+             <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
+
+            </div>
+            <div style="text-align: center">
+              <button class="buy">THANH TOÁN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
     
     <script src="indRes.js"></script>
     <script src="script.js"></script>

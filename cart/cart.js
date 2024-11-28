@@ -31,8 +31,9 @@ function xoabill(){
 
 //hiển thị giỏ hàng
 function cartDisplay(){    
-    var cartArray = JSON.parse(localStorage.getItem('cart'));
-    if (cartArray == undefined || cartArray.length == 0) {
+    var cartArray = JSON.parse(localStorage.getItem('userCarts'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
+    if (cartArray == undefined || cartArray[username].length == 0) {
         var s = `<a href="../index.html">
             <img src="../img/emty-cart.png" alt="emty-cart">
             <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
@@ -41,7 +42,7 @@ function cartDisplay(){
         document.getElementById('wrap-cart').innerHTML = s;
     } else {
         var s = "";
-        for (let i = 0; i < cartArray.length; i++) {
+        for (let i = 0; i < cartArray[username].length; i++) {
             s += `<tr>
                     <td><input type="checkbox" id="${cartArray[i].id}" onchange="buy()"></td>
                     <td class="cart-item-image"><img src="../${cartArray[i].image}" alt="product"></td>
@@ -157,9 +158,9 @@ function adjustSize(obj, id){
     for(var i=0; i<cart.length; i++){
         if(cart[i].id== id) {
             cart[i].size= obj.value;
-            obj.value= cart[i].size;
         }
     }
+    document.getElementById(id).checked = true;
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
@@ -324,7 +325,7 @@ function displayMobile(){
 
 window.addEventListener("resize",displayMobile);
             
-window.onload = function(){
+window.addEventListener("load", function(){
     addCSS();
     var temp= location.href.split("?")[1];
     if(temp ==undefined || temp=="" || temp.search("focus")==0) {
@@ -343,11 +344,12 @@ window.onload = function(){
         else if(temp== 3)showBill(3); 
         else showBill(4); 
     }
-}
+})
 
 function addCSS(){
     var li= document.getElementsByClassName('status-li');
     var temp= location.href.split("?")[1];
+    console.log(temp);
     if(temp ==undefined || temp=="" || temp.search("focus")==0) {
         li[0].style.backgroundColor="white";
         li[0].style.borderRadius="20px";
@@ -381,7 +383,7 @@ function openCheckout() {
     if (carttemp.length === 0) {
       alert('Giỏ hàng trống! Vui lòng thêm sản phẩm.');
     } else {
-      overlay.style.display = 'flex';
+      overlay1.style.display = 'flex';
       showAddressBox();
     }
 };
@@ -392,7 +394,7 @@ function showAddressBox() {
 }
 
 function closeCheckout() {
-    overlay.style.display = 'none';
+    overlay1.style.display = 'none';
 };
 
 function useSavedAddress() {
@@ -458,7 +460,7 @@ function checkout() {
     const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
     paymentMethods.forEach((method) => method.checked = false);
     hideAllBoxes();  
-    overlay.style.display = 'none';
+    overlay1.style.display = 'none';
     alert('Thanh toán thành công!');
     closeCheckout(); 
 }
@@ -487,5 +489,6 @@ function adjustQuantity(itemId, change) {
             break;
         }
     }
+    document.getElementById(itemId).checked= true;
     buy();
 }
