@@ -744,16 +744,28 @@ css của sản phẩm
     border: 2px solid black;
     cursor: pointer;
 }
-.addtocart{
-   
+
+.add-to-cart{
     font-size: 26px;
     color: white;
-background-color: black;
+    background-color: black;
     padding: 10px 20px;
     border: 2px solid black;
     cursor: pointer;
     width: 80%;
     margin-bottom: 30px;
+}
+
+.addtocart{
+    padding: 10px 100px;
+    border: none;
+    background: transparent;
+    color: #33333357;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 }
 
@@ -785,13 +797,11 @@ background-color: black;
 }
 
 .danhsach-sanpham{
-    
     display: flex;
     background-color: white;
     flex-wrap: wrap;
     gap: 16px;
-   
-    
+    justify-content: center;
 }
 
 .phantrang{
@@ -871,62 +881,6 @@ background-color: black;
     flex-direction: column;
 }
 
-.product{
-    width:calc(25% - 16px) ;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.product img{
-    width: 300px;
-    height: 300px;
-    border-radius: 10px;
-}
-
-.product:hover{
-    transform: translateY(-10px);
-}
-
-.product h3{
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    width: 80%;
-    text-align: center;
-}
-
-.product p{
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: #660000;
-    margin-bottom : 20px;
-}
-
-.product button{
-    padding: 10px 100px;
-    border: none;
-    background: transparent;
-    color: #33333357;
-    font-size: 1.2rem;
-    font-weight: 500;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.product button:hover{
-    background: #333;
-    color: #f1f1f1;
-    border: solid 1px #333;
-}
 /*tuấn*/
 
 

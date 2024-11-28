@@ -63,7 +63,7 @@ function hienthisanpham1(){
                     <img src="${selectArrays[i].img}" alt="${selectArrays[i].name}">
                      <h3>${selectArrays[i].name}</h3>
                       <p>${selectArrays[i].price.toLocaleString()} VND</p>
-                      <button class="add-to-cart">Thêm vào giỏ hàng</button>
+                      <button class="addtocart">Thêm vào giỏ hàng</button>
                 </div>
             `;
   }
@@ -123,7 +123,7 @@ function hienthisanpham1(){
                         </div>
                       </div>
                       <div>
-                       <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
+                       <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                       </div>
                       <div>
@@ -173,7 +173,7 @@ function hienthitatcasp(){
                     <img src="${tmp[i].img}" alt="${tmp[i].name}">
                      <h3>${tmp[i].name}</h3>
                       <p>${tmp[i].price.toLocaleString()} VND</p>
-                      <button class="add-to-cart">Thêm vào giỏ hàng</button>
+                      <button class="addtocart">Thêm vào giỏ hàng</button>
                 </div>
             `;
 }
@@ -232,7 +232,7 @@ document.getElementById("allsp").innerHTML = `
                       </div>
                     </div>
                     <div>
-                     <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
+                     <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                     </div>
                     <div>
@@ -275,7 +275,7 @@ for (var i = 0; i < productArray.length; i++) {
                                 <img src="${productArray[i].img}" alt="${productArray[i].name}">
                                 <h3>${productArray[i].name}</h3>
                                   <p>${productArray[i].price.toLocaleString()} VND</p>
-                                  <button class="add-to-cart">Thêm vào giỏ hàng</button>
+                                  <button class="addtocart">Thêm vào giỏ hàng</button>
                                </div>
                            `;
     }
@@ -325,7 +325,7 @@ document.getElementById('allsp').innerHTML = `
                       </div>
                     </div>
                     <div>
-                     <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
+                      <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                     </div>
                     <div>
@@ -481,7 +481,7 @@ function kiemtrachon() {
                                   <img src="${tmp1[i].img}" alt="${tmp1[i].name}">
                                   <h3>${tmp1[i].name}</h3>
                                     <p>${tmp1[i].price.toLocaleString()} VND</p>
-                                    <button class="add-to-cart">Thêm vào giỏ hàng</button>
+                                    <button class="addtocart">Thêm vào giỏ hàng</button>
                                  </div>
                              `;
       }
@@ -527,7 +527,7 @@ function kiemtrachon() {
                       </div>
                     </div>
                     <div>
-                     <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
+                     <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                     </div>
                     <div>
