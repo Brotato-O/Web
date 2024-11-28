@@ -298,7 +298,7 @@ logOut.addEventListener('click', function(){
     toast({ title: 'Thành công', message: 'Đã đăng xuất !', type: 'info', duration: 3000 });
     setTimeout(function() {
       var path = location.pathname; // Chỉ lấy đường dẫn (vd: /cart/cart.html)
-      if (path.startsWith("/cart")) {
+      if (path.search("/cart")==0) {
           location.href = '../index.html';
       } else {
           window.location.href = 'index.html';
@@ -319,8 +319,13 @@ logOutAdmin.addEventListener('click', function(){
     SignReS.addEventListener('click', showSignForm);
     toast({ title: 'Thành công', message: 'Đã đăng xuất !', type: 'info', duration: 3000 });
     setTimeout(function() {
-        window.location.href = 'index.html';
-    }, 1000);
+      var path = location.pathname; // Chỉ lấy đường dẫn (vd: /cart/cart.html)
+      if (path.search("/cart")==0) {
+          location.href = '../index.html';
+      } else {
+          window.location.href = 'index.html';
+      }
+  }, 1000);
 });
 
 function loadProfile() {
