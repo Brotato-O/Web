@@ -339,4 +339,206 @@ document.getElementById('allsp').innerHTML = `
       
   }
 }
+// function kiemtrachon(){
+//   var pl=document.phanloai.phanloaisp.value;
+// var tmp = JSON.parse(localStorage.getItem('all')); // Lấy danh sách sản phẩm
+// var s = '';
+// var tmp1=[];
+//   if (!productsearch) {
+// document.getElementById("h3tieude").innerText="Tất cả sản phẩm";
+// hienthitatcasp();
+// return;
+// }
+//   if(pl=="Giày cỏ tự nhiên"){
+//     for(i=0;i<tmp.length;i++){
+//       if((tmp[i].brand=="Giày cỏ tự nhiên")){
+//       tmp1.push(tmp[i]);
+//       }
+//     }
+//   }else if(pl=="Giày cỏ nhân tạo"){
+//   for(i=0;i<tmp.length;i++){
+//       if((tmp[i].brand=="Giày cỏ nhân tạo")){
+//       tmp1.push(tmp[i]);
+//       }
+//     }
+//   }else if (pl=="Quần áo"){
+//     for(i=0;i<tmp.length;i++){
+//       if(tmp[i].brand=="Quần áo"){
+//       tmp1.push(tmp[i]);
+//       }
+//     }
+//   }else if (pl=="Phụ kiện"){
+//     for(i=0;i<tmp.length;i++){
+//       if(tmp[i].brand=="Phụ kiện"){
+//       tmp1.push(tmp[i]);
+//       }
+//     }
+//   }else {
+//     for(i=0;i<tmp.length;i++){
+     
+//       tmp1.push(tmp[i]);
+      
+//     }
+//   }
+//   for (var i = 0; i < tmp1.length; i++) {
+//     document.getElementById("h3tieude").innerText="Lọc theo sản phẩm";
+//        {
+//             s += `
+//                                 <div class="product" onclick="show2(${tmp1[i].productId})">
+//                                   <img src="${tmp1[i].img}" alt="${tmp1[i].name}">
+//                                   <h3>${tmp1[i].name}</h3>
+//                                     <p>${tmp1[i].price.toLocaleString()} VND</p>
+//                                     <button class="add-to-cart">Thêm vào giỏ hàng</button>
+//                                  </div>
+//                              `;
+//       }
+//   } 
+  
+//   if (s === '') {
+//   document.getElementById('allsp').innerHTML = '<p>Không tìm thấy sản phẩm nào phù hợp.</p>';
+//   } else {
+  
+//   document.getElementById('allsp').innerHTML = `
+//                   <div class="menu-sanpham" id="menu-sanpham1">
+//                 <div class="danhsach-sanpham" id="danhsach-sanpham1">${s}</div>
+//                 <div id="sanpham-chitiet">
+//                   <div class="mota-sanpham">
+//                     <button type="button" class="exit" onclick="closesp();">x</button>
+//                     <div class="mota-trai">
+//                       <img id="img-sp" src="1000.jpg" />
+//                     </div>
+//                     <div class="mota-phai">
+//                       <h1 id="name-sp">chua co</h1>
+//                       <h6>
+//                         <span>
+//                           Mã sản phẩm:
+//                           <strong id="ma-sp">chua co</strong>
+//                         </span>
+//                       </h6>
+//                       <h4 id="price">chua co </h4>
+//                       <div class="line"></div>
+//                       <div class="row">
+//                         <div class="kichco">
+//                           <h4>SIZE</h4>
+//                           <select id="size">
+//                             <option value="31" selected>31</option>
+//                             <option value="32">32</option>
+//                             <option value="33">33</option>
+//                             <option value="34">34</option>
+//                             <option value="35">35</option>
+//                             <option value="36">36</option>
+//                             <option value="37">37</option>
+//                           </select>
+//                         </div>
+//                         <div class="soluong">
+//                           <h4>Số lượng</h4>
+//                           <button class="bot" onclick="giamsl()">-</button>
+//                           <input type="text" id="sl" value="1">
+//                           <button class="them" onclick=tangsl()>+</button>
+//                         </div>
+//                       </div>
+//                       <div>
+//                        <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
+  
+//                       </div>
+//                       <div>
+//                         <button class="buy">THANH TOÁN</button>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//             </div>
+//         `;
+        
+//     }
+
+//   }
+
+function kiemtrachon() {
+  var pl = document.phanloai.phanloaisp.value; // Lấy giá trị phân loại
+  var tmp = JSON.parse(localStorage.getItem('all')); // Lấy danh sách sản phẩm từ localStorage
+  var s = ''; // Chuỗi HTML để hiển thị
+  var tmp1 = []; // Mảng chứa sản phẩm sau khi lọc
+
+  // Nếu không chọn phân loại (mặc định "tất cả sản phẩm")
+  if (pl === "tatcasp") {
+      document.getElementById("h3tieude").innerText = "Tất cả sản phẩm";
+      hienthitatcasp();
+      return;
+  }
+
+  // Lọc sản phẩm theo phân loại
+  if (tmp && Array.isArray(tmp)) {
+      tmp1 = tmp.filter(product => product.brand === pl);
+  }
+
+
+  for (var i = 0; i < tmp1.length; i++) {
+    document.getElementById("h3tieude").innerText="Lọc theo sản phẩm";
+       {
+            s += `
+                                <div class="product" onclick="show2(${tmp1[i].productId})">
+                                  <img src="${tmp1[i].img}" alt="${tmp1[i].name}">
+                                  <h3>${tmp1[i].name}</h3>
+                                    <p>${tmp1[i].price.toLocaleString()} VND</p>
+                                    <button class="add-to-cart">Thêm vào giỏ hàng</button>
+                                 </div>
+                             `;
+      }
+  } 
+
+
+  document.getElementById('allsp').innerHTML = `<div class="menu-sanpham" id="menu-sanpham1">
+              <div class="danhsach-sanpham" id="danhsach-sanpham1">${s}</div>
+              <div id="sanpham-chitiet">
+                <div class="mota-sanpham">
+                  <button type="button" class="exit" onclick="closesp();">x</button>
+                  <div class="mota-trai">
+                    <img id="img-sp" src="1000.jpg" />
+                  </div>
+                  <div class="mota-phai">
+                    <h1 id="name-sp">chua co</h1>
+                    <h6>
+                      <span>
+                        Mã sản phẩm:
+                        <strong id="ma-sp">chua co</strong>
+                      </span>
+                    </h6>
+                    <h4 id="price">chua co </h4>
+                    <div class="line"></div>
+                    <div class="row">
+                      <div class="kichco">
+                        <h4>SIZE</h4>
+                        <select id="size">
+                          <option value="31" selected>31</option>
+                          <option value="32">32</option>
+                          <option value="33">33</option>
+                          <option value="34">34</option>
+                          <option value="35">35</option>
+                          <option value="36">36</option>
+                          <option value="37">37</option>
+                        </select>
+                      </div>
+                      <div class="soluong">
+                        <h4>Số lượng</h4>
+                        <button class="bot" onclick="giamsl()">-</button>
+                        <input type="text" id="sl" value="1">
+                        <button class="them" onclick=tangsl()>+</button>
+                      </div>
+                    </div>
+                    <div>
+                     <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
+
+                    </div>
+                    <div>
+                      <button class="buy">THANH TOÁN</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      `;
+}
+
+
 

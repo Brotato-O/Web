@@ -131,11 +131,22 @@
         </div>
     
     <div id="SearchBar">
+        
       <input type="text" id="txtSearch" placeholder="Tìm kiếm " oninput="search1()"/>
-        <div id="searchhead">
-        </div>
-        <div id="SearchBar-submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <!-- <div id="SearchBar-submit">
+            <i class="fa-solid fa-bars"></i>   
+        </div> -->
+        <div id="phanloai-container" style="font-size: 20px;" >
+            <form name="phanloai">
+              <label for="phanloaisp">Phân loại</label>
+              <select name="phanloaisp" onchange="kiemtrachon()">
+                <option value="tatcasp">Tất cả sản phẩm</option>
+                <option value="Giày cỏ tự nhiên">Giày cỏ tự nhiên</option>
+                <option value="Giày cỏ nhân tạo">Giày cỏ nhân tạo</option>
+                <option value="Quần áo">Quần áo</option>
+                <option value="Phụ kiện">Phụ kiện</option>
+              </select>
+            </form>
         </div>
     </div>
 
