@@ -218,9 +218,9 @@ function buy(){
     checkCart();
     var username=localStorage.getItem('currentUser');
     var s = 0;
-    for (let i = 0; i < carttemp[username].length; i++) {
-        var quantity = parseInt(document.getElementById(`sl-${carttemp[username][i].id}`).value); 
-        s += quantity * carttemp[username][i].price;
+    for (let i = 0; i < carttemp.length; i++) {
+        var quantity = parseInt(document.getElementById(`sl-${carttemp[i].id}`).value); 
+        s += quantity * carttemp[i].price;
     }
     document.getElementById("total-pay").innerHTML = "Tổng thanh toán: " + s;
     return s;
