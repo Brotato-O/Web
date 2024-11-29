@@ -405,36 +405,40 @@ function goBackToAddress() {
 }
 
 function saveAddress() {
+    if (!validateNewAddress()) return; 
+
     const address = {
-      name: document.getElementById('name').value,
-      phone: document.getElementById('phone').value,
-      houseNumber: document.getElementById('house-number').value,
-      street: document.getElementById('street').value,
-      ward: document.getElementById('ward').value,
-      district: document.getElementById('district').value,
-      city: document.getElementById('city').value,
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        houseNumber: document.getElementById('house-number').value,
+        street: document.getElementById('street').value,
+        ward: document.getElementById('ward').value,
+        district: document.getElementById('district').value,
+        city: document.getElementById('city').value,
     };
+
     console.log('Địa chỉ đã lưu:', address);
-    
+
     newAddressBox.style.display = 'none';
-    showPaymentMethodBox(); 
+    showPaymentMethodBox();
 }
 
 function PaymentMethodSelection() {
-  const selectedMethod = document.querySelector('input[name="payment-method"]:checked');
+    const selectedMethod = document.querySelector('input[name="payment-method"]:checked');
 
-  cardInfoBox.style.display = 'none';
-  paymentImageContainer.style.display = 'none'; 
-  document.getElementById('cash-payment-box').style.display = 'none'; 
+    cardInfoBox.style.display = 'none';
+    paymentImageContainer.style.display = 'none';
+    document.getElementById('cash-payment-box').style.display = 'none';
 
-  if (selectedMethod && selectedMethod.value === 'Thẻ ngân hàng') {
-    cardInfoBox.style.display = 'block'; 
-  } else if (selectedMethod && selectedMethod.value === 'Chuyển khoản') {
-    paymentImageContainer.style.display = 'block';  
-  } else if (selectedMethod && selectedMethod.value === 'Tiền mặt') {
-    document.getElementById('cash-payment-box').style.display = 'block'; 
-    document.getElementById('cash-payment-amount').textContent = `Số tiền cần thanh toán: ${buy()}`;
-  }
+    if (selectedMethod && selectedMethod.value === 'Thẻ ngân hàng') {
+        cardInfoBox.style.display = 'block';
+    } else if (selectedMethod && selectedMethod.value === 'Chuyển khoản') {
+        paymentImageContainer.style.display = 'flex';
+        document.getElementById('payment-image').src = "img/Chuyenkhoan.jpg"; 
+    } else if (selectedMethod && selectedMethod.value === 'Tiền mặt') {
+        document.getElementById('cash-payment-box').style.display = 'block';
+        document.getElementById('cash-payment-amount').textContent = `Số tiền cần thanh toán: ${buy()} VND`;
+    }
 }
 
 function checkout() {
@@ -479,4 +483,27 @@ function adjustQuantity(itemId, change) {
     }
     document.getElementById(itemId).checked= true;
     buy();
+}
+// thêm điều kiện cho nhập địa chỉ
+function validateNewAddress() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const houseNumber = document.getElementById('house-number').value.trim();
+    const street = document.getElementById('street').value.trim();
+    const ward = document.getElementById('ward').value.trim();
+    const district = document.getElementById('district').value.trim();
+    const city = document.getElementById('city').value.trim();
+
+    if (!name || !phone || !houseNumber || !street || !ward || !district || !city) {
+        alert("Vui lòng điền đầy đủ thông tin địa chỉ.");
+        return false;
+    }
+
+    const phoneRegex = /^[0-9]{10}$/; 
+    if (!phoneRegex.test(phone)) {
+        alert("Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng.");
+        return false;
+    }
+
+    return true;
 }

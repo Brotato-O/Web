@@ -2,7 +2,6 @@
 var currentPage = 1;
 const productsPerPage = 12;
 
-function currency(value) { return value.toLocaleString('vi-VN'); }
 
 function closesp() {
     document.getElementById("sanpham-chitiet").style.display = "none";
@@ -62,8 +61,8 @@ function hienthisanpham1(){
                <div class="product" onclick="show2(${selectArrays[i].productId})">
                     <img src="${selectArrays[i].img}" alt="${selectArrays[i].name}">
                      <h3>${selectArrays[i].name}</h3>
-                      <p>${selectArrays[i].price.toLocaleString()} VND</p>
-                      <button class="addtocart">Thêm vào giỏ hàng</button>
+                      <p>${selectArrays[i].price}</p>
+                      
                 </div>
             `;
   }
@@ -122,12 +121,12 @@ function hienthisanpham1(){
                           <button class="them" onclick=tangsl()>+</button>
                         </div>
                       </div>
-                      <div>
+                      <div style="text-align: center">
                        <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                       </div>
                       <div>
-                        <button class="buy">THANH TOÁN</button>
+                        
                       </div>
                     </div>
                   </div>
@@ -153,7 +152,7 @@ function tangsl(){
         document.getElementById("img-sp").src = product.img;
         document.getElementById("name-sp").innerHTML = product.name;
         document.getElementById("ma-sp").innerHTML = `${product.productId || "N/A"}`;
-        document.getElementById("price").innerHTML = `${product.price.toLocaleString()} VND`;
+        document.getElementById("price").innerHTML = `${product.price}`;
         document.getElementById("sanpham-chitiet").style.display = "block";
     } else {
         console.error("Sản phẩm không tồn tại!");
@@ -172,8 +171,8 @@ function hienthitatcasp(){
                 <div class="product" onclick="show2(${tmp[i].productId})">
                     <img src="${tmp[i].img}" alt="${tmp[i].name}">
                      <h3>${tmp[i].name}</h3>
-                      <p>${tmp[i].price.toLocaleString()} VND</p>
-                      <button class="addtocart">Thêm vào giỏ hàng</button>
+                      <p>${tmp[i].price}</p>
+                     
                 </div>
             `;
 }
@@ -231,12 +230,12 @@ document.getElementById("allsp").innerHTML = `
                         <button class="them" onclick=tangsl()>+</button>
                       </div>
                     </div>
-                    <div>
+                    <div style="text-align: center">
                      <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                     </div>
                     <div>
-                      <button class="buy">THANH TOÁN</button>
+                     
                     </div>
                   </div>
                 </div>
@@ -274,8 +273,8 @@ for (var i = 0; i < productArray.length; i++) {
                               <div class="product" onclick="show2(${productArray[i].productId})">
                                 <img src="${productArray[i].img}" alt="${productArray[i].name}">
                                 <h3>${productArray[i].name}</h3>
-                                  <p>${productArray[i].price.toLocaleString()} VND</p>
-                                  <button class="addtocart">Thêm vào giỏ hàng</button>
+                                  <p>${productArray[i].price}</p>
+                                  
                                </div>
                            `;
     }
@@ -324,12 +323,12 @@ document.getElementById('allsp').innerHTML = `
                         <button class="them" onclick=tangsl()>+</button>
                       </div>
                     </div>
-                    <div>
+                    <div style="text-align: center">
                       <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                     </div>
                     <div>
-                      <button class="buy">THANH TOÁN</button>
+                      
                     </div>
                   </div>
                 </div>
@@ -437,7 +436,7 @@ document.getElementById('allsp').innerHTML = `
 //                           <button class="them" onclick=tangsl()>+</button>
 //                         </div>
 //                       </div>
-//                       <div>
+//                       <div style="text-align: center">
 //                        <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
   
 //                       </div>
@@ -480,8 +479,8 @@ function kiemtrachon() {
                                 <div class="product" onclick="show2(${tmp1[i].productId})">
                                   <img src="${tmp1[i].img}" alt="${tmp1[i].name}">
                                   <h3>${tmp1[i].name}</h3>
-                                    <p>${tmp1[i].price.toLocaleString()} VND</p>
-                                    <button class="addtocart">Thêm vào giỏ hàng</button>
+                                    <p>${tmp1[i].price}</p>
+                                    
                                  </div>
                              `;
       }
@@ -526,12 +525,12 @@ function kiemtrachon() {
                         <button class="them" onclick=tangsl()>+</button>
                       </div>
                     </div>
-                    <div>
+                    <div style="text-align: center">
                      <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                     </div>
                     <div>
-                      <button class="buy">THANH TOÁN</button>
+                     
                     </div>
                   </div>
                 </div>
