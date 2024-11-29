@@ -48,7 +48,7 @@ function cartDisplay(){
                         <option value="37" ${cartArray[username][i].size === '37' ? 'selected' : ''}>37</option>
                 </select>
             </td>
-                    <td class="cart-item-price">${cartArray[username][i].price}</td>
+                    <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()}</td>
                     <td><button class="delete" onclick="checkDelete('${i}')">X</button></td>
                 </tr>`;
         }
