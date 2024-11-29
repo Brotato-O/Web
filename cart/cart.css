@@ -220,6 +220,41 @@ select{
       transform: scale(1);
     }
 }
+#payment-method-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+#payment-method-box label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#payment-method-box input {
+  margin-right: 10px;
+}
+
+#payment-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#payment-image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 #payment-methods label {
     display: flex;
     align-items: center;
@@ -395,5 +430,45 @@ select{
     height: auto;
     object-fit: contain; 
   }
+  #new-address-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+#new-address-box input,
+#new-address-box select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
+#new-address-box label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    #new-address-box {
+        padding: 15px;
+    }
+
+    #new-address-box input,
+    #new-address-box select {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    #new-address-box label {
+        font-size: 12px;
+    }
+}
   
