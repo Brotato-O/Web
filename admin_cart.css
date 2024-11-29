@@ -61,6 +61,6 @@
         flex-direction: column-reverse;
     }
     #maintable{
-        width: 90%;
+        width: auto;
     }
 }

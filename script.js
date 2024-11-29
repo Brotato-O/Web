@@ -529,6 +529,7 @@ let products = JSON.parse(localStorage.getItem('products')) || [];
 let tmp = JSON.parse(localStorage.getItem('all')) || [];
 
 function displayProducts(products) {
+    
     const productContainer = document.getElementById('productContainer');
     productContainer.innerHTML = '';
     products.forEach(product => {
@@ -538,7 +539,7 @@ function displayProducts(products) {
             <img src="${product.img}" alt="${product.name}">
             <h3>${product.name}</h3>
             <p>${product.price}</p>
-            <button class="addtocart">Thêm vào giỏ hàng</button>
+           
             `;
         productContainer.appendChild(productElement);
         productElement.addEventListener('click', () => show2(product.productId));
