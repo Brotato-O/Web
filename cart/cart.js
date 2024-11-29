@@ -29,7 +29,7 @@ function cartDisplay(){
             s += `<tr>
                     <td><input type="checkbox" id="${i}" onchange="buy()"></td>
                     <td class="cart-item-image"><img src="../${cartArray[username][i].image}" alt="product"></td>
-                    <td class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].title}</label></td>
+                    <td class="cart-item-name"><label for="${i}">${cartArray[username][i].title}</label></td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
                             <button class="bot" onclick="adjustQuantity('${cartArray[username][i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
@@ -38,7 +38,7 @@ function cartDisplay(){
                         </div>
                     </td>
                     <td>
-                    <select onchange="adjustSize(this, '${cartArray[username][i].id}')">
+                    <select onchange="adjustSize(this, '${i}')">
                         <option value="31" ${cartArray[username][i].size === '31' ? 'selected' : ''}>31</option>
                         <option value="32" ${cartArray[username][i].size === '32' ? 'selected' : ''}>32</option>
                         <option value="33" ${cartArray[username][i].size === '33' ? 'selected' : ''}>33</option>
@@ -103,7 +103,7 @@ function cartDisplayMobile(){
                     <td class="cart-item-price">${cartArray[username][i].price}</td>
                 </tr>
                 <td class="cart-item-size">
-                <select onchange="adjustSize(this, '${cartArray[username][i].id}')">
+                <select onchange="adjustSize(this, '${i}')">
                     <option value="31" ${cartArray[username][i].size === '31' ? 'selected' : ''}>31</option>
                     <option value="32" ${cartArray[username][i].size === '32' ? 'selected' : ''}>32</option>
                     <option value="33" ${cartArray[username][i].size === '33' ? 'selected' : ''}>33</option>
@@ -140,11 +140,9 @@ function cartDisplayMobile(){
 function adjustSize(obj, id){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
-    for(var i=0; i<cartArray[username].length; i++){
-        if(cartArray[username][i].id== id) {
-            cartArray[username][i].size= obj.value;
-        }
-    }
+
+            cartArray[username][id].size= obj.value;
+      
     document.getElementById(id).checked = true;
     localStorage.setItem('userCarts', JSON.stringify(cartArray));
 }
@@ -156,7 +154,7 @@ function checkCart(){
     var cartArray= JSON.parse(localStorage.getItem('userCarts'));
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     for(var i=0; i<cartArray[username].length; i++){
-        var check= document.getElementById(cartArray[username][i].id);
+        var check= document.getElementById(i);
         if(check.checked== true) carttemp.push(cartArray[username][i]);
     }
 }
