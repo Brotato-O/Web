@@ -100,7 +100,7 @@ function cartDisplayMobile(){
                             <button class="them" onclick="adjustQuantity('${cartArray[username][i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
-                    <td class="cart-item-price">${currency('${cartArray[username][i].price}.toLocaleString()')}</td>
+                    <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()} VND</td>
                 </tr>
                 <td class="cart-item-size">
                 <select onchange="adjustSize(this, '${i}')">
