@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="admin.css" />
     <link rel="stylesheet" href="admin_cart.css" />
     <link rel="stylesheet" href="admin_countSale.css" />
+    <link rel="stylesheet" href="admin_khanhHang.css">
   </head>
   <body>
     <div id="admin">
@@ -23,8 +24,9 @@
                 >Trang chủ</a
               >
             </li>
-            <li><a href="admin.html?bill">Đơn hàng</a></li>
+            <li><a href="admin.html?bill">Đơn hàng </a></li>
             <li ><a href="admin.html?khachHang">Khách hàng</a></li>
+             <!-- <li>Khách hàng</li> -->
             <li>Quản lý thông tin</li>
             <li><a href="admin.html?count">Thống kê</a></li>
           </ul>
@@ -115,6 +117,26 @@
 
           </div>
          </div>
+
+         <!-- test -->
+         <div class="chucNang" style="display: none;">
+          <div id="DS_KH">
+            <div id="mainTable">
+              <!-- <h2>DANH SÁCH KHÁCH HÀNG</h2> -->
+              <table id="tableKH">
+                <!-- Hiển thị danh sách khách hàng -->
+              </table>
+              <div class="phantrang"></div>
+            </div>
+          </div>
+          <div id="timkiemKH">
+            <!-- Form tìm kiếm -->
+          </div>
+          <div id="formContainer">
+            <!-- Form sửa -->
+          </div>
+        </div>
+        <!--  -->
       </div>
     </div>
 
@@ -126,6 +148,7 @@
     <script src="admin.js"></script>
     <script src="admin_cart.js"></script>
     <script src="admin_countSale.js"></script>
+     <script src="admin_khachHang.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>
