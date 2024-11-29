@@ -65,8 +65,8 @@
 
     margin: auto;
   width: auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); /* Chia bảng thành 6 cột bằng nhau */
+  /* display: grid;
+  grid-template-columns: repeat(6, 1fr); */
    
   }
   .cot {
