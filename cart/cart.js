@@ -463,23 +463,37 @@ function showPaymentMethodBox() {
 
 //Hàm điều chỉnh số lượng 
 function adjustQuantity(itemId, change) {
-    var cartArray = JSON.parse(localStorage.getItem('cart'));
-    for (let i = 0; i < cartArray.length; i++) {
-        if (cartArray[i].id === itemId) {
-            let quantityInput = document.getElementById(`sl-${itemId}`);
-            let currentQuantity = parseInt(quantityInput.value);
-            let newQuantity = currentQuantity + change;
-            if (newQuantity < 1) {
-                alert('Số lượng tối thiểu là 1');
-                return;
-            }
-            quantityInput.value = newQuantity;
-            cartArray[i].quantity = newQuantity;
-            localStorage.setItem('cart', JSON.stringify(cartArray));
-            break;
-        }
+    const cartData = JSON.parse(localStorage.getItem('userCarts')) || {};
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const username = currentUser?.username;
+
+    if (!username || !cartData[username]) {
+        alert('Không tìm thấy giỏ hàng.');
+        return;
     }
-    document.getElementById(itemId).checked= true;
+
+    const userCart = cartData[username];
+    const item = userCart.find(product => product.id === itemId);
+
+    if (!item) {
+        alert('Sản phẩm không tồn tại trong giỏ hàng.');
+        return;
+    }
+
+    const newQuantity = item.quantity + change;
+    if (newQuantity < 1) {
+        alert('Số lượng tối thiểu là 1.');
+        return;
+    }
+
+    item.quantity = newQuantity;
+
+    const quantityInput = document.getElementById(`sl-${itemId}`);
+    if (quantityInput) {
+        quantityInput.value = newQuantity;
+    }
+
+    localStorage.setItem('userCarts', JSON.stringify(cartData));
     buy();
 }
 // thêm điều kiện cho nhập địa chỉ
