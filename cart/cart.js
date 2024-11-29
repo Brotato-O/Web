@@ -7,27 +7,6 @@ const cardInfoBox = document.getElementById('card-info-box');
 const paymentImageContainer = document.getElementById('payment-image-container');
 
 
-
-<<<<<<< HEAD
-function them() {
-    const carttemp = [
-        { image: 'img/1013.jpg', id: "S001", name: "Giày Adidas UltraBoost", price: 2000000, quantity: 1, size: 31 },
-        { image: 'img/1066.jpg', id: "S002", name: "Giày Nike Air Max", price: 2500000, quantity: 1, size: 31 },
-        { image: 'img/1067.JPG', id: "S003", name: "Giày Converse Chuck Taylor", price: 1500000, quantity: 1, size: 31 }
-    ];
-
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
-        alert("Vui lòng đăng nhập trước khi thêm sản phẩm vào giỏ hàng!");
-        return;
-    }
-
-    const username = currentUser.username;
-    const userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
-    userCarts[username] = carttemp;
-    localStorage.setItem('userCarts', JSON.stringify(userCarts));
-    alert("Đã thêm sản phẩm vào giỏ hàng!");
-=======
 function them(){
     let carttemp = {
         aa: [
@@ -65,7 +44,6 @@ function them(){
         ]
     };
     localStorage.setItem("userCarts", JSON.stringify(carttemp));
->>>>>>> 2fd7ca366b35cc565992ffeb3674ccdd9ea37196
 }
 
 
@@ -75,53 +53,6 @@ function xoabill() {
 }
 
 //hiển thị giỏ hàng
-<<<<<<< HEAD
-function cartDisplay() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
-        notLogin();
-        return;
-    }
-
-    const username = currentUser.username;
-    const userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
-    const cartArray = userCarts[username] || [];
-
-    if (cartArray.length === 0) {
-        document.getElementById('wrap-cart').innerHTML = `
-            <a href="../index.html">
-                <img src="../img/emty-cart.png" alt="emty-cart">
-                <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
-                <span>Quay lại trang chủ</span>
-            </a>`;
-        return;
-    }
-
-    const cartItemsHTML = cartArray.map(item => `
-        <tr>
-            <td><input type="checkbox" id="${item.id}" onchange="buy()"></td>
-            <td class="cart-item-image"><img src="${item.image}" alt="product"></td>
-            <td class="cart-item-name"><label for="${item.id}">${item.name}</label></td>
-            <td class="cart-item-quantity">
-                <div class="count-quantity">
-                    <button class="bot" onclick="adjustQuantity('${item.id}', -1)">-</button>
-                    <input type="text" id="sl-${item.id}" class="quantity" value="${item.quantity}" readonly>
-                    <button class="them" onclick="adjustQuantity('${item.id}', 1)">+</button>
-                </div>
-            </td>
-            <td>
-                <select onchange="adjustSize(this, '${item.id}')">
-                    <option value="31" ${item.size === '31' ? 'selected' : ''}>31</option>
-                    <option value="32" ${item.size === '32' ? 'selected' : ''}>32</option>
-                </select>
-            </td>
-            <td class="cart-item-price">${item.price.toLocaleString()} VND</td>
-            <td><button class="delete" onclick="checkDelete('${item.id}')">X</button></td>
-        </tr>`).join('');
-
-    document.getElementById('wrap-cart').innerHTML = `
-        <table class="cart-table">
-=======
 function cartDisplay(){    
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
@@ -162,7 +93,7 @@ function cartDisplay(){
                 </tr>`;
         }
         s = `<table class="cart-table">
->>>>>>> 2fd7ca366b35cc565992ffeb3674ccdd9ea37196
+
             <tr>
                 <td></td>
                 <th class="cart-item-image">Hình ảnh</th>
@@ -184,54 +115,8 @@ function cartDisplay(){
             <button id="open-checkout-button" onclick="openCheckout()">Thanh toán</button>
         </div>`;
     buy();
-}
+}}
 
-<<<<<<< HEAD
-function cartDisplayMobile() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
-        notLogin();
-        return;
-    }
-    const username = currentUser.username;
-    const userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
-    const cartArray = userCarts[username] || [];
-
-    if (cartArray.length === 0) {
-        document.getElementById('wrap-cart').innerHTML = `
-            <a href="../index.html">
-                <img src="../img/emty-cart.png" alt="emty-cart">
-                <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
-                <span>Quay lại trang chủ</span>
-            </a>`;
-        return;
-    }
-
-    let s = cartArray.map(item => `
-        <tr>
-            <td rowspan="2"><input type="checkbox" id="${item.id}" onchange="buy()"></td>
-            <td rowspan="2" class="cart-item-image"><img src="${item.image}" alt="product"></td>
-            <td rowspan="2" class="cart-item-name"><label for="${item.id}">${item.title}</label></td>
-            <td class="cart-item-quantity">
-                <div class="count-quantity">
-                    <button class="bot" onclick="adjustQuantity('${item.id}', -1)" style="display: flex; justify-content: center; align-items: center;">-</button>
-                    <input type="text" id="sl-${item.id}" class="quantity" value="${item.quantity}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
-                    <button class="them" onclick="adjustQuantity('${item.id}', 1)" style="display: flex; justify-content: center; align-items: center;">+</button>
-                </div>
-            </td>
-            <td class="cart-item-price">${item.price}</td>
-        </tr>
-        <tr>
-            <td class="cart-item-size">
-                <select onchange="adjustSize(this, '${item.id}')">
-                    <option value="31" ${item.size === '31' ? 'selected' : ''}>31</option>
-                    <option value="32" ${item.size === '32' ? 'selected' : ''}>32</option>
-                    <option value="33" ${item.size === '33' ? 'selected' : ''}>33</option>
-                    <option value="34" ${item.size === '34' ? 'selected' : ''}>34</option>
-                    <option value="35" ${item.size === '35' ? 'selected' : ''}>35</option>
-                    <option value="36" ${item.size === '36' ? 'selected' : ''}>36</option>
-                    <option value="37" ${item.size === '37' ? 'selected' : ''}>37</option>
-=======
 function cartDisplayMobile(){    
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
@@ -267,11 +152,10 @@ function cartDisplayMobile(){
                     <option value="35" ${cartArray[username][i].size === '35' ? 'selected' : ''}>35</option>
                     <option value="36" ${cartArray[username][i].size === '36' ? 'selected' : ''}>36</option>
                     <option value="37" ${cartArray[username][i].size === '37' ? 'selected' : ''}>37</option>
->>>>>>> 2fd7ca366b35cc565992ffeb3674ccdd9ea37196
                 </select>
             </td>
         </tr>
-    `).join('');
+    `};
 
     document.getElementById('wrap-cart').innerHTML = `
         <table class="cart-table">
@@ -293,7 +177,7 @@ function cartDisplayMobile(){
             <span id="total-pay">Tổng thanh toán: </span>
             <button id="open-checkout-button" onclick="openCheckout()">Thanh toán</button>
         </div>`;
-}
+}}
 
 function adjustSize(obj, id){
     var cart= JSON.parse(localStorage.getItem('cart'));
@@ -369,19 +253,7 @@ function deleteCartItem(id){
 }
 
 //hiển thị giá tiền
-<<<<<<< HEAD
-function buy() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) return;
 
-    const username = currentUser.username;
-    const userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
-    const cartArray = userCarts[username] || [];
-
-    const total = cartArray.reduce((sum, item) => sum + item.quantity * item.price, 0);
-    document.getElementById("total-pay").innerHTML = `Tổng thanh toán: ${total.toLocaleString()} VND`;
-    return total;
-=======
 function buy(){
     checkCart();
     console.log(carttemp);
@@ -392,7 +264,6 @@ function buy(){
     }
     document.getElementById("total-pay").innerHTML = "Tổng thanh toán: " + s;
     return s;
->>>>>>> 2fd7ca366b35cc565992ffeb3674ccdd9ea37196
 }
 
 //cảnh báo hủy đơn
