@@ -419,17 +419,29 @@ select{
     max-width: 300px;
     margin: 10px 0;
   }
-  #payment-image-container {
-    display: none;
-    margin-left: 20px; 
-    flex-shrink: 0; 
-  }
-  
-  #payment-image-container img {
-    width: 200px; 
-    height: auto;
-    object-fit: contain; 
-  }
+  #payment-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#payment-method-box {
+    flex: 1;
+}
+
+#payment-image-container {
+    flex: 0 0 auto;
+    display: none; /* Ẩn mặc định */
+    align-items: center;
+    justify-content: center;
+}
+
+#payment-image-container img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
   #new-address-box {
     display: flex;
     flex-direction: column;
