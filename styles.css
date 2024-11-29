@@ -459,19 +459,7 @@ body{
   border-bottom: solid 1px #010f1c;
   font-size: 1.2rem;
   font-weight: 500;
-  border-radius: 0.3rem;
   margin-left: 50px;
-}
-
-#SearchBar-submit{
-  padding: 10px 10px;
-  border: none;
-  background: #333;
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 500;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 #hero {
@@ -700,12 +688,12 @@ body{
   width: 100%;
   justify-self: center;
   flex-wrap: wrap;
-  margin: 40px 0;
+  margin: 40px 180px;
 }
 
 .services-item{
   display: flex;
-  font-size: 20px;
+  font-size: 1.5rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 20px;
 }
@@ -1111,7 +1099,7 @@ input[type="file"] {
 .mota-sanpham{
   border: 1px solid;
   display: flex;
-  margin: 50px auto;
+  margin: 150px auto;
   width: 1000px;
   height: auto;
   position: relative;
@@ -1204,15 +1192,15 @@ input[type="file"] {
   border-top: 2px dashed #6e6e6e; /* Dòng đứt đoạn màu xám nhạt */
   margin: 2px 0; /* Điều chỉnh khoảng cách trên và dưới nếu cần */
 }
+
 #sanpham-chitiet{
   display: none;
-  top:0;
+  top:0px;
   bottom: 0;
   left: 0;
   right: 0;
   position: fixed;
+  background: rgba(0, 0, 0, 0.7);
   z-index: 2001;
-  background-color: rgba(0,0,0, 0.6);
-  overflow-x: scroll;
-
+  overflow-x: hidden;
 }

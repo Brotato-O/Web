@@ -58,10 +58,10 @@ function hienthisanpham1(){
 
   for (let i = startIndex; i < endIndex; i++) {
     s += `
-               <div class="product" onclick="show2(${selectArrays[i].productId})">
+              <div class="product" onclick="show2(${selectArrays[i].productId})">
                     <img src="${selectArrays[i].img}" alt="${selectArrays[i].name}">
-                     <h3>${selectArrays[i].name}</h3>
-                      <p>${selectArrays[i].price}</p>
+                    <h3>${selectArrays[i].name}</h3>
+                    <p>${(selectArrays[i].price).toLocaleString()} VND</p>
                       
                 </div>
             `;

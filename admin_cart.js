@@ -130,7 +130,7 @@ function create(){
     var temp= document.createElement("div");
       temp.setAttribute("id", "select-bill");
       temp.innerHTML= `
-            <div><h3>Tìm kiếm hóa đơn</h3></div>
+            <div><h3>TÌM KIẾM HÓA ĐƠN</h3></div>
 
             <div>
               <form oninput=change() onchange=change()>
@@ -345,7 +345,7 @@ function lookUpStatus() {
             <p>${billtemp[i].status}</p>
           </div>`
           if (billtemp[i].status =="Đã xác nhận" || billtemp[i].status=="Chờ xác nhận")
-           document.getElementById("detail-bill").innerHTML+= `<button value="${obj.id}" onclick="changeStatus(this)">AAAAAAAAAA</button>`;
+           document.getElementById("detail-bill").innerHTML+= `<button value="${obj.id}" onclick="changeStatus(this)">XÁC NHẬN / HỦY XÁC NHẬN</button>`;
         }
     }
   }

@@ -646,18 +646,6 @@ css của sản phẩm
     margin: auto;
 }
 
-
-
-.mota-sanpham{
-    border: 1px solid;
-    display: flex;
-    margin: 50px auto;
-    width: 1000px;
-    height: auto;
-    position: relative;
-    padding: 50px 20px 20px;
-    background-color:rgb(249, 249, 249);
-}
 .exit{
     position: absolute;
     top:0;
@@ -756,18 +744,7 @@ background-color: black;
     border-top: 2px dashed #6e6e6e; /* Dòng đứt đoạn màu xám nhạt */
     margin: 2px 0; /* Điều chỉnh khoảng cách trên và dưới nếu cần */
 }
-#sanpham-chitiet{
-    display: none;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
-    z-index: 2001;
-    background-color: rgba(0,0,0, 0.6);
-    overflow-x: scroll;
-  
-}
+
 
 .danhsach-sanpham{
     
