@@ -537,7 +537,7 @@ function displayProducts(products) {
         productElement.innerHTML = `
             <img src="${product.img}" alt="${product.name}">
             <h3>${product.name}</h3>
-            <p>${product.price.toLocaleString()} VND</p>
+            <p>${product.price}</p>
             <button class="addtocart">Thêm vào giỏ hàng</button>
             `;
         productContainer.appendChild(productElement);
@@ -558,9 +558,6 @@ function show2(ID) {
         console.error("Sản phẩm không tồn tại!");
     }
 }
-
-function currency(value) { return value.toLocaleString('vi-VN'); }
-
 function closesp() {
     document.getElementById("sanpham-chitiet").style.display = "none";
 }

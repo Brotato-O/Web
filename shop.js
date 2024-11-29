@@ -62,7 +62,7 @@ function hienthisanpham1(){
                <div class="product" onclick="show2(${selectArrays[i].productId})">
                     <img src="${selectArrays[i].img}" alt="${selectArrays[i].name}">
                      <h3>${selectArrays[i].name}</h3>
-                      <p>${selectArrays[i].price.toLocaleString()} VND</p>
+                      <p>${selectArrays[i].price}</p>
                       <button class="addtocart">Thêm vào giỏ hàng</button>
                 </div>
             `;
@@ -172,7 +172,7 @@ function hienthitatcasp(){
                 <div class="product" onclick="show2(${tmp[i].productId})">
                     <img src="${tmp[i].img}" alt="${tmp[i].name}">
                      <h3>${tmp[i].name}</h3>
-                      <p>${tmp[i].price.toLocaleString()} VND</p>
+                      <p>${tmp[i].price}</p>
                       <button class="addtocart">Thêm vào giỏ hàng</button>
                 </div>
             `;
@@ -274,7 +274,7 @@ for (var i = 0; i < productArray.length; i++) {
                               <div class="product" onclick="show2(${productArray[i].productId})">
                                 <img src="${productArray[i].img}" alt="${productArray[i].name}">
                                 <h3>${productArray[i].name}</h3>
-                                  <p>${productArray[i].price.toLocaleString()} VND</p>
+                                  <p>${productArray[i].price}</p>
                                   <button class="addtocart">Thêm vào giỏ hàng</button>
                                </div>
                            `;
@@ -480,7 +480,7 @@ function kiemtrachon() {
                                 <div class="product" onclick="show2(${tmp1[i].productId})">
                                   <img src="${tmp1[i].img}" alt="${tmp1[i].name}">
                                   <h3>${tmp1[i].name}</h3>
-                                    <p>${tmp1[i].price.toLocaleString()} VND</p>
+                                    <p>${tmp1[i].price}</p>
                                     <button class="addtocart">Thêm vào giỏ hàng</button>
                                  </div>
                              `;
