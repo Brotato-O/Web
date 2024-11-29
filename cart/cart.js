@@ -192,7 +192,7 @@ function adjustSize(obj, id){
 var carttemp=[];
 function checkCart(){
     carttemp=[];  
-    var cartArray= JSON.parse(localStorage.getItem('cart'));
+    var cartArray= JSON.parse(localStorage.getItem('userCarts'));
     for(var i=0; i<cartArray.length; i++){
         var check= document.getElementById(cartArray[i].id);
         if(check.checked== true) carttemp.push(cartArray[i]);
@@ -201,7 +201,7 @@ function checkCart(){
 
 //chọn tất cả sản phẩm
 function checkAllItems(){
-    var cartArray= JSON.parse(localStorage.getItem('cart'));
+    var cartArray= JSON.parse(localStorage.getItem('userCarts'));
     var check= document.getElementById("check-all");
     if(check.checked== true)
         for(var i=0; i<cartArray.length; i++)
@@ -238,13 +238,13 @@ function checkDelete(id){
 }
 
 function deleteCartItem(id){
-    var cartArray= JSON.parse(localStorage.getItem('cart'));
+    var cartArray= JSON.parse(localStorage.getItem('userCarts'));
     for(let i=0; i < cartArray.length; i++)
         if (cartArray[i].id==id){
             cartArray.splice(i, 1);
             break;
         }
-    localStorage.setItem('cart',JSON.stringify(cartArray));
+    localStorage.setItem('userCarts',JSON.stringify(cartArray));
     cartDisplay();
 }
 
