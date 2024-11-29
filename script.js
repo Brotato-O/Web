@@ -646,6 +646,7 @@ document.addEventListener('click', function(event) {
             addToCartForUser(currentUser.username, cartItem);
             toast({ title: 'Thành công', message: 'Đã thêm sản phẩm vào giỏ hàng !', type: 'success', duration: 3000 });
             displayCart(currentUser.username);
+            
         } else {
             toast({ title: 'Thất bại', message: 'Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng !', type: 'error', duration: 3000 });
             return;
