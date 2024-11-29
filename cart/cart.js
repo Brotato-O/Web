@@ -8,6 +8,7 @@ const paymentImageContainer = document.getElementById('payment-image-container')
 
 
 
+<<<<<<< HEAD
 function them() {
     const carttemp = [
         { image: 'img/1013.jpg', id: "S001", name: "Giày Adidas UltraBoost", price: 2000000, quantity: 1, size: 31 },
@@ -26,6 +27,45 @@ function them() {
     userCarts[username] = carttemp;
     localStorage.setItem('userCarts', JSON.stringify(userCarts));
     alert("Đã thêm sản phẩm vào giỏ hàng!");
+=======
+function them(){
+    let carttemp = {
+        aa: [
+            { image: 'img/1000.jpg', id: 'S000', name: 'Giày Adidas UltraBoost', price: 2000000, quantity: 1, size: 31 },
+            { image: 'img/1001.jpg', id: 'S001', name: 'Giày Nike Air Max', price: 2500000, quantity: 1, size: 32 }
+        ],
+        user2: [
+            { image: 'img/1002.jpg', id: 'S002', name: 'Giày Converse Chuck Taylor', price: 1500000, quantity: 1, size: 33 }
+        ],
+        user3: [
+            { image: 'img/1003.jpg', id: 'S003', name: 'Giày Vans Old Skool', price: 1200000, quantity: 1, size: 34 }
+        ],
+        user4: [
+            { image: 'img/1004.jpg', id: 'S004', name: 'Giày Puma Suede Classic', price: 1800000, quantity: 1, size: 35 },
+            { imageg: 'img/1005.jpg', id: 'S005', name: 'Giày New Balance 574', price: 2100000, quantity: 1, size: 36 }
+        ],
+        user5: [
+            { image: 'img/1006.jpg', id: 'S006', name: 'Giày Reebok Club C', price: 1700000, quantity: 1, size: 37 }
+        ],
+        user6: [
+            { image: 'img/1007.jpg', id: 'S007', name: 'Giày Asics Gel-Lyte III', price: 2200000, quantity: 1, size: 38 }
+        ],
+        user7: [
+            { image: 'img/1008.jpg', id: 'S008', name: 'Giày Jordan 1', price: 3000000, quantity: 1, size: 39 }
+        ],
+        user8: [
+            { image: 'img/1009.jpg', id: 'S009', name: 'Giày Balenciaga Triple S', price: 8000000, quantity: 1, size: 40 }
+        ],
+        user9: [
+            { image: 'img/1010.jpg', id: 'S010', name: 'Giày Adidas UltraBoost', price: 2000000, quantity: 1, size: 31 },
+            { image: 'img/1011.jpg', id: 'S011', name: 'Giày Nike Air Max', price: 2500000, quantity: 1, size: 32 }
+        ],
+        user10: [
+            { image: 'img/1012.jpg', id: 'S012', name: 'Giày Converse Chuck Taylor', price: 1500000, quantity: 1, size: 33 }
+        ]
+    };
+    localStorage.setItem("userCarts", JSON.stringify(carttemp));
+>>>>>>> 2fd7ca366b35cc565992ffeb3674ccdd9ea37196
 }
 
 
@@ -35,6 +75,7 @@ function xoabill() {
 }
 
 //hiển thị giỏ hàng
+<<<<<<< HEAD
 function cartDisplay() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser) {
@@ -80,6 +121,48 @@ function cartDisplay() {
 
     document.getElementById('wrap-cart').innerHTML = `
         <table class="cart-table">
+=======
+function cartDisplay(){    
+    var cartArray = JSON.parse(localStorage.getItem('userCarts'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
+    if (cartArray[username] == undefined || cartArray[username].length == 0 || cartArray == undefined) {
+        var s = `<a href="../index.html">
+            <img src="../img/emty-cart.png" alt="emty-cart">
+            <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
+            <span>Quay lại trang chủ</span>
+        </a>`;
+        document.getElementById('wrap-cart').innerHTML = s;
+    } else {
+        var s = "";
+        for (let i = 0; i < cartArray[username].length; i++) {
+            s += `<tr>
+                    <td><input type="checkbox" id="${cartArray[username][i].id}" onchange="buy()"></td>
+                    <td class="cart-item-image"><img src="../${cartArray[username][i].image}" alt="product"></td>
+                    <td class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].name}</label></td>
+                    <td class="cart-item-quantity">
+                        <div class="count-quantity">
+                            <button class="bot" onclick="adjustQuantity('${cartArray[username][i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
+                            <input type="text" id="sl-${cartArray[username][i].id}" class="quantity" value="${cartArray[username][i].quantity}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
+                            <button class="them" onclick="adjustQuantity('${cartArray[username][i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
+                        </div>
+                    </td>
+                    <td>
+                    <select onchange="adjustSize(this, '${cartArray[username][i].id}')">
+                        <option value="31" ${cartArray[username][i].size === '31' ? 'selected' : ''}>31</option>
+                        <option value="32" ${cartArray[username][i].size === '32' ? 'selected' : ''}>32</option>
+                        <option value="33" ${cartArray[username][i].size === '33' ? 'selected' : ''}>33</option>
+                        <option value="34" ${cartArray[username][i].size === '34' ? 'selected' : ''}>34</option>
+                        <option value="35" ${cartArray[username][i].size === '35' ? 'selected' : ''}>35</option>
+                        <option value="36" ${cartArray[username][i].size === '36' ? 'selected' : ''}>36</option>
+                        <option value="37" ${cartArray[username][i].size === '37' ? 'selected' : ''}>37</option>
+                </select>
+            </td>
+                    <td class="cart-item-price">${cartArray[username][i].price}</td>
+                    <td><button class="delete" onclick="checkDelete('${cartArray[username][i].id}')">X</button></td>
+                </tr>`;
+        }
+        s = `<table class="cart-table">
+>>>>>>> 2fd7ca366b35cc565992ffeb3674ccdd9ea37196
             <tr>
                 <td></td>
                 <th class="cart-item-image">Hình ảnh</th>
@@ -103,6 +186,7 @@ function cartDisplay() {
     buy();
 }
 
+<<<<<<< HEAD
 function cartDisplayMobile() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser) {
@@ -147,6 +231,43 @@ function cartDisplayMobile() {
                     <option value="35" ${item.size === '35' ? 'selected' : ''}>35</option>
                     <option value="36" ${item.size === '36' ? 'selected' : ''}>36</option>
                     <option value="37" ${item.size === '37' ? 'selected' : ''}>37</option>
+=======
+function cartDisplayMobile(){    
+    var cartArray = JSON.parse(localStorage.getItem('userCarts'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
+    if (cartArray == undefined || cartArray[username].length == 0) {
+        var s = `<a href="../index.html">
+            <img src="../img/emty-cart.png" alt="emty-cart">
+            <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
+            <span>Quay lại trang chủ</span>
+        </a>`;
+        document.getElementById('wrap-cart').innerHTML = s;
+    } else {
+        var s = "";
+        for (let i = 0; i < cartArray[username].length; i++) {
+            s += `<tr>
+                    <td rowspan="2"><input type="checkbox" id="${cartArray[username][i].id}" onchange="buy()"></td>
+                    <td rowspan="2" class="cart-item-image"><img src="../${cartArray[username][i].image}" alt="product"></td>
+                    <td rowspan="2" class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].name}</label></td>
+                    <td class="cart-item-quantity">
+                        <div class="count-quantity">
+                            <button class="bot" onclick="adjustQuantity('${cartArray[username][i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
+                            <input type="text" id="sl-${cartArray[username][i].id}" class="quantity" value="${cartArray[username][i].quantity}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
+                            <button class="them" onclick="adjustQuantity('${cartArray[username][i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
+                        </div>
+                    </td>
+                    <td class="cart-item-price">${cartArray[username][i].price}</td>
+                </tr>
+                <td class="cart-item-size">
+                <select onchange="adjustSize(this, '${cartArray[username][i].id}')">
+                    <option value="31" ${cartArray[username][i].size === '31' ? 'selected' : ''}>31</option>
+                    <option value="32" ${cartArray[username][i].size === '32' ? 'selected' : ''}>32</option>
+                    <option value="33" ${cartArray[username][i].size === '33' ? 'selected' : ''}>33</option>
+                    <option value="34" ${cartArray[username][i].size === '34' ? 'selected' : ''}>34</option>
+                    <option value="35" ${cartArray[username][i].size === '35' ? 'selected' : ''}>35</option>
+                    <option value="36" ${cartArray[username][i].size === '36' ? 'selected' : ''}>36</option>
+                    <option value="37" ${cartArray[username][i].size === '37' ? 'selected' : ''}>37</option>
+>>>>>>> 2fd7ca366b35cc565992ffeb3674ccdd9ea37196
                 </select>
             </td>
         </tr>
@@ -189,16 +310,17 @@ function adjustSize(obj, id){
 var carttemp=[];
 function checkCart(){
     carttemp=[];  
-    var cartArray= JSON.parse(localStorage.getItem('cart'));
-    for(var i=0; i<cartArray.length; i++){
-        var check= document.getElementById(cartArray[i].id);
-        if(check.checked== true) carttemp.push(cartArray[i]);
+    var cartArray= JSON.parse(localStorage.getItem('userCarts'));
+    var username= JSON.parse(localStorage.getItem('currentUser')).username;
+    for(var i=0; i<cartArray[username].length; i++){
+        var check= document.getElementById(cartArray[username][i].id);
+        if(check.checked== true) carttemp.push(cartArray[username][i]);
     }
 }
 
 //chọn tất cả sản phẩm
 function checkAllItems(){
-    var cartArray= JSON.parse(localStorage.getItem('cart'));
+    var cartArray= JSON.parse(localStorage.getItem('userCarts'));
     var check= document.getElementById("check-all");
     if(check.checked== true)
         for(var i=0; i<cartArray.length; i++)
@@ -235,17 +357,18 @@ function checkDelete(id){
 }
 
 function deleteCartItem(id){
-    var cartArray= JSON.parse(localStorage.getItem('cart'));
+    var cartArray= JSON.parse(localStorage.getItem('userCarts'));
     for(let i=0; i < cartArray.length; i++)
         if (cartArray[i].id==id){
             cartArray.splice(i, 1);
             break;
         }
-    localStorage.setItem('cart',JSON.stringify(cartArray));
+    localStorage.setItem('userCarts',JSON.stringify(cartArray));
     cartDisplay();
 }
 
 //hiển thị giá tiền
+<<<<<<< HEAD
 function buy() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser) return;
@@ -257,6 +380,18 @@ function buy() {
     const total = cartArray.reduce((sum, item) => sum + item.quantity * item.price, 0);
     document.getElementById("total-pay").innerHTML = `Tổng thanh toán: ${total.toLocaleString()} VND`;
     return total;
+=======
+function buy(){
+    checkCart();
+    console.log(carttemp);
+    var s = 0;
+    for (let i = 0; i < carttemp.length; i++) {
+        var quantity = parseInt(document.getElementById(`sl-${carttemp[i].id}`).value); 
+        s += quantity * carttemp[i].price;
+    }
+    document.getElementById("total-pay").innerHTML = "Tổng thanh toán: " + s;
+    return s;
+>>>>>>> 2fd7ca366b35cc565992ffeb3674ccdd9ea37196
 }
 
 //cảnh báo hủy đơn
@@ -372,7 +507,6 @@ window.addEventListener("load", function(){
 function addCSS(){
     var li= document.getElementsByClassName('status-li');
     var temp= location.href.split("?")[1];
-    console.log(temp);
     if(temp ==undefined || temp=="" || temp.search("focus")==0) {
         li[0].style.backgroundColor="white";
         li[0].style.borderRadius="20px";
