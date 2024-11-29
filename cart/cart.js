@@ -48,7 +48,7 @@ function cartDisplay(){
                         <option value="37" ${cartArray[username][i].size === '37' ? 'selected' : ''}>37</option>
                 </select>
             </td>
-                    <td class="cart-item-price">${cartArray[username][i].price}</td>
+                    <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()}VND</td>
                     <td><button class="delete" onclick="checkDelete('${i}')">X</button></td>
                 </tr>`;
         }
@@ -100,7 +100,7 @@ function cartDisplayMobile(){
                             <button class="them" onclick="adjustQuantity('${cartArray[username][i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
-                    <td class="cart-item-price">${cartArray[username][i].price}</td>
+                    <td class="cart-item-price">${currency('${cartArray[username][i].price}.toLocaleString()')}</td>
                 </tr>
                 <td class="cart-item-size">
                 <select onchange="adjustSize(this, '${i}')">
@@ -157,6 +157,7 @@ function checkCart(){
         var check= document.getElementById(i);
         if(check.checked== true) carttemp.push(cartArray[username][i]);
     }
+    console.log(carttemp);
 }
 
 //chọn tất cả sản phẩm
@@ -174,6 +175,9 @@ function checkAllItems(){
     buy();
 }
 
+//hàm đổi
+//function currency(value) { return value.toLocaleString('vi-VN'); }
+
 //hàm cảnh báo xóa
 function warning() {
     var result = window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này?");
@@ -184,13 +188,22 @@ function warning() {
 //xóa sản phẩm được chọn
 function deleteCheckedItems(){
     checkCart();
+    var cartArray = JSON.parse(localStorage.getItem('userCarts'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
     if(carttemp.length==0 || carttemp== undefined) {
         alert("Bạn chưa chọn sản phẩm để xóa!");
         return;
     };
+    var temp= [];
     if(warning()== false) return;
-    for (let i=0; i < carttemp.length; i++)
-        deleteCartItem(i);
+    for(let i=0; i<cartArray[username].length; i++){
+        if (document.getElementById(i).checked == false){
+            temp.push(cartArray[username][i]);
+        }
+    }
+    cartArray[username]= temp;
+    localStorage.setItem(`userCarts`,JSON.stringify(cartArray));
+    cartDisplay();
 }
 
 //xóa sản phẩm

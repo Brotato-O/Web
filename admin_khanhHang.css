@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.chucNang {
+  display: flex;
+}
+#DS_KH {
+  width: 65%;
+  padding: 10px;
+}
+#mainTable {
+  width: 100%;
+}
+#mainTable h2,
+#itemForm h2 {
+  display: block;
+  text-align: center;
+  margin: 30px;
+  font-weight: bold;
+  font-size: 1.17em;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 30px;
+}
+th {
+  border-collapse: collapse;
+  background-color: pink;
+  color: orange;
+  font-weight: bold;
+  padding: 5px;
+  margin-bottom: 30px;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  padding: 10px;
+}
+.btn_ {
+  display: flex;
+  width: 100%;
+}
+.btn_ button {
+  width: 40%;
+  margin: 5%;
+  padding: 2px;
+}
+.btn_ button:hover {
+  background-color: red;
+}
+/*  */
+#timkiemKH {
+  width: 34%;
+  padding: 20px;
+  background-color: pink;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 2px;
+  margin-top: 10px;
+  height: 400px;
+}
+
+.itemForm h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.itemForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itemForm input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.itemForm label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+#btn {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+#btn button {
+  width: 20%;
+  margin: 10px;
+  padding: 10px;
+  font-weight: bold;
+}
+#btn button:hover {
+  background-color: red;
+}
+/*  */
+.phantrang {
+  font-size: 20px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f9f9f9;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  z-index: 10;
+}
+
+.sotrang {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.sotrang:hover {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-color: #007bff;
+}
+
+#suaTTKH {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: pink;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  z-index: 10;
+}
