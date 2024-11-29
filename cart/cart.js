@@ -7,6 +7,7 @@ const cardInfoBox = document.getElementById('card-info-box');
 const paymentImageContainer = document.getElementById('payment-image-container');
 
 
+
 function them(){
     let carttemp = {
         aa: [
@@ -46,8 +47,7 @@ function them(){
     localStorage.setItem("userCarts", JSON.stringify(carttemp));
 }
 
-
-function xoabill() {
+function xoabill(){
     localStorage.removeItem("bill");
     localStorage.removeItem("userlogin");
 }
@@ -93,7 +93,6 @@ function cartDisplay(){
                 </tr>`;
         }
         s = `<table class="cart-table">
-
             <tr>
                 <td></td>
                 <th class="cart-item-image">Hình ảnh</th>
@@ -102,9 +101,8 @@ function cartDisplay(){
                 <th class="cart-item-size">Size</th>
                 <th class="cart-item-price">Đơn giá</th>
                 <td></td>
-            </tr>
-            ${cartItemsHTML}
-        </table>
+            </tr>` + s +
+        `</table> 
         <div id="total-bill">
             <div>
                 <input type="checkbox" id="check-all" onchange="checkAllItems()"> 
@@ -114,8 +112,9 @@ function cartDisplay(){
             <span id="total-pay">Tổng thanh toán: </span>
             <button id="open-checkout-button" onclick="openCheckout()">Thanh toán</button>
         </div>`;
-    buy();
-}}
+        document.getElementById('wrap-cart').innerHTML = s;
+    }
+}
 
 function cartDisplayMobile(){    
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
@@ -153,21 +152,18 @@ function cartDisplayMobile(){
                     <option value="36" ${cartArray[username][i].size === '36' ? 'selected' : ''}>36</option>
                     <option value="37" ${cartArray[username][i].size === '37' ? 'selected' : ''}>37</option>
                 </select>
-            </td>
-        </tr>
-    `};
-
-    document.getElementById('wrap-cart').innerHTML = `
-        <table class="cart-table">
+            </td>`;
+        }
+        s = `<table class="cart-table">
             <tr>
                 <td></td>
                 <th class="cart-item-image">Hình ảnh</th>
                 <th class="cart-item-name">Tên sản phẩm</th>
                 <th class="cart-item-quantity">Tùy chỉnh</th>
                 <th class="cart-item-price">Đơn giá</th>
-            </tr>
-            ${s}
-        </table>
+                <td></td>
+            </tr>` + s +
+        `</table> 
         <div id="total-bill">
             <div>
                 <input type="checkbox" id="check-all" onchange="checkAllItems()"> 
@@ -177,17 +173,20 @@ function cartDisplayMobile(){
             <span id="total-pay">Tổng thanh toán: </span>
             <button id="open-checkout-button" onclick="openCheckout()">Thanh toán</button>
         </div>`;
-}}
+        document.getElementById('wrap-cart').innerHTML = s;
+    }
+}
 
 function adjustSize(obj, id){
-    var cart= JSON.parse(localStorage.getItem('cart'));
-    for(var i=0; i<cart.length; i++){
-        if(cart[i].id== id) {
-            cart[i].size= obj.value;
+    var cartArray = JSON.parse(localStorage.getItem('userCarts'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
+    for(var i=0; i<cartArray[username].length; i++){
+        if(cartArray[username][i].id== id) {
+            cartArray[username][i].size= obj.value;
         }
     }
     document.getElementById(id).checked = true;
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('userCarts', JSON.stringify(cartArray));
 }
 
 //kiểm tra sản phẩm được chọn
@@ -205,14 +204,13 @@ function checkCart(){
 //chọn tất cả sản phẩm
 function checkAllItems(){
     var cartArray= JSON.parse(localStorage.getItem('userCarts'));
-    var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var check= document.getElementById("check-all");
     if(check.checked== true)
-        for(var i=0; i<cartArray[username].length; i++)
-            document.getElementById(cartArray[username][i].id).checked= true;
+        for(var i=0; i<cartArray.length; i++)
+            document.getElementById(cartArray[i].id).checked= true;
     else
         for(var i=0; i<cartArray.length; i++)
-            document.getElementById(cartArray[username][i].id).checked= false;
+            document.getElementById(cartArray[i].id).checked= false;
     buy();
 }
 
@@ -253,14 +251,13 @@ function deleteCartItem(id){
 }
 
 //hiển thị giá tiền
-
 function buy(){
     checkCart();
-    console.log(carttemp);
+    var usename=localStorage.getItem('currentUser');
     var s = 0;
-    for (let i = 0; i < carttemp.length; i++) {
-        var quantity = parseInt(document.getElementById(`sl-${carttemp[i].id}`).value); 
-        s += quantity * carttemp[i].price;
+    for (let i = 0; i < carttemp[username].length; i++) {
+        var quantity = parseInt(document.getElementById(`sl-${carttemp[username][i].id}`).value); 
+        s += quantity * carttemp[username][i].price;
     }
     document.getElementById("total-pay").innerHTML = "Tổng thanh toán: " + s;
     return s;
@@ -502,25 +499,22 @@ function showPaymentMethodBox() {
 
 //Hàm điều chỉnh số lượng 
 function adjustQuantity(itemId, change) {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) return;
-
-    const username = currentUser.username;
-    const userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
-    const cartArray = userCarts[username] || [];
-
-    cartArray.forEach(item => {
-        if (item.id === itemId) {
-            const newQuantity = item.quantity + change;
+    var cartArray = JSON.parse(localStorage.getItem('cart'));
+    for (let i = 0; i < cartArray.length; i++) {
+        if (cartArray[i].id === itemId) {
+            let quantityInput = document.getElementById(`sl-${itemId}`);
+            let currentQuantity = parseInt(quantityInput.value);
+            let newQuantity = currentQuantity + change;
             if (newQuantity < 1) {
-                alert("Số lượng tối thiểu là 1");
+                alert('Số lượng tối thiểu là 1');
                 return;
             }
-            item.quantity = newQuantity;
+            quantityInput.value = newQuantity;
+            cartArray[i].quantity = newQuantity;
+            localStorage.setItem('cart', JSON.stringify(cartArray));
+            break;
         }
-    });
-
-    userCarts[username] = cartArray;
-    localStorage.setItem('userCarts', JSON.stringify(userCarts));
-    cartDisplay();
+    }
+    document.getElementById(itemId).checked= true;
+    buy();
 }
