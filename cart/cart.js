@@ -203,13 +203,14 @@ function checkCart(){
 //chọn tất cả sản phẩm
 function checkAllItems(){
     var cartArray= JSON.parse(localStorage.getItem('userCarts'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var check= document.getElementById("check-all");
     if(check.checked== true)
-        for(var i=0; i<cartArray.length; i++)
-            document.getElementById(cartArray[i].id).checked= true;
+        for(var i=0; i<cartArray[username].length; i++)
+            document.getElementById(cartArray[username][i].id).checked= true;
     else
         for(var i=0; i<cartArray.length; i++)
-            document.getElementById(cartArray[i].id).checked= false;
+            document.getElementById(cartArray[username][i].id).checked= false;
     buy();
 }
 
