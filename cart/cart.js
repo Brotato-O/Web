@@ -48,7 +48,7 @@ function cartDisplay(){
                         <option value="37" ${cartArray[username][i].size === '37' ? 'selected' : ''}>37</option>
                 </select>
             </td>
-                    <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()}</td>
+                    <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()}VND</td>
                     <td><button class="delete" onclick="checkDelete('${i}')">X</button></td>
                 </tr>`;
         }
@@ -176,7 +176,7 @@ function checkAllItems(){
 }
 
 //hàm đổi
-function currency(value) { return value.toLocaleString('vi-VN'); }
+//function currency(value) { return value.toLocaleString('vi-VN'); }
 
 //hàm cảnh báo xóa
 function warning() {
