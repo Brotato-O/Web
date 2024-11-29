@@ -193,9 +193,10 @@ var carttemp=[];
 function checkCart(){
     carttemp=[];  
     var cartArray= JSON.parse(localStorage.getItem('userCarts'));
-    for(var i=0; i<cartArray.length; i++){
-        var check= document.getElementById(cartArray[i].id);
-        if(check.checked== true) carttemp.push(cartArray[i]);
+    var username= JSON.parse(localStorage.getItem('currentUser')).username;
+    for(var i=0; i<cartArray[username].length; i++){
+        var check= document.getElementById(cartArray[username][i].id);
+        if(check.checked== true) carttemp.push(cartArray[username][i]);
     }
 }
 
@@ -251,6 +252,7 @@ function deleteCartItem(id){
 //hiển thị giá tiền
 function buy(){
     checkCart();
+    console.log(carttemp);
     var s = 0;
     for (let i = 0; i < carttemp.length; i++) {
         var quantity = parseInt(document.getElementById(`sl-${carttemp[i].id}`).value); 
