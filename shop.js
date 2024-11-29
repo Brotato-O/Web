@@ -121,12 +121,12 @@ function hienthisanpham1(){
                           <button class="them" onclick=tangsl()>+</button>
                         </div>
                       </div>
-                      <div>
+                      <div style="text-align: center">
                        <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                       </div>
                       <div>
-                        <button class="buy">THANH TOÁN</button>
+                        
                       </div>
                     </div>
                   </div>
@@ -230,12 +230,12 @@ document.getElementById("allsp").innerHTML = `
                         <button class="them" onclick=tangsl()>+</button>
                       </div>
                     </div>
-                    <div>
+                    <div style="text-align: center">
                      <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                     </div>
                     <div>
-                      <button class="buy">THANH TOÁN</button>
+                     
                     </div>
                   </div>
                 </div>
@@ -274,7 +274,7 @@ for (var i = 0; i < productArray.length; i++) {
                                 <img src="${productArray[i].img}" alt="${productArray[i].name}">
                                 <h3>${productArray[i].name}</h3>
                                   <p>${productArray[i].price}</p>
-                                  <button class="addtocart">Thêm vào giỏ hàng</button>
+                                  
                                </div>
                            `;
     }
@@ -323,12 +323,12 @@ document.getElementById('allsp').innerHTML = `
                         <button class="them" onclick=tangsl()>+</button>
                       </div>
                     </div>
-                    <div>
+                    <div style="text-align: center">
                       <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                     </div>
                     <div>
-                      <button class="buy">THANH TOÁN</button>
+                      
                     </div>
                   </div>
                 </div>
@@ -436,7 +436,7 @@ document.getElementById('allsp').innerHTML = `
 //                           <button class="them" onclick=tangsl()>+</button>
 //                         </div>
 //                       </div>
-//                       <div>
+//                       <div style="text-align: center">
 //                        <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
   
 //                       </div>
@@ -525,12 +525,12 @@ function kiemtrachon() {
                         <button class="them" onclick=tangsl()>+</button>
                       </div>
                     </div>
-                    <div>
+                    <div style="text-align: center">
                      <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
                     </div>
                     <div>
-                      <button class="buy">THANH TOÁN</button>
+                     
                     </div>
                   </div>
                 </div>
