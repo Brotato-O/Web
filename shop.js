@@ -62,7 +62,7 @@ function hienthisanpham1(){
                     <img src="${selectArrays[i].img}" alt="${selectArrays[i].name}">
                      <h3>${selectArrays[i].name}</h3>
                       <p>${selectArrays[i].price}</p>
-                      <button class="addtocart">Thêm vào giỏ hàng</button>
+                      
                 </div>
             `;
   }
@@ -480,7 +480,7 @@ function kiemtrachon() {
                                   <img src="${tmp1[i].img}" alt="${tmp1[i].name}">
                                   <h3>${tmp1[i].name}</h3>
                                     <p>${tmp1[i].price}</p>
-                                    <button class="addtocart">Thêm vào giỏ hàng</button>
+                                    
                                  </div>
                              `;
       }
