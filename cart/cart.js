@@ -27,7 +27,7 @@ function cartDisplay(){
         var s = "";
         for (let i = 0; i < cartArray[username].length; i++) {
             s += `<tr>
-                    <td><input type="checkbox" id="${cartArray[username][i].id}" onchange="buy()"></td>
+                    <td><input type="checkbox" id="${i}" onchange="buy()"></td>
                     <td class="cart-item-image"><img src="../${cartArray[username][i].image}" alt="product"></td>
                     <td class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].title}</label></td>
                     <td class="cart-item-quantity">
@@ -49,7 +49,7 @@ function cartDisplay(){
                 </select>
             </td>
                     <td class="cart-item-price">${cartArray[username][i].price}</td>
-                    <td><button class="delete" onclick="checkDelete('${cartArray[username][i].id}')">X</button></td>
+                    <td><button class="delete" onclick="checkDelete('${i}')">X</button></td>
                 </tr>`;
         }
         s = `<table class="cart-table">
@@ -90,7 +90,7 @@ function cartDisplayMobile(){
         var s = "";
         for (let i = 0; i < cartArray[username].length; i++) {
             s += `<tr>
-                    <td rowspan="2"><input type="checkbox" id="${cartArray[username][i].id}" onchange="buy()"></td>
+                    <td rowspan="2"><input type="checkbox" id="${i}" onchange="buy()"></td>
                     <td rowspan="2" class="cart-item-image"><img src="../${cartArray[username][i].image}" alt="product"></td>
                     <td rowspan="2" class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].title}</label></td>
                     <td class="cart-item-quantity">
@@ -166,12 +166,13 @@ function checkAllItems(){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var check= document.getElementById("check-all");
+    console.log(document.getElementById("1"));
     if(check.checked== true)
         for(var i=0; i<cartArray[username].length; i++)
-            document.getElementById(cartArray[username][i].id).checked= true;
+            document.getElementById(i).checked= true;
     else
         for(var i=0; i<cartArray[username].length; i++)
-            document.getElementById(cartArray[username][i].id).checked= false;
+            document.getElementById(i).checked= false;
     buy();
 }
 
@@ -185,14 +186,13 @@ function warning() {
 //xóa sản phẩm được chọn
 function deleteCheckedItems(){
     checkCart();
-    var username = JSON.parse(localStorage.getItem('currentUser')).username;
     if(carttemp.length==0 || carttemp== undefined) {
         alert("Bạn chưa chọn sản phẩm để xóa!");
         return;
     };
     if(warning()== false) return;
     for (let i=0; i < carttemp.length; i++)
-        deleteCartItem(carttemp[i].id);
+        deleteCartItem(i);
 }
 
 //xóa sản phẩm
@@ -204,11 +204,10 @@ function checkDelete(id){
 function deleteCartItem(id){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
-    for(let i=0; i < cartArray[username].length; i++)
-        if (cartArray[username][i].id==id){
-            cartArray[username].splice(i, 1);
-            break;
-        }
+    
+            cartArray[username].splice(id, 1);
+            
+        
     localStorage.setItem('userCarts',JSON.stringify(cartArray));
     cartDisplay();
 }
