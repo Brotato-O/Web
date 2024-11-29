@@ -191,7 +191,7 @@ window.addEventListener("load", function () {
     lookUpBillDisplay();
     lookUpStatus();
     lookUpBill();
-    onCustomer();
+    
     }
 })
 
