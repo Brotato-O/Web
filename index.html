@@ -349,61 +349,62 @@
 
 
     <div id="toast"></div>
+
     <div id="sanpham-chitiet">
         <div class="mota-sanpham">
-          <button type="button" class="exit" onclick="closesp();">x</button>
-          <div class="mota-trai">
-            <img id="img-sp" src="1000.jpg" />
-          </div>
-          <div class="mota-phai">
-            <h1 id="name-sp">chua co</h1>
+                <button type="button" class="exit" onclick="closesp();">x</button>
+            <div class="mota-trai">
+                <img id="img-sp" src="img/1000.jpg" />
+            </div>
+            <div class="mota-phai">
+                <h3 id="name-sp" style="font-size: 26px;">chua co</h3>
             <h6>
-              <span>
-                Mã sản phẩm:
-                <strong id="ma-sp">chua co</strong>
-              </span>
+                <span>
+                    Mã sản phẩm:
+                    <span id="ma-sp">chua co</span>
+                </span>
             </h6>
             <h4 id="price">chua co </h4>
             <div class="line"></div>
-            <div class="row">
-              <div class="kichco">
-                <h4>SIZE</h4>
-                <select id="size">
-                  <option value="31" selected>31</option>
-                  <option value="32">32</option>
-                  <option value="33">33</option>
-                  <option value="34">34</option>
-                  <option value="35">35</option>
-                  <option value="36">36</option>
-                  <option value="37">37</option>
-                </select>
-              </div>
-              <div class="soluong">
-                <h4>Số lượng</h4>
-                <button class="bot" onclick="giamsl()">-</button>
-                <input type="text" id="sl" value="1">
-                <button class="them" onclick=tangsl()>+</button>
-              </div>
-            </div>
-            <div style="text-align: center">
-             <button class="addtocart" onclick="addToCart()">THÊM VÀO GIỎ HÀNG</button>
+                <div class="row">
+                <div class="kichco">
+                    <h4>SIZE</h4>
+                    <select id="size">
+                    <option value="31" selected>31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    </select>
+                </div>
+                <div class="soluong">
+                    <h4>Số lượng</h4>
+                    <button class="bot" onclick="giamsl()">-</button>
+                    <input type="text" id="sl" value="1">
+                    <button class="them" onclick=tangsl()>+</button>
+                </div>
+                </div>
+                <div style="text-align: center">
+                <button class="add-to-cart">THÊM VÀO GIỎ HÀNG</button>
 
+                </div>
+                <div style="text-align: center">
+                <button class="buy">THANH TOÁN</button>
+                </div>
             </div>
-            <div style="text-align: center">
-              <button class="buy">THANH TOÁN</button>
             </div>
-          </div>
         </div>
-      </div>
-  </div>
+    </div>
     
     <script src="indRes.js"></script>
     <script src="script.js"></script>
     <script src="khoitao.js"></script>
     <script src="thongbao.js"></script>
     <script >
-      let productss = JSON.parse(localStorage.getItem('products')) || [];
-      displayProducts(productss.slice(0, 12));
+        let productss = JSON.parse(localStorage.getItem('products')) || [];
+        displayProducts(productss.slice(0, 12));
     </script>
 </body>
 </html>

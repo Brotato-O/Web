@@ -4,7 +4,11 @@ const productsPerPage = 12;
 function currency(value) {
   return value.toLocaleString("vi-VN");
 }
+
+var currentPage = 1;
+
 function hienthitatcasp1() {
+  const productsPerPage = 12;
   var productArrays = JSON.parse(localStorage.getItem("all"));
   var startIndex = (currentPage - 1) * productsPerPage;
   var endIndex = startIndex + productsPerPage;
@@ -144,11 +148,11 @@ function addProduct() {
   var brand = document.getElementById("brand");
   var price = document.getElementById("txtprice");
   if (!brand.value || !productname.value || !price.value) {
-    customAlert("Bạn chưa nhập đủ thông tin sản phẩm", "warning");
+    toast({ title: 'Lỗi', message: 'Vui lòng điền đầy đủ thông tin !', type: 'error', duration: 3000 });
     return false;
   }
-  if (isNaN(Number(price.value))) {
-    customAlert("Giá không hợp lệ", "warning");
+  if (price.value < 0) {
+    toast({ title: 'Lỗi', message: 'Giá không hợp lệ !', type: 'error', duration: 3000 });
     return false;
   }
   var producttemp = {
@@ -161,7 +165,10 @@ function addProduct() {
   productArray.push(producttemp);
   localStorage.setItem("all", JSON.stringify(productArray));
   hienthitatcasp1();
-  customAlert("Thêm sản phẩm thành công", "success");
+  productname.value = "";
+  price.value = "";
+  brand.value = "Giày cỏ nhân tạo";
+  toast({ title: 'Thành công', message: 'Thêm thành công sản phẩm !', type: 'success', duration: 3000 });
 }
 
 // test

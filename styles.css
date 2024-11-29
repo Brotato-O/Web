@@ -626,6 +626,17 @@ body{
   border: solid 1px #333;
 }
 
+#sanpham-chitiet .add-to-cart{
+  font-size: 26px;
+  color: white;
+  background-color: black;
+  padding: 10px 20px;
+  border: 2px solid black;
+  cursor: pointer;
+  width: 80%;
+  margin-bottom: 30px;
+}
+
 #productDetail{
   display: flex;
   justify-content: center;
@@ -1179,18 +1190,6 @@ input[type="file"] {
   height: 30px;
   border: 2px solid black;
   cursor: pointer;
-}
-.addtocart{
- 
-  font-size: 26px;
-  color: white;
-background-color: black;
-  padding: 10px 20px;
-  border: 2px solid black;
-  cursor: pointer;
-  width: 80%;
-  margin-bottom: 30px;
-
 }
 
 .buy{
