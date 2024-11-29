@@ -7,46 +7,6 @@ const cardInfoBox = document.getElementById('card-info-box');
 const paymentImageContainer = document.getElementById('payment-image-container');
 
 
-
-function them(){
-    let carttemp = {
-        aa: [
-            { image: 'img/1000.jpg', id: 'S000', name: 'Giày Adidas UltraBoost', price: 2000000, quantity: 1, size: 31 },
-            { image: 'img/1001.jpg', id: 'S001', name: 'Giày Nike Air Max', price: 2500000, quantity: 1, size: 32 }
-        ],
-        user2: [
-            { image: 'img/1002.jpg', id: 'S002', name: 'Giày Converse Chuck Taylor', price: 1500000, quantity: 1, size: 33 }
-        ],
-        user3: [
-            { image: 'img/1003.jpg', id: 'S003', name: 'Giày Vans Old Skool', price: 1200000, quantity: 1, size: 34 }
-        ],
-        user4: [
-            { image: 'img/1004.jpg', id: 'S004', name: 'Giày Puma Suede Classic', price: 1800000, quantity: 1, size: 35 },
-            { imageg: 'img/1005.jpg', id: 'S005', name: 'Giày New Balance 574', price: 2100000, quantity: 1, size: 36 }
-        ],
-        user5: [
-            { image: 'img/1006.jpg', id: 'S006', name: 'Giày Reebok Club C', price: 1700000, quantity: 1, size: 37 }
-        ],
-        user6: [
-            { image: 'img/1007.jpg', id: 'S007', name: 'Giày Asics Gel-Lyte III', price: 2200000, quantity: 1, size: 38 }
-        ],
-        user7: [
-            { image: 'img/1008.jpg', id: 'S008', name: 'Giày Jordan 1', price: 3000000, quantity: 1, size: 39 }
-        ],
-        user8: [
-            { image: 'img/1009.jpg', id: 'S009', name: 'Giày Balenciaga Triple S', price: 8000000, quantity: 1, size: 40 }
-        ],
-        user9: [
-            { image: 'img/1010.jpg', id: 'S010', name: 'Giày Adidas UltraBoost', price: 2000000, quantity: 1, size: 31 },
-            { image: 'img/1011.jpg', id: 'S011', name: 'Giày Nike Air Max', price: 2500000, quantity: 1, size: 32 }
-        ],
-        user10: [
-            { image: 'img/1012.jpg', id: 'S012', name: 'Giày Converse Chuck Taylor', price: 1500000, quantity: 1, size: 33 }
-        ]
-    };
-    localStorage.setItem("userCarts", JSON.stringify(carttemp));
-}
-
 function xoabill(){
     localStorage.removeItem("bill");
     localStorage.removeItem("userlogin");
@@ -69,7 +29,7 @@ function cartDisplay(){
             s += `<tr>
                     <td><input type="checkbox" id="${cartArray[username][i].id}" onchange="buy()"></td>
                     <td class="cart-item-image"><img src="../${cartArray[username][i].image}" alt="product"></td>
-                    <td class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].name}</label></td>
+                    <td class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].title}</label></td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
                             <button class="bot" onclick="adjustQuantity('${cartArray[username][i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
@@ -132,7 +92,7 @@ function cartDisplayMobile(){
             s += `<tr>
                     <td rowspan="2"><input type="checkbox" id="${cartArray[username][i].id}" onchange="buy()"></td>
                     <td rowspan="2" class="cart-item-image"><img src="../${cartArray[username][i].image}" alt="product"></td>
-                    <td rowspan="2" class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].name}</label></td>
+                    <td rowspan="2" class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].title}</label></td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
                             <button class="bot" onclick="adjustQuantity('${cartArray[username][i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
@@ -203,14 +163,15 @@ function checkCart(){
 
 //chọn tất cả sản phẩm
 function checkAllItems(){
-    var cartArray= JSON.parse(localStorage.getItem('userCarts'));
+    var cartArray = JSON.parse(localStorage.getItem('userCarts'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var check= document.getElementById("check-all");
     if(check.checked== true)
-        for(var i=0; i<cartArray.length; i++)
-            document.getElementById(cartArray[i].id).checked= true;
+        for(var i=0; i<cartArray[username].length; i++)
+            document.getElementById(cartArray[username][i].id).checked= true;
     else
-        for(var i=0; i<cartArray.length; i++)
-            document.getElementById(cartArray[i].id).checked= false;
+        for(var i=0; i<cartArray[username].length; i++)
+            document.getElementById(cartArray[username][i].id).checked= false;
     buy();
 }
 
@@ -224,6 +185,7 @@ function warning() {
 //xóa sản phẩm được chọn
 function deleteCheckedItems(){
     checkCart();
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
     if(carttemp.length==0 || carttemp== undefined) {
         alert("Bạn chưa chọn sản phẩm để xóa!");
         return;
@@ -240,10 +202,11 @@ function checkDelete(id){
 }
 
 function deleteCartItem(id){
-    var cartArray= JSON.parse(localStorage.getItem('userCarts'));
-    for(let i=0; i < cartArray.length; i++)
-        if (cartArray[i].id==id){
-            cartArray.splice(i, 1);
+    var cartArray = JSON.parse(localStorage.getItem('userCarts'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
+    for(let i=0; i < cartArray[username].length; i++)
+        if (cartArray[username][i].id==id){
+            cartArray[username].splice(i, 1);
             break;
         }
     localStorage.setItem('userCarts',JSON.stringify(cartArray));
@@ -253,7 +216,7 @@ function deleteCartItem(id){
 //hiển thị giá tiền
 function buy(){
     checkCart();
-    var usename=localStorage.getItem('currentUser');
+    var username=localStorage.getItem('currentUser');
     var s = 0;
     for (let i = 0; i < carttemp[username].length; i++) {
         var quantity = parseInt(document.getElementById(`sl-${carttemp[username][i].id}`).value); 
@@ -315,7 +278,7 @@ function showBill(number){
                             <td class="billname">`;
                     for(var j=0; j< bill[i].products.length; j++){
                         s+= `
-                            <div>${bill[i].products[j].quantity} X ${bill[i].products[j].name}</div>
+                            <div>${bill[i].products[j].quantity} X ${bill[i].products[j].title}</div>
                         `;      
                     }
                     s+= `</td>
