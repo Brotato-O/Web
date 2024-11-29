@@ -32,20 +32,20 @@ function cartDisplay(){
                     <td class="cart-item-name"><label for="${i}">${cartArray[username][i].title}</label></td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
-                            <button class="bot" onclick="adjustQuantity('${cartArray[username][i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
-                            <input type="text" id="sl-${cartArray[username][i].id}" class="quantity" value="${cartArray[username][i].quantity}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
-                            <button class="them" onclick="adjustQuantity('${cartArray[username][i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
+                            <button class="bot" onclick="adjustQuantity('${i}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
+                            <input type="text" id="sl-${i}" class="quantity" value="${cartArray[username][i].quantityNumber}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
+                            <button class="them" onclick="adjustQuantity('${i}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
                     <td>
                     <select onchange="adjustSize(this, '${i}')">
-                        <option value="31" ${cartArray[username][i].size === '31' ? 'selected' : ''}>31</option>
-                        <option value="32" ${cartArray[username][i].size === '32' ? 'selected' : ''}>32</option>
-                        <option value="33" ${cartArray[username][i].size === '33' ? 'selected' : ''}>33</option>
-                        <option value="34" ${cartArray[username][i].size === '34' ? 'selected' : ''}>34</option>
-                        <option value="35" ${cartArray[username][i].size === '35' ? 'selected' : ''}>35</option>
-                        <option value="36" ${cartArray[username][i].size === '36' ? 'selected' : ''}>36</option>
-                        <option value="37" ${cartArray[username][i].size === '37' ? 'selected' : ''}>37</option>
+                        <option value="31" ${cartArray[username][i].sizeNumber == '31' ? 'selected' : ''}>31</option>
+                        <option value="32" ${cartArray[username][i].sizeNumber == '32' ? 'selected' : ''}>32</option>
+                        <option value="33" ${cartArray[username][i].sizeNumber == '33' ? 'selected' : ''}>33</option>
+                        <option value="34" ${cartArray[username][i].sizeNumber == '34' ? 'selected' : ''}>34</option>
+                        <option value="35" ${cartArray[username][i].sizeNumber == '35' ? 'selected' : ''}>35</option>
+                        <option value="36" ${cartArray[username][i].sizeNumber == '36' ? 'selected' : ''}>36</option>
+                        <option value="37" ${cartArray[username][i].sizeNumber == '37' ? 'selected' : ''}>37</option>
                 </select>
             </td>
                     <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()}VND</td>
@@ -95,22 +95,22 @@ function cartDisplayMobile(){
                     <td rowspan="2" class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].title}</label></td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
-                            <button class="bot" onclick="adjustQuantity('${cartArray[username][i].id}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
-                            <input type="text" id="sl-${cartArray[username][i].id}" class="quantity" value="${cartArray[username][i].quantity}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
-                            <button class="them" onclick="adjustQuantity('${cartArray[username][i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
+                            <button class="bot" onclick="adjustQuantity('${i}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
+                            <input type="text" id="sl-${i}" class="quantity" value=${cartArray[username][i].quantityNumber} readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
+                            <button class="them" onclick="adjustQuantity('${i}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
                     <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()} VND</td>
                 </tr>
                 <td class="cart-item-size">
                 <select onchange="adjustSize(this, '${i}')">
-                    <option value="31" ${cartArray[username][i].size === '31' ? 'selected' : ''}>31</option>
-                    <option value="32" ${cartArray[username][i].size === '32' ? 'selected' : ''}>32</option>
-                    <option value="33" ${cartArray[username][i].size === '33' ? 'selected' : ''}>33</option>
-                    <option value="34" ${cartArray[username][i].size === '34' ? 'selected' : ''}>34</option>
-                    <option value="35" ${cartArray[username][i].size === '35' ? 'selected' : ''}>35</option>
-                    <option value="36" ${cartArray[username][i].size === '36' ? 'selected' : ''}>36</option>
-                    <option value="37" ${cartArray[username][i].size === '37' ? 'selected' : ''}>37</option>
+                    <option value="31" ${cartArray[username][i].sizeNumber == '31' ? 'selected' : ''}>31</option>
+                    <option value="32" ${cartArray[username][i].sizeNumber == '32' ? 'selected' : ''}>32</option>
+                    <option value="33" ${cartArray[username][i].sizeNumber == '33' ? 'selected' : ''}>33</option>
+                    <option value="34" ${cartArray[username][i].sizeNumber == '34' ? 'selected' : ''}>34</option>
+                    <option value="35" ${cartArray[username][i].sizeNumber == '35' ? 'selected' : ''}>35</option>
+                    <option value="36" ${cartArray[username][i].sizeNumber == '36' ? 'selected' : ''}>36</option>
+                    <option value="37" ${cartArray[username][i].sizeNumber == '37' ? 'selected' : ''}>37</option>
                 </select>
             </td>`;
         }
@@ -141,10 +141,33 @@ function adjustSize(obj, id){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
 
-            cartArray[username][id].size= obj.value;
+            cartArray[username][id].sizeNumber= Number(obj.value);
       
     document.getElementById(id).checked = true;
     localStorage.setItem('userCarts', JSON.stringify(cartArray));
+    buy();
+}
+
+
+//Hàm điều chỉnh số lượng 
+function adjustQuantity(id, change) {
+    document.getElementById(id).checked = true;
+    console.log(typeof change, change);
+    var cartArray = JSON.parse(localStorage.getItem('userCarts'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
+    console.log(change + " " + cartArray[username][id].quantityNumber);
+    var newQuantity = cartArray[username][id].quantityNumber + change;
+    console.log(newQuantity);
+    if (newQuantity < 1) {
+        newQuantity = 1;
+    }
+
+    var quantityInput = document.getElementById(`sl-${id}`);
+    quantityInput.value = newQuantity;
+    
+    cartArray[username][id].quantityNumber = Number(quantityInput.value);
+    localStorage.setItem('userCarts', JSON.stringify(cartArray));
+    buy();
 }
 
 //kiểm tra sản phẩm được chọn
@@ -155,9 +178,11 @@ function checkCart(){
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     for(var i=0; i<cartArray[username].length; i++){
         var check= document.getElementById(i);
-        if(check.checked== true) carttemp.push(cartArray[username][i]);
+        if(check.checked== true) {
+            carttemp.push(cartArray[username][i]);
+            carttemp[carttemp.length-1].id= i;
+        }
     }
-    console.log(carttemp);
 }
 
 //chọn tất cả sản phẩm
@@ -165,7 +190,6 @@ function checkAllItems(){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var check= document.getElementById("check-all");
-    console.log(document.getElementById("1"));
     if(check.checked== true)
         for(var i=0; i<cartArray[username].length; i++)
             document.getElementById(i).checked= true;
@@ -188,21 +212,15 @@ function warning() {
 //xóa sản phẩm được chọn
 function deleteCheckedItems(){
     checkCart();
-    var cartArray = JSON.parse(localStorage.getItem('userCarts'));
-    var username = JSON.parse(localStorage.getItem('currentUser')).username;
+    console.log(carttemp);
     if(carttemp.length==0 || carttemp== undefined) {
         alert("Bạn chưa chọn sản phẩm để xóa!");
         return;
     };
-    var temp= [];
     if(warning()== false) return;
-    for(let i=0; i<cartArray[username].length; i++){
-        if (document.getElementById(i).checked == false){
-            temp.push(cartArray[username][i]);
-        }
+    for(let i=0; i<carttemp.length; i++){
+        deleteCartItem(carttemp[i].id);
     }
-    cartArray[username]= temp;
-    localStorage.setItem(`userCarts`,JSON.stringify(cartArray));
     cartDisplay();
 }
 
@@ -226,13 +244,12 @@ function deleteCartItem(id){
 //hiển thị giá tiền
 function buy(){
     checkCart();
-    var username=localStorage.getItem('currentUser');
     var s = 0;
-    for (let i = 0; i < carttemp.length; i++) {
-        var quantity = parseInt(document.getElementById(`sl-${carttemp[i].id}`).value); 
-        s += quantity * carttemp[i].price;
-    }
-    document.getElementById("total-pay").innerHTML = "Tổng thanh toán: " + s;
+    for (let i = 0; i < carttemp.length; i++) 
+        
+            s+= carttemp[i].quantityNumber * carttemp[i].price;
+        
+    document.getElementById("total-pay").innerHTML = "Tổng thanh toán: " + s.toLocaleString() +"VND";
     return s;
 }
 
@@ -474,41 +491,6 @@ function showPaymentMethodBox() {
     confirmPaymentButton.style.display = 'block';
 }
 
-//Hàm điều chỉnh số lượng 
-function adjustQuantity(itemId, change) {
-    const cartData = JSON.parse(localStorage.getItem('userCarts')) || {};
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const username = currentUser?.username;
-
-    if (!username || !cartData[username]) {
-        alert('Không tìm thấy giỏ hàng.');
-        return;
-    }
-
-    const userCart = cartData[username];
-    const item = userCart.find(product => product.id === itemId);
-
-    if (!item) {
-        alert('Sản phẩm không tồn tại trong giỏ hàng.');
-        return;
-    }
-
-    const newQuantity = item.quantity + change;
-    if (newQuantity < 1) {
-        alert('Số lượng tối thiểu là 1.');
-        return;
-    }
-
-    item.quantity = newQuantity;
-
-    const quantityInput = document.getElementById(`sl-${itemId}`);
-    if (quantityInput) {
-        quantityInput.value = newQuantity;
-    }
-
-    localStorage.setItem('userCarts', JSON.stringify(cartData));
-    buy();
-}
 // thêm điều kiện cho nhập địa chỉ
 function validateNewAddress() {
     const name = document.getElementById('name').value.trim();
