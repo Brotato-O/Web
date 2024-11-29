@@ -61,7 +61,7 @@ function hienthitatcasp1() {
 
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers += `
-                <div class="sotrang" onclick="goToPage(${i})">
+                <div class="sotrang" onclick="goToPage1(${i})">
                     ${i}
                 </div>
             `;
@@ -84,7 +84,7 @@ function hienthitatcasp1() {
         </div>
         `;
 }
-function goToPage(pageNumber) {
+function goToPage1(pageNumber) {
   currentPage = pageNumber;
   hienthitatcasp1();
 }
