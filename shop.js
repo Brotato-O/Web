@@ -172,7 +172,7 @@ function hienthitatcasp(){
                     <img src="${tmp[i].img}" alt="${tmp[i].name}">
                      <h3>${tmp[i].name}</h3>
                       <p>${tmp[i].price}</p>
-                      <button class="addtocart">Thêm vào giỏ hàng</button>
+                     
                 </div>
             `;
 }
