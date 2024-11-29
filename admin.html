@@ -24,9 +24,8 @@
                 >Trang chủ</a
               >
             </li>
-            <li><a href="admin.html?bill">Đơn hàng </a></li>
+            <li><a href="admin.html?bill">Đơn hàng</a></li>
             <li ><a href="admin.html?khachHang">Khách hàng</a></li>
-             <!-- <li>Khách hàng</li> -->
             <li>Quản lý thông tin</li>
             <li><a href="admin.html?count">Thống kê</a></li>
           </ul>
@@ -56,66 +55,54 @@
       </div>
       
       <div class="content">
-        <!-- Product List -->
-        <div class="container1">
-          <div class="div11">
-            <div style="border: 1px solid black;box-shadow: 0 0 30px 2px rgba(0, 0, 0, 0.5);">
-                <h3 style="font-size: 40px; text-align: center;">DANH SÁCH SẢN PHẨM</h3>
-                <div id="maintable"></div>
-            </div>
-
+        <div
+          style="
+            margin-left: 300px;
+            width: 800px;
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 60px;
+            margin-top: 60px;
+          "
+        >
+          <h3>DANH SÁCH SẢN PHẨM</h3>
         </div>
-           
-              <!-- Add Product -->
-              <div class="div21">
-                <div style=" margin: 2px;padding: 25px; ">
-                    <div id="themsp" style="width: auto;">
-                        <div id="themsp1">
-                        <form>
-                          <h3 style="text-align: center;">THÊM SẢN PHẨM</h3>
-                          <div class="item-themsp">
-                            Tên sản phẩm: <br/>
-                            <input type="text" name="txtnamesp" style="font-size: 28px;"/>
-                          </div>
-                          <div class="item-themsp">
-                            Thương hiệu:<br>
-                            <select style="font-size: 20px; padding: 15px;" >
-                              <option>Giày cỏ nhân tạo</option>
-                              <option>Giày cỏ tự nhiên</option>
-                              <option>Quần áo</option>
-                              <option>Phụ kiện</option>
-                            </select>
-                          </div>
-                          <div class="item-themsp">
-                            Giá: <br/>
-                            <input type="text" name="txtprice" style="font-size: 28px;"/>
-                          </div>
-                    
-                          <div class="item-themsp">
-                            Ảnh:
-                            <br>
-                            <input type="file" style="font-size: 15px;"/>
-                          </div>
-                          <div class="item-themsp">
-                            <input type="reset" value="Xóa" class="btn-reset" style="font-size: 30px; padding: 5px; width: 40%;"/>
-                            <input type="button" value="Thêm" class="btn-reset"style="font-size: 30px; padding: 5px;width: 40%;"/>
-                          </div>
-                        </form>
-                        
-                      </div>
+
+        <div id="container" style="display: flex">
+          <div id="maintable" style="width: 70%"></div>
+          <div id="themsp" style="width: 25%">
+            <div id="themsp1">
+              <form>
+                <h3 style="text-align: center">THÊM SẢN PHẨM</h3>
+                <div class="item-themsp">
+                  Tên sản phẩm: <br />
+                  <input type="text" id="txtnamesp" style="font-size: 25px" />
                 </div>
-                  
+                <div class="item-themsp">
+                  Thương hiệu:
+                  <select style="font-size: 20px; padding: 8px" id="brand">
+                    <option>Giày cỏ nhân tạo</option>
+                    <option>Giày cỏ tự nhiên</option>
+                    <option>Quần áo</option>
+                    <option>Phụ kiện</option>
+                  </select>
+                </div>
+                <div class="item-themsp">
+                  Giá: <br />
+                  <input type="tel" id="txtprice" style="font-size: 25px;" />
+                </div>
+
+            
                 
+                </div>
+                <div class="item-themsp">
+                  <input type="reset" value="Xóa"style="font-size: 25px; padding: 10px" />
+                  <input type="button" value="Thêm"style="font-size: 25px; padding: 10px" onclick="addProduct()"/>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
-        
-
-
-        </div>
-
-      
-    </div>
-</div>
         </div>
           
         
@@ -150,6 +137,7 @@
           </div>
         </div>
         <!--  -->
+
       </div>
     </div>
 
@@ -161,7 +149,7 @@
     <script src="admin.js"></script>
     <script src="admin_cart.js"></script>
     <script src="admin_countSale.js"></script>
-     <script src="admin_khachHang.js"></script> 
+    <script src="admin_khachHang.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>
