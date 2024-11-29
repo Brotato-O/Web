@@ -48,7 +48,7 @@ function cartDisplay(){
                         <option value="37" ${cartArray[username][i].size === '37' ? 'selected' : ''}>37</option>
                 </select>
             </td>
-                    <td class="cart-item-price">${cartArray[username][i].price}</td>
+                    <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()}</td>
                     <td><button class="delete" onclick="checkDelete('${i}')">X</button></td>
                 </tr>`;
         }
@@ -100,7 +100,7 @@ function cartDisplayMobile(){
                             <button class="them" onclick="adjustQuantity('${cartArray[username][i].id}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
-                    <td class="cart-item-price">${cartArray[username][i].price}</td>
+                    <td class="cart-item-price">${currency('${cartArray[username][i].price}.toLocaleString()')}</td>
                 </tr>
                 <td class="cart-item-size">
                 <select onchange="adjustSize(this, '${i}')">
