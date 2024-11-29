@@ -529,6 +529,7 @@ let products = JSON.parse(localStorage.getItem('products')) || [];
 let tmp = JSON.parse(localStorage.getItem('all')) || [];
 
 function displayProducts(products) {
+    
     const productContainer = document.getElementById('productContainer');
     productContainer.innerHTML = '';
     products.forEach(product => {
