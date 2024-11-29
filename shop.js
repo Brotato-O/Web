@@ -2,7 +2,6 @@
 var currentPage = 1;
 const productsPerPage = 12;
 
-function currency(value) { return value.toLocaleString('vi-VN'); }
 
 function closesp() {
     document.getElementById("sanpham-chitiet").style.display = "none";
@@ -153,7 +152,7 @@ function tangsl(){
         document.getElementById("img-sp").src = product.img;
         document.getElementById("name-sp").innerHTML = product.name;
         document.getElementById("ma-sp").innerHTML = `${product.productId || "N/A"}`;
-        document.getElementById("price").innerHTML = `${product.price.toLocaleString()} VND`;
+        document.getElementById("price").innerHTML = `${product.price}`;
         document.getElementById("sanpham-chitiet").style.display = "block";
     } else {
         console.error("Sản phẩm không tồn tại!");
