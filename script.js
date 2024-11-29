@@ -537,7 +537,7 @@ function displayProducts(products) {
         productElement.innerHTML = `
             <img src="${product.img}" alt="${product.name}">
             <h3>${product.name}</h3>
-            <p>${product.price.toLocaleString()} VND</p>
+            <p>${product.price}</p>
             <button class="addtocart">Thêm vào giỏ hàng</button>
             `;
         productContainer.appendChild(productElement);
@@ -552,15 +552,12 @@ function show2(ID) {
         document.getElementById("img-sp").src = product.img;
         document.getElementById("name-sp").innerHTML = product.name;
         document.getElementById("ma-sp").innerHTML = `${product.productId || "N/A"}`;
-        document.getElementById("price").innerHTML = `${product.price.toLocaleString()} VND`;
+        document.getElementById("price").innerHTML = `${product.price}`;
         document.getElementById("sanpham-chitiet").style.display = "block";
     } else {
         console.error("Sản phẩm không tồn tại!");
     }
 }
-
-function currency(value) { return value.toLocaleString('vi-VN'); }
-
 function closesp() {
     document.getElementById("sanpham-chitiet").style.display = "none";
 }
