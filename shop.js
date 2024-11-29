@@ -170,9 +170,8 @@ function hienthitatcasp(){
     s += `
                 <div class="product" onclick="show2(${tmp[i].productId})">
                     <img src="${tmp[i].img}" alt="${tmp[i].name}">
-                     <h3>${tmp[i].name}</h3>
-                      <p>${tmp[i].price}</p>
-                     
+                    <h3>${tmp[i].name}</h3>
+                    <p>${(tmp[i].price).toLocaleString()} VND</p>
                 </div>
             `;
 }
@@ -273,10 +272,9 @@ for (var i = 0; i < productArray.length; i++) {
                               <div class="product" onclick="show2(${productArray[i].productId})">
                                 <img src="${productArray[i].img}" alt="${productArray[i].name}">
                                 <h3>${productArray[i].name}</h3>
-                                  <p>${productArray[i].price}</p>
-                                  
-                               </div>
-                           `;
+                                <p>${(productArray[i].price).toLocaleString()} VND</p>
+                                </div>
+                          `;
     }
 } 
 
@@ -474,15 +472,14 @@ function kiemtrachon() {
 
   for (var i = 0; i < tmp1.length; i++) {
     document.getElementById("h3tieude").innerText="Lọc theo sản phẩm";
-       {
+      {
             s += `
                                 <div class="product" onclick="show2(${tmp1[i].productId})">
                                   <img src="${tmp1[i].img}" alt="${tmp1[i].name}">
                                   <h3>${tmp1[i].name}</h3>
-                                    <p>${tmp1[i].price}</p>
-                                    
-                                 </div>
-                             `;
+                                  <p>${(tmp1[i].price).toLocaleString()} VND</p>
+                                </div>
+                            `;
       }
   } 
 

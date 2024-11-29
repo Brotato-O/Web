@@ -25,7 +25,7 @@
                 <li><a href="index.html#services">Dịch vụ</a></li>
                 <li><a href="#footer">Liên hệ</a></li>
                 <ul id="nav-links-function">
-                    <li id="search"><a href="#allsp"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                    <li id="search"><a href="#tieude"><i class="fa-solid fa-magnifying-glass"></i></a></li>
                     <li id="Sign" name="Sign"><a><i class="fa-solid fa-user"></i></a></li>
                     <li id="Cart" name="Cart"><a><i class="fa-solid fa-bag-shopping"></i></i></a></li>
                 </ul>
@@ -125,55 +125,51 @@
                     </div>
                 </div>
                 <div id="CartForm-actions">
-                  <a href="cart/cart.html"><button id="CartForm-view">Xem giỏ hàng / Thanh toán</button></a>
+                    <a href="cart/cart.html"><button id="CartForm-view">Xem giỏ hàng / Thanh toán</button></a>
                 </div>
             </div>
         </div>
-    
-    <div id="SearchBar">
-        
-      <input type="text" id="txtSearch" placeholder="Tìm kiếm " oninput="search1()"/>
-        <!-- <div id="SearchBar-submit">
-            <i class="fa-solid fa-bars"></i>   
-        </div> -->
-        <div id="phanloai-container" style="font-size: 20px;" >
-            <form name="phanloai">
-              <label for="phanloaisp">Phân loại</label>
-              <select name="phanloaisp" onchange="kiemtrachon()">
-                <option value="tatcasp">Tất cả sản phẩm</option>
-                <option value="Giày cỏ tự nhiên">Giày cỏ tự nhiên</option>
-                <option value="Giày cỏ nhân tạo">Giày cỏ nhân tạo</option>
-                <option value="Quần áo">Quần áo</option>
-                <option value="Phụ kiện">Phụ kiện</option>
-              </select>
-            </form>
-        </div>
-    </div>
 
     <div id="toan1" class="toan">
-        <div class="tieude">
-          <h3>Sản phẩm </h3>
-        </div>
-  
         <div class="sptieude">
-          <div class="sanpham2">
-            <img src="img/ao.jpg" alt="Quan ao" />
-            <div class="text-overlay"><a href="shop.html?quanao" style="text-decoration: none; color: inherit">Quần áo</a></div>
-          </div>
-          <div class="sanpham2">
-            <img src="img/giay1.jpg" alt="Giay" />
-            <div class="text-overlay">
-              <a href="shop.html?shoes"style="text-decoration: none; color: inherit">Giày</a>
-            </div>
-          </div>
-          <div class="sanpham2">
-            <img src="img/phukien.jpg" alt="Phu kien" />
-            <div class="text-overlay">
-              <a href="shop.html?phukien" style="text-decoration: none; color: inherit">Phụ kiện</a></div>
-          </div>
+            <a href="shop.html?quanao"><div class="sanpham2">
+                <img src="img/ao.jpg" alt="Quan ao" />
+                <div class="text-overlay"><a style="text-decoration: none; color: inherit">Quần áo</a></div>
+            </div></a>
+            <a href="shop.html?shoes"><div class="sanpham2">
+                <img src="img/giay1.jpg" alt="Giay" />
+                <div class="text-overlay">
+                    <a style="text-decoration: none; color: inherit">Giày</a>
+                </div>
+            </div></a>
+            <a href="shop.html?phukien"><div class="sanpham2">
+                <img src="img/phukien.jpg" alt="Phu kien" />
+                <div class="text-overlay">
+                    <a href="shop.html?phukien" style="text-decoration: none; color: inherit">Phụ kiện</a></div>
+            </div></a>
         </div>
-        <div class="tieude">
+
+        <div id="tieude">
             <h3 id="h3tieude">Tất cả sản phẩm</h3>
+        </div>
+
+        <div id="SearchBar">
+            <input type="text" id="txtSearch" placeholder="Tìm kiếm " oninput="search1()"/>
+            <!-- <div id="SearchBar-submit">
+                <i class="fa-solid fa-bars"></i>
+            </div> -->
+            <div id="phanloai-container" style="font-size: 20px;" >
+                <form class="phanloai" name="phanloai">
+                    <label for="phanloaisp" id="pl-text">Phân loại</label>
+                    <select name="phanloaisp" onchange="kiemtrachon()">
+                    <option value="tatcasp">Tất cả sản phẩm</option>
+                    <option value="Giày cỏ tự nhiên">Giày cỏ tự nhiên</option>
+                    <option value="Giày cỏ nhân tạo">Giày cỏ nhân tạo</option>
+                    <option value="Quần áo">Quần áo</option>
+                    <option value="Phụ kiện">Phụ kiện</option>
+                  </select>
+                </form>
+            </div>
         </div>
             <div id="allsp"></div>
           

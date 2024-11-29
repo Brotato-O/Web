@@ -291,39 +291,25 @@ body{
     cursor: pointer;
 }
 
-#SearchBar{
-    position: fixed;
-    display: none;
+#tieude{
+    width: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 200px;
-    top: 60px;
-    height: 70px;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
 }
 
-#SearchBar input{
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-bottom: 1px solid #333;
-    font-size: 1.2rem;
-    font-weight: 500;
-    border-radius: 0.3rem;
-}
-
-#SearchBar-submit{
-    padding: 10px 10px;
-    border: none;
-    background: #333;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 500;
-    border-radius: 5px;
-    cursor: pointer;
+#tieude h3{
+    display: flex;
+    justify-content: center;
+    font-size: 5rem;
+    font-weight: 600;
+    background-image: url(img/giphy.webp);
+    background-size:unset;
+    background-position: center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-top: 40px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .footer {
@@ -819,12 +805,19 @@ background-color: black;
 .cuahang-sp{
     position: relative;
 }
+#phanloai-container{
+    margin-left: 20px;
+}
 #phanloai{
     display: none;
     position: absolute;
     background-color: rgba(122, 122, 122, 0.5);
     border-radius: 5px;
-   
+}
+#pl-text{
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #444444;
 }
 .phanloai-item{
     text-align: center;
@@ -835,6 +828,7 @@ background-color: black;
     min-width: 60px;
     
 }
+
 .phanloai-item:hover{
     color: #ffffff;
 }

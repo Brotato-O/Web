@@ -5,6 +5,7 @@
 body{
     min-width: 100%;
     /* max-height: fit-content; */
+    background-color: #eeeeee;
 }
 #hero-image img{
     width:100%;

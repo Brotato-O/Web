@@ -42,7 +42,6 @@ function showSignForm() {
     RegisterForm.style.display = 'none';
     CartForm.style.display = 'none';
     overlay.style.display = 'block';
-    SearchBar.style.display = 'none';
 }
 
 function showRegisterForm() {
@@ -287,7 +286,6 @@ logOut.addEventListener('click', function(){
     afterSign.style.display = 'none';
     overlay.style.display = 'none';
     CartForm.style.display = 'none';
-    SearchBar.style.display = 'none';
     Sign.removeEventListener('click', showAfterSign);
     SignReS.removeEventListener('click', showAfterSign);
     Sign.addEventListener('click', showSignForm);
@@ -309,7 +307,6 @@ logOutAdmin.addEventListener('click', function(){
     afterSignAdmin.style.display = 'none';
     overlay.style.display = 'none';
     CartForm.style.display = 'none';
-    SearchBar.style.display = 'none';
     Sign.removeEventListener('click', showAfterSignAdmin);
     SignReS.removeEventListener('click', showAfterSignAdmin);
     Sign.addEventListener('click', showSignForm);
@@ -506,7 +503,6 @@ function closeOverlay() {
     RegisterForm.style.display = 'none';
     SignForm.style.display = 'none';
     CartForm.style.display = 'none';
-    SearchBar.style.display = 'none';
     afterSign.style.display = 'none';
     afterSignAdmin.style.display = 'none';
     navRes.style.transform = 'translateX(100%)';
@@ -538,8 +534,7 @@ function displayProducts(products) {
         productElement.innerHTML = `
             <img src="${product.img}" alt="${product.name}">
             <h3>${product.name}</h3>
-            <p>${product.price}</p>
-           
+            <p>${(product.price).toLocaleString()} VND</p>
             `;
         productContainer.appendChild(productElement);
         productElement.addEventListener('click', () => show2(product.productId));
@@ -602,7 +597,6 @@ Cart.addEventListener('click', function(event){
     overlay.style.display = 'block';
     SignForm.style.display = 'none';
     RegisterForm.style.display = 'none';
-    SearchBar.style.display = 'none';
     afterSign.style.display = 'none';
     displayCart(JSON.parse(localStorage.getItem('currentUser')).username);
     }
@@ -631,6 +625,8 @@ document.addEventListener('click', function(event) {
             const id = document.getElementById("ma-sp").innerHTML;
             const quantity = document.getElementById('sl').value;
             const size = document.getElementById('size').value;
+            const quantityNumber = parseInt(quantity, 10);
+            const sizeNumber = parseInt(size);
             let allProducts = JSON.parse(localStorage.getItem('all')) || [];
             allProducts.forEach(product => {
                 if(product.productId == id) {
@@ -639,7 +635,7 @@ document.addEventListener('click', function(event) {
                     price = product.price;
                 }
             });
-            const cartItem = {id, image, title, price, quantity, size};
+            const cartItem = {id, image, title, price, quantityNumber, sizeNumber};
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             addToCartForUser(currentUser.username, cartItem);
             toast({ title: 'Thành công', message: 'Đã thêm sản phẩm vào giỏ hàng !', type: 'success', duration: 3000 });
@@ -695,14 +691,15 @@ function removeFromCart(username, productTitle) {
 // <---------------<SEARCH>----------------->
 
 //Thanh tìm kiếm
-Search.addEventListener('click', function(event){
-    document.getElementById('SearchBar').style.display = 'flex';
+Search.addEventListener('click', function(){
     document.getElementById('txtSearch').value = '';
     document.getElementById('SearchBar').focus();
-    overlay.style.display = 'block';
     SignForm.style.display = 'none';
     RegisterForm.style.display = 'none';
     CartForm.style.display = 'none';
+    afterSign.style.display = 'none';
+    afterSignAdmin.style.display = 'none';
+    overlay.style.display = 'none';
 });
 
 // <---------------<SEARCH>----------------->

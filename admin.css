@@ -1,28 +1,23 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #mot {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 5;
     display: flex;
-    justify-content: end;
-    gap: 50px;
+    justify-content: start;
+    gap: 20px;
     margin: 10px 10px;
     border-bottom: 2px solid;
     padding-bottom: 30px;
+    background-color: #fff;
   }
-  #tenadmin {
-    background-color: gray;
-    border-radius: 999px;
-    text-align: center;
-    font-size: 25px;
-    padding: 10px;
-    white-space: nowrap;
-  }
-  #txt {
-    margin-top: 7px;
-    border: 1px solid;
-    border-radius: 999px;
-    font-size: 26px;
-    height: 45px;
-    padding-left: 20px;
-    position: relative;
-  }
+
   #icon {
     margin-top: 7px;
     top: 20px;
