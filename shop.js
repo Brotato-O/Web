@@ -77,7 +77,7 @@ function hienthisanpham1(){
                 </div>
             `;
   }
-  document.getElementById("search").style.display="none";
+  document.getElementById("search").style.display="block";
   document.getElementById("toan1").innerHTML = `
             <div class="menu-sanpham" id="menu-sanpham1">
                 <div class="danhsach-sanpham" id="danhsach-sanpham1">${s}</div>
