@@ -134,9 +134,10 @@ function create(){
 
             <div>
               <form oninput=change() onchange=change()>
-                <input type="search" id="textMethod">
+                
                 <div>
-                  <span>Tìm kiếm theo</span>
+                  <div style="display: flex; margin: 20px 0px">
+                    <div>Tìm kiếm theo</div>
 
                   <select id="method" onchange="lookUpBillDisplay()">
                     <option value="all" selected>Tất cả</option>
@@ -145,8 +146,10 @@ function create(){
                     <option value="price">Khoảng giá</option>
                     <option value="date">Ngày đặt</option>
                   </select>
+                  </div>
+                  <input type="search" class="detailMethod" id="textMethod" style="margin: auto; height: 30px;" placeholder="Nhập giá trị cần tìm">
 
-                  <div id="dateMethod">
+                  <div id="dateMethod" class="detailMethod">
                     <div>
                       <span>Từ ngày</span>
                       <input type="date" id="dateFrom" />
@@ -157,7 +160,7 @@ function create(){
                     </div>
                   </div>
 
-                  <div id="priceMethod">
+                  <div id="priceMethod" class="detailMethod">
                     <div>
                       <span>Từ</span>
                       <input type="number" id="pricefrom"/>
@@ -168,8 +171,8 @@ function create(){
                     </div>
                   </div>
                 </div>
-                <div> 
-                  <h2>Tình trạng hóa đơn</h2>
+                <div class="detailMethod"> 
+                  <div>Tình trạng hóa đơn</div>
                   <select id="status">
                       <option value="Chờ xác nhận">Chờ xác nhận</option>
                       <option value="Đã xác nhận">Đã xác nhận</option>
@@ -204,7 +207,6 @@ function change(){
 function lookUpStatus() {
   var obj=document.getElementById("status");
   var billtemp=[];
-  console.log(obj.value);
     var bill= JSON.parse(localStorage.getItem("bill"));
     if(obj.value !="all")
     for (var i = 0; i < bill.length; i++) {
@@ -300,7 +302,6 @@ function lookUpStatus() {
 
   //SHOW CHI TIẾT HÓA ĐƠN
   function showDetail(obj){
-   console.log(obj);
    var billtemp= JSON.parse(localStorage.getItem("billtemp"));
     document.getElementById("detail-container").style.display= "block";
     for(let i=0; i< billtemp.length; i++){
@@ -343,7 +344,7 @@ function lookUpStatus() {
           </div>
           <div class="infor-wrap">
             <p>Trạng thái</p>
-            <p>${billtemp[i].status}</p>
+            <p id="innerStatus">${billtemp[i].status}</p>
           </div>`
           if (billtemp[i].status =="Đã xác nhận" || billtemp[i].status=="Chờ xác nhận")
            document.getElementById("detail-bill").innerHTML+= `<button value="${obj.id}" onclick="changeStatus(this)">XÁC NHẬN / HỦY XÁC NHẬN</button>`;
@@ -355,15 +356,20 @@ function lookUpStatus() {
     var bill= JSON.parse(localStorage.getItem('bill'));
     for(let i=0; i <bill.length; i++){
       if (obj.value== bill[i].receiptId){
-        if(bill[i].status=="Chờ xác nhận") bill[i].status="Đã xác nhận";
-        else if(bill[i].status=="Đã xác nhận") bill[i].status="Chờ xác nhận";
+        if(bill[i].status=="Chờ xác nhận") {
+          bill[i].status="Đã xác nhận";
+          document.getElementById("innerStatus").innerHTML="Đã xác nhận"
+        }
+        else if(bill[i].status=="Đã xác nhận") {
+          bill[i].status="Chờ xác nhận";
+          document.getElementById("innerStatus").innerHTML="Chờ xác nhận"
+        }
       }
     }
     localStorage.setItem('bill', JSON.stringify(bill));
     var p= document.getElementById(obj.value);
-    console.log(p);
     change();
-    showDetail(p);
+    if (p != null) showDetail(p);
   }
 
   function an(event){

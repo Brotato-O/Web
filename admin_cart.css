@@ -1,4 +1,7 @@
 
+body{
+    width: 100%;
+}
 #detail-container{
     position: fixed;
     top: 0px;
@@ -23,6 +26,12 @@
 #detail-bill p{
     display: inline-block;
     width: 50%;
+}
+.detailMethod{
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 20px 0px;
+    align-items: center;
 }
 #closeDetail{
     position: absolute;
@@ -56,45 +65,25 @@
     background-color: rgba(126, 125, 125, 0.332);
 }
 
-@media only screen and (max-width: 768px){
-    #container{
-        flex-direction: column-reverse;
-    }
-    #maintable{
-        width: auto;
-    }
-}
-
 #bill-content{
     display: flex;
     flex-wrap: nowrap;
+    align-items: flex-start;
 }
-
 #tableBill{
-    width: 70%;
+    width: 65%;
 }
 
 #searchBill{
-    width: calc(30% - 30px);
+    width: calc(37% - 30px);
 }
 
 #detail-container{
-    background-color: #333;
-  }
-  
-  #detail-bill{
-    display: none;
-    position: absolute;
-    padding-top: 20px;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    background-color: #333;
+    background-color: #33333366;
   }
   
   #detail-bill #closeDetail{
     position: absolute;
-    top: 0px;
     right: 10px;
     border: none;
     background-color: transparent;
@@ -110,11 +99,6 @@
     padding: 20px 0;
     font-size: 3rem;
     color: #333;
-  }
-  
-  #detail-bill .infor-wrap{
-    display: flex;
-    padding: 10px 0;
   }
   
   .infor-wrap p{
@@ -134,12 +118,7 @@
     margin-bottom: 0;
   }
   
-  #select-bill div{
-    display: flex;
-    justify-content: center;
-    margin: 20px 20px;
-    flex-wrap: wrap;
-  }
+  
   
   #select-bill div h3{
     font-size: 2.5rem;
@@ -151,9 +130,48 @@
     margin-right: 20px;
     font-weight: bold;
   }
-  
-  #select-bill select{
-    padding: 5px;
-    font-size: 1rem;
-    margin-left: 10px;
-  }
+
+  #select-bill div{
+    font-size: 0.8cm;
+}
+    #status{
+        margin: 0px 10px;
+        height: 30px
+    }
+
+@media only screen and (max-width: 1200px){
+    #billTable{
+        width: 65%;
+    }
+    #select-bill div h3{
+        font-size: 0.7cm;
+    }
+    #select-bill div{
+        font-size: 0.5cm;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    #bill-content{
+        flex-direction: column-reverse;
+    }
+    #billTable{
+        width: 100%;
+        margin: 0px;
+    }
+    #searchBill{
+        width: 100%;
+    }
+    #detail-bill{
+        width: 90%;
+        height: 80%;
+        overflow: scroll;
+    }
+    .infor-wrap{
+        margin: 5px;
+    }
+}
+
+
+
+
