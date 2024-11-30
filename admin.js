@@ -45,8 +45,8 @@ function hienthitatcasp1() {
                 <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá (VND)</label>
                 <input type="text" id="txtprice" value="b" size="30px" style="font-size: 30px; margin:0px 10px 15px 150px;border: none; border-bottom: 2px solid ;"/><br/>
                 <label style="font-size: 30px; margin-left: 15px;">Ảnh</label>
-                <input type="file" id="imgadd" style="font-size: 20px; margin: 15px 10px 15px 250px;" onchange="previewImage(event)">
-                <img id="imgPreview" src="" alt="Preview" style="max-width: 200px; margin-left: 15px;">
+                <input type="file" id="imgadd" style="font-size: 20px; margin: 15px 10px 15px 250px;">
+               
 
             </div>
             <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct(${productArrays[i].productId})">Xác nhận</div>
@@ -129,16 +129,6 @@ function changeproduct(productid) {
   localStorage.setItem("all", JSON.stringify(productArray));
   hienthitatcasp1();
 }
-//XEM ẢNH TRƯỚC KHI THAY ĐỔI
-function previewImage(event) {
-  var reader = new FileReader();
-  reader.onload = function (e) {
-    document.getElementById("imgPreview").src = e.target.result;
-  };
-  reader.readAsDataURL(event.target.files[0]);
-}
-
-
 function closesetting() {
   document.getElementById("bao").style.display = "none";
 }
