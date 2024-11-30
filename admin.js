@@ -15,30 +15,28 @@ function hienthitatcasp1() {
   if (endIndex > productArrays.length) {
     endIndex = productArrays.length;
   }
-  var s = "";
-  for (let i = startIndex; i < endIndex; i++) {
-    s += `
-        <div class="cot1" style="border-left: 10px gold solid; border-bottom:2px groove ;">${
-          productArrays[i].productId
-        }</div>
-        <div class="cot1"><img src="${productArrays[i].img}" alt="" /></div>
-        <div class="cot1">${productArrays[i].name}</div>
-        <div class="cot1">${productArrays[i].brand}</div>
-        <div class="cot1">${productArrays[i].price.toLocaleString()} VND</div>
-        <div class="cotchinhsua">
-          <div class="button" style="background-color: rgb(213, 75, 0);" onclick="deleteproduct('${
-            productArrays[i].productId
-          }')"
->
-              x
-          </div>
-          <div class="button" style="background-color: rgba(196, 196, 20, 0.81)" onclick=showsetting(${
-            productArrays[i].productId
-          }); >
-              sửa
-          </div>
-        </div>
-        <div id="bao" style=" top:0;bottom:0;left: 0;;right: 0;  background: rgba(0, 0, 0, 0.7);z-index: 5000;position: fixed; display: none;">
+  var s = `<tr>
+              <th>ID</th>
+              <th>ẢNH</th>
+              <th>TÊN SẢN PHẨM</th>
+              <th>LOẠI</th>
+              <th>GIÁ</th>
+              <th>CHỨC NĂNG</th>
+            </tr>`;
+  for (var i = startIndex; i < endIndex; i++) {
+    s += `<tr>
+              <td style="text-align: center">${productArrays[i].productId}</td>
+              <td><img src="${productArrays[i].img}" alt="Ảnh" style="width: 100px; height: auto;"></td>
+              <td>${productArrays[i].name}</td>
+              <td>${productArrays[i].brand}</td>
+              <td>${productArrays[i].price.toLocaleString()}</td>
+              <td class="btn_">
+                <button class = "xoaKH" onclick="deleteproduct('${productArrays[i].productId}')">X</button>
+                <button class = "suaKH" onclick="showsetting('${productArrays[i].productId}')">Sửa</button>
+              </td>
+          </tr>
+          
+          <div id="bao" style=" top:0;bottom:0;left: 0;;right: 0;  background: rgba(0, 0, 0, 0.7);z-index: 5000;position: fixed; display: none;">
         <div id="bao1" style="width: 60%; margin: 200px auto; border: 1px solid; background-color: white;">
             <div style="float: right; margin: 5px 10px; font-size: 50px; transform: rotate(45deg);cursor: pointer;" onclick="closesetting()">+</div>
             <div id="infor">
@@ -46,15 +44,14 @@ function hienthitatcasp1() {
                 <input type="text" id="txtname" value="a" size="30px" style="font-size: 30px;margin:30px 10px 15px 100px ;border: none; border-bottom: 2px solid ;" /> <br/>
                 <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá (VND)</label>
                 <input type="text" id="txtprice" value="b" size="30px" style="font-size: 30px; margin:0px 10px 15px 150px;border: none; border-bottom: 2px solid ;"/><br/>
-                <label style="font-size: 30px; margin-left: 15px ;">Ảnh</label>
-                <input type="file"  id="imgbefore"  value=" "style="font-size: 20px;margin:15px 10px 15px 250px ;">
+                <label style="font-size: 30px; margin-left: 15px;">Ảnh</label>
+                <input type="file" id="imgadd" style="font-size: 20px; margin: 15px 10px 15px 250px;" onchange="previewImage(event)">
+                <img id="imgPreview" src="" alt="Preview" style="max-width: 200px; margin-left: 15px;">
+
             </div>
-            <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct(${
-              productArrays[i].productId
-            })">Xác nhận</div>
+            <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct(${productArrays[i].productId})">Xác nhận</div>
         </div> 
-    </div>
-              `;
+`;
   }
   var totalPages = Math.ceil(productArrays.length / productsPerPage);
   var pageNumbers = "";
@@ -68,15 +65,8 @@ function hienthitatcasp1() {
   }
 
   document.getElementById("maintable").innerHTML = `
- 
-        <div class="cot" >#ID</div>
-        <div class="cot" >ẢNH</div>
-        <div class="cot">TÊN SẢN PHẨM</div>
-        <div class="cot">LOẠI</div>
-        <div class="cot">GIÁ</div>
-        <div class="cot"></div>
-                      ${s}
-                     
+   <table id="tablesp"> ${s}</table>
+                              
         <div class="phantrang">
        
                     ${pageNumbers}
@@ -113,19 +103,42 @@ function showsetting(productid) {
   }
 }
 function changeproduct(productid) {
-  document.getElementById("bao").style.display = "none";
   var productArray = JSON.parse(localStorage.getItem("all"));
+  var imgInput = document.getElementById("imgadd");
+
   for (var i = 0; i < productArray.length; i++) {
     if (productArray[i].productId == productid) {
       productArray[i].name = document.getElementById("txtname").value;
-      productArray[i].price = parseFloat(
-        document.getElementById("txtprice").value
-      );
-      localStorage.setItem("all", JSON.stringify(productArray));
-      hienthitatcasp1();
+      productArray[i].price = parseFloat(document.getElementById("txtprice").value);
+
+      if (imgInput.files.length > 0) { // Chỉ cập nhật ảnh nếu người dùng chọn
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          productArray[i].img = e.target.result;
+          localStorage.setItem("all", JSON.stringify(productArray));
+          hienthitatcasp1();
+          alert("CẬP NHẬT THÀNH CÔNG");
+        };
+        reader.readAsDataURL(imgInput.files[0]);
+        return; // Thoát sớm để đợi ảnh tải xong
+      }
     }
   }
+
+  // Lưu lại khi không có thay đổi ảnh
+  localStorage.setItem("all", JSON.stringify(productArray));
+  hienthitatcasp1();
 }
+//XEM ẢNH TRƯỚC KHI THAY ĐỔI
+function previewImage(event) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    document.getElementById("imgPreview").src = e.target.result;
+  };
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+
 function closesetting() {
   document.getElementById("bao").style.display = "none";
 }
@@ -142,33 +155,48 @@ function deleteproduct(productIddelete) {
   hienthitatcasp1();
 }
 function addProduct() {
-  var productArray = JSON.parse(localStorage.getItem("all"));
-  var productid = "150000";
+  var productArray = JSON.parse(localStorage.getItem("all")) || [];
+  var productid = productArray.length+1; // Tạo ID sản phẩm dựa trên timestamp
   var productname = document.getElementById("txtnamesp");
   var brand = document.getElementById("brand");
-  var price = document.getElementById("txtprice");
-  if (!brand.value || !productname.value || !price.value) {
-    toast({ title: 'Lỗi', message: 'Vui lòng điền đầy đủ thông tin !', type: 'error', duration: 3000 });
+  var price = document.getElementById("txtprice1");
+  var imgInput = document.getElementById("imgUpload");
+
+  if (!brand.value || !productname.value || !price.value || !imgInput.files.length) {
+    toast({ title: 'Lỗi', message: 'Vui lòng điền đầy đủ thông tin và tải ảnh!', type: 'error', duration: 3000 });
     return false;
   }
+  
   if (price.value < 0) {
-    toast({ title: 'Lỗi', message: 'Giá không hợp lệ !', type: 'error', duration: 3000 });
+    toast({ title: 'Lỗi', message: 'Giá không hợp lệ!', type: 'error', duration: 3000 });
     return false;
   }
-  var producttemp = {
-    productId: productid,
-    brand: brand.value,
-    img: "",
-    name: productname.value,
-    price: price.value,
+
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    var producttemp = {
+      productId: productid,
+      brand: brand.value,
+      img: e.target.result, // Lưu URL của ảnh vào sản phẩm
+      name: productname.value,
+      price: price.value,
+    };
+
+    productArray.push(producttemp);
+    localStorage.setItem("all", JSON.stringify(productArray));
+    hienthitatcasp1();
+    toast({ title: 'Thành công', message: 'Thêm thành công sản phẩm!', type: 'success', duration: 3000 });
   };
-  productArray.push(producttemp);
-  localStorage.setItem("all", JSON.stringify(productArray));
-  hienthitatcasp1();
-  productname.value = "";
-  price.value = "";
-  brand.value = "Giày cỏ nhân tạo";
-  toast({ title: 'Thành công', message: 'Thêm thành công sản phẩm !', type: 'success', duration: 3000 });
+
+  reader.readAsDataURL(imgInput.files[0]); // Đọc tệp ảnh
 }
 
+
 // test
+function changeimgadd(input){
+  var reader = new FileReader();
+  reader.onload = function (e) {
+      document.getElementById('imgadd').src = e.target.result;
+  };
+  reader.readAsDataURL(input.files[0]);
+}

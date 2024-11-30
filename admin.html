@@ -25,6 +25,7 @@
               >
             </li>
             <li><a href="admin.html?bill">Đơn hàng</a></li>
+            <li><a href="admin.html">Sản phẩm</a></li>
             <li ><a href="admin.html?khachHang">Khách hàng</a></li>
             <li>Quản lý thông tin</li>
             <li><a href="admin.html?count">Thống kê</a></li>
@@ -47,11 +48,6 @@
         <div style="margin-right: 600px; margin-top: 18px">
           <h1>LOGO!!!</h1>
         </div>
-        <div>
-          <input id="txt" type="text" />
-          <i class="fa fa-search" aria-hidden="true" id="icon"></i>
-        </div>
-        <div id="tenadmin"></div>
       </div>
       
       <div class="content">
@@ -69,18 +65,20 @@
         </div>
 
         <div id="container" style="display: flex;flex-wrap: wrap;">
-          <div id="maintable" style=></div>
-          <div id="themsp" style=>
+          <div id="maintable">
+           
+          </div>
+          <div id="themsp">
             <div id="themsp1">
               <form>
                 <h3 style="text-align: center">THÊM SẢN PHẨM</h3>
                 <div class="item-themsp">
                   Tên sản phẩm: <br />
-                  <input type="text" id="txtnamesp" style="font-size: 15px" />
+                  <input type="text" id="txtnamesp" style="font-size: 25px" />
                 </div>
                 <div class="item-themsp">
                   Thương hiệu: <br>
-                  <select style="font-size: 15px; padding: 8px" id="brand">
+                  <select style="font-size: 20px; padding: 8px" id="brand">
                     <option>Giày cỏ nhân tạo</option>
                     <option>Giày cỏ tự nhiên</option>
                     <option>Quần áo</option>
@@ -89,9 +87,13 @@
                 </div>
                 <div class="item-themsp">
                   Giá: <br />
-                  <input type="tel" id="txtprice" style="font-size: 15px;" />
+                  <input type="teXT" id="txtprice1" style="font-size: 25px;" />
                 </div>
-
+                <div class="item-themsp">
+                  Ảnh: <br />
+                  <input type="file" id="imgUpload" style="font-size: 15px;" />
+              </div>
+              
             
                 
                 </div>
@@ -157,6 +159,8 @@
     <script src="admin_cart.js"></script>
     <script src="admin_countSale.js"></script>
     <script src="admin_khachHang.js"></script> 
+    <script src="thongbao.js"></script> 
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>

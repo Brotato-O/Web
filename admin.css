@@ -62,66 +62,6 @@ body{
     box-sizing: border-box;
     width: 70%;
 }
-
-.cot {
-  background-color: pink;
-  border:1px solid black;
-  flex-grow: 1;
-  text-align: center;
-  width: auto;
-  display: flex; 
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
-  font-size: 25px;
-  color: orange;
-  padding: 5px;
-  font-weight: bold; 
-}
-
-#nd ul li a{
-  color: #f1f1f1;
-  text-decoration: none;
-}
-
-#nd ul li a:hover{
-  color: gold;
-}
-
-.cot img {
-  width: 40%;
-}
-
-.cot1 {
-    border:1px solid black;
-    border-bottom: 2px groove;
-    flex-grow: 1;
-    text-align: center;
-    width: auto;
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.cot1 img {
-  width: 40%;
-}
-
-.cotchinhsua{
-    border:1px solid black;
-    flex-grow: 1;
-    border-bottom:2px groove ;
-    text-align: center;
-    width: auto;
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap:10px;
-    margin-bottom: 10px;
-}
-
 .button{
   border: 1px solid;
   min-width: 60px;
@@ -184,27 +124,6 @@ body{
 
 #nd li:hover{
   color: gold;
-}
-
-.phantrang{
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 2px;
-}
-
-.sotrang{
-    background-color: rgb(255, 255, 255);
-    cursor: pointer;
-    text-align: center;
-    font-size: 15px;
-    padding: 10px;
-    border: 1px solid black ;
-    border-radius: 15%;
-}
-
-.sotrang:hover{
-    background-color: gold;
 }
 
 #nav-logo{

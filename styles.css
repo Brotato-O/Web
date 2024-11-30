@@ -1036,7 +1036,7 @@ body{
   z-index: 1; /* Biểu tượng nằm trên ảnh */
 }
 input[type="file"] {
-  display: none;
+  display: block;                                            /*SUA NONE THANH BLOCK*/
 }
 #content {
   display: flex;
