@@ -102,7 +102,7 @@ td img{
     max-width: 100px;
     max-height: 100px; 
 }
-.cart-table th{
+#cart-table th{
     width: 25%;
 }
 .status-table th{
@@ -152,6 +152,7 @@ select{
 }
 
 #total-bill{
+    border-radius: 10px 10px 0px 0px;
     display: flex;
     flex-wrap: nowrap;
     width: 100%;

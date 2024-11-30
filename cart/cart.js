@@ -57,11 +57,11 @@ function cartDisplay(){
                         <option value="37" ${cartArray[username][i].sizeNumber == '37' ? 'selected' : ''}>37</option>
                 </select>
             </td>
-                    <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()}VND</td>
+                    <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()} VND</td>
                     <td><button class="delete" onclick="checkDelete('${i}')">X</button></td>
                 </tr>`;
         }
-        s = `<table class="cart-table">
+        s = `<table id="cart-table">
             <tr>
                 <td></td>
                 <th class="cart-item-image">Hình ảnh</th>
@@ -86,63 +86,27 @@ function cartDisplay(){
 }
 
 function cartDisplayMobile(){    
+    cartDisplay();
+    var table = document.getElementById('cart-table');
+    var change= document.getElementsByClassName("cart-item-quantity");
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
-    if (cartArray == undefined || cartArray[username].length == 0) {
-        var s = `<a href="../index.html">
-            <img src="../img/emty-cart.png" alt="emty-cart">
-            <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
-            <span>Quay lại trang chủ</span>
-        </a>`;
-        document.getElementById('wrap-cart').innerHTML = s;
-    } else {
-        var s = "";
-        for (let i = 0; i < cartArray[username].length; i++) {
-            s += `<tr>
-                    <td rowspan="2"><input type="checkbox" id="${i}" onchange="buy()"></td>
-                    <td rowspan="2" class="cart-item-image"><img src="../${cartArray[username][i].image}" alt="product"></td>
-                    <td rowspan="2" class="cart-item-name"><label for="${i}">${cartArray[username][i].title}</label></td>
-                    <td class="cart-item-quantity">
-                        <div class="count-quantity">
-                            <button class="bot" onclick="adjustQuantity('${i}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
-                            <input type="text" id="sl-${i}" class="quantity" value=${cartArray[username][i].quantityNumber} readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
-                            <button class="them" onclick="adjustQuantity('${i}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
-                        </div>
-                    </td>
-                    <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()} VND</td>
-                </tr>
-                <td class="cart-item-size">
-                <select onchange="adjustSize(this, '${i}')">
-                    <option value="31" ${cartArray[username][i].sizeNumber == '31' ? 'selected' : ''}>31</option>
-                    <option value="32" ${cartArray[username][i].sizeNumber == '32' ? 'selected' : ''}>32</option>
-                    <option value="33" ${cartArray[username][i].sizeNumber == '33' ? 'selected' : ''}>33</option>
-                    <option value="34" ${cartArray[username][i].sizeNumber == '34' ? 'selected' : ''}>34</option>
-                    <option value="35" ${cartArray[username][i].sizeNumber == '35' ? 'selected' : ''}>35</option>
-                    <option value="36" ${cartArray[username][i].sizeNumber == '36' ? 'selected' : ''}>36</option>
-                    <option value="37" ${cartArray[username][i].sizeNumber == '37' ? 'selected' : ''}>37</option>
-                </select>
-            </td>`;
-        }
-        s = `<table class="cart-table">
-            <tr>
-                <td></td>
-                <th class="cart-item-image">Hình ảnh</th>
-                <th class="cart-item-name">Tên sản phẩm</th>
-                <th class="cart-item-quantity">Tùy chỉnh</th>
-                <th class="cart-item-price">Đơn giá</th>
-                <td></td>
-            </tr>` + s +
-        `</table> 
-        <div id="total-bill">
-            <div>
-                <input type="checkbox" id="check-all" onchange="checkAllItems()"> 
-                <label for="check-all">Chọn tất cả</label>
-            </div>
-            <button onclick="deleteCheckedItems()" class="delete">Xóa</button>
-            <span id="total-pay">Tổng thanh toán: </span>
-            <button id="open-checkout-button" onclick="openCheckout()">Thanh toán</button>
-        </div>`;
-        document.getElementById('wrap-cart').innerHTML = s;
+    var row= table.rows;
+    for(var i=0; i< row.length; i++){
+        row[i].deleteCell(6);  
+        row[i].deleteCell(4);  
+    }
+    for(var i=0 ; i< cartArray[username].length ; i++){
+    change[i+1].innerHTML +=`
+    <select onchange="adjustSize(this, '${i}')">
+        <option value="31" ${cartArray[username][i].sizeNumber == '31' ? 'selected' : ''}>31</option>
+        <option value="32" ${cartArray[username][i].sizeNumber == '32' ? 'selected' : ''}>32</option>
+        <option value="33" ${cartArray[username][i].sizeNumber == '33' ? 'selected' : ''}>33</option>
+        <option value="34" ${cartArray[username][i].sizeNumber == '34' ? 'selected' : ''}>34</option>
+        <option value="35" ${cartArray[username][i].sizeNumber == '35' ? 'selected' : ''}>35</option>
+        <option value="36" ${cartArray[username][i].sizeNumber == '36' ? 'selected' : ''}>36</option>
+        <option value="37" ${cartArray[username][i].sizeNumber == '37' ? 'selected' : ''}>37</option>
+    </select>`
     }
 }
 
@@ -296,9 +260,19 @@ function notLogin(){
 
 //hiển thị tình trạng đơn
 function showBill(number){
-    var userlogin = JSON.parse(localStorage.getItem('userlogin'));
+    var userlogin = JSON.parse(localStorage.getItem('currentUser'));
     var bill= JSON.parse(localStorage.getItem('bill'));
     if(userlogin == undefined ) notLogin();
+    else if(1==1) {
+        var s= "";
+        document.getElementById("wrap-cart").innerHTML=`
+        <a href="../shop.html">
+            <img src="../img/emty-cart.png" alt="emty-cart">
+            <h2>Bạn hiện chưa có đơn hàng nào</h2>
+            <span>Đến khu mua sắm</span>
+        </a>
+    `
+    }
     else{
         var variable= "";
         if (number== 1) variable="Chờ xác nhận";
@@ -345,7 +319,7 @@ function showBill(number){
 function displayMobile(){
     var temp= location.href.split("?")[1];
     if (temp ==undefined || temp=="" || temp.search("focus")==0)
-        if(window.innerWidth< 768)cartDisplayMobile();
+        if(window.innerWidth< 768) cartDisplayMobile();
         else  cartDisplay();
 }
 

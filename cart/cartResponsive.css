@@ -8,7 +8,7 @@
     .container{
         width: 87%;
     }
-    .cart-table td, th{
+    #cart-table td, th{
         padding: 5px;
     }
 }
@@ -22,19 +22,25 @@
         padding: 10px 5px;
     }
     .container{
-        width: 90%;
+        width: 93%;
     }
     .status-table td, th{
         text-align: center;
         padding: 4px;
     }
-    .cart-table td, th{
+    #cart-table td, th{
         text-align: center;
-        padding: 4px;
+        padding: 20px 4px;
     }
-    .cart-table td img{
+    #cart-table td img{
         max-width: 70px;
         max-height: 70px;
+    }
+    #cart-table select{
+        margin: 10px 0px;
+    }
+    #wrap-cart{
+        padding: 0px;
     }
     .count-quantity{
         justify-content: center;
@@ -45,6 +51,7 @@
     }
     .count-quantity input[type="text"]{
         height: 25px;
+        width: 30px !important;
     }
     .cart-item-size select{
         height: 25px;
@@ -53,8 +60,6 @@
     }
     #wrap-cart span{
         margin: 5px;
-    }
-    #wrap-cart span{
         padding: 10px;
     }
     #outside{
