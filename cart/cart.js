@@ -6,6 +6,15 @@ const addressBox = document.getElementById('address-box');
 const cardInfoBox = document.getElementById('card-info-box');
 const paymentImageContainer = document.getElementById('payment-image-container');
 
+let locationData;
+
+fetch('/cart/locationdata.json') // Đường dẫn đến file JSON
+    .then(response => response.json())
+    .then(data => {
+        locationData = data; // Lưu dữ liệu vào biến
+        loadCitiesForNewAddress(); // Gọi hàm để hiển thị tỉnh/thành phố
+    })
+    .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
 
 function xoabill(){
     localStorage.removeItem("bill");
@@ -432,25 +441,6 @@ function goBackToAddress() {
     confirmPaymentButton.style.display = 'none'; 
 }
 
-function saveAddress() {
-    if (!validateNewAddress()) return; 
-
-    const address = {
-        name: document.getElementById('name').value,
-        phone: document.getElementById('phone').value,
-        houseNumber: document.getElementById('house-number').value,
-        street: document.getElementById('street').value,
-        ward: document.getElementById('ward').value,
-        district: document.getElementById('district').value,
-        city: document.getElementById('city').value,
-    };
-
-    console.log('Địa chỉ đã lưu:', address);
-
-    newAddressBox.style.display = 'none';
-    showPaymentMethodBox();
-}
-
 function PaymentMethodSelection() {
     const selectedMethod = document.querySelector('input[name="payment-method"]:checked');
 
@@ -514,3 +504,95 @@ function validateNewAddress() {
 
     return true;
 }
+function loadCitiesForNewAddress() {
+    const citySelectNew = document.getElementById("city-select-new");
+    for (const city in locationData) {
+        const option = document.createElement("option");
+        option.value = city;
+        option.textContent = city;
+        citySelectNew.appendChild(option);
+    }
+}
+function loadDistrictsForNewAddress() {
+    const citySelectNew = document.getElementById("city-select-new");
+    const districtSelectNew = document.getElementById("district-select-new");
+
+    // Xóa danh sách cũ
+    districtSelectNew.innerHTML = '<option value="">Chọn quận/huyện</option>';
+    document.getElementById("ward-select-new").innerHTML = '<option value="">Chọn phường/xã</option>';
+
+    const selectedCity = citySelectNew.value;
+    if (selectedCity && locationData[selectedCity]) {
+        Object.keys(locationData[selectedCity]).forEach(district => {
+            const option = document.createElement("option");
+            option.value = district;
+            option.textContent = district;
+            districtSelectNew.appendChild(option);
+        });
+    }
+}
+
+function loadWardsForNewAddress() {
+    const citySelectNew = document.getElementById("city-select-new");
+    const districtSelectNew = document.getElementById("district-select-new");
+    const wardSelectNew = document.getElementById("ward-select-new");
+
+    // Xóa danh sách cũ
+    wardSelectNew.innerHTML = '<option value="">Chọn phường/xã</option>';
+
+    const selectedCity = citySelectNew.value;
+    const selectedDistrict = districtSelectNew.value;
+
+    if (selectedCity && selectedDistrict && locationData[selectedCity][selectedDistrict]) {
+        locationData[selectedCity][selectedDistrict].forEach(ward => {
+            const option = document.createElement("option");
+            option.value = ward;
+            option.textContent = ward;
+            wardSelectNew.appendChild(option);
+        });
+    }
+}
+
+function checkAddressCompletion() {
+    const citySelectNew = document.getElementById("city-select-new").value;
+    const districtSelectNew = document.getElementById("district-select-new").value;
+    const wardSelectNew = document.getElementById("ward-select-new").value;
+    const streetInput = document.getElementById("street");
+
+    if (citySelectNew && districtSelectNew && wardSelectNew) {
+        streetInput.style.display = "block"; 
+    } else {
+        streetInput.style.display = "none"; 
+    }
+}
+// Lưu địa chỉ mới
+function saveAddress() {
+    const address = {
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        houseNumber: document.getElementById("house-number").value,
+        street: document.getElementById("street").value,
+        ward: document.getElementById("ward-select-new").value,
+        district: document.getElementById("district-select-new").value,
+        city: document.getElementById("city-select-new").value,
+    };
+
+    if (!address.city || !address.district || !address.ward || !address.street) {
+        alert("Vui lòng nhập đầy đủ thông tin địa chỉ.");
+        return;
+    }
+
+    console.log("Địa chỉ đã lưu:", address);
+    newAddressBox.style.display = "none";
+    showPaymentMethodBox();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetch('/cart/locationdata.json')
+        .then(response => response.json())
+        .then(data => {
+            locationData = data;
+            loadCitiesForNewAddress();
+        })
+        .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
+});

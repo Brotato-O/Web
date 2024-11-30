@@ -455,11 +455,21 @@ select{
     max-width: 600px;
     margin: auto;
 }
-#new-address-box input,
 #new-address-box select {
+  width: 100%; 
+  text-align: left; 
+  height: auto;
+  padding: 8px; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-weight: bold; 
+  overflow: visible;
+}
+#new-address-box input {
     width: 100%;
     padding: 10px;
     font-size: 14px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -467,6 +477,7 @@ select{
 #new-address-box label {
     font-size: 14px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 @media (max-width: 768px) {

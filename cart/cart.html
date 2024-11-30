@@ -336,10 +336,21 @@
               <input type="text" id="name" placeholder="Họ tên người nhận hàng" required>
               <input type="text" id="phone" placeholder="Số điện thoại" required pattern="^[0-9]{10,11}$">
               <input type="text" id="house-number" placeholder="Số nhà" required>
-              <input type="text" id="street" placeholder="Đường" required>
-              <input type="text" id="ward" placeholder="Phường/Xã" required>
-              <input type="text" id="district" placeholder="Quận/Huyện" required>
-              <input type="text" id="city" placeholder="Tỉnh/Thành phố" required>
+              <input type="text" id="street" placeholder="Tên đường" required>
+              <label for="city-select-new">Tỉnh/Thành phố:</label>
+              <select id="city-select-new" onchange="loadDistrictsForNewAddress()" required>
+                  <option value="">Chọn tỉnh/thành phố</option>
+              </select>
+              
+              <label for="district-select-new">Quận/Huyện:</label>
+              <select id="district-select-new" onchange="loadWardsForNewAddress()" required>
+                  <option value="">Chọn quận/huyện</option>
+              </select>
+              
+              <label for="ward-select-new">Phường/Xã:</label>
+              <select id="ward-select-new" required>
+                  <option value="">Chọn phường/xã</option>
+              </select>
             </form>
             <button onclick="saveAddress()">Lưu địa chỉ</button>
             <button onclick="goBackToAddress()">Quay lại</button>
