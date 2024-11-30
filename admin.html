@@ -10,7 +10,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <link rel="stylesheet" href="admin.css" />
-    <link rel="stylesheet" href="admin_cart.css" />
+    <link rel="stylesheet" href="admin_bill.css" />
     <link rel="stylesheet" href="admin_countSale.css" />
     <link rel="stylesheet" href="admin_khanhHang.css">
   </head>
@@ -28,7 +28,6 @@
             <li><a href="admin.html?bill">Đơn hàng</a></li>
             <li><a href="admin.html">Sản phẩm</a></li>
             <li ><a href="admin.html?khachHang">Khách hàng</a></li>
-            <li>Quản lý thông tin</li>
             <li><a href="admin.html?count">Thống kê</a></li>
           </ul>
         </div>
@@ -108,10 +107,18 @@
 
       </div>
 
+      <!-- Quản lý đơn hàng -->
       <div id="bill-content">
         <table id="billTable"></table>
         <div id="searchBill"></div>
       </div>
+
+      <!-- Thống kê -->
+      <div id="count-container" style="display: none">
+        <div id="detail-count">
+
+        </div>
+       </div>
 
     </div>
           
@@ -122,11 +129,7 @@
           </div>
          </div> 
         
-         <div id="count-container" style="display: none">
-          <div id="detail-count">
-
-          </div>
-         </div>
+         
 
          <!-- test -->
          <div class="chucNang" style="display: none;">
@@ -157,7 +160,7 @@
     <button onclick="xoabill()">Xóa bill tạm</button>
     <script src="khoitao.js"></script>
     <script src="admin.js"></script>
-    <script src="admin_cart.js"></script>
+    <script src="admin_bill.js"></script>
     <script src="admin_countSale.js"></script>
     <script src="admin_khachHang.js"></script> 
     <script src="thongbao.js"></script> 

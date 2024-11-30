@@ -8,7 +8,7 @@ function xoabill(){
     const bills = [
       {
           receiptId: 1,
-          customer: { id: 1, username: "user1", password: "password1", sdt: "0123456789" },
+          customer: {username: "aa", adr: "tp HCM, quận 5, phường 3, 273 An Dương Vương", sdt: "0123456789" },
           status: "Chờ xác nhận",
           orderDate: "2024-11-16",
           paymentMethod: "Chuyển khoản",
@@ -20,7 +20,7 @@ function xoabill(){
       },
       {
           receiptId: 2,
-          customer: {id: 1, username: "user2", password: "password2", sdt: "0987654321" },
+          customer: { username: "user2", password: "password2", sdt: "0987654321" },
           status: "Đã xác nhận",
           orderDate: "2024-11-15",
           paymentMethod: "Tiền mặt",
@@ -31,7 +31,7 @@ function xoabill(){
       },
       {
           receiptId: 3,
-          customer: { id: 1, username: "user3", password: "password3", sdt: "0912345678" },
+          customer: { username: "user3", password: "password3", sdt: "0912345678" },
           status: "Đã giao",
           orderDate: "2024-11-14",
           paymentMethod: "Chuyển khoản",
@@ -42,7 +42,7 @@ function xoabill(){
       },
       {
           receiptId: 4,
-          customer: {id: 2,  username: "user1", password: "password1", sdt: "0123456789" },
+          customer: {username: "user1", password: "password1", sdt: "0123456789" },
           status: "Đã giao",
           orderDate: "2024-11-13",
           paymentMethod: "Tiền mặt",
@@ -53,7 +53,7 @@ function xoabill(){
       },
       {
           receiptId: 5,
-          customer: {id: 2,  username: "user2", password: "password2", sdt: "0987654321" },
+          customer: {username: "user2", password: "password2", sdt: "0987654321" },
           status: "Chờ xác nhận",
           orderDate: "2024-11-12",
           paymentMethod: "Chuyển khoản",
@@ -64,7 +64,7 @@ function xoabill(){
       },
       {
           receiptId: 6,
-          customer: {id: 3, username: "user3", password: "password3", sdt: "0912345678" },
+          customer: {username: "user3", password: "password3", sdt: "0912345678" },
           status: "Đã xác nhận",
           orderDate: "2024-11-11",
           paymentMethod: "Tiền mặt",
@@ -75,7 +75,7 @@ function xoabill(){
       },
       {
           receiptId: 7,
-          customer: {id: 2, username: "user1", password: "password1", sdt: "0123456789" },
+          customer: {username: "user1", password: "password1", sdt: "0123456789" },
           status: "Đã giao",
           orderDate: "2024-11-10",
           paymentMethod: "Chuyển khoản",
@@ -86,7 +86,7 @@ function xoabill(){
       },
       {
           receiptId: 8,
-          customer: {id: 4,  username: "user2", password: "password2", sdt: "0987654321" },
+          customer: {username: "user2", password: "password2", sdt: "0987654321" },
           status: "Đã giao",
           orderDate: "2024-11-09",
           paymentMethod: "Tiền mặt",
@@ -97,7 +97,7 @@ function xoabill(){
       },
       {
           receiptId: 9,
-          customer: {id: 1, username: "user3", password: "password3", sdt: "0912345678" },
+          customer: {username: "user3", password: "password3", sdt: "0912345678" },
           status: "Chờ xác nhận",
           orderDate: "2024-11-08",
           paymentMethod: "Chuyển khoản",
@@ -108,7 +108,7 @@ function xoabill(){
       },
       {
           receiptId: 10,
-          customer: {id:1, username: "user1", password: "password1", sdt:"0123456789" },
+          customer: {username: "user1", password: "password1", sdt:"0123456789" },
           status: "Đã xác nhận",
           orderDate: "2024-11-07",
           paymentMethod: "Tiền mặt",
