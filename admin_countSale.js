@@ -3,7 +3,6 @@ window.addEventListener("load", function () {
     if(temp[1]== "count") {
         onCustomer();
         showCount();
-        
     }
   })
   
@@ -15,29 +14,37 @@ window.addEventListener("load", function () {
     for(let i=0; i< user.length; i++){
         count.push({customerId: user[i].username, billId:[], totalAmount: 0});
     }
-    for(let i=0; i< count.length; i++)
+    for(let i=0; i< count.length; i++){
       for(let j=0; j< bill.length; j++){
-        if(bill[j].customer.username== count[i].customerId){
+        if(bill[j].customer.username== count[i].customerId && bill[j].status== "Đã giao"){
           count[i].billId.push(bill[j].receiptId);
           count[i].totalAmount+= bill[j].totalAmount;
         }
       }
+    }
+    for(let i=0; i< count.length; i++){
+        for(let j=0; j < count.length-1;j++)
+            if (count[j].totalAmount < count[j+1].totalAmount) {
+                var temp = count[j];
+                count[j] = count[j+1];
+                count[j+1] = temp;
+            }
+    
+    }
     console.log(count);
     localStorage.setItem('count', JSON.stringify(count));
 }
 
 function showCount(){
-    
+    document.getElementById("count-container").style.display="flex";
     document.getElementById("container").style.display="none";
-    document.getElementById("count-container").style.display="block";
   var count= JSON.parse(localStorage.getItem("count"));
   var detail= document.getElementById("detail-count");
   var s="";
   for(let i=0; i<5; i++){
-    s+= `<tr>
-    <td id="${count[i].customerId}" class="row-count" onclick="detailCount(this)">${count[i].customerId}</td>
+    s+= `<tr id="${count[i].customerId}" class="row-count" onclick="detailCount(this)" >
+    <td >${count[i].customerId}</td>
       <td>${count[i].totalAmount}</td>
-      <div id="detail-${i}" style="none">
     </div>
       `;
   }
@@ -47,23 +54,22 @@ function showCount(){
 }
 
 function detailCount(obj){
-    var count= JSON.parse(localStorage.getItem("count"));
-  var detail;
-  var s="";
-  for(let i=0; i<5; i++){
-    if(count[i].customerId==obj.id){
-        detail= document.getElementById(`detail-${i}`);
-        for(let j=0; j<count[i].billId.length; j++){
-        s+= `
-                <div class="count-wrap">
-                    <div>Mã hóa đơn</div>
-                    <div>${count[i].billId[j]}</div>
-                </div>
-            
-            `;
+    var bill= JSON.parse(localStorage.getItem("bill"));
+    var showBill= document.getElementById("showBill");
+    var s="";
+    for(let i=0; i<bill.length; i++){
+        if(bill[i].customer.username== obj.id){
+            s+=`
+                <tr>
+                <td>${bill[i].receiptId}</td>
+                <td>${bill[i].orderDate}</td>
+                <td>${bill[i].totalAmount}</td>
+                </tr>
+            `
         }
-        break;
     }
-  }
-  detail.innerHTML=s;
+    showBill.innerHTML=`
+    <th>Id đơn</th>
+    <th>Ngày đặt</th>
+    <th>Tổng tiền</th>` + s ;
 }

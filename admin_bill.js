@@ -9,7 +9,7 @@ function xoabill(){
       {
           receiptId: 1,
           customer: {username: "aa", adr: "tp HCM, quận 5, phường 3, 273 An Dương Vương", sdt: "0123456789" },
-          status: "Chờ xác nhận",
+          status: "Đã giao",
           orderDate: "2024-11-16",
           paymentMethod: "Chuyển khoản",
           totalAmount: 2000000,
@@ -220,6 +220,7 @@ function lookUpStatus() {
       }
     }
     localStorage.setItem("billtemp",JSON.stringify(billtemp));
+    console.log("AA");
 }
 
 //hiển thị kế quả tìm kiếm dựa trên kq lọc

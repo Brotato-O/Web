@@ -1,21 +1,18 @@
-#detail-count{
-    width:80%;
-    border: 1px solid black;
-    margin: auto;
+#count-container{
     display: flex;
-    flex-direction: column; 
+    flex-wrap: nowrap;
+    align-items: flex-start;
 }
-#head-count{
-    display: flex;
-    justify-content: space-around;
+#showBill{
+    width: 70%;
+    margin: 0px 15px;
+}
+#detail-count{
+    width: calc(30% - 30px);
 }
 .row-count{
-    display: flex;
+    cursor: pointer;
 }
-.row-count div{
-    width: 50%;
-    text-align: center;
-}
-.count-wrap{
-    display: flex;
+.row-count:hover{
+    background-color: #a9a8a8;
 }
