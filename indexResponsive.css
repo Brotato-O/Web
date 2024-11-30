@@ -323,3 +323,26 @@
         margin-right: 40px;
     }
 }
+/* nhàn */
+@media only screen and (max-width: 425px){
+    
+#hero{
+    background-size: contain;
+    /* background-repeat: no-repeat; */
+    margin-left: 0px;
+  }
+  #hero-title {
+    font-size: 3rem;
+    text-shadow: 15px 5px 5px rgba(0, 0, 0, 0.5);
+}
+#hero-button{
+    width: 90%;
+    padding: 20px 0px;
+}
+.product{
+    width: 100%;
+}
+*{
+    margin-left: 0px;
+}
+}
