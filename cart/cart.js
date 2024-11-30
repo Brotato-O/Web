@@ -92,7 +92,7 @@ function cartDisplayMobile(){
             s += `<tr>
                     <td rowspan="2"><input type="checkbox" id="${i}" onchange="buy()"></td>
                     <td rowspan="2" class="cart-item-image"><img src="../${cartArray[username][i].image}" alt="product"></td>
-                    <td rowspan="2" class="cart-item-name"><label for="${cartArray[username][i].id}">${cartArray[username][i].title}</label></td>
+                    <td rowspan="2" class="cart-item-name"><label for="${i}">${cartArray[username][i].title}</label></td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
                             <button class="bot" onclick="adjustQuantity('${i}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>

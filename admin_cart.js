@@ -181,7 +181,7 @@ function create(){
             </div>
 `;
     document.getElementById('themsp').innerHTML ="";
-    document.getElementById("themsp").appendChild(temp);
+    document.getElementById("searchBill").appendChild(temp);
 }
 
 window.addEventListener("load", function () {
@@ -222,6 +222,7 @@ function lookUpStatus() {
 
 //hiển thị kế quả tìm kiếm dựa trên kq lọc
   function billDisplay(from, to, n){
+    document.getElementById("container").style.display="none";
     var billtemp= JSON.parse(localStorage.getItem('billtemp'));
     var temp= [];
     var s="";
@@ -241,13 +242,13 @@ function lookUpStatus() {
     }
     billtemp= temp;
     localStorage.setItem("billtemp",JSON.stringify(billtemp));
-    document.getElementById("maintable").innerHTML=`<table id="billTable"><tr>
+    document.getElementById("billTable").innerHTML=`<tr>
             <th>Ngày đặt</th>
             <th>Mã hóa đơn</th>
             <th>Sdt</th>
             <th>Giá tiền</th>
             <th>Trạng thái</th>
-            </tr>` + s + `</table>`;
+            </tr>` + s ;
   }
 
   //hiển thị ô nhập liệu tìm kiếm
