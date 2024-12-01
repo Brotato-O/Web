@@ -17,7 +17,6 @@ var rusername = document.getElementById('txtRUsername').value;
 var rpassword = document.getElementById('txtRPassword').value;
 var rpassword2 = document.getElementById('txtRPassword2').value;
 
-
 // <---------------<DANG NHAP/DANG KY>----------------->
 
 //Khai báo
@@ -595,20 +594,6 @@ CartFormClose.addEventListener('click', function(event){
 
 //Nủt giỏ hàng trên thanh navbar
 Cart.addEventListener('click', function(event){
-    if(checkLoginCart()){
-    CartForm.style.display = 'block';
-    overlay.style.display = 'block';
-    SignForm.style.display = 'none';
-    RegisterForm.style.display = 'none';
-    afterSign.style.display = 'none';
-    afterSignAdmin.style.display = 'none';
-    displayCart(JSON.parse(localStorage.getItem('currentUser')).username);
-    }
-    else{
-        toast({ title: 'Thất bại', message: 'Vui lòng đăng nhập để xem giỏ hàng !', type: 'error', duration: 3000 });
-    }
-});
-Cart2.addEventListener('click', function(event){
     if(checkLoginCart()){
     CartForm.style.display = 'block';
     overlay.style.display = 'block';

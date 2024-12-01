@@ -62,7 +62,23 @@ function showSignForm() {
     navRes.style.transform = 'translateX(100%)';
 }
 
-CartReS.addEventListener('click', showCartForm);
+CartReS.addEventListener('click', function (e) {
+    
+        if(checkLoginCart()){
+        CartForm.style.display = 'block';
+        overlay.style.display = 'block';
+        SignForm.style.display = 'none';
+        RegisterForm.style.display = 'none';
+        afterSign.style.display = 'none';
+        afterSignAdmin.style.display = 'none';
+        displayCart(JSON.parse(localStorage.getItem('currentUser')).username);
+        console.log("AAA");
+        }
+        else{
+            toast({ title: 'Thất bại', message: 'Vui lòng đăng nhập để xem giỏ hàng !', type: 'error', duration: 3000 });
+        }
+    
+});
 
 
 function showCartForm() {
