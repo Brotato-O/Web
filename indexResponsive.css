@@ -450,9 +450,6 @@
     #toast{
         z-index: 9999;
     }
-}
-
-@media only screen and (max-width: 500px){
     .count-quantity button{
         width:15px;
         height: 25px;
@@ -472,16 +469,30 @@
     .row{
         width: 100%;
     }
-    .mota-sanpham{
-        width: 85%;
-    }
     .mota-phai{
-        margin-left: 0px !important;
-        
+        margin-left: 0px !important; 
     }
     .mota-trai img {
-        text-align: center;
+        width: 100%;
+        margin-left: 0px;
     }
+    .mota-sanpham{
+        width: 90%;
+    }
+    #Signform{
+        width: 85%;
+        z-index: 9999;
+    }
+    #RegisterForm{
+        z-index: 9999;
+        width: 85%;
+        overflow: scroll;
+        max-height: 90%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    
 #hero{
     background-size: 100% 100%;
     /* background-repeat: no-repeat; */

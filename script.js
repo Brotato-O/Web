@@ -126,7 +126,7 @@ RegisterSubmit.addEventListener('click', function(event) {
         let rusername = document.getElementById('txtRUsername').value;
         let rpassword = document.getElementById('txtRPassword').value;
         let date= new Date();
-        date.getFullYear();
+        let temp=  date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
         if(isAccountExist(rusername)){
             toast({ title: 'Thất bại', message: 'Tài khoản đã tồn tại !', type: 'error', duration: 3000 });
             document.getElementById('txtRUsername').value = '';
@@ -135,7 +135,7 @@ RegisterSubmit.addEventListener('click', function(event) {
             document.getElementById('txtRUsername').focus();
         }
         else{
-            saveAccountToLocalStorage(rname, rusername, rpassword, date);
+            saveAccountToLocalStorage(rname, rusername, rpassword, temp);
             toast({ title: 'Thành công', message: 'Tạo tài khoản thành công !', type: 'success', duration: 3000 });
             closeRegisterForm();
             console.log('date');
