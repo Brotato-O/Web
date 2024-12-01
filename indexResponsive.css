@@ -557,4 +557,8 @@
 #CartForm{
     z-index: 9990;
 }
+#SignForm{
+    width: 85%;
+    z-index: 9999;
+}
 }
