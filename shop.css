@@ -998,5 +998,8 @@ background-color: black;
     width: 70%;
     margin-top: 70px;
 }
-
+/* nhàn */
+.widget-row-col, .widget-row-col-1 {
+width: 100%;
+}
 } 
