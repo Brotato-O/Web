@@ -1,6 +1,7 @@
 // <---------------<RESPONSIVE>----------------->
 var menu = document.getElementById('nav-responsive-button');
 var navRes = document.getElementById('navbar-responsive');
+navRes.style.transform = 'translateX(100%)';
 
 menu.addEventListener('click', function() {
     if (navRes.style.transform === 'translateX(100%)') {
