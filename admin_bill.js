@@ -121,12 +121,10 @@ function xoabill(){
   
     localStorage.setItem("bill", JSON.stringify(bills));
   }
-const temp= document.getElementById("maintable");
-const temp2= document.getElementById("themsp");
- 
 //BẮT ĐẦU TÌM KIẾM HÓA ĐƠN
 //hiển thị bảng tìm kiếm
 function create(){
+  document.getElementById("title").innerHTML = "<h3>Danh sách đơn hàng</h3>"
     var temp= document.createElement("div");
       temp.setAttribute("id", "select-bill");
       temp.innerHTML= `
@@ -136,7 +134,7 @@ function create(){
               <form oninput=change() onchange=change()>
                 
                 <div>
-                  <div style="display: flex; margin: 20px 0px">
+                  <div style="display: flex; margin: 20px 0px; justify-content: center">
                     <div>Tìm kiếm theo</div>
 
                   <select id="method" onchange="lookUpBillDisplay()">
