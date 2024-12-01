@@ -297,7 +297,9 @@ body{
     justify-content: center;
     align-items: center;
 }
-
+#h3tieude{
+    text-align: center;
+}
 #tieude h3{
     display: flex;
     justify-content: center;

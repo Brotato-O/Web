@@ -376,6 +376,17 @@
         padding: 40px;
     }
     /* cartend */
+    /* user */
+    #form{
+        padding: 0%;
+        width: 100%;
+    }
+    .col, .col input{
+        width: 100%;
+    }
+    #btn button{
+        text-align: center;
+    }
     .mota-sanpham{
         flex-direction: column;
         width: auto;
