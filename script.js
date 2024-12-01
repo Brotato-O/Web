@@ -717,3 +717,9 @@ window.onscroll = () => {
 
 // window.onload = localStorage.removeItem('currentUser');
 
+//nhàn
+function hide(event){
+    if(event.target.id== "sanpham-chitiet"){
+      document.getElementById("sanpham-chitiet").style.display = "none";
+    }
+  }

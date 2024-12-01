@@ -325,6 +325,22 @@
 .poster{
     margin-top: 50px;
 }
+#CartForm {
+    position: fixed;
+    top:69px;
+    left: initial;
+    right: 0px;
+    height: auto;
+    width: 800px;
+    background: #fff;
+    border-radius: 10px;
+    z-index: 2000;
+    display: none;
+    transform: translate(0px, 0px);
+}
+.mota-sanpham{
+    width: auto;
+}
 @media only screen and (max-width:1200px){
     #services-items{
         flex-wrap: nowrap;
@@ -342,6 +358,42 @@
     }
 }
 @media only screen and (max-width:784px){
+    /* cart */
+    #afterSign, #afterSignAdmin{
+        z-index: 9999;
+    }
+    #CartForm{
+        width: 70%;
+        right: 50%;
+        top: 116px;
+        transform: translate(50%, 0px);
+        z-index: 9999;
+    }
+    #cartContainer {
+        align-items: flex-start;
+    }
+    #CartForm-view{
+        padding: 40px;
+    }
+    /* cartend */
+    .mota-sanpham{
+        flex-direction: column;
+        width: auto;
+    }
+    .row{
+        width: auto;
+        padding: 0px;
+        justify-content: space-evenly;
+    }
+    #account-profile{
+        height: 80%;
+        width: 80%;
+        overflow: scroll;
+    }
+    #content{
+        flex-direction: column;
+        
+    }
     #hero{
         background-size: cover;
         background-position: center;
@@ -405,6 +457,9 @@
     margin: auto;
     padding: 20px 20px;
 }
+.kichco {
+    width: auto !important;
+}
 #services {
     flex-direction: column;
     height: fit-content;
@@ -446,5 +501,12 @@
 }
 .footer-container{
     align-items:center ;
+}
+/* menu */
+#navbar-responsive ul li div {
+    padding: 30px;
+}
+#CartForm{
+    z-index: 9990;
 }
 }
