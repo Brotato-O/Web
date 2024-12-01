@@ -157,6 +157,10 @@ body{
     width:50% ;
     margin: auto;
   }
+  #themsp {
+    width: auto;
+   }
+ 
 }
 
 @media (max-width: 630px) {
@@ -166,4 +170,12 @@ body{
   .cot1{
     width: 80px;
   }
+  
+ 
+ #maintable{
+  width: auto;
+ }
+ #themsp {
+  width: auto;
+ }
 }
