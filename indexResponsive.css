@@ -443,6 +443,10 @@
         width: 90%;
         padding: 20px 0px;
     }
+    #SignForm{
+        width: 85%;
+        z-index: 9999;
+    }
 }
 
 @media only screen and (max-width: 500px){
@@ -557,8 +561,5 @@
 #CartForm{
     z-index: 9990;
 }
-#SignForm{
-    width: 85%;
-    z-index: 9999;
-}
+
 }
