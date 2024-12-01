@@ -983,6 +983,16 @@ background-color: black;
 .toast+.toast{
     margin-top: 20px;
 }
-
+.sptieude{
+    margin-top: 120px;
+}
+.sanpham2{
+    margin: auto;
+}
+.text-overlay{
+    text-align: center;
+    width: 70%;
+    margin-top: 70px;
+}
 
 } 
