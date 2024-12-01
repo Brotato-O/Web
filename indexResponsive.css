@@ -447,6 +447,9 @@
         width: 85%;
         z-index: 9999;
     }
+    #toast{
+        z-index: 9999;
+    }
 }
 
 @media only screen and (max-width: 500px){

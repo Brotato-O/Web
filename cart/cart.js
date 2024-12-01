@@ -35,6 +35,7 @@ function cartDisplay(){
     } else {
         var s = "";
         for (let i = 0; i < cartArray[username].length; i++) {
+            var quantity = Number(cartArray[username][i].quantity); 
             s += `<tr>
                     <td><input type="checkbox" id="${i}" onchange="buy()"></td>
                     <td class="cart-item-image"><img src="../${cartArray[username][i].image}" alt="product"></td>
@@ -42,7 +43,7 @@ function cartDisplay(){
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
                             <button class="bot" onclick="adjustQuantity('${i}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
-                            <input type="text" id="sl-${i}" class="quantity" value="${cartArray[username][i].quantityNumber}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
+                            <input type="text" id="sl-${i}" class="quantity" value="${quantity}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
                             <button class="them" onclick="adjustQuantity('${i}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
@@ -114,7 +115,7 @@ function adjustSize(obj, id){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
 
-            cartArray[username][id].sizeNumber= Number(obj.value);
+            Number(cartArray[username][id].size)= Number(obj.value);
       
     document.getElementById(id).checked = true;
     localStorage.setItem('userCarts', JSON.stringify(cartArray));
@@ -125,11 +126,10 @@ function adjustSize(obj, id){
 //Hàm điều chỉnh số lượng 
 function adjustQuantity(id, change) {
     document.getElementById(id).checked = true;
-    console.log(typeof change, change);
+    console.log(document.getElementById(id).value);
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
-    console.log(change + " " + cartArray[username][id].quantityNumber);
-    var newQuantity = cartArray[username][id].quantityNumber + change;
+    var newQuantity = Number(cartArray[username][id].quantity) + change;
     console.log(newQuantity);
     if (newQuantity < 1) {
         newQuantity = 1;
@@ -138,7 +138,7 @@ function adjustQuantity(id, change) {
     var quantityInput = document.getElementById(`sl-${id}`);
     quantityInput.value = newQuantity;
     
-    cartArray[username][id].quantityNumber = Number(quantityInput.value);
+    cartArray[username][id].quantity = Number(quantityInput.value);
     localStorage.setItem('userCarts', JSON.stringify(cartArray));
     buy();
 }
@@ -219,7 +219,7 @@ function buy(){
     var s = 0;
     for (let i = 0; i < carttemp.length; i++) 
         
-            s+= carttemp[i].quantityNumber * carttemp[i].price;
+            s+= Number(carttemp[i].quantity) * Number(carttemp[i].price);
         
     document.getElementById("total-pay").innerHTML = "Tổng thanh toán: " + s.toLocaleString() +"VND";
     return s;

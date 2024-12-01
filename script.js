@@ -100,9 +100,9 @@ function validateRegisterForm() {
 }
 
 //Lưu tài khoản vào mảng accounts trên local storage
-function saveAccountToLocalStorage(name, username, password) {
+function saveAccountToLocalStorage(name, username, password, date) {
     let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
-    accounts.push({ name, username, password, role: 'user', status: 'active' });
+    accounts.push({ name, username, password, role: 'user', status: 'active', date });
     localStorage.setItem('accounts', JSON.stringify(accounts));
 }
 
@@ -125,6 +125,8 @@ RegisterSubmit.addEventListener('click', function(event) {
         let rname = document.getElementById('txtRName').value;
         let rusername = document.getElementById('txtRUsername').value;
         let rpassword = document.getElementById('txtRPassword').value;
+        let date= new Date();
+        date.getFullYear();
         if(isAccountExist(rusername)){
             toast({ title: 'Thất bại', message: 'Tài khoản đã tồn tại !', type: 'error', duration: 3000 });
             document.getElementById('txtRUsername').value = '';
@@ -133,9 +135,10 @@ RegisterSubmit.addEventListener('click', function(event) {
             document.getElementById('txtRUsername').focus();
         }
         else{
-            saveAccountToLocalStorage(rname, rusername, rpassword);
+            saveAccountToLocalStorage(rname, rusername, rpassword, date);
             toast({ title: 'Thành công', message: 'Tạo tài khoản thành công !', type: 'success', duration: 3000 });
             closeRegisterForm();
+            console.log('date');
         }
     }
 });
@@ -605,6 +608,20 @@ Cart.addEventListener('click', function(event){
         toast({ title: 'Thất bại', message: 'Vui lòng đăng nhập để xem giỏ hàng !', type: 'error', duration: 3000 });
     }
 });
+Cart2.addEventListener('click', function(event){
+    if(checkLoginCart()){
+    CartForm.style.display = 'block';
+    overlay.style.display = 'block';
+    SignForm.style.display = 'none';
+    RegisterForm.style.display = 'none';
+    afterSign.style.display = 'none';
+    afterSignAdmin.style.display = 'none';
+    displayCart(JSON.parse(localStorage.getItem('currentUser')).username);
+    }
+    else{
+        toast({ title: 'Thất bại', message: 'Vui lòng đăng nhập để xem giỏ hàng !', type: 'error', duration: 3000 });
+    }
+});
 
 // Thêm sản phẩm vào giỏ hàng
 //Hàm thêm sản phẩm vào giỏ hàng cho mỗi user kèm theo hàm check sản phẩm trùng sẽ chỉ xuất hiện 1 lần
@@ -626,8 +643,6 @@ document.addEventListener('click', function(event) {
             const id = document.getElementById("ma-sp").innerHTML;
             const quantity = document.getElementById('sl').value;
             const size = document.getElementById('size').value;
-            const quantityNumber = parseInt(quantity, 10);
-            const sizeNumber = parseInt(size);
             let allProducts = JSON.parse(localStorage.getItem('all')) || [];
             allProducts.forEach(product => {
                 if(product.productId == id) {
@@ -636,7 +651,7 @@ document.addEventListener('click', function(event) {
                     price = product.price;
                 }
             });
-            const cartItem = {id, image, title, price, quantityNumber, sizeNumber};
+            const cartItem = {id, image, title, price, quantity, size};
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             addToCartForUser(currentUser.username, cartItem);
             toast({ title: 'Thành công', message: 'Đã thêm sản phẩm vào giỏ hàng !', type: 'success', duration: 3000 });
