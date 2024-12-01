@@ -1,5 +1,7 @@
 
-
+#luu #xoa{
+    color: black;
+}
 
 /* Cart start */
 body{
@@ -59,7 +61,6 @@ body{
 
 .container{
     width: 80%;
-    max-width: 1200px;
     margin: 0 auto; 
 }
 
@@ -168,6 +169,11 @@ select{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+}
+
+input[type="checkbox"]{
+    width: 30px;
+    height: 30px;
 }
 
 @keyframes highlight {
