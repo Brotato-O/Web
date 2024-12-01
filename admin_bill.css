@@ -100,7 +100,9 @@ body{
     font-size: 3rem;
     color: #333;
   }
-  
+  h3{
+    text-align: center;
+}
   .infor-wrap p{
     font-size: 18px;
     overflow-y: hidden;
@@ -117,7 +119,9 @@ body{
     font-size: 1.3rem;
     margin-bottom: 0;
   }
-  
+  .detailMethod{
+    justify-content: center;
+  }
   
   
   #select-bill div h3{
@@ -152,6 +156,11 @@ body{
 }
 
 @media only screen and (max-width: 768px){
+    #title{
+        font-size: 30px !important;
+       text-align: center;
+        padding: 0% !important;
+    }
     #bill-content{
         flex-direction: column-reverse;
     }
@@ -166,9 +175,6 @@ body{
         width: 90%;
         height: 80%;
         overflow: scroll;
-    }
-    .infor-wrap{
-        margin: 5px;
     }
 }
 

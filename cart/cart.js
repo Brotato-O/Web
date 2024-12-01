@@ -153,9 +153,10 @@ function checkCart(){
         var check= document.getElementById(i);
         if(check.checked== true) {
             carttemp.push(cartArray[username][i]);
-            carttemp[carttemp.length-1].id= i;
+            carttemp[carttemp.length-1].id= check.id;
         }
     }
+    console.log(carttemp);
 }
 
 //chọn tất cả sản phẩm
@@ -191,7 +192,7 @@ function deleteCheckedItems(){
         return;
     };
     if(warning()== false) return;
-    for(let i=0; i<carttemp.length; i++){
+    for(let i=carttemp.length-1 ; i> -1; i--){
         deleteCartItem(carttemp[i].id);
     }
     cartDisplay();
@@ -204,12 +205,10 @@ function checkDelete(id){
 }
 
 function deleteCartItem(id){
+    console.log(id);
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
-    
-            cartArray[username].splice(id, 1);
-            
-        
+    cartArray[username].splice(id, 1);
     localStorage.setItem('userCarts',JSON.stringify(cartArray));
     cartDisplay();
 }
@@ -318,7 +317,7 @@ function showBill(number){
 //hàm hiển thị điện thoại
 function displayMobile(){
     var temp= location.href.split("?")[1];
-    if (temp ==undefined || temp=="" || temp.search("focus")==0)
+    if (temp ==undefined || temp=="")
         if(window.innerWidth< 768) cartDisplayMobile();
         else  cartDisplay();
 }
@@ -328,7 +327,7 @@ window.addEventListener("resize",displayMobile);
 window.addEventListener("load", function(){
     addCSS();
     var temp= location.href.split("?")[1];
-    if(temp ==undefined || temp=="" || temp.search("focus")==0) {
+    if(temp ==undefined || temp=="") {
         if(window.innerWidth< 768) cartDisplayMobile();
         else cartDisplay();
         if(temp!= undefined && temp!="" && temp.search("focus")==0 ) {
@@ -349,7 +348,7 @@ window.addEventListener("load", function(){
 function addCSS(){
     var li= document.getElementsByClassName('status-li');
     var temp= location.href.split("?")[1];
-    if(temp ==undefined || temp=="" || temp.search("focus")==0) {
+    if(temp ==undefined || temp=="" ) {
         li[0].style.backgroundColor="white";
         li[0].style.borderRadius="20px";
         li[0].style.border="1px solid black";
