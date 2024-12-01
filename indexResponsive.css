@@ -312,8 +312,6 @@
         width: 100%;
     }
 
-    .widget-social{
-    }
 
     .widget-social-item {
         margin: 0 10px;
@@ -324,16 +322,28 @@
     }
 }
 /* nhàn */
+/* @media only screen and (max-width:768px){
+    #hero{
+        background-size: 100% 100%;
+        margin-left: 0px;
+        
+      }
+} */
+
 @media only screen and (max-width: 425px){
-    
 #hero{
-    background-size: contain;
+    background-size: 100% 100%;
     /* background-repeat: no-repeat; */
     margin-left: 0px;
+    background-image: url('img/mobileBackground.jpg');
   }
   #hero-title {
     font-size: 3rem;
     text-shadow: 15px 5px 5px rgba(0, 0, 0, 0.5);
+    
+}
+#hero-content p, a button{
+    text-align: center;
 }
 #hero-button{
     width: 90%;
@@ -344,5 +354,53 @@
 }
 *{
     margin-left: 0px;
+    text-align: left;
+}
+#shop-button{
+    width: 100%;
+    margin: auto;
+    padding: 20px 20px;
+}
+#services {
+    flex-direction: column;
+    height: fit-content;
+}
+#services-title p{
+    text-align: center;
+}
+.poster{
+    margin: 0px;
+    width: 100%;
+    height: auto;
+}
+.footer-top-subbox{
+    flex-direction: column;
+    text-align: center;
+    margin-left: 0px;
+}
+.footer{
+    width: 100%;
+}
+.form-ground{
+    margin: 0px;
+}
+.widget-row {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+}
+.widget-row-col{
+    text-align: left;
+}
+.widget-social-item a {
+    margin-right: 0px;
+}
+.widget-title::after {
+    left: 0%;
+    transform: translate(0%);
+}
+.footer-container{
+    align-items:center ;
 }
 }
