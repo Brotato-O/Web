@@ -46,7 +46,7 @@ td {
   width: 100%;
 }
 .btn_ button {
-  width: 40%;
+  width: 70%;
   margin: 5%;
   padding: 2px;
 }
@@ -62,7 +62,7 @@ td {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-right: 2px;
   margin-top: 10px;
-  height: 400px;
+  height: auto;
 }
 
 .itemForm h2 {
@@ -92,8 +92,8 @@ td {
   width: 100%;
 }
 #btn button {
-  width: 20%;
-  margin: 10px;
+  width: 40%;
+  margin: 0px;
   padding: 10px;
   font-weight: bold;
 }
@@ -141,4 +141,38 @@ td {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   width: 50%;
   z-index: 10;
+}
+
+/*TUAN*/
+@media (max-width: 900px) {
+  .chucNang{
+    flex-direction: column-reverse;
+  }
+  #tableKH{
+    margin: auto;
+
+  }
+  #DS_KH {
+    width:100% ;
+    margin: auto;
+  }
+  #timkiemKH{
+    margin: auto  ;
+  }
+ 
+}
+
+@media (max-width: 600px) {
+  
+  #tableKH{
+    margin: auto;
+
+  }
+  #DS_KH {
+    width:100% ;
+    margin: auto;
+  }
+  #timkiemKH{
+    margin: auto  ;
+  }
 }
