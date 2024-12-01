@@ -1100,10 +1100,12 @@ input[type="file"] {
 .mota-sanpham{
   border: 1px solid;
   display: flex;
-  margin: 150px auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 1000px;
   height: auto;
-  position: relative;
+  position: fixed;
   padding: 50px 20px 20px;
   background-color:rgb(249, 249, 249);
 }
