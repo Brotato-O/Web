@@ -90,4 +90,10 @@
     .cart-item-quantity select{
         width: 100%;
     }
+    .row{
+        width: 100%;
+    }
+    .mota-phai{
+        margin-left: 0px !important; 
+    }
 }

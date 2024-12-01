@@ -378,6 +378,7 @@
     .mota-sanpham{
         height:70%;
         margin: 0px;
+        overflow: scroll;
     }
     .mota-phai{
         width: 100% !important;
@@ -445,6 +446,35 @@
 }
 
 @media only screen and (max-width: 500px){
+    .count-quantity button{
+        width:15px;
+        height: 25px;
+    }
+    .count-quantity{
+        flex-direction: column;
+        align-items: center;
+    }
+    .count-quantity input[type="text"]{
+        width:23px !important;
+        text-align: left;
+        box-sizing: border-box;
+    }
+    .cart-item-quantity select{
+        width: 100%;
+    }
+    .row{
+        width: 100%;
+    }
+    .mota-sanpham{
+        width: 85%;
+    }
+    .mota-phai{
+        margin-left: 0px !important;
+        
+    }
+    .mota-trai img {
+        text-align: center;
+    }
 #hero{
     background-size: 100% 100%;
     /* background-repeat: no-repeat; */
