@@ -177,5 +177,32 @@ body{
  }
  #themsp {
   width: auto;
+  
+ }
+ #mot {
+  width: auto;
+ }
+}
+@media (max-width: 440px) {
+  .cot{
+    width: 80px
+  }
+  .cot1{
+    width: 80px;
+  }
+  
+ #maintable{
+  width:auto;
+ }
+ #themsp {
+  width: auto;
+  
+ }
+ #mot {
+  width: 110%;
+ }
+
+ h3 {
+  text-align: center;
  }
 }
