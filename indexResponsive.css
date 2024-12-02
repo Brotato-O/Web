@@ -533,6 +533,9 @@
 #services-title p{
     text-align: center;
 }
+#serviecs-items{
+    flex-wrap: wrap;
+}
 .poster{
     margin: 0px;
     width: 100%;
