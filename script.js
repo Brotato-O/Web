@@ -125,7 +125,7 @@ RegisterSubmit.addEventListener('click', function(event) {
         let rusername = document.getElementById('txtRUsername').value;
         let rpassword = document.getElementById('txtRPassword').value;
         let date= new Date();
-        let temp=  date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+        let temp= date.getDate()  + '-' + (date.getMonth()+1) + '-' + date.getFullYear();
         if(isAccountExist(rusername)){
             toast({ title: 'Thất bại', message: 'Tài khoản đã tồn tại !', type: 'error', duration: 3000 });
             document.getElementById('txtRUsername').value = '';

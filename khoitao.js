@@ -122,19 +122,22 @@ function createAdmin(){
     let accounts = localStorage.getItem('accounts');
     if (!accounts){
         accounts = [];
+        let date= new Date();
         accounts.push({
                 name: 'Bùi Huy Khải',
                 username: 'hkhai',
                 password: '123',
                 role: 'user',
-                status: 'active'
+                status: 'active',
+                date: date.getDate()  + '-' + (date.getMonth()+1) + '-' + date.getFullYear(),
             }),
         accounts.push({
-                name: 'Huy Khải Bùi',
+                name: 'ADMIN',
                 username: 'admin',
                 password: 'admin',
                 role: 'admin',
-                status: 'active'
+                status: 'active',
+                date: date.getDate()  + '-' + (date.getMonth()+1) + '-' + date.getFullYear(),
             })
         
         localStorage.setItem('accounts', JSON.stringify(accounts));
