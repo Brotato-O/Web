@@ -72,6 +72,10 @@
     #outside{
         top: -100px;
     }
+    .checkout-box{
+        max-height: 70%;
+        overflow: scroll;
+    }
 }
 @media only screen and (max-width: 425px) {
     .count-quantity button{
