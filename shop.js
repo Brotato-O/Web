@@ -85,7 +85,7 @@ function hienthisanpham1(){
                 <div class="phantrang">
                     ${pageNumbers}
                 </div>
-                <div id="sanpham-chitiet" onclick="hide1(this)">
+                <div id="sanpham-chitiet" onclick="hide1(event)">
                   <div class="mota-sanpham">
                     <button type="button" class="exit" onclick="closesp();">x</button>
                     <div class="mota-trai">
@@ -193,7 +193,7 @@ document.getElementById("allsp").innerHTML = `
               <div class="phantrang">
                   ${pageNumbers}
               </div>
-              <div id="sanpham-chitiet" onclick="hide1(this)">
+              <div id="sanpham-chitiet" onclick="hide1(event)">
                 <div class="mota-sanpham">
                   <button type="button" class="exit" onclick="closesp();">x</button>
                   <div class="mota-trai">
@@ -285,7 +285,7 @@ document.getElementById('allsp').innerHTML = '<p>Không tìm thấy sản phẩm
 document.getElementById('allsp').innerHTML = `
                 <div class="menu-sanpham" id="menu-sanpham1">
               <div class="danhsach-sanpham" id="danhsach-sanpham1">${s}</div>
-              <div id="sanpham-chitiet" onclick="hide1(this)">
+              <div id="sanpham-chitiet" onclick="hide1(event)">
                 <div class="mota-sanpham">
                   <button type="button" class="exit" onclick="closesp();">x</button>
                   <div class="mota-trai">
@@ -486,7 +486,7 @@ function kiemtrachon() {
 
   document.getElementById('allsp').innerHTML = `<div class="menu-sanpham" id="menu-sanpham1">
               <div class="danhsach-sanpham" id="danhsach-sanpham1">${s}</div>
-              <div id="sanpham-chitiet" onclick="hide1(this)"> 
+              <div id="sanpham-chitiet" onclick="hide1(event)"> 
                 <div class="mota-sanpham">
                   <button type="button" class="exit" onclick="closesp();">x</button>
                   <div class="mota-trai">
@@ -537,8 +537,8 @@ function kiemtrachon() {
 }
 
 //nhàn
-function hide1(obj){
-  if(obj.id== "sanpham-chitiet"){
+function hide1(event){
+  if(event.target.id== "sanpham-chitiet"){
     document.getElementById("sanpham-chitiet").style.display = "none";
   }
 }
