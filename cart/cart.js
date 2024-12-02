@@ -386,7 +386,7 @@ function hideAllBoxes() {
 function openCheckout() {
     checkCart();
     if (carttemp.length === 0) {
-      alert('Giỏ hàng trống! Vui lòng thêm sản phẩm.');
+      toast({ title: 'Thất bại', message: 'Vui lòng chọn sản phẩm thanh toán !', type: 'error', duration: 3000 });
     } else {
       overlay1.style.display = 'flex';
       showAddressBox();
@@ -449,7 +449,7 @@ function checkout() {
     paymentMethods.forEach((method) => method.checked = false);
     hideAllBoxes();  
     overlay1.style.display = 'none';
-    alert('Thanh toán thành công!');
+    toast({ title: 'Thành công', message: 'Sản phẩm đã được thanh toán !', type: 'success', duration: 3000 });
     deleteItems();
     closeCheckout(); 
 }
