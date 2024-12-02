@@ -337,6 +337,11 @@ function loadProfile() {
         address = userProfile[currentUser.username].address;
         email = userProfile[currentUser.username].email;
         avatar = userProfile[currentUser.username].avatar;
+        let account = accounts.find(account => account.username === currentUser.username);
+        if (account) {
+            account.name = name;
+            localStorage.setItem('accounts', JSON.stringify(accounts));
+        }
     }
     else{
         phone = '';
@@ -356,7 +361,7 @@ function loadProfile() {
             <img src="${avatar}" alt="" id="avatar" />
             <i class="bx bxs-user"></i>
         </div>
-        <input type="file" />
+        <input type="file" style="display: none"/>
         <form id="form">
             <div class="col">
                 <label for="txtName">Họ tên :</label>
@@ -438,6 +443,7 @@ function validateProfile() {
     toast({ title: 'Thành công', message: 'Cập nhật thông tin thành công !', type: 'success', duration: 3000 });
     overlay.style.display = 'none';
     document.getElementById("account-profile").style.display = "none";
+    window.location.reload();
     return true;
 }
 
