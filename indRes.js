@@ -1,7 +1,7 @@
 // <---------------<RESPONSIVE>----------------->
 var menu = document.getElementById('nav-responsive-button');
 var navRes = document.getElementById('navbar-responsive');
-navRes.style.transform = 'translateX(100%)';
+navRes.style.transform = 'translateX(100%)'; //đặt giá trị đầu để khỏi ấn menu 2 lần
 
 menu.addEventListener('click', function() {
     if (navRes.style.transform === 'translateX(100%)') {
@@ -58,9 +58,11 @@ function showSignForm() {
     RegisterForm.style.display = 'none';
     CartForm.style.display = 'none';
     overlay.style.display = 'block';
-    SearchBar.style.display = 'none';
+  //  SearchBar.style.display = 'none'; thanh searchbar không có nên gây lỗi
     navRes.style.transform = 'translateX(100%)';
 }
+
+//nhàn
 
 CartReS.addEventListener('click', function (e) {
     
@@ -80,13 +82,58 @@ CartReS.addEventListener('click', function (e) {
     
 });
 
+function checkLoginCart(){
+    if(localStorage.getItem('currentUser')){
+        return true;
+    }
+    return false;
+}
+
+function displayCart(username) {
+    const userCarts = JSON.parse(localStorage.getItem('userCarts'));
+    const cartItems = userCarts[username];
+    console.log(cartItems);
+    const cartContainer = document.getElementById('cartContainer');
+    cartContainer.innerHTML = '';
+    const displayedProducts = new Set();
+    cartItems.forEach(item => {
+        if (!displayedProducts.has(item.title)) {
+            const cartElement = document.createElement('div');
+            cartElement.className = 'cart-item';
+            cartElement.innerHTML = `
+                <img src="${item.image}" alt="${item.title}">
+                <h3>${item.title}</h3>
+                <p>${(item.price).toLocaleString()} VND</p>
+                <button class="remove-from-cart">Xóa</button>
+            `;
+            cartContainer.appendChild(cartElement);
+            displayedProducts.add(item.title);
+
+            const removeButton = cartElement.querySelector('.remove-from-cart');
+            removeButton.addEventListener('click', function() {
+            removeFromCart(username, item.title);
+            displayCart(username);
+            toast({ title: 'Thành công', message: 'Đã xóa sản phẩm khỏi giỏ hàng !', type: 'success', duration: 3000 });
+        });
+    }
+});
+}
+
+function removeFromCart(username, productTitle) {
+    let userCarts = JSON.parse(localStorage.getItem('userCarts'));
+    if (userCarts[username]) {
+        userCarts[username] = userCarts[username].filter(item => item.title !== productTitle);
+        localStorage.setItem('userCarts', JSON.stringify(userCarts));
+    }
+}
+//nhàn
 
 function showCartForm() {
     CartForm.style.display = 'block';
     SignForm.style.display = 'none';
     RegisterForm.style.display = 'none';
     overlay.style.display = 'block';
-    SearchBar.style.display = 'none';
+ //   SearchBar.style.display = 'none'; thanh searchbar không có nên gây lỗi
     navRes.style.transform = 'translateX(100%)';
 }
 
