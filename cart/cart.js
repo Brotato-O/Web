@@ -235,13 +235,13 @@ function warning1() {
 
 //hủy đơn
 function huy(id){
+    var bill= JSON.parse(localStorage.getItem('bill'));
+    // document.getElementById("overlay2").style.display="block";
     if(warning1()== false) return;
     console.log("AA");
-    var username = JSON.parse(localStorage.getItem('currentUser')).username;
-    var bill= JSON.parse(localStorage.getItem('bill'));
-    for(let i=0; i< bill[username].length; i++){
-        if(bill[username][i].receiptId == id){
-            bill[username][i].status = "Đã hủy";
+    for(let i=0; i< bill.length; i++){
+        if(bill[i].receiptId == id){
+            bill[i].status = "Đã hủy";
             break;
         }
     }
@@ -264,17 +264,8 @@ function notLogin(){
 function showBill(number){
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var bill= JSON.parse(localStorage.getItem('bill'));
+    var value= 0;
     if(username == undefined ) notLogin();
-    else if(bill== null || bill[username]== null) {
-        var s= "";
-        document.getElementById("wrap-cart").innerHTML=`
-        <a href="../shop.html">
-            <img src="../img/emty-cart.png" alt="emty-cart">
-            <h2>Bạn hiện chưa có đơn hàng nào</h2>
-            <span>Đến khu mua sắm</span>
-        </a>
-    `
-    }
     else{
         var variable= "";
         if (number== 1) variable="Chờ xác nhận";
@@ -282,24 +273,27 @@ function showBill(number){
         else if (number== 3) variable="Đã giao";
         else variable="Đã hủy";
         var s="";
-        for(var i=0; i< bill[username].length; i++){
-            if(bill[username][i].status== variable){
-                    s+=`
-                        <tr>
-                            <td>${bill[username][i].receiptId}</td>
-                            <td class="billname">`;
-                    for(var j=0; j< bill[username][i].product.length; j++){
-                        s+= `
-                            <div>${bill[username][i].product[j].quantity} X ${bill[username][i].product[j].title}</div>
-                        `;      
-                    }
-                    s+= `</td>
-                    <td>${bill[username][i].orderDate}</td>
-                    <td>${bill[username][i].totalAmount}</td>
-                    <td>${bill[username][i].paymentMethod}</td>`
-                    if (number==1)
-                        s+=`<td><button onclick="huy('${bill[username][i].receiptId}')">Hủy đơn</button></td>`
-                    s+=`</tr>`;
+        for(var i=0; i< bill.length; i++){
+            if(username== bill[i].username){
+                value=1;
+                if(bill[i].status== variable){
+                        s+=`
+                            <tr>
+                                <td>${bill[i].receiptId}</td>
+                                <td class="billname">`;
+                        for(var j=0; j< bill[i].product.length; j++){
+                            s+= `
+                                <div>${bill[i].product[j].quantity} X ${bill[i].product[j].title}</div>
+                            `;      
+                        }
+                        s+= `</td>
+                        <td>${bill[i].orderDate}</td>
+                        <td>${bill[i].totalAmount}</td>
+                        <td>${bill[i].paymentMethod}</td>`
+                        if (number==1)
+                            s+=`<td><button onclick="huy('${bill[i].receiptId}')">Hủy đơn</button></td>`
+                        s+=`</tr>`;
+                }
             }
         }
         s= `<table class="status-table">
@@ -314,6 +308,16 @@ function showBill(number){
             </table>
         `
         document.getElementById("wrap-cart").innerHTML=s;   
+    }
+    if (value==0){
+        var s= "";
+        document.getElementById("wrap-cart").innerHTML=`
+        <a href="../shop.html">
+            <img src="../img/emty-cart.png" alt="emty-cart">
+            <h2>Bạn hiện chưa có đơn hàng nào</h2>
+            <span>Đến khu mua sắm</span>
+        </a>
+    `
     }
 }
 
@@ -379,29 +383,32 @@ function addCSS(){
 
 function addToBill(){
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
-    var bill= JSON.parse(localStorage.getItem('bill')) || {};
+    var bill= JSON.parse(localStorage.getItem('bill')) || [];
+    var profile= JSON.parse(localStorage.getItem('userProfile'));
     checkCart();
-    if(bill[username]==null) bill[username]=[];
-    var length=bill[username].length;
-    console.log(length);
-    bill[username][length]={};
-    bill[username][length].receiptId= length;
-    if(bill[username][length].product==null) bill[username][length].product= [];
+    var length=bill.length;
+    bill[length]= {};
+    bill[length].receiptId= length;
+    bill[length].username= username;
+    bill[length].product= [];
     for(let i=0; i< carttemp.length; i++){
-        bill[username][length].product.push(carttemp[i]);
+        bill[length].product.push(carttemp[i]);
     }
-    bill[username][length].totalAmount = buy();
+    bill[length].totalAmount = buy();
     var date= new Date();
-    bill[username][length].orderDate= `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+    bill[length].orderDate= `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
     var radio= document.getElementsByName("payment-method");
     var temp;
     for(var i=0; i<radio.length; i++)
         if(radio[i].checked) temp=radio[i].value;
-    console.log(temp);
-    bill[username][length].paymentMethod=temp;
-    bill[username][length].status = "Chờ xác nhận";
+    bill[length].paymentMethod=temp;
+    bill[length].status = "Chờ xác nhận";
+    if(address!= undefined)
+        bill[length].address= `Số nhà: ${address.houseNumber}, Đường: ${address.street}, Phường: ${address.ward}, Quận: ${address.district}, Thành phố: ${address.city}`;
+    else bill[length].address= profile[username].address;
     localStorage.setItem('bill',JSON.stringify(bill));
 }
+
 //Code của Tài
 function hideAllBoxes() {
     addressBox.style.display = 'none';
@@ -433,6 +440,14 @@ function closeCheckout() {
 };
 
 function useSavedAddress() {
+    //nhàn
+    var username= JSON.parse(localStorage.getItem('currentUser')).username;
+    var profile= JSON.parse(localStorage.getItem("userProfile"));
+    if(profile[username]==null){
+        toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
+        return;
+    }
+    //nhàn
     hideAllBoxes();  
     paymentMethodBox.style.display = 'block';
     confirmPaymentButton.style.display = 'block'; 
@@ -576,8 +591,9 @@ function checkAddressCompletion() {
     }
 }
 // Lưu địa chỉ mới
+var address;
 function saveAddress() {
-    const address = {
+    address = {
         name: document.getElementById("name").value,
         phone: document.getElementById("phone").value,
         houseNumber: document.getElementById("house-number").value,

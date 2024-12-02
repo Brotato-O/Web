@@ -12,7 +12,9 @@ body{
 #hero-image img{
     width:100%;
 }
-
+#toast{
+    z-index: 9999;
+}
 #outside{
     width: 100%;
     max-width: 100%;
@@ -24,7 +26,22 @@ body{
     margin: 30px 0px;
     
 }
-
+#overlay2{
+    display: none;
+    position: fixed;
+    background-color: #7170706f;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+}
+#overlay div{
+    width:40%;
+    background-color: white;
+}
+#cancel{
+    display: flex;
+}
 #status-cart ul{
     display: flex;
     flex-wrap: nowrap;

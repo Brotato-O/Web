@@ -4,123 +4,7 @@ function xoabill(){
     localStorage.removeItem("bill");
   }
   
-  function thembill(){
-    const bills = [
-      {
-          receiptId: 1,
-          customer: {username: "aa", adr: "tp HCM, quận 5, phường 3, 273 An Dương Vương", sdt: "0123456789" },
-          status: "Đã giao",
-          orderDate: "2024-11-16",
-          paymentMethod: "Chuyển khoản",
-          totalAmount: 2000000,
-          products: [
-              { quantity: 3, name: "Giày Adidas UltraBoost" },
-              { quantity: 1, name: "Giày Nike Air Max" }
-          ]
-      },
-      {
-          receiptId: 2,
-          customer: { username: "user2", password: "password2", sdt: "0987654321" },
-          status: "Đã xác nhận",
-          orderDate: "2024-11-15",
-          paymentMethod: "Tiền mặt",
-          totalAmount: 2500000,
-          products: [
-              { quantity: 1, name: "Giày Converse Chuck Taylor" }
-          ]
-      },
-      {
-          receiptId: 3,
-          customer: { username: "user3", password: "password3", sdt: "0912345678" },
-          status: "Đã giao",
-          orderDate: "2024-11-14",
-          paymentMethod: "Chuyển khoản",
-          totalAmount: 1500000,
-          products: [
-              { quantity: 2, name: "Giày Vans Old Skool" }
-          ]
-      },
-      {
-          receiptId: 4,
-          customer: {username: "user1", password: "password1", sdt: "0123456789" },
-          status: "Đã giao",
-          orderDate: "2024-11-13",
-          paymentMethod: "Tiền mặt",
-          totalAmount: 1200000,
-          products: [
-              { quantity: 1, name: "Giày Puma Suede Classic" }
-          ]
-      },
-      {
-          receiptId: 5,
-          customer: {username: "user2", password: "password2", sdt: "0987654321" },
-          status: "Chờ xác nhận",
-          orderDate: "2024-11-12",
-          paymentMethod: "Chuyển khoản",
-          totalAmount: 1800000,
-          products: [
-              { quantity: 4, name: "Giày New Balance 574" }
-          ]
-      },
-      {
-          receiptId: 6,
-          customer: {username: "user3", password: "password3", sdt: "0912345678" },
-          status: "Đã xác nhận",
-          orderDate: "2024-11-11",
-          paymentMethod: "Tiền mặt",
-          totalAmount: 2100000,
-          products: [
-              { quantity: 1, name: "Giày Reebok Club C" }
-          ]
-      },
-      {
-          receiptId: 7,
-          customer: {username: "user1", password: "password1", sdt: "0123456789" },
-          status: "Đã giao",
-          orderDate: "2024-11-10",
-          paymentMethod: "Chuyển khoản",
-          totalAmount: 1700000,
-          products: [
-              { quantity: 2, name: "Giày Asics Gel-Lyte III" }
-          ]
-      },
-      {
-          receiptId: 8,
-          customer: {username: "user2", password: "password2", sdt: "0987654321" },
-          status: "Đã giao",
-          orderDate: "2024-11-09",
-          paymentMethod: "Tiền mặt",
-          totalAmount: 2200000,
-          products: [
-              { quantity: 1, name: "Giày Jordan 1" }
-          ]
-      },
-      {
-          receiptId: 9,
-          customer: {username: "user3", password: "password3", sdt: "0912345678" },
-          status: "Chờ xác nhận",
-          orderDate: "2024-11-08",
-          paymentMethod: "Chuyển khoản",
-          totalAmount: 3000000,
-          products: [
-              { quantity: 2, name: "Giày Balenciaga Triple S" }
-          ]
-      },
-      {
-          receiptId: 10,
-          customer: {username: "user1", password: "password1", sdt:"0123456789" },
-          status: "Đã xác nhận",
-          orderDate: "2024-11-07",
-          paymentMethod: "Tiền mặt",
-          totalAmount: 8000000,
-          products: [
-              { quantity: 1, name: "Giày Yeezy Boost 350" }
-          ]
-      }
-      ]
   
-    localStorage.setItem("bill", JSON.stringify(bills));
-  }
 //BẮT ĐẦU TÌM KIẾM HÓA ĐƠN
 //hiển thị bảng tìm kiếm
 function create(){
@@ -175,6 +59,7 @@ function create(){
                       <option value="Chờ xác nhận">Chờ xác nhận</option>
                       <option value="Đã xác nhận">Đã xác nhận</option>
                       <option value="Đã giao">Đã giao</option>
+                      <option value="Đã hủy">Đã hủy</option>
                       <option value="all" selected>Tất cả</option>
                   </select>
                 </div>
@@ -228,13 +113,13 @@ function lookUpStatus() {
     var temp= [];
     var s="";
     for(var i=0;i<billtemp.length; i++){
-      if((billtemp[i].customer.sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
+      if((billtemp[i].username.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
         || ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) && n=="price") || (from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate) ) || (n=="all")) {
           temp.push(billtemp[i]);
           s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
             <td>${billtemp[i].orderDate}</td>
             <td>${billtemp[i].receiptId}</td>
-            <td>${billtemp[i].customer.sdt}</td>
+            <td>${billtemp[i].username}</td>
             <td>${billtemp[i].totalAmount}</td>
             <td>${billtemp[i].status}</td>
         </tr>
@@ -246,7 +131,7 @@ function lookUpStatus() {
     document.getElementById("billTable").innerHTML=`<tr>
             <th>Ngày đặt</th>
             <th>Mã hóa đơn</th>
-            <th>Sdt</th>
+            <th>Username</th>
             <th>Giá tiền</th>
             <th>Trạng thái</th>
             </tr>` + s ;
@@ -302,9 +187,14 @@ function lookUpStatus() {
   //SHOW CHI TIẾT HÓA ĐƠN
   function showDetail(obj){
    var billtemp= JSON.parse(localStorage.getItem("billtemp"));
+   var account= JSON.parse(localStorage.getItem("accounts"));
     document.getElementById("detail-container").style.display= "block";
     for(let i=0; i< billtemp.length; i++){
       if(obj.id== billtemp[i].receiptId){
+        var name;
+        for(let j=0; j< account.length; j++)
+            if (billtemp[i].username== account[j].username) name= account[j].name;
+        console.log(name);
         document.getElementById("detail-bill").innerHTML=`
           <div>
             <h2 >Thông tin hóa đơn</h2>
@@ -320,8 +210,9 @@ function lookUpStatus() {
           </div>
           
           `;
-            for(let j=0; j< billtemp[i].products.length; j++){
-              var s=`<p>${billtemp[i].products[j].name}</p>`;
+          var s="";
+            for(let j=0; j< billtemp[i].product.length; j++){
+              s+=`<p class="bill-product">${billtemp[i].product[j].quantity} X Size ${billtemp[i].product[j].size}: ${billtemp[i].product[j].title}</p>`;
               
             }
           document.getElementById("detail-bill").innerHTML+= `
@@ -331,15 +222,15 @@ function lookUpStatus() {
             </div>
           <div class="infor-wrap">
             <p>Mã khách hàng</p>
-            <p>${billtemp[i].customer.id}</p>
+            <p>${billtemp[i].username}</p>
           </div>
           <div class="infor-wrap">
             <p>Tên khách hàng</p>
-            <p>${billtemp[i].customer.username}</p>
+            <p>${name}</p>
           </div>
           <div class="infor-wrap">
-            <p>Số điện thoại</p>
-            <p>${billtemp[i].customer.sdt}</p>
+            <p>Địa chỉ giao hàng</p>
+            <p>${billtemp[i].address}</p>
           </div>
           <div class="infor-wrap">
             <p>Trạng thái</p>
