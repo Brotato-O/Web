@@ -181,7 +181,68 @@ function addProduct() {
   reader.readAsDataURL(imgInput.files[0]); // Đọc tệp ảnh
 }
 
+function search2() {
+  var productsearch = document.getElementById('txtSearch1').value.toLowerCase();
+  var productArrays = JSON.parse(localStorage.getItem('all')); // Lấy danh sách sản phẩm
+  var s = '';
+  if (!productsearch) {
+  hienthitatcasp1();
+  return;
+  }     // Tìm kiếm cơ bản
+  var s = `<tr>
+              <th>ID</th>
+              <th>ẢNH</th>
+              <th>TÊN SẢN PHẨM</th>
+              <th>LOẠI</th>
+              <th>GIÁ</th>
+              <th>CHỨC NĂNG</th>
+            </tr>`;
+  for (var i = 0; i < productArrays.length; i++) {
+      if ((productArrays[i].name.toLowerCase().search(productsearch)!=-1||productArrays[i].brand.toLowerCase().search(productsearch) != -1) && productsearch != '' ) {
+        s += `<tr>
+              <td style="text-align: center">${productArrays[i].productId}</td>
+              <td><img src="${productArrays[i].img}" alt="Ảnh" style="width: 100px; height: auto;"></td>
+              <td>${productArrays[i].name}</td>
+              <td>${productArrays[i].brand}</td>
+              <td>${productArrays[i].price.toLocaleString()}</td>
+              <td class="btn_">
+                <button class = "xoaKH" onclick="deleteproduct('${productArrays[i].productId}')">X</button>
+                <button class = "suaKH" onclick="showsetting('${productArrays[i].productId}')">Sửa</button>
+              </td>
+          </tr>
+    
+            <div id="bao" style=" top:0;bottom:0;left: 0;;right: 0;  background: rgba(0, 0, 0, 0.7);z-index: 5000;position: fixed; display: none;">
+            <div id="bao1" style="width: 60%; margin: 200px auto; border: 1px solid; background-color: white;">
+              <div style="float: right; margin: 5px 10px; font-size: 50px; transform: rotate(45deg);cursor: pointer;" onclick="closesetting()">+</div>
+              <div id="infor">
+                  <label for="txtname" style="font-size: 30px; margin-left: 15px ;">Tên sản phẩm</label>
+                  <input type="text" id="txtname" value="a" size="30px" style="font-size: 30px;margin:30px 10px 15px 100px ;border: none; border-bottom: 2px solid ;" /> <br/>
+                  <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá (VND)</label>
+                  <input type="text" id="txtprice" value="b" size="30px" style="font-size: 30px; margin:0px 10px 15px 150px;border: none; border-bottom: 2px solid ;"/><br/>
+                  <label style="font-size: 30px; margin-left: 15px;">Ảnh</label>
+                  <input type="file" id="imgadd" style="font-size: 20px; margin: 15px 10px 15px 250px;">
+                
 
+              </div>
+              <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct(${productArrays[i].productId})">Xác nhận</div>
+          </div> 
+`;
+      }
+  } 
+  
+  if (s === `<tr>
+              <th>ID</th>
+              <th>ẢNH</th>
+              <th>TÊN SẢN PHẨM</th>
+              <th>LOẠI</th>
+              <th>GIÁ</th>
+              <th>CHỨC NĂNG</th>
+            </tr>`) {
+document.getElementById('maintable').innerHTML = '<p>Không tìm thấy sản phẩm nào phù hợp.</p>';
+}  else {
+   document.getElementById('maintable').innerHTML = ` <table id="tablesp"> ${s}</table> `; 
+    }
+  }
 // test
 function changeimgadd(input){
   var reader = new FileReader();
