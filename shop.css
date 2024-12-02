@@ -793,7 +793,7 @@ background-color: black;
     background-color: rgba(122, 122, 122, 0.5);
     border-radius: 5px;
 }
-#pl-text{
+.pl-text{
     font-size: 1.8rem;
     font-weight: 600;
     color: #444444;
@@ -898,6 +898,10 @@ background-color: black;
     background: #333;
     color: #f1f1f1;
     border: solid 1px #333;
+}
+#phanloaigia{
+    display: flex;
+    margin-left: 46px;
 }
 /*tuấn*/
 
