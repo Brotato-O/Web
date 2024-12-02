@@ -192,12 +192,13 @@ input[type="checkbox"]{
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
-    width: 300px;
+    width: 350px;
     text-align: center;
     position: relative;
     animation: fadeIn 0.3s ease-out;
-    overflow: scroll;
+    overflow: hidden;
     min-height: fit-content;
+    z-index: 9001;
 }
 
 .overlay1 {
@@ -210,7 +211,7 @@ input[type="checkbox"]{
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 9000;
 }
 
 .checkout-box h3 {
@@ -404,6 +405,11 @@ input[type="checkbox"]{
   #card-info-box {
     margin-top: 20px;
   }
+
+  #card-info-box h4{
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+  }
   
   #card-info-box input {
     width: 100%;
@@ -434,8 +440,17 @@ input[type="checkbox"]{
     margin-top: 20px;
 }
 
+#cash-payment-amount{
+    margin: 20px 0px;
+    font-weight: bold;
+}
 #payment-method-box {
     flex: 1;
+}
+
+#payment-method-box h3{
+  font-size: 1.4rem;
+  margin: 20px 0;
 }
 
 #payment-image-container {
@@ -502,4 +517,4 @@ input[type="checkbox"]{
         font-size: 12px;
     }
 }
-  
+ 
