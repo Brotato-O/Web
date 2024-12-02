@@ -185,6 +185,8 @@ SignSubmit.addEventListener('click', function(event) {
         }
         username = '';
         password = '';
+        //nhàn
+        document.getElementsByTagName("body")[0].style.overflow = 'visible';// fix lỗi đăng nhập xong ko lướt màn hình dc trên mobile
     }
 });
 
