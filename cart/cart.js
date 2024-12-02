@@ -49,13 +49,13 @@ function cartDisplay(){
                     </td>
                     <td>
                     <select onchange="adjustSize(this, '${i}')">
-                        <option value="31" ${cartArray[username][i].sizeNumber == '31' ? 'selected' : ''}>31</option>
-                        <option value="32" ${cartArray[username][i].sizeNumber == '32' ? 'selected' : ''}>32</option>
-                        <option value="33" ${cartArray[username][i].sizeNumber == '33' ? 'selected' : ''}>33</option>
-                        <option value="34" ${cartArray[username][i].sizeNumber == '34' ? 'selected' : ''}>34</option>
-                        <option value="35" ${cartArray[username][i].sizeNumber == '35' ? 'selected' : ''}>35</option>
-                        <option value="36" ${cartArray[username][i].sizeNumber == '36' ? 'selected' : ''}>36</option>
-                        <option value="37" ${cartArray[username][i].sizeNumber == '37' ? 'selected' : ''}>37</option>
+                        <option value="31" ${cartArray[username][i].size == '31' ? 'selected' : ''}>31</option>
+                        <option value="32" ${cartArray[username][i].size == '32' ? 'selected' : ''}>32</option>
+                        <option value="33" ${cartArray[username][i].size == '33' ? 'selected' : ''}>33</option>
+                        <option value="34" ${cartArray[username][i].size == '34' ? 'selected' : ''}>34</option>
+                        <option value="35" ${cartArray[username][i].size == '35' ? 'selected' : ''}>35</option>
+                        <option value="36" ${cartArray[username][i].size == '36' ? 'selected' : ''}>36</option>
+                        <option value="37" ${cartArray[username][i].size == '37' ? 'selected' : ''}>37</option>
                 </select>
             </td>
                     <td class="cart-item-price">${cartArray[username][i].price.toLocaleString()} VND</td>
@@ -100,13 +100,13 @@ function cartDisplayMobile(){
     for(var i=0 ; i< cartArray[username].length ; i++){
     change[i+1].innerHTML +=`
     <select onchange="adjustSize(this, '${i}')">
-        <option value="31" ${cartArray[username][i].sizeNumber == '31' ? 'selected' : ''}>31</option>
-        <option value="32" ${cartArray[username][i].sizeNumber == '32' ? 'selected' : ''}>32</option>
-        <option value="33" ${cartArray[username][i].sizeNumber == '33' ? 'selected' : ''}>33</option>
-        <option value="34" ${cartArray[username][i].sizeNumber == '34' ? 'selected' : ''}>34</option>
-        <option value="35" ${cartArray[username][i].sizeNumber == '35' ? 'selected' : ''}>35</option>
-        <option value="36" ${cartArray[username][i].sizeNumber == '36' ? 'selected' : ''}>36</option>
-        <option value="37" ${cartArray[username][i].sizeNumber == '37' ? 'selected' : ''}>37</option>
+        <option value="31" ${cartArray[username][i].size == '31' ? 'selected' : ''}>31</option>
+        <option value="32" ${cartArray[username][i].size == '32' ? 'selected' : ''}>32</option>
+        <option value="33" ${cartArray[username][i].size == '33' ? 'selected' : ''}>33</option>
+        <option value="34" ${cartArray[username][i].size == '34' ? 'selected' : ''}>34</option>
+        <option value="35" ${cartArray[username][i].size == '35' ? 'selected' : ''}>35</option>
+        <option value="36" ${cartArray[username][i].size == '36' ? 'selected' : ''}>36</option>
+        <option value="37" ${cartArray[username][i].size == '37' ? 'selected' : ''}>37</option>
     </select>`
     }
 }
@@ -126,11 +126,9 @@ function adjustSize(obj, id){
 //Hàm điều chỉnh số lượng 
 function adjustQuantity(id, change) {
     document.getElementById(id).checked = true;
-    console.log(document.getElementById(id).value);
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var newQuantity = Number(cartArray[username][id].quantity) + change;
-    console.log(newQuantity);
     if (newQuantity < 1) {
         newQuantity = 1;
     }
@@ -156,7 +154,6 @@ function checkCart(){
             carttemp[carttemp.length-1].id= check.id;
         }
     }
-    console.log(carttemp);
 }
 
 //chọn tất cả sản phẩm
@@ -186,7 +183,6 @@ function warning() {
 //xóa sản phẩm được chọn
 function deleteCheckedItems(){
     checkCart();
-    console.log(carttemp);
     if(carttemp.length==0 || carttemp== undefined) {
         alert("Bạn chưa chọn sản phẩm để xóa!");
         return;
@@ -199,7 +195,6 @@ function deleteCheckedItems(){
 }
 function deleteItems(){
     checkCart();
-    console.log(carttemp);
     for(let i=carttemp.length-1 ; i> -1; i--){
         deleteCartItem(carttemp[i].id);
     }
@@ -212,7 +207,6 @@ function checkDelete(id){
 }
 
 function deleteCartItem(id){
-    console.log(id);
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     cartArray[username].splice(id, 1);
@@ -241,8 +235,10 @@ function warning1() {
 
 //hủy đơn
 function huy(id){
-    if(warning1()== false) return;
     var bill= JSON.parse(localStorage.getItem('bill'));
+    // document.getElementById("overlay2").style.display="block";
+    if(warning1()== false) return;
+    console.log("AA");
     for(let i=0; i< bill.length; i++){
         if(bill[i].receiptId == id){
             bill[i].status = "Đã hủy";
@@ -266,19 +262,10 @@ function notLogin(){
 
 //hiển thị tình trạng đơn
 function showBill(number){
-    var userlogin = JSON.parse(localStorage.getItem('currentUser'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var bill= JSON.parse(localStorage.getItem('bill'));
-    if(userlogin == undefined ) notLogin();
-    else if(1==1) {
-        var s= "";
-        document.getElementById("wrap-cart").innerHTML=`
-        <a href="../shop.html">
-            <img src="../img/emty-cart.png" alt="emty-cart">
-            <h2>Bạn hiện chưa có đơn hàng nào</h2>
-            <span>Đến khu mua sắm</span>
-        </a>
-    `
-    }
+    var value= 0;
+    if(username == undefined ) notLogin();
     else{
         var variable= "";
         if (number== 1) variable="Chờ xác nhận";
@@ -287,23 +274,26 @@ function showBill(number){
         else variable="Đã hủy";
         var s="";
         for(var i=0; i< bill.length; i++){
-            if(bill[i].customer.id == userlogin.id && bill[i].status== variable){
-                    s+=`
-                        <tr>
-                            <td>${bill[i].receiptId}</td>
-                            <td class="billname">`;
-                    for(var j=0; j< bill[i].products.length; j++){
-                        s+= `
-                            <div>${bill[i].products[j].quantity} X ${bill[i].products[j].title}</div>
-                        `;      
-                    }
-                    s+= `</td>
-                    <td>${bill[i].orderDate}</td>
-                    <td>${bill[i].totalAmount}</td>
-                    <td>${bill[i].paymentMethod}</td>`
-                    if (number==1)
-                        s+=`<td><button onclick="huy('${bill[i].receiptId}')">Hủy đơn</button></td>`
-                    s+=`</tr>`;
+            if(username== bill[i].username){
+                value=1;
+                if(bill[i].status== variable){
+                        s+=`
+                            <tr>
+                                <td>${bill[i].receiptId}</td>
+                                <td class="billname">`;
+                        for(var j=0; j< bill[i].product.length; j++){
+                            s+= `
+                                <div>${bill[i].product[j].quantity} X ${bill[i].product[j].title}</div>
+                            `;      
+                        }
+                        s+= `</td>
+                        <td>${bill[i].orderDate}</td>
+                        <td>${bill[i].totalAmount}</td>
+                        <td>${bill[i].paymentMethod}</td>`
+                        if (number==1)
+                            s+=`<td><button onclick="huy('${bill[i].receiptId}')">Hủy đơn</button></td>`
+                        s+=`</tr>`;
+                }
             }
         }
         s= `<table class="status-table">
@@ -319,17 +309,36 @@ function showBill(number){
         `
         document.getElementById("wrap-cart").innerHTML=s;   
     }
+    if (value==0){
+        var s= "";
+        document.getElementById("wrap-cart").innerHTML=`
+        <a href="../shop.html">
+            <img src="../img/emty-cart.png" alt="emty-cart">
+            <h2>Bạn hiện chưa có đơn hàng nào</h2>
+            <span>Đến khu mua sắm</span>
+        </a>
+    `
+    }
 }
 
+var device= "desktop";
 //hàm hiển thị điện thoại
 function displayMobile(){
+
     var temp= location.href.split("?")[1];
-    if (temp ==undefined || temp=="")
-        if(window.innerWidth< 768) cartDisplayMobile();
-        else  cartDisplay();
+    if (temp ==undefined || temp==""){
+        if(window.innerWidth< 768 && device!= "mobile"){
+            cartDisplayMobile();
+            device= "mobile";
+        } 
+        else if(window.innerWidth>= 768 && device!= "desktop"){
+            cartDisplay();
+            device= "desktop";
+        }
+    }
 }
 
-window.addEventListener("resize",displayMobile);
+window.addEventListener("resize", displayMobile);
             
 window.addEventListener("load", function(){
     addCSS();
@@ -372,6 +381,34 @@ function addCSS(){
     }
 }
 
+function addToBill(){
+    var username= JSON.parse(localStorage.getItem('currentUser')).username;
+    var bill= JSON.parse(localStorage.getItem('bill')) || [];
+    var profile= JSON.parse(localStorage.getItem('userProfile'));
+    checkCart();
+    var length=bill.length;
+    bill[length]= {};
+    bill[length].receiptId= length;
+    bill[length].username= username;
+    bill[length].product= [];
+    for(let i=0; i< carttemp.length; i++){
+        bill[length].product.push(carttemp[i]);
+    }
+    bill[length].totalAmount = buy();
+    var date= new Date();
+    bill[length].orderDate= `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+    var radio= document.getElementsByName("payment-method");
+    var temp;
+    for(var i=0; i<radio.length; i++)
+        if(radio[i].checked) temp=radio[i].value;
+    bill[length].paymentMethod=temp;
+    bill[length].status = "Chờ xác nhận";
+    if(address!= undefined)
+        bill[length].address= `Số nhà: ${address.houseNumber}, Đường: ${address.street}, Phường: ${address.ward}, Quận: ${address.district}, Thành phố: ${address.city}`;
+    else bill[length].address= profile[username].address;
+    localStorage.setItem('bill',JSON.stringify(bill));
+}
+
 //Code của Tài
 function hideAllBoxes() {
     addressBox.style.display = 'none';
@@ -403,6 +440,14 @@ function closeCheckout() {
 };
 
 function useSavedAddress() {
+    //nhàn
+    var username= JSON.parse(localStorage.getItem('currentUser')).username;
+    var profile= JSON.parse(localStorage.getItem("userProfile"));
+    if(profile[username]==null){
+        toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
+        return;
+    }
+    //nhàn
     hideAllBoxes();  
     paymentMethodBox.style.display = 'block';
     confirmPaymentButton.style.display = 'block'; 
@@ -432,7 +477,7 @@ function PaymentMethodSelection() {
         cardInfoBox.style.display = 'block';
     } else if (selectedMethod && selectedMethod.value === 'Chuyển khoản') {
         paymentImageContainer.style.display = 'flex';
-        document.getElementById('payment-image').src = "img/Chuyenkhoan.jpg"; 
+        document.getElementById('payment-image').src = "../img/Chuyenkhoan.jpg"; 
     } else if (selectedMethod && selectedMethod.value === 'Tiền mặt') {
         document.getElementById('cash-payment-box').style.display = 'block';
         document.getElementById('cash-payment-amount').textContent = `Số tiền cần thanh toán: ${buy()} VND`;
@@ -445,6 +490,7 @@ function checkout() {
       alert('Vui lòng chọn phương thức thanh toán!');
       return; 
     }
+    addToBill();
     const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
     paymentMethods.forEach((method) => method.checked = false);
     hideAllBoxes();  
@@ -545,8 +591,9 @@ function checkAddressCompletion() {
     }
 }
 // Lưu địa chỉ mới
+var address;
 function saveAddress() {
-    const address = {
+    address = {
         name: document.getElementById("name").value,
         phone: document.getElementById("phone").value,
         houseNumber: document.getElementById("house-number").value,
@@ -560,8 +607,6 @@ function saveAddress() {
         alert("Vui lòng nhập đầy đủ thông tin địa chỉ.");
         return;
     }
-
-    console.log("Địa chỉ đã lưu:", address);
     newAddressBox.style.display = "none";
     showPaymentMethodBox();
 }

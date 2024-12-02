@@ -25,10 +25,10 @@
                 >Trang chủ</a
               >
             </li>
-            <li><a href="admin.html?bill">Đơn hàng</a></li>
-            <li><a href="admin.html">Sản phẩm</a></li>
-            <li ><a href="admin.html?khachHang">Khách hàng</a></li>
-            <li><a href="admin.html?count">Thống kê</a></li>
+            <li><a href="admin.html?bill" style="color: inherit; text-decoration: none;">Đơn hàng</a></li>
+            <li><a href="admin.html" style="color: inherit; text-decoration: none;">Sản phẩm</a></li>
+            <li ><a href="admin.html?khachHang" style="color: inherit; text-decoration: none;">Khách hàng</a></li>
+            <li><a href="admin.html?count" style="color: inherit;text-decoration: none;">Thống kê</a></li>
           </ul>
         </div>
       </div>
@@ -52,18 +52,13 @@
       
       <div class="content">
         <div id="title"
-          style="
-            padding-left: 20%;
-            width: 100%;
-            font-size: 40px;
-            font-weight: bold;
-            margin-bottom: 60px;
-            margin-top: 60px;
-          "
-        >
+          style=" padding-left: 20%;width: 100%; font-size: 40px; font-weight: bold; margin-bottom: 60px; margin-top: 60px;" >
           <h3>DANH SÁCH SẢN PHẨM</h3>
+          
         </div>
-
+        <div  id="SearchBar" style="background-color: inherit; width: 70%;">
+          <input type="text" id="txtSearch1" placeholder="Tìm kiếm " oninput="search2()"/>
+        </div>
         <div id="container" style="display: flex;flex-wrap: wrap;">
           <div id="maintable">
            
