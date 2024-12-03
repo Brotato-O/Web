@@ -114,6 +114,16 @@ function changeproduct() {
     if (productArray[i].productId == productId) {
       productArray[i].name = document.getElementById("txtname").value;
       productArray[i].price = parseFloat(document.getElementById("txtprice").value);
+      if (!productArray[i].name || !productArray[i].price) {
+        alert('Vui lòng điền đầy đủ thông tin')
+        return false;
+      }
+      
+      if (productArray[i].price < 0) {
+        alert('Giá không hợp lệ!')
+        return false;
+      }
+      
 
       if (imgInput.files.length > 0) { // Chỉ cập nhật ảnh nếu người dùng chọn
         var reader = new FileReader();
