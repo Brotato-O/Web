@@ -14,15 +14,15 @@ window.addEventListener("load", function () {
     document.getElementById("txtSearch1").style.display = "none";
     document.getElementById("title").innerHTML = "<h3>Thống kê theo khách</h3>"
     var bill= JSON.parse(localStorage.getItem('bill'));
+    var accounts= JSON.parse(localStorage.getItem('accounts'));
     var count= [];
-    for(let i=0; i< bill.length; i++){
-        if(bill[i].status=="Đã giao"){
-            count.push({customerId: bill[i].username, billId:[], totalAmount: 0});
-        }
+    for(let i=0; i< accounts.length; i++){
+            count.push({customerId: accounts[i].username, billId:[], totalAmount: 0});
+        
     }
     for(let i=0; i< count.length; i++){
       for(let j=0; j< bill.length; j++){
-        if(bill[j].username== count[i].customerId){
+        if(bill[j].username== count[i].customerId && bill[j].status=="Đã giao"){
           count[i].billId.push(bill[j].receiptId);
           count[i].totalAmount+= bill[j].totalAmount;
         }

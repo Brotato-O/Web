@@ -26,7 +26,7 @@ function xoabill(){
 function cartDisplay(){    
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
-    if (cartArray[username] == undefined || cartArray[username].length == 0 || cartArray == undefined) {
+    if (cartArray == undefined|| cartArray[username] == undefined || cartArray[username].length == 0 ) {
         var s = `<a href="../index.html">
             <img src="../img/emty-cart.png" alt="emty-cart">
             <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
@@ -264,8 +264,17 @@ function notLogin(){
 function showBill(number){
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var bill= JSON.parse(localStorage.getItem('bill'));
-    var value= 0;
     if(username == undefined ) notLogin();
+    else if(bill==undefined){
+        var s= "";
+        document.getElementById("wrap-cart").innerHTML=`
+        <a href="../shop.html">
+            <img src="../img/emty-cart.png" alt="emty-cart">
+            <h2>Bạn hiện chưa có đơn hàng nào</h2>
+            <span>Đến khu mua sắm</span>
+        </a>
+    `
+    }
     else{
         var variable= "";
         if (number== 1) variable="Chờ xác nhận";
@@ -276,7 +285,6 @@ function showBill(number){
         var s="";
         for(var i=0; i< bill.length; i++){
             if(username== bill[i].username){
-                value=1;
                 if(bill[i].status== variable){
                         s+=`
                             <tr>
@@ -309,16 +317,6 @@ function showBill(number){
             </table>
         `
         document.getElementById("wrap-cart").innerHTML=s;   
-    }
-    if (value==0){
-        var s= "";
-        document.getElementById("wrap-cart").innerHTML=`
-        <a href="../shop.html">
-            <img src="../img/emty-cart.png" alt="emty-cart">
-            <h2>Bạn hiện chưa có đơn hàng nào</h2>
-            <span>Đến khu mua sắm</span>
-        </a>
-    `
     }
 }
 
@@ -451,7 +449,7 @@ function useSavedAddress() {
     //nhàn
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     var profile= JSON.parse(localStorage.getItem("userProfile"));
-    if(!profile) {
+    if(profile == null || !profile[username] ) {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
@@ -631,3 +629,42 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
 });
+// thêm điều kiện cho nhập thông tin thẻ nội địa
+function validateCard() {
+    const cardowner = document.getElementById('card-holder').value.trim();
+    const cardnumber = document.getElementById('card-number').value.trim();
+    const phonenumber = document.getElementById('card-phone').value.trim();
+    const date = document.getElementById('card-expiry').value.trim();
+
+    if (!cardowner || !cardnumber || !phonenumber || !date) {
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập đủ thông tin!', type: 'error', duration: 3000 });
+        return false;
+    }
+    
+    const phoneRegex = /^0[0-9]{9}$/; 
+    if (!phoneRegex.test(phonenumber)) {
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập số điện thoại đúng định dạng (0xx)!', type: 'error', duration: 3000 });
+        return false;
+    }
+
+
+    const cardnumRegex = /^[0-9]{16,19}$/; 
+    if (!cardnumRegex.test(cardnumber)) {
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập số thẻ đúng định dạng (16-19 chữ số)!', type: 'error', duration: 3000 });
+        return false;
+    }
+
+    const cardownerRegex = /^[A-Z\s]+$/; 
+    if (!cardownerRegex.test(cardowner)) {
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập tên chủ thẻ in hoa không dấu!', type: 'error', duration: 3000 });
+        return false;
+    }
+
+    const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+    var temp= date.split("/");
+    if (!dateRegex.test(date) || (0< temp[0] && temp[0]> 31 && temp[1]<1 && temp[1]>12 & temp[2]>2024)) {
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập ngày tháng đúng định dạng (xx/xx/xxxx)!', type: 'error', duration: 3000 });
+        return false;
+    }
+    return true;
+}

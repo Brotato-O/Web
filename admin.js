@@ -142,6 +142,7 @@ function changeproduct() {
   // Lưu lại khi không có thay đổi ảnh
   localStorage.setItem("all", JSON.stringify(productArray));
   hienthitatcasp1();
+  alert("CẬP NHẬT THÀNH CÔNG");
 }
 function closesetting() {
   document.getElementById("bao").style.display = "none";
@@ -160,7 +161,7 @@ function deleteproduct(productIddelete) {
 }
 function addProduct() {
   var productArray = JSON.parse(localStorage.getItem("all")) || [];
-  var productid = productArray.length+1; // Tạo ID sản phẩm dựa trên timestamp
+  var productid = productArray.length+1;
   var productname = document.getElementById("txtnamesp");
   var brand = document.getElementById("brand");
   var price = document.getElementById("txtprice1");
