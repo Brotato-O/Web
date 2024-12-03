@@ -54,8 +54,13 @@ function hienthiKH(list) {
         ${i}
       </div>`;
   }
-
-  document.querySelector(".phantrang").innerHTML = pageNumbers;
+  //hiện thị hoặc không hiện thị phân trang
+  var paginationDisplay1 = totalPages <= 1 ? "none" : "flex";
+  const paginationElement = document.querySelector(".phantrang");
+  if (paginationElement) {
+    paginationElement.style.display = paginationDisplay1; // Cập nhật CSS
+    paginationElement.innerHTML = pageNumbers; // Gán các nút phân trang
+  }
 }
 
 function goToPage(pageNumber) {

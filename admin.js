@@ -64,11 +64,11 @@ function hienthitatcasp1() {
                 </div>
             `;
   }
-
+  var paginationDisplay = totalPages <= 1 ? "none" : "flex";
   document.getElementById("maintable").innerHTML = `
    <table id="tablesp"> ${s}</table>
                               
-        <div class="phantrang">
+        <div class="phantrang" style="display: ${paginationDisplay};">
        
                     ${pageNumbers}
         
