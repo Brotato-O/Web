@@ -451,18 +451,18 @@ function useSavedAddress() {
     //nhàn
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     var profile= JSON.parse(localStorage.getItem("userProfile"));
-    if(profile[username] == null) {
+    if(!profile) {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
-    else if(profile[username].address== null){
+    else if(!profile[username]){
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
     //nhàn
-    hideAllBoxes();  
+    hideAllBoxes();
     paymentMethodBox.style.display = 'block';
-    confirmPaymentButton.style.display = 'block'; 
+    confirmPaymentButton.style.display = 'block';
 }
 
 function addNewAddress() {

@@ -325,7 +325,7 @@
 .poster{
     margin-top: 50px;
 }
-#CartForm {
+/* #CartForm {
     position: fixed;
     top:69px;
     left: initial;
@@ -337,7 +337,7 @@
     z-index: 2000;
     display: none;
     transform: translate(0px, 0px);
-}
+} */
 .mota-sanpham{
     width: auto;
 }
