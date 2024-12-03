@@ -451,7 +451,7 @@ function useSavedAddress() {
     //nhàn
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     var profile= JSON.parse(localStorage.getItem("userProfile"));
-    if(!profile[username]) {
+    if(!profile[username] || profile == null) {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
@@ -501,6 +501,10 @@ function checkout() {
     if (!selectedMethod) {
       alert('Vui lòng chọn phương thức thanh toán!');
       return; 
+    }
+    else  if (selectedMethod && selectedMethod.value === 'Thẻ ngân hàng') {
+        if(!validateCard())
+            return;
     }
     addToBill();
     const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
@@ -631,3 +635,41 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
 });
+// thêm điều kiện cho nhập thông tin thẻ nội địa
+function validateCard() {
+    const cardowner = document.getElementById('card-holder').value.trim();
+    const cardnumber = document.getElementById('card-number').value.trim();
+    const phonenumber = document.getElementById('card-phone').value.trim();
+    const date = document.getElementById('card-expiry').value.trim();
+
+    if (!cardowner || !cardnumber || !phonenumber || !date) {
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập đủ thông tin!', type: 'error', duration: 3000 });
+        return false;
+    }
+    
+    const phoneRegex = /^0[0-9]{9}$/; 
+    if (!phoneRegex.test(phonenumber)) {
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập số điện thoại đúng định dạng (0xx)!', type: 'error', duration: 3000 });
+        return false;
+    }
+
+
+    const cardnumRegex = /^[0-9]{16,19}$/; 
+    if (!cardnumRegex.test(cardnumber)) {
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập số thẻ đúng định dạng (16-19 chữ số)!', type: 'error', duration: 3000 });
+        return false;
+    }
+
+    const cardownerRegex = /^[A-Z\s]+$/; 
+    if (!cardownerRegex.test(cardowner)) {
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập tên chủ thẻ in hoa không dấu!', type: 'error', duration: 3000 });
+        return false;
+    }
+
+    const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+    if (!dateRegex.test(date)) {
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập ngày tháng đúng định dạng (xx/xx/xxxx)!', type: 'error', duration: 3000 });
+        return false;
+    }
+    return true;
+}
