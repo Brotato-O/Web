@@ -21,19 +21,19 @@ function create(){
               <form oninput=change() onchange=change()>
                 
                 <div>
-                  <div style="display: flex; margin: 20px 0px; justify-content: center">
-                    <div>Tìm kiếm theo</div>
+                  <div style="display: flex; margin: 20px 0px;">
+                    <div style="margin-right: 100px">Tìm kiếm theo</div>
 
-                  <select id="method" onchange="lookUpBillDisplay()">
+                  <select style="width:50%" id="method" onchange="lookUpBillDisplay()">
                     <option value="all" selected>Tất cả</option>
                     <option value="id">Mã đơn hàng</option>
-                    <option value="username">Username</option>
-                    <option value="phone">Sdt</option>
+                    <option value="username">Tên đăng nhập</option>
+                    <option value="phone">Số điện thoại</option>
                     <option value="price">Khoảng giá</option>
                     <option value="date">Ngày đặt</option>
                   </select>
                   </div>
-                  <input type="search" class="detailMethod" id="textMethod" style="margin: auto; height: 30px;" placeholder="Nhập giá trị cần tìm">
+                  <input type="search" class="detailMethod" id="textMethod" placeholder="Nhập giá trị cần tìm">
 
                   <div id="dateMethod" class="detailMethod">
                     <div>
@@ -57,8 +57,8 @@ function create(){
                     </div>
                   </div>
                 </div>
-                <div class="detailMethod"> 
-                  <div>Tình trạng hóa đơn</div>
+                <div class="detailMethod" style="display:flex"> 
+                  <div style="margin-right:20px">Tình trạng hóa đơn</div>
                   <select id="status">
                       <option value="Chờ xác nhận">Chờ xác nhận</option>
                       <option value="Đã xác nhận">Đã xác nhận</option>

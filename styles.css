@@ -330,7 +330,7 @@ body{
   position: fixed;
   top: 68px;
   right: 0;
-  height: 100%;
+  height: 60%;
   width: 800px;
   background: #fff;
   border-radius: 10px;
@@ -442,22 +442,20 @@ body{
 }
 
 #CartForm-view:hover{
-  opacity: 0.95;
+  background: #8a3737;
 }
 
 #SearchBar{
   display: flex;
-  justify-content: center;
   align-items: center;
-  top: 60px;
   height: 100px;
-  width: 100%;
+  margin-left: 5vh;
   background-color: #fff;
   z-index: 1001;
 }
 
 #SearchBar input{
-  width: 100%;
+  width: 90%;
   padding: 10px;
   border: none;
   border-bottom: solid 1px #010f1c;

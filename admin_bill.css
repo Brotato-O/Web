@@ -132,6 +132,15 @@ body{
     font-size: 2.5rem;
     color: #333;
   }
+
+  #textMethod{
+    font-size: 1rem;
+    width: 90%;
+    height: 40px;
+    padding: 0 5px;
+    margin-left: 40px;
+  }
+
   #status{
     width: 50%;
   }
