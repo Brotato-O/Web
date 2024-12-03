@@ -82,7 +82,6 @@ window.addEventListener("load", function () {
     lookUpBillDisplay();
     lookUpStatus();
     lookUpBill();
-    
     }
 })
 
@@ -108,20 +107,31 @@ function lookUpStatus() {
       }
     }
     localStorage.setItem("billtemp",JSON.stringify(billtemp));
-    console.log("AA");
 }
 
 //hiển thị kế quả tìm kiếm dựa trên kq lọc
   function billDisplay(from, to, n){
     document.getElementById("container").style.display="none";
     var billtemp= JSON.parse(localStorage.getItem('billtemp'));
-    var temp= [];
+    // var div= document.getElementById("pages");
+    // div.innerHTML=``;
+    // var length= billtemp.length;
+    // const BPP=5;
+    // var pages= length/BPP;
+    // for(let i=0; i<pages; i++){
+    //     div.innerHTML +=`
+    //      <button class="page" onclick="billDisplay('${from}','${to}','${n}', ${i+1})">${i+1}</button>
+    //     `;
+    // }
+    // var startIndex= (index-1)*BPP;
+    // var endIndex= startIndex+BPP;
+    // if(endIndex> length) endIndex= length;
     var s="";
     for(var i=0;i<billtemp.length; i++){
       if((billtemp[i].sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
         || ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) && n=="price") || 
       (from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate) ) || billtemp[i].username.includes(from) && n=="username"||(n=="all")) {
-          temp.push(billtemp[i]);
+          // temp.push(billtemp[i]);
           s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
             <td>${billtemp[i].orderDate}</td>
             <td>${billtemp[i].receiptId}</td>
@@ -132,8 +142,8 @@ function lookUpStatus() {
         `;
       }
     }
-    billtemp= temp;
-    localStorage.setItem("billtemp",JSON.stringify(billtemp));
+    // billtemp= temp;
+    // localStorage.setItem("billtemp",JSON.stringify(billtemp));
     document.getElementById("billTable").innerHTML=`<tr>
             <th>Ngày đặt</th>
             <th>Mã hóa đơn</th>
@@ -181,12 +191,12 @@ function lookUpStatus() {
       var billFrom= new Date(dateFrom);
       var billTo= new Date(dateTo);
       var method= document.getElementById("method");
-      if(method.value== "phone") billDisplay(billText, 0, "phone");
-      if(method.value== "username") billDisplay(billText, 0, "username");
-      if(method.value== "id") billDisplay(billText, 0, "id");
-      if(method.value== "price") billDisplay(from, to, "price");
-      if(method.value== "date") billDisplay(billFrom, billTo, "date");
-      if(method.value== "all") billDisplay(0, 0, "all"); 
+      if(method.value== "phone") billDisplay(billText, 0, "phone", 1);
+      if(method.value== "username") billDisplay(billText, 0, "username", 1);
+      if(method.value== "id") billDisplay(billText, 0, "id", 1);
+      if(method.value== "price") billDisplay(from, to, "price", 1);
+      if(method.value== "date") billDisplay(billFrom, billTo, "date", 1);
+      if(method.value== "all") billDisplay(0, 0, "all", 1); 
   }
   //KẾT THÚC TÌM KIẾM HÓA ĐƠN
 
@@ -201,7 +211,6 @@ function lookUpStatus() {
         var name;
         for(let j=0; j< account.length; j++)
             if (billtemp[i].username== account[j].username) name= account[j].name;
-        console.log(name);
         document.getElementById("detail-bill").innerHTML=`
           <div>
             <h2 >Thông tin hóa đơn</h2>
@@ -251,13 +260,17 @@ function lookUpStatus() {
           </div>`
           if (billtemp[i].status !="Đã hủy"){
            document.getElementById("outsideStatus").innerHTML+= `
-            <select id="changeStatus" onchange="changeStatus(${billtemp[i].receiptId}, this)">
+            <select id="changeStatus" onchange="changeText(this)">
               <option value="Chờ xác nhận">Chờ xác nhận</option>
               <option value="Đã xác nhận">Đã xác nhận</option>
               <option value="Đang giao">Đang giao</option>
               <option value="Đã giao">Đã giao</option>
             </select>
           `;
+            console.log(document.getElementById("changeStatus").value);
+            document.getElementById("detail-bill").innerHTML+=`
+              <button onclick="confirm('${billtemp[i].receiptId}')">Xác nhận</button>
+            `;
             document.getElementById("changeStatus").value=billtemp[i].status;
           }
           else{
@@ -272,17 +285,21 @@ function lookUpStatus() {
     }
   }
 
-  function changeStatus(id, obj){
+  function changeText(obj){
+    document.getElementById("innerStatus").innerHTML=obj.value;
+  }
+  function confirm(id){
+    var billtemp= JSON.parse(localStorage.getItem("billtemp"));
     var bill= JSON.parse(localStorage.getItem('bill'));
     for(let i=0; i <bill.length; i++){
-      if (id== bill[i].receiptId){
-        
-          document.getElementById("innerStatus").innerHTML=obj.value;
-          bill[id].status=obj.value;
+      
+      if (id== bill[i].receiptId){ 
+          bill[id].status=document.getElementById("changeStatus").value;
       }
     }
     localStorage.setItem('bill', JSON.stringify(bill));
     var p= document.getElementById(id);
+    toast({ title: 'Thành công', message: 'Đã cập nhật trạng thái đơn!', type: 'success', duration: 3000 });
     change();
     if (p != null) showDetail(id);
   }

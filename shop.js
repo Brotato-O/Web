@@ -77,12 +77,13 @@ function hienthisanpham1(){
                 </div>
             `;
   }
+  var paginationDisplay = totalPages <= 1 ? "none" : "flex";
   document.getElementById("search").style.display="block";
   document.getElementById("toan1").innerHTML = `
             <div class="menu-sanpham" id="menu-sanpham1">
                 <div class="danhsach-sanpham" id="danhsach-sanpham1">${s}</div>
 
-                <div class="phantrang">
+                <div class="phantrang" style="display: ${paginationDisplay};">
                     ${pageNumbers}
                 </div>
                 <div id="sanpham-chitiet" onclick="hide1(event)">
@@ -165,6 +166,7 @@ function hienthitatcasp(){
   if(endIndex>tmp.length){
     endIndex=tmp.length;
   }
+
   var s="";
   for (var i = startIndex; i < endIndex; i++) {
     s += `
@@ -185,12 +187,12 @@ for (var i = 1; i <= totalPages; i++) {
               </div>
           `;
 }
-
+var paginationDisplay = totalPages <= 1 ? "none" : "flex";
 document.getElementById("allsp").innerHTML = `
           <div class="menu-sanpham" id="menu-sanpham1">
               <div class="danhsach-sanpham" id="danhsach-sanpham1">${s}</div>
 
-              <div class="phantrang">
+              <div class="phantrang" style="display: ${paginationDisplay};">
                   ${pageNumbers}
               </div>
               <div id="sanpham-chitiet" onclick="hide1(event)">

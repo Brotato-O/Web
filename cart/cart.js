@@ -148,11 +148,13 @@ function checkCart(){
     carttemp=[];  
     var cartArray= JSON.parse(localStorage.getItem('userCarts'));
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
+    console.log(cartArray[username]);
     for(var i=0; i<cartArray[username].length; i++){
         var check= document.getElementById(i);
         if(check.checked== true) {
             carttemp.push(cartArray[username][i]);
-            carttemp[carttemp.length-1].id= check.id;
+            carttemp[carttemp.length-1].cartId= check.id;
+            console.log(carttemp);
         }
     }
 }
@@ -190,14 +192,14 @@ function deleteCheckedItems(){
     };
     if(warning()== false) return;
     for(let i=carttemp.length-1 ; i> -1; i--){
-        deleteCartItem(carttemp[i].id);
+        deleteCartItem(carttemp[i].cartId);
     }
     cartDisplay();
 }
 function deleteItems(){
     checkCart();
     for(let i=carttemp.length-1 ; i> -1; i--){
-        deleteCartItem(carttemp[i].id);
+        deleteCartItem(carttemp[i].cartId);
     }
     cartDisplay();
 }
