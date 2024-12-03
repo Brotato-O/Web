@@ -5,7 +5,7 @@ const newAddressBox = document.getElementById('new-address-box');
 const addressBox = document.getElementById('address-box');
 const cardInfoBox = document.getElementById('card-info-box');
 const paymentImageContainer = document.getElementById('payment-image-container');
-var newInfo={};
+var newInfo= null;
 
 let locationData;
 
@@ -406,7 +406,7 @@ function addToBill(){
     bill[length].paymentMethod=temp;
     bill[length].status = "Chờ xác nhận";
     console.log(newInfo);
-    if(Object.keys(newInfo).length>0){
+    if(newInfo!= null){
         bill[length].address= `Số nhà: ${newInfo.houseNumber}, Đường: ${newInfo.street}, Phường: ${newInfo.ward}, Quận: ${newInfo.district}, Thành phố: ${newInfo.city}`;
         bill[length].sdt= newInfo.phone;
     }   
@@ -451,7 +451,6 @@ function useSavedAddress() {
     //nhàn
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     var profile= JSON.parse(localStorage.getItem("userProfile"));
-    newInfo = {};
     if(!profile[username]) {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
@@ -616,7 +615,7 @@ function saveAddress() {
     };
 
     if (!validateNewAddress()) {
-        newInfo ={};
+        newInfo= null;
         return;
     }
     newAddressBox.style.display = "none";
