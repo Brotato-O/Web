@@ -451,7 +451,7 @@ function useSavedAddress() {
     //nhàn
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     var profile= JSON.parse(localStorage.getItem("userProfile"));
-    if(!profile[username] || profile == null) {
+    if(profile == null || !profile[username] ) {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
@@ -667,7 +667,8 @@ function validateCard() {
     }
 
     const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
-    if (!dateRegex.test(date)) {
+    var temp= date.split("/");
+    if (!dateRegex.test(date) || (0< temp[0] && temp[0]> 31 && temp[1]<1 && temp[1]>12 & temp[2]>2024)) {
         toast({ title: 'Thất bại', message: 'Vui lòng nhập ngày tháng đúng định dạng (xx/xx/xxxx)!', type: 'error', duration: 3000 });
         return false;
     }
