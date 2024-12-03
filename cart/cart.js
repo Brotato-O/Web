@@ -26,7 +26,7 @@ function xoabill(){
 function cartDisplay(){    
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
-    if (cartArray[username] == undefined || cartArray[username].length == 0 || cartArray == undefined) {
+    if (cartArray == undefined|| cartArray[username] == undefined || cartArray[username].length == 0 ) {
         var s = `<a href="../index.html">
             <img src="../img/emty-cart.png" alt="emty-cart">
             <h2>Bạn hiện chưa có sản phẩm nào trong giỏ hàng</h2>
@@ -264,8 +264,17 @@ function notLogin(){
 function showBill(number){
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var bill= JSON.parse(localStorage.getItem('bill'));
-    var value= 0;
     if(username == undefined ) notLogin();
+    else if(bill==undefined){
+        var s= "";
+        document.getElementById("wrap-cart").innerHTML=`
+        <a href="../shop.html">
+            <img src="../img/emty-cart.png" alt="emty-cart">
+            <h2>Bạn hiện chưa có đơn hàng nào</h2>
+            <span>Đến khu mua sắm</span>
+        </a>
+    `
+    }
     else{
         var variable= "";
         if (number== 1) variable="Chờ xác nhận";
@@ -276,7 +285,6 @@ function showBill(number){
         var s="";
         for(var i=0; i< bill.length; i++){
             if(username== bill[i].username){
-                value=1;
                 if(bill[i].status== variable){
                         s+=`
                             <tr>
@@ -309,16 +317,6 @@ function showBill(number){
             </table>
         `
         document.getElementById("wrap-cart").innerHTML=s;   
-    }
-    if (value==0){
-        var s= "";
-        document.getElementById("wrap-cart").innerHTML=`
-        <a href="../shop.html">
-            <img src="../img/emty-cart.png" alt="emty-cart">
-            <h2>Bạn hiện chưa có đơn hàng nào</h2>
-            <span>Đến khu mua sắm</span>
-        </a>
-    `
     }
 }
 
