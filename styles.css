@@ -23,7 +23,9 @@ body{
   left: 0;
   z-index: 2000;
 }
-
+.col input[type="text"], .col input[type="tel"]{
+  width: 100%;
+}
 #nav-links{
   display: flex;
   justify-content: space-between;
