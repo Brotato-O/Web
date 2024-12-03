@@ -5,6 +5,7 @@ const newAddressBox = document.getElementById('new-address-box');
 const addressBox = document.getElementById('address-box');
 const cardInfoBox = document.getElementById('card-info-box');
 const paymentImageContainer = document.getElementById('payment-image-container');
+var newInfo={};
 
 let locationData;
 
@@ -404,10 +405,12 @@ function addToBill(){
         if(radio[i].checked) temp=radio[i].value;
     bill[length].paymentMethod=temp;
     bill[length].status = "Chờ xác nhận";
-    if(address!= undefined){
-        bill[length].address= `Số nhà: ${address.houseNumber}, Đường: ${address.street}, Phường: ${address.ward}, Quận: ${address.district}, Thành phố: ${address.city}`;
-        bill[length].sdt= address.phone;
-    }    else {
+    console.log(newInfo);
+    if(newInfo!={}){
+        bill[length].address= `Số nhà: ${newInfo.houseNumber}, Đường: ${newInfo.street}, Phường: ${newInfo.ward}, Quận: ${newInfo.district}, Thành phố: ${newInfo.city}`;
+        bill[length].sdt= newInfo.phone;
+    }   
+     else {
         bill[length].address= profile[username].address;
         bill[length].sdt=  profile[username].phone;
     }
@@ -600,9 +603,8 @@ function checkAddressCompletion() {
     }
 }
 // Lưu địa chỉ mới
-var address;
 function saveAddress() {
-    address = {
+    newInfo = {
         name: document.getElementById("name").value,
         phone: document.getElementById("phone").value,
         houseNumber: document.getElementById("house-number").value,
@@ -613,6 +615,7 @@ function saveAddress() {
     };
 
     if (!validateNewAddress()) {
+        newInfo ={};
         return;
     }
     newAddressBox.style.display = "none";
