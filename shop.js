@@ -56,7 +56,7 @@ function hienthisanpham1(){
     endIndex = selectArrays.length;
   }
 
-  for (let i = startIndex; i < endIndex; i++) {
+  for (var i = startIndex; i < endIndex; i++) {
     s += `
               <div class="product" onclick="show2(${selectArrays[i].productId})">
                     <img src="${selectArrays[i].img}" alt="${selectArrays[i].name}">
@@ -70,7 +70,7 @@ function hienthisanpham1(){
   var totalPages = Math.ceil(selectArrays.length / productsPerPage);
   var pageNumbers = "";
 
-  for (let i = 1; i <= totalPages; i++) {
+  for (var i = 1; i <= totalPages; i++) {
     pageNumbers += `
                 <div class="sotrang" onclick="goToPage(${i})">
                     ${i}
@@ -166,7 +166,7 @@ function hienthitatcasp(){
     endIndex=tmp.length;
   }
   var s="";
-  for (let i = startIndex; i < endIndex; i++) {
+  for (var i = startIndex; i < endIndex; i++) {
     s += `
                 <div class="product" onclick="show2(${tmp[i].productId})">
                     <img src="${tmp[i].img}" alt="${tmp[i].name}">
@@ -178,7 +178,7 @@ function hienthitatcasp(){
 var totalPages = Math.ceil(tmp.length / productsPerPage);
 var pageNumbers = "";
 
-for (let i = 1; i <= totalPages; i++) {
+for (var i = 1; i <= totalPages; i++) {
   pageNumbers += `
               <div class="sotrang" onclick="goToPage(${i})">
                   ${i}
@@ -517,5 +517,79 @@ function hide1(event){
   if(event.target.id== "sanpham-chitiet"){
     document.getElementById("sanpham-chitiet").style.display = "none";
   }
+}
+
+//Khải
+var btnpl = document.getElementById('btnPLoai');
+var opl = document.getElementById('openPhanloai');
+
+btnpl.addEventListener('click', function(e) {
+  e.preventDefault();
+  if(opl.style.display === 'none') {
+    opl.style.display = 'flex';
+    
+  } else {
+    opl.style.display = 'none';
+  }
+});
+
+var sx1 = document.getElementById('sx1');
+var sx2 = document.getElementById('sx2');
+var sx3 = document.getElementById('sx3');
+var sx4 = document.getElementById('sx4');
+
+function sapXepTheoGiaTangDan() {
+  var tmp = JSON.parse(localStorage.getItem('all'));
+  tmp.sort((a, b) => a.price - b.price);
+  localStorage.setItem('all', JSON.stringify(tmp));
+  hienthitatcasp();
+  sx1.classList.remove('active');
+  sx2.classList.remove('active');
+  sx3.classList.add('active');
+  sx4.classList.remove('active');
+}
+
+function sapXepTheoGiaGiamDan() {
+  var tmp = JSON.parse(localStorage.getItem('all'));
+  tmp.sort((a, b) => b.price - a.price);
+  localStorage.setItem('all', JSON.stringify(tmp));
+  hienthitatcasp();
+  sx1.classList.remove('active');
+  sx2.classList.remove('active');
+  sx3.classList.remove('active');
+  sx4.classList.add('active');
+}
+
+function sapXepTheoTen() {
+  var tmp = JSON.parse(localStorage.getItem('all'));
+  tmp.sort((a, b) => a.name.localeCompare(b.name));
+  localStorage.setItem('all', JSON.stringify(tmp));
+  hienthitatcasp();
+  sx1.classList.add('active');
+  sx2.classList.remove('active');
+  sx3.classList.remove('active');
+  sx4.classList.remove('active');
+}
+
+function sapXepTheoTen1() {
+  var tmp = JSON.parse(localStorage.getItem('all'));
+  tmp.sort((a, b) => b.name.localeCompare(a.name));
+  localStorage.setItem('all', JSON.stringify(tmp));
+  hienthitatcasp();
+  sx1.classList.remove('active');
+  sx2.classList.add('active');
+  sx3.classList.remove('active');
+  sx4.classList.remove('active');
+}
+
+function resetSapXep() {
+  var tmp = JSON.parse(localStorage.getItem('all'));
+  tmp.sort((a, b) => a.productId - b.productId);
+  localStorage.setItem('all', JSON.stringify(tmp));
+  hienthitatcasp();
+  sx1.classList.remove('active');
+  sx2.classList.remove('active');
+  sx3.classList.remove('active');
+  sx4.classList.remove('active');
 }
 

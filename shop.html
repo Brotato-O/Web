@@ -155,21 +155,15 @@
 
         <div id="SearchBar">
             <input type="text" id="txtSearch" placeholder="Tìm kiếm " oninput="search1()"/>
+            <button id="btnPLoai" style="z-index: 1000;">
+                <p>Lọc</p>
+                <i class="fa-solid fa-sliders"></i></button>
         </div>
-        <div style="display: flex; justify-content: space-between; padding: 0 40px; padding-right: 80px;">
-            <div id="phanloaigia">
-                <div style="margin-right: 30px; ">
-                    <label for="pltheogia" class="pl-text">Từ:</label>
-                    <input type="text" name ="pltheogia"  style="font-size: 20px;" id="giatu" oninput="phanloaitheogia()"/>
-                </div>
-                <div style="margin-right: 30px; ">
-                    <label for="pltheogia" class="pl-text">Đến:</label>
-                    <input type="text" name ="pltheogia" style="font-size: 20px;" id="giaden" oninput="phanloaitheogia()"/>
-                </div>
-            </div>
+
+        <div id="openPhanloai" style="display: none;">
             <div id="phanloai-container" style="font-size: 20px;" >
                 <form class="phanloai" name="phanloai">
-                    <label for="phanloaisp" class="pl-text">Phân loại</label>
+                    <label for="phanloaisp" class="pl-text" style="font-size: 1.4rem; margin-right: 10px;">Phân loại</label>
                     <select name="phanloaisp" style="padding: 10px 0;" onchange="kiemtrachon()">
                     <option value="tatcasp">Tất cả sản phẩm</option>
                     <option value="Giày cỏ tự nhiên">Giày cỏ tự nhiên</option>
@@ -178,6 +172,23 @@
                     <option value="Phụ kiện">Phụ kiện</option>
                     </select>
                 </form>
+            </div>
+            <div id="phanloaigia">
+                <div style="margin-right: 30px; display: flex; align-items: center;">
+                    <label for="pltheogia" class="pl-text">Giá từ </label>
+                    <input type="text" name ="pltheogia"  style="font-size: 20px; padding: 5px 5px;" id="giatu" oninput="phanloaitheogia()" placeholder="tối thiểu"/>
+                </div>
+                <div style="margin-right: 30px; display: flex; align-items: center; ">
+                    <label for="pltheogia" class="pl-text">Đến </label>
+                    <input type="text" name ="pltheogia" style="font-size: 20px; padding: 5px 5px;" id="giaden" oninput="phanloaitheogia()" placeholder="tối đa"/>
+                </div>
+            </div>
+            <div id="sapxeptheo">
+                <button onclick="sapXepTheoTen()" id="sx1"><i class="fa-solid fa-arrow-down-a-z"></i></button>
+                <button onclick="sapXepTheoTen1()" id="sx2"><i class="fa-solid fa-arrow-down-z-a"></i></button>
+                <button onclick="sapXepTheoGiaTangDan()" id="sx3"><i class="fa-solid fa-arrow-up-wide-short"></i></button>
+                <button onclick="sapXepTheoGiaGiamDan()" id="sx4"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
+                <button onclick="resetSapXep()" id="sx5"><i class="fa-solid fa-rotate-right"></i></i></button>
             </div>
         </div>
 

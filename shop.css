@@ -747,13 +747,11 @@ background-color: black;
 
 
 .danhsach-sanpham{
-    
     display: flex;
     background-color: white;
     flex-wrap: wrap;
-    gap: 16px;
-   
-    
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .phantrang{
@@ -785,6 +783,10 @@ background-color: black;
 #phanloai-container{
     margin-left: 20px;
 }
+.phanloai{
+    display: flex;
+    align-items: center;
+}
 #phanloai{
     display: none;
     position: absolute;
@@ -792,8 +794,9 @@ background-color: black;
     border-radius: 5px;
 }
 .pl-text{
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 600;
+    margin-right: 10px;
     color: #444444;
 }
 .phanloai-item{
@@ -804,6 +807,73 @@ background-color: black;
     cursor: pointer;
     min-width: 60px;
     
+}
+
+#btnPLoai{
+    background-color: #333;
+    display: flex;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#btnPLoai p{
+    margin-right: 10px;
+}
+
+#openPhanloai{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 40px;
+    padding-right: 80px;
+    transition: all 0.5s ease;
+}
+
+#sapxeptheo button{
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    color: #33333357;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#sapxeptheo .active{
+    background: #333;
+    color: #f1f1f1;
+}
+
+#sapxeptheo button:hover{
+    background: #333;
+    color: #f1f1f1;
+}
+
+#SearchBar{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 100px;
+    width: 90%;
+    background-color: #fff;
+    z-index: 1001;
+    margin-left: 10vh;
+}
+
+#SearchBar input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 1px #010f1c;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 .phanloai-item:hover{
