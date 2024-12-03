@@ -345,6 +345,7 @@ function kiemtrachon() {
 
   // Nếu không chọn phân loại (mặc định "tất cả sản phẩm")
   if (pl === "tatcasp") {
+    document.getElementById('phanloaigia').style.display="flex";
       document.getElementById("h3tieude").innerText = "Tất cả sản phẩm";
       hienthitatcasp();
       return;
@@ -368,7 +369,7 @@ function kiemtrachon() {
                             `;
       }
   } 
-
+  document.getElementById('phanloaigia').style.display="none";
 
   document.getElementById('allsp').innerHTML = `<div class="menu-sanpham" id="menu-sanpham1">
               <div class="danhsach-sanpham" id="danhsach-sanpham1">${s}</div>
