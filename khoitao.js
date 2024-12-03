@@ -1,9 +1,9 @@
 
 
 function createProduct() {
-   if(localStorage.getItem('all') == null){
-   
-    var combinedArray = [  
+    if(localStorage.getItem('all') == null){
+
+    var combinedArray = [
         { name: "Nike Zoom Mercurial Vapor 16 Academy MG Shadow", price: 2150000, img: "img/1001.jpg", productId: 1001,brand:"Giày cỏ tự nhiên" },
         { name: "Adidas Copa Gloro II TF", price: 1950000, img: "img/1016.jpg", productId: 1016,brand:"Giày cỏ nhân tạo" },
         { name: "Nike Phantom GX II Academy MG Mad Ambition", price: 2150000, img: "img/1003.jpg", productId: 1003,brand:"Giày cỏ tự nhiên" },
