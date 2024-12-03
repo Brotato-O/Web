@@ -406,7 +406,7 @@ function addToBill(){
     bill[length].paymentMethod=temp;
     bill[length].status = "Chờ xác nhận";
     console.log(newInfo);
-    if(newInfo!={}){
+    if(Object.keys(newInfo).length>0){
         bill[length].address= `Số nhà: ${newInfo.houseNumber}, Đường: ${newInfo.street}, Phường: ${newInfo.ward}, Quận: ${newInfo.district}, Thành phố: ${newInfo.city}`;
         bill[length].sdt= newInfo.phone;
     }   
@@ -451,7 +451,8 @@ function useSavedAddress() {
     //nhàn
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     var profile= JSON.parse(localStorage.getItem("userProfile"));
-    if(!profile){
+    newInfo = {};
+    if(!profile[username]) {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
