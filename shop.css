@@ -1036,4 +1036,8 @@ width: 100%;
         width: 80%;
         left: 20%;
     }
+    #phanloaigia {
+       
+       display: block;
+    }
 }
