@@ -50,7 +50,7 @@ function hienthitatcasp1() {
                
 
             </div>
-            <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct(${productArrays[i].productId})">Xác nhận</div>
+            <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct()">Xác nhận</div>
         </div> 
 `;
   }
@@ -100,15 +100,18 @@ function showsetting(productid) {
     if (productArray[i].productId == productid) {
       document.getElementById("txtname").value = productArray[i].name;
       document.getElementById("txtprice").value = productArray[i].price;
+      document.getElementById("xacnhan").setAttribute("data-id", productid); // Gắn productId
+      break;
     }
   }
 }
-function changeproduct(productid) {
+function changeproduct() {
+  var productId = document.getElementById("xacnhan").getAttribute("data-id"); // Lấy ID từ data-id
   var productArray = JSON.parse(localStorage.getItem("all"));
   var imgInput = document.getElementById("imgadd");
 
   for (var i = 0; i < productArray.length; i++) {
-    if (productArray[i].productId == productid) {
+    if (productArray[i].productId == productId) {
       productArray[i].name = document.getElementById("txtname").value;
       productArray[i].price = parseFloat(document.getElementById("txtprice").value);
 
