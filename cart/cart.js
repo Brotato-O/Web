@@ -455,14 +455,14 @@ function useSavedAddress() {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
-    else if(profile[username].address== null){
+    else if(!profile[username]){
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
     //nhàn
-    hideAllBoxes();  
+    hideAllBoxes();
     paymentMethodBox.style.display = 'block';
-    confirmPaymentButton.style.display = 'block'; 
+    confirmPaymentButton.style.display = 'block';
 }
 
 function addNewAddress() {
@@ -501,10 +501,6 @@ function checkout() {
     if (!selectedMethod) {
       alert('Vui lòng chọn phương thức thanh toán!');
       return; 
-    }
-    else  if (selectedMethod && selectedMethod.value === 'Thẻ ngân hàng') {
-        if(!validateCard())
-            return;
     }
     addToBill();
     const paymentMethods = document.querySelectorAll('input[name="payment-method"]');

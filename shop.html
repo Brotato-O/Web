@@ -155,6 +155,18 @@
 
         <div id="SearchBar">
             <input type="text" id="txtSearch" placeholder="Tìm kiếm " oninput="search1()"/>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 0 40px; padding-right: 80px;">
+            <div id="phanloaigia">
+                <div style="margin-right: 30px; ">
+                    <label for="pltheogia" class="pl-text">Từ:</label>
+                    <input type="text" name ="pltheogia"  style="font-size: 20px;" id="giatu" oninput="phanloaitheogia()"/>
+                </div>
+                <div style="margin-right: 30px; ">
+                    <label for="pltheogia" class="pl-text">Đến:</label>
+                    <input type="text" name ="pltheogia" style="font-size: 20px;" id="giaden" oninput="phanloaitheogia()"/>
+                </div>
+            </div>
             <div id="phanloai-container" style="font-size: 20px;" >
                 <form class="phanloai" name="phanloai">
                     <label for="phanloaisp" class="pl-text">Phân loại</label>
@@ -164,20 +176,8 @@
                     <option value="Giày cỏ nhân tạo">Giày cỏ nhân tạo</option>
                     <option value="Quần áo">Quần áo</option>
                     <option value="Phụ kiện">Phụ kiện</option>
-                  </select>
+                    </select>
                 </form>
-            </div>
-           
-           
-        </div>
-        <div id="phanloaigia">
-            <div style="margin-right: 30px; ">
-                <label for="pltheogia" class="pl-text">Từ:</label>
-                <input type="text" name ="pltheogia"  style="font-size: 20px;" id="giatu" oninput="phanloaitheogia()"/>
-            </div>
-            <div style="margin-right: 30px; ">
-                <label for="pltheogia" class="pl-text">Đến:</label>
-                <input type="text" name ="pltheogia" style="font-size: 20px;" id="giaden" oninput="phanloaitheogia()"/>
             </div>
         </div>
        
