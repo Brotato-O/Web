@@ -404,10 +404,13 @@ function addToBill(){
         if(radio[i].checked) temp=radio[i].value;
     bill[length].paymentMethod=temp;
     bill[length].status = "Chờ xác nhận";
-    if(address!= undefined)
+    if(address!= undefined){
         bill[length].address= `Số nhà: ${address.houseNumber}, Đường: ${address.street}, Phường: ${address.ward}, Quận: ${address.district}, Thành phố: ${address.city}`;
-    else bill[length].address= profile[username].address;
-    bill[length].sdt= address.phone;
+        bill[length].sdt= address.phone;
+    }    else {
+        bill[length].address= profile[username].address;
+        bill[length].sdt=  profile[username].phone;
+    }
     localStorage.setItem('bill',JSON.stringify(bill));
 }
 
