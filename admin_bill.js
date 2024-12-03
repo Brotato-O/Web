@@ -8,6 +8,9 @@ function xoabill(){
 //BẮT ĐẦU TÌM KIẾM HÓA ĐƠN
 //hiển thị bảng tìm kiếm
 function create(){
+  document.getElementById("mot").style.width="100%";
+    document.getElementById("mot").style.margin="0";
+    document.getElementById("txtSearch1").style.display = "none";
   document.getElementById("title").innerHTML = "<h3>Danh sách đơn hàng</h3>"
     var temp= document.createElement("div");
       temp.setAttribute("id", "select-bill");
@@ -24,6 +27,7 @@ function create(){
                   <select id="method" onchange="lookUpBillDisplay()">
                     <option value="all" selected>Tất cả</option>
                     <option value="id">Mã đơn hàng</option>
+                    <option value="username">Username</option>
                     <option value="phone">Sdt</option>
                     <option value="price">Khoảng giá</option>
                     <option value="date">Ngày đặt</option>
@@ -58,6 +62,7 @@ function create(){
                   <select id="status">
                       <option value="Chờ xác nhận">Chờ xác nhận</option>
                       <option value="Đã xác nhận">Đã xác nhận</option>
+                      <option value="Đang giao">Đang giao</option>
                       <option value="Đã giao">Đã giao</option>
                       <option value="Đã hủy">Đã hủy</option>
                       <option value="all" selected>Tất cả</option>
@@ -113,14 +118,15 @@ function lookUpStatus() {
     var temp= [];
     var s="";
     for(var i=0;i<billtemp.length; i++){
-      if((billtemp[i].username.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
-        || ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) && n=="price") || (from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate) ) || (n=="all")) {
+      if((billtemp[i].sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
+        || ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) && n=="price") || 
+      (from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate) ) || billtemp[i].username.includes(from) && n=="username"||(n=="all")) {
           temp.push(billtemp[i]);
           s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
             <td>${billtemp[i].orderDate}</td>
             <td>${billtemp[i].receiptId}</td>
             <td>${billtemp[i].username}</td>
-            <td>${billtemp[i].totalAmount}</td>
+            <td>${billtemp[i].totalAmount.toLocaleString()}</td>
             <td>${billtemp[i].status}</td>
         </tr>
         `;
@@ -131,7 +137,7 @@ function lookUpStatus() {
     document.getElementById("billTable").innerHTML=`<tr>
             <th>Ngày đặt</th>
             <th>Mã hóa đơn</th>
-            <th>Username</th>
+            <th>Mã khách</th>
             <th>Giá tiền</th>
             <th>Trạng thái</th>
             </tr>` + s ;
@@ -143,7 +149,7 @@ function lookUpStatus() {
     const billDate= document.getElementById("dateMethod");
     const billPrice= document.getElementById("priceMethod");
     const method= document.getElementById("method");
-    if (method.value== "id" || method.value== "phone"){
+    if (method.value== "id" || method.value== "phone" || method.value== "username"){
       billText.style.display="block";
       billDate.style.display="none";
       billPrice.style.display="none";
@@ -176,6 +182,7 @@ function lookUpStatus() {
       var billTo= new Date(dateTo);
       var method= document.getElementById("method");
       if(method.value== "phone") billDisplay(billText, 0, "phone");
+      if(method.value== "username") billDisplay(billText, 0, "username");
       if(method.value== "id") billDisplay(billText, 0, "id");
       if(method.value== "price") billDisplay(from, to, "price");
       if(method.value== "date") billDisplay(billFrom, billTo, "date");
@@ -233,33 +240,51 @@ function lookUpStatus() {
             <p>${billtemp[i].address}</p>
           </div>
           <div class="infor-wrap">
+            <p>Số điện thoại</p>
+            <p>${billtemp[i].sdt}</p>
+          </div>
+          <div class="infor-wrap">
             <p>Trạng thái</p>
-            <p id="innerStatus">${billtemp[i].status}</p>
+            <div id="outsideStatus">
+              <p id="innerStatus">${billtemp[i].status}</p>
+            </div>
           </div>`
-          if (billtemp[i].status =="Đã xác nhận" || billtemp[i].status=="Chờ xác nhận")
-           document.getElementById("detail-bill").innerHTML+= `<button value="${obj.id}" onclick="changeStatus(this)">XÁC NHẬN / HỦY XÁC NHẬN</button>`;
+          if (billtemp[i].status !="Đã hủy"){
+           document.getElementById("outsideStatus").innerHTML+= `
+            <select id="changeStatus" onchange="changeStatus(${billtemp[i].receiptId}, this)">
+              <option value="Chờ xác nhận">Chờ xác nhận</option>
+              <option value="Đã xác nhận">Đã xác nhận</option>
+              <option value="Đang giao">Đang giao</option>
+              <option value="Đã giao">Đã giao</option>
+            </select>
+          `;
+            document.getElementById("changeStatus").value=billtemp[i].status;
+          }
+          else{
+            document.getElementById("detail-bill").innerHTML+=`
+              <div class="infor-wrap">
+                <p>Lý do hủy</p>
+                <p>${billtemp[i].reason}</p>
+              </div>
+            `;
+          }
         }
     }
   }
 
-  function changeStatus(obj){
+  function changeStatus(id, obj){
     var bill= JSON.parse(localStorage.getItem('bill'));
     for(let i=0; i <bill.length; i++){
-      if (obj.value== bill[i].receiptId){
-        if(bill[i].status=="Chờ xác nhận") {
-          bill[i].status="Đã xác nhận";
-          document.getElementById("innerStatus").innerHTML="Đã xác nhận"
-        }
-        else if(bill[i].status=="Đã xác nhận") {
-          bill[i].status="Chờ xác nhận";
-          document.getElementById("innerStatus").innerHTML="Chờ xác nhận"
-        }
+      if (id== bill[i].receiptId){
+        
+          document.getElementById("innerStatus").innerHTML=obj.value;
+          bill[id].status=obj.value;
       }
     }
     localStorage.setItem('bill', JSON.stringify(bill));
-    var p= document.getElementById(obj.value);
+    var p= document.getElementById(id);
     change();
-    if (p != null) showDetail(p);
+    if (p != null) showDetail(id);
   }
 
   function an(event){

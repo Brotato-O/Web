@@ -142,8 +142,9 @@
                     <li class="status-li"><a href="cart.html"><h3>Giỏ hàng</h3></a></li>
                     <li class="status-li"><a href="cart.html?1"><h3>Chờ xác nhận</h3></a></li>
                     <li class="status-li"><a href="cart.html?2"><h3>Đã xác nhận</h3></a></li>
-                    <li class="status-li"><a href="cart.html?3"><h3>Đã giao</h3></a></li>
-                    <li class="status-li"><a href="cart.html?4"><h3>Đã hủy</h3></a></li>
+                    <li class="status-li"><a href="cart.html?3"><h3>Đang giao</h3></a></li>
+                    <li class="status-li"><a href="cart.html?4"><h3>Đã giao</h3></a></li>
+                    <li class="status-li"><a href="cart.html?5"><h3>Đã hủy</h3></a></li>
                 </ul>
             </div>
         </div>
@@ -317,13 +318,14 @@
       <a href="#"><i class="fa-regular fa-arrow-up"></i></a>
   </div>
 
-  <div id="overlay2">
-    <div>
+  <div id="overlay2" onclick="close2(event)">
+    <div id="reason-wrap">
+        <h2>Bạn chắc chắn muốn hủy đơn này?</h2>
         <h2>Hãy để chúng tôi phục vụ bạn!!!</h2>
-        <input type="textarea" placeholder="Lý do bạn muốn hủy">
+        <textarea placeholder="Lý do bạn muốn hủy" id="reason"></textarea>
         <div class="cancel-button">
-            <button onclick="huydon()">Gửi</button>
-            <button onclick="huydon()">Hủy</button>
+            <button onclick="huydon(this)" id="cancel2">Gửi</button>
+            <button onclick="huydon(this)">Hủy</button>
         </div>
     </div>
   </div>

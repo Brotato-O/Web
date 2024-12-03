@@ -4,19 +4,25 @@ window.addEventListener("load", function () {
         onCustomer();
         showCount();
     }
+    
   })
   
   //THỐNG KÊ
   function onCustomer(){
+    document.getElementById("mot").style.width="100%";
+    document.getElementById("mot").style.margin="0";
+    document.getElementById("txtSearch1").style.display = "none";
+    document.getElementById("title").innerHTML = "<h3>Thống kê theo khách</h3>"
     var bill= JSON.parse(localStorage.getItem('bill'));
-    var user= JSON.parse(localStorage.getItem('accounts'));
     var count= [];
-    for(let i=0; i< user.length; i++){
-        count.push({customerId: user[i].username, billId:[], totalAmount: 0});
+    for(let i=0; i< bill.length; i++){
+        if(bill[i].status=="Đã giao"){
+            count.push({customerId: bill[i].username, billId:[], totalAmount: 0});
+        }
     }
     for(let i=0; i< count.length; i++){
       for(let j=0; j< bill.length; j++){
-        if(bill[j].customer.username== count[i].customerId && bill[j].status== "Đã giao"){
+        if(bill[j].username== count[i].customerId){
           count[i].billId.push(bill[j].receiptId);
           count[i].totalAmount+= bill[j].totalAmount;
         }
@@ -41,14 +47,16 @@ function showCount(){
   var count= JSON.parse(localStorage.getItem("count"));
   var detail= document.getElementById("detail-count");
   var s="";
-  for(let i=0; i<5; i++){
+  var length= count.length;
+  if (length>5) length=5;
+  for(let i=0; i<length; i++){
     s+= `<tr id="${count[i].customerId}" class="row-count" onclick="detailCount(this)" >
     <td >${count[i].customerId}</td>
       <td>${count[i].totalAmount}</td>
     </div>
       `;
   }
-  detail.innerHTML=`<table id="main-count">
+  detail.innerHTML+=`<table id="main-count">
     <th>Id khách</th>
     <th>Tổng tiền</th>` + s + `</table>`;
 }
@@ -58,9 +66,9 @@ function detailCount(obj){
     var showBill= document.getElementById("showBill");
     var s="";
     for(let i=0; i<bill.length; i++){
-        if(bill[i].customer.username== obj.id){
+        if(bill[i].username== obj.id){
             s+=`
-                <tr>
+                <tr onclick=showDetail1(${bill[i].receiptId}) class="billRow">
                 <td>${bill[i].receiptId}</td>
                 <td>${bill[i].orderDate}</td>
                 <td>${bill[i].totalAmount}</td>
@@ -73,3 +81,62 @@ function detailCount(obj){
     <th>Ngày đặt</th>
     <th>Tổng tiền</th>` + s ;
 }
+function showDetail1(id){
+    var bill= JSON.parse(localStorage.getItem("bill"));
+    var account= JSON.parse(localStorage.getItem("accounts"));
+     document.getElementById("detail-container").style.display= "block";
+     for(let i=0; i< bill.length; i++){
+       if(id== bill[i].receiptId){
+         var name;
+         for(let j=0; j< account.length; j++)
+             if (bill[i].username== account[j].username) name= account[j].name;
+         document.getElementById("detail-bill").innerHTML=`
+           <div>
+             <h2 >Thông tin hóa đơn</h2>
+             <button id="closeDetail" onclick="closeDetail()">X</button>
+           </div>
+           <div class="infor-wrap">
+             <p>Mã hóa đơn</p>
+             <p>${bill[i].receiptId}</p>
+           </div>
+           <div class="infor-wrap">
+             <p>Ngày lập hóa đơn</p>
+             <p>${bill[i].orderDate}</p>
+           </div>
+           
+           `;
+           var s="";
+             for(let j=0; j< bill[i].product.length; j++){
+               s+=`<p class="bill-product">${bill[i].product[j].quantity} X Size ${bill[i].product[j].size}: ${bill[i].product[j].title}</p>`;
+               
+             }
+           document.getElementById("detail-bill").innerHTML+= `
+             <div class="infor-wrap">
+              <p>Sản phẩm</p>
+              <div>` + s + `</div>
+             </div>
+           <div class="infor-wrap">
+             <p>Mã khách hàng</p>
+             <p>${bill[i].username}</p>
+           </div>
+           <div class="infor-wrap">
+             <p>Tên khách hàng</p>
+             <p>${name}</p>
+           </div>
+           <div class="infor-wrap">
+             <p>Địa chỉ giao hàng</p>
+             <p>${bill[i].address}</p>
+           </div>
+           <div class="infor-wrap">
+             <p>Số điện thoại</p>
+             <p>${bill[i].sdt}</p>
+           </div>
+           <div class="infor-wrap">
+             <p>Trạng thái</p>
+             <div id="outsideStatus">
+               <p id="innerStatus">${bill[i].status}</p>
+             </div>
+           </div>`
+         }
+     }
+   }

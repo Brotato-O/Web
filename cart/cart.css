@@ -35,12 +35,30 @@ body{
     left: 0;
     right: 0;
 }
-#overlay div{
+#reason-wrap{
+    padding: 15px;
     width:40%;
     background-color: white;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -50%);
+    text-align: center;
+    
 }
-#cancel{
+#reason-wrap textarea{
+    width: 80%;
+    margin: auto;
+    font-size: large;
+}
+.cancel-button{
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+.cancel-button button{
+    width: 25%;
+    margin: 20px;
 }
 #status-cart ul{
     display: flex;

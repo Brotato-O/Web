@@ -12,7 +12,9 @@ html {
 body{
   font-family: 'Poppins', sans-serif;
 }
-
+#wrap-cart table td{
+  font-weight: bold;
+}
 #navbar{
   align-items: center;
   padding: 20px 200px;

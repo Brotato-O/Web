@@ -3,16 +3,30 @@
     flex-wrap: nowrap;
     align-items: flex-start;
 }
-#showBill{
-    width: 70%;
-    margin: 0px 15px;
-}
+
 #detail-count{
     width: calc(30% - 30px);
+    padding: 15px;
+}
+#totalBill{
+    width: 70%;
+    padding: 15px;
 }
 .row-count{
     cursor: pointer;
 }
 .row-count:hover{
     background-color: #a9a8a8;
+}
+@media only screen and (max-width: 767px){
+    #count-container{
+        flex-direction: column-reverse;
+    }
+    #showBill{
+        width: 100%;
+        margin: 0;
+    }
+    #detail-count, #totalBill{
+        width: 100%;
+    }
 }

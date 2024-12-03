@@ -226,29 +226,28 @@ function buy(){
     return s;
 }
 
-//cảnh báo hủy đơn
-function warning1() {
-    var result = window.confirm("Bạn có chắc chắn muốn hủy đơn này?");
-    if (result == true) return true; 
-    return false;
-}
-
 //hủy đơn
 function huy(id){
-    var bill= JSON.parse(localStorage.getItem('bill'));
-    // document.getElementById("overlay2").style.display="block";
-    if(warning1()== false) return;
-    console.log("AA");
-    for(let i=0; i< bill.length; i++){
-        if(bill[i].receiptId == id){
-            bill[i].status = "Đã hủy";
-            break;
-        }
-    }
-    localStorage.setItem('bill',JSON.stringify(bill));
-    showBill(1);
+    document.getElementById("overlay2").style.display="block";
+    document.getElementById("cancel2").setAttribute("value", id);
 }
-
+function huydon(obj){
+    if (obj.innerHTML=="Gửi"){
+        var bill= JSON.parse(localStorage.getItem("bill"));
+        for(let i=0; i< bill.length; i++){
+            if(bill[i].receiptId == obj.value){
+                bill[i].status = "Đã hủy";
+                bill[i].reason= document.getElementById("reason").value;
+                break;
+            }
+        }
+        localStorage.setItem('bill',JSON.stringify(bill));
+        document.getElementById("overlay2").style.display= "none";
+        showBill(1);
+        toast({ title: 'Hủy đơn thành công', message: 'Cảm ơn sự đóng góp của bạn', type: 'success', duration: 3000 });
+    }
+    else document.getElementById("overlay2").style.display= "none";
+}
 //hiển thị nếu người dùng chưa đăng nhập
 function notLogin(){
     document.getElementById("wrap-cart").innerHTML=`
@@ -270,7 +269,8 @@ function showBill(number){
         var variable= "";
         if (number== 1) variable="Chờ xác nhận";
         else if (number== 2) variable="Đã xác nhận";
-        else if (number== 3) variable="Đã giao";
+        else if (number== 3) variable="Đang giao";
+        else if(number==4) variable="Đã giao";
         else variable="Đã hủy";
         var s="";
         for(var i=0; i< bill.length; i++){
@@ -357,7 +357,8 @@ window.addEventListener("load", function(){
         if(temp== 1) showBill(1); 
         else if(temp== 2) showBill(2); 
         else if(temp== 3)showBill(3); 
-        else showBill(4); 
+        else if(temp==4) showBill(4); 
+        else showBill(5); 
     }
 })
 
@@ -406,6 +407,7 @@ function addToBill(){
     if(address!= undefined)
         bill[length].address= `Số nhà: ${address.houseNumber}, Đường: ${address.street}, Phường: ${address.ward}, Quận: ${address.district}, Thành phố: ${address.city}`;
     else bill[length].address= profile[username].address;
+    bill[length].sdt= address.phone;
     localStorage.setItem('bill',JSON.stringify(bill));
 }
 
@@ -512,18 +514,18 @@ function validateNewAddress() {
     const phone = document.getElementById('phone').value.trim();
     const houseNumber = document.getElementById('house-number').value.trim();
     const street = document.getElementById('street').value.trim();
-    const ward = document.getElementById('ward').value.trim();
-    const district = document.getElementById('district').value.trim();
-    const city = document.getElementById('city').value.trim();
+    const ward = document.getElementById("ward-select-new").value;
+    const district = document.getElementById("district-select-new").value;
+    const city = document.getElementById("city-select-new").value;
 
     if (!name || !phone || !houseNumber || !street || !ward || !district || !city) {
-        alert("Vui lòng điền đầy đủ thông tin địa chỉ.");
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập đủ thông tin!', type: 'error', duration: 3000 });
         return false;
     }
 
-    const phoneRegex = /^[0-9]{10}$/; 
+    const phoneRegex = /^0[0-9]{9}$/; 
     if (!phoneRegex.test(phone)) {
-        alert("Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng.");
+        toast({ title: 'Thất bại', message: 'Vui lòng nhập số điện thoại đúng định dạng (0xx)!', type: 'error', duration: 3000 });
         return false;
     }
 
@@ -603,8 +605,7 @@ function saveAddress() {
         city: document.getElementById("city-select-new").value,
     };
 
-    if (!address.city || !address.district || !address.ward || !address.street) {
-        alert("Vui lòng nhập đầy đủ thông tin địa chỉ.");
+    if (!validateNewAddress()) {
         return;
     }
     newAddressBox.style.display = "none";
