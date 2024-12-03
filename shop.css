@@ -599,8 +599,6 @@ css của sản phẩm
 }
 .sptieude{
     display: flex;
-    
-    scroll-behavior: smooth;
     max-width: 100%;
 }
 .sanpham1{
