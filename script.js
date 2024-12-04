@@ -631,6 +631,7 @@ function closeOverlay() {
   navRes.style.transform = "translateX(100%)";
   navbar.style.transform = "translateY(-100%)";
   document.body.style.overflow = "visible";
+  document.getElementById("account-profile").style.display = "none";
 }
 overlay.addEventListener("click", closeOverlay);
 
