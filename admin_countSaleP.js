@@ -1,59 +1,87 @@
-function showSaleProducts(){
-    var countP=localStorage.getItem("countP") || {};
+function SaleProducts(){
+    var countP= [];
     var products= JSON.parse(localStorage.getItem("products"));
     for(var i=0; i< products.length; i++){
-        countP[products[i].productId] = {totalAmount: 0, quantity: 0};
+        countP.push({productId: products[i].productId, productName: products[i].name ,totalAmount: 0, quantity: 0});
     }
     var bill= JSON.parse(localStorage.getItem("bill"));
     for(var i=0; i< bill.length; i++){
         if(bill[i].status=="Đã giao"){
             for(var j=0; j< bill[i].product.length; j++){
-                countP[bill[i].product[j].id].totalAmount+=Number(bill[i].product[j].quantity)* bill[i].product[j].price;
-                countP[bill[i].product[j].id].quantity+=Number(bill[i].product[j].quantity);
+                for(var k=0; k< countP.length; k++){
+                    if(countP[k].productId==bill[i].product[j].id){
+                        countP[k].totalAmount+=Number(bill[i].product[j].price)* Number(bill[i].product[j].quantity);
+                        countP[k].quantity+=Number(bill[i].product[j].quantity);
+                        break;
+                    }
+                }
             }
         }
     }
-    
-
+    console.log(countP);
     localStorage.setItem("countP", JSON.stringify(countP));
 }
 
-function theoTien(){
-    var products= JSON.parse(localStorage.getItem("products"));
-    var countP=localStorage.getItem("countP");
-    // for(let i=1032; i< 1099; i++){
-    //     for(let j=1032; j< 1099; j++){
-    //         if(countP[j].totalAmount < countP[j+1].totalAmount){
-    //             var temp = countP[j];
-    //             countP[j] = countP[j+1];
-    //             countP[j+1] = temp;
-    //         }
-    //     }
-    // }
-    for(let i=0; i< products.length; i++){
-        if(products[i].productId==1032){
-            console.log("Sản phẩm bán ít tiền nhất: " + products[i].name);
-        }
-    }
-    for(let i=0; i< products.length; i++){
-        if(products[i].productId==1099){
-            console.log("Sản phẩm bán nhiều tiền nhất: " + products[i].name);
-        }
-    }
-    localStorage.setItem("countP", JSON.stringify(countP));
-}
-
-function theoSoLuong(){
-    var countP=localStorage.getItem("countP");
-    for(let i=1032; i< 1099; i++){
-        for(let j=1032; j< 1099; j++){
-            if(countP[j].quantity < countP[j+1].quantity){
+function onQuantity(){
+    var countP= JSON.parse(localStorage.getItem("countP"));
+    for(var i=0; i< countP.length; i++){
+        for(var j=0; j<countP.length-1; j++){
+            if(Number(countP[j].quantity) < Number(countP[j+1].quantity)){
                 var temp = countP[j];
-                countP[j] = countP[j+1];
-                countP[j+1] = temp;
+                countP[j] = countP[j + 1];
+                countP[j + 1] = temp;
             }
         }
     }
-    console.log("Sản phẩm bán nhiều nhất: " + countP[1099]);
-    console.log("Sản phẩm bán ít nhất: " + countP[1032]);
+    localStorage.setItem("countP", JSON.stringify(countP));
+}
+
+function onMoney(){
+    var countP= JSON.parse(localStorage.getItem("countP"));
+    for(var i=0; i< countP.length; i++){
+        for(var j=0; j<countP.length-1; j++){
+            if(Number(countP[j].totalAmount) < Number(countP[j+1].totalAmount)){
+                var temp = countP[j];
+                countP[j] = countP[j + 1];
+                countP[j + 1] = temp;
+            }
+        }
+    }
+    localStorage.setItem("countP", JSON.stringify(countP));
+}
+
+function showSaleProducts(index){
+    var countP= JSON.parse(localStorage.getItem("countP"));
+    var div= document.getElementById("pages");
+    var s= "";
+    div.innerHTML=``;
+    var length= countP.length;
+    const BPP=5;
+    var pages= Math.ceil(length/BPP);
+    var startIndex= (index-1)*BPP;
+    var endIndex= startIndex+BPP;
+    if(endIndex> length) endIndex= length;
+    for(let i=0; i<pages; i++){
+      div.innerHTML +=`
+       <button class="page" onclick="showSaleProducts('${i+1}')">${i+1}</button>
+      `;
+  }
+    for(var i=startIndex; i< endIndex; i++){
+        s+= `
+            <tr>
+            <td>${i+1}</td>
+            <td>${countP[i].productId}</td>
+            <td>${countP[i].quantity}</td>
+            <td>${countP[i].totalAmount}</td>
+            </tr>
+        `;
+    }
+    document.getElementById("countP-wrap").innerHTML=`<table id="showCountP">
+        <tr>
+          <th>Số thứ tự</th>
+          <th>Mã sản phẩm</th>
+          <th>Số lượng</th>
+          <th>Tổng tiền</th>
+        </tr>` + s+ 
+      `</table>`;
 }
