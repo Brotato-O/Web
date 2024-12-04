@@ -257,9 +257,6 @@ hienthitatcasp();
 search1();
 
 }
-window.onload = function () {
-  createProduct();
-  };
 setTimeout(hienthisanpham1, 20);
 setTimeout(hienthitatcasp, 10);
 
@@ -469,7 +466,7 @@ function phanloaitheogia(){
   else {
     for (var i = 0; i < tmp.length; i++) {
       document.getElementById("h3tieude").innerText="Lọc theo sản phẩm";
-        if ((tmp[i].price>=gt) && (tmp[i].price<=gd) ) {
+        if ((tmp[i].price>=gt && !gd)||(tmp[i].price>=gt) && (tmp[i].price<=gd) ) {
               s += `
                                   <div class="product" onclick="show2(${tmp[i].productId})">
                                     <img src="${tmp[i].img}" alt="${tmp[i].name}">
