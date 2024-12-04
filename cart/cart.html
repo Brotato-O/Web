@@ -152,6 +152,7 @@
         <div id="main-cart">
             <div class="container">
                 <div id="wrap-cart">
+                    
                 </div>
             </div>
         </div>
@@ -329,14 +330,85 @@
         </div>
     </div>
   </div>
+
+  <div id="overlay3" onclick="close2(event)">
+    <div id="detailPaid">
+        <h3>Chi tiết đơn hàng</h3>
+        <div class="os1">
+            <div class="os3">
+                <div class="title1">Mã đơn hàng: &nbsp</div>
+                <div id="keyPaid"></div>
+            </div>
+            <div class="os3">
+                <div class="title1">Ngày đặt: &nbsp</div>
+                <div id="datePaid"></div>
+            </div>
+        </div>
+        <div class="os3">
+            <div class="title1">Trạng thái:&nbsp</div>
+            <div id="statusPaid"></div>
+        </div>
+        <div class="os3">
+            <div class="title1" style="text-align: left;">Địa chỉ giao hàng: &nbsp;</div>
+            <div id="addressPaid"></div>
+        </div>
+        <div id="productPaid">
+            <table id="showP">
+                
+            </table>
+        </div>        
+        <div class="os1">
+            <div class="os3">
+                <div class="title1">Tổng tiền: &nbsp</div>
+                <div id="totalPaid"></div>
+            </div>
+            <div class="os3">
+                <div class="title1">Phương thức thanh toán: &nbsp</div>
+                <div id="methodPaid"></div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div id="overlay4">
+    <div id="detailPay">
+        <h3>Xác nhận đơn hàng</h3>
+        <div style="display: flex; justify-content: space-between" class="chung">
+            <div style="display: flex;">
+                <div>Người nhận: &nbsp;</div>
+                <div id="customerPay"></div>
+            </div>
+            <div style="display: flex;">
+                <div>Số điện thoại: &nbsp;</div>
+                <div id="phonePay"></div>
+            </div>
+        </div>
+        <div style="display: flex;" class="rieng">
+            <div>Địa chỉ nhận hàng: &nbsp;</div>
+            <div id="addressPay"></div>
+        </div>
+        <table id="showP1">
+
+        </table>      
+        <div style="display: flex; justify-content: space-between " class="chung">
+            <div>Tổng tiền: &nbsp;</div>
+            <div id="totalPay"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between;" class="chung">
+            <div>Phương thức: &nbsp;</div>
+            <div id="methodPay"></div>
+        </div>
+        <button onclick="back()">Quay lại</button>
+        <button onclick="checkout()">Xác nhận</button>
+    </div>
+  </div>
   <div id="toast"></div>
-  
-  <button onclick="them()">aAA</button>
     <!-- tài -->
 
     <div class="overlay1" id="overlay1" style="display: none;">
         <div class="checkout-box">
           <div id="address-box" style="display: block;">
+            <div id="cfP"></div>
             <h4>Chọn địa chỉ giao hàng</h4>
             <button id="use-saved-address" onclick="useSavedAddress()">Sử dụng địa chỉ đã lưu</button>
             <button id="add-new-address" onclick="addNewAddress()">Nhập địa chỉ mới</button>
@@ -408,7 +480,7 @@
             </form>
           </div>
     
-          <button id="confirm-payment-button" onclick="checkout()" style="display: none;">Xác nhận thanh toán</button>
+          <button id="confirm-payment-button" onclick="cfP()" style="display: none;">Xác nhận thanh toán</button>
           <button id="close-checkout-button" onclick="closeCheckout()">X</button>
         </div>
       </div>

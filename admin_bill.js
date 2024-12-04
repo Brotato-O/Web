@@ -140,13 +140,15 @@ function lookUpStatus() {
 }
 
 //hiển thị kế quả tìm kiếm dựa trên kq lọc
-  function billDisplay(from, to, n, index){
+  function billDisplay(from, to, n){
     document.getElementById("container").style.display="none";
     var s="";
+    console.log((from));
     for(var i=0;i<billtemp.length; i++){
       if((billtemp[i].sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
-        || ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) && n=="price") || 
-      (from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate) ) || billtemp[i].username.includes(from) && n=="username"||(n=="all")) {
+        || ( ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) || (billtemp[i].totalAmount>=Number(from) && Number(to)==0) || (Number(from)==0 && billtemp[i].totalAmount<=Number(to))) && n=="price") || 
+      (((from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate)) || from<= new Date(billtemp[i].orderDate) && to==="" || from==="" && to>= new Date(billtemp[i].orderDate)) && n=="date") 
+      || billtemp[i].username.includes(from) && n=="username"||(n=="all")) {
           s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
             <td>${billtemp[i].orderDate}</td>
             <td>${billtemp[i].receiptId}</td>
@@ -215,12 +217,12 @@ function lookUpStatus() {
       var billFrom= new Date(dateFrom);
       var billTo= new Date(dateTo);
       var method= document.getElementById("method");
-      if(method.value== "phone") billDisplay(billText, 0, "phone", 1);
-      if(method.value== "username") billDisplay(billText, 0, "username", 1);
-      if(method.value== "id") billDisplay(billText, 0, "id", 1);
-      if(method.value== "price") billDisplay(from, to, "price", 1);
-      if(method.value== "date") billDisplay(billFrom, billTo, "date", 1);
-      if(method.value== "all") billDisplay(0, 0, "all", 1); 
+      if(method.value== "phone") billDisplay(billText, 0, "phone");
+      if(method.value== "username") billDisplay(billText, 0, "username");
+      if(method.value== "id") billDisplay(billText, 0, "id");
+      if(method.value== "price") billDisplay(from, to, "price");
+      if(method.value== "date") billDisplay(billFrom, billTo, "date");
+      if(method.value== "all") billDisplay(0, 0, "all"); 
   }
   //KẾT THÚC TÌM KIẾM HÓA ĐƠN
 

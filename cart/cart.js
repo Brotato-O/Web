@@ -262,6 +262,34 @@ function notLogin(){
     `
 }
 
+function showPaid(id){
+    var bill= JSON.parse(localStorage.getItem('bill'));
+    document.getElementById("overlay3").style.display="block";
+    for(var i=0; i< bill.length; i++){
+        if(bill[i].receiptId == id){
+            document.getElementById("keyPaid").innerHTML = bill[i].receiptId;
+            document.getElementById("datePaid").innerHTML = bill[i].orderDate;
+            document.getElementById("statusPaid").innerHTML = bill[i].status;
+            document.getElementById("addressPaid").innerHTML = bill[i].address;
+            var s="";
+            for(var j=0; j< bill[i].product.length; j++){
+                s+=`<tr>
+                    <td>${Number(bill[i].product[j].quantity)}</td>
+                    <td>${bill[i].product[j].title}</td>
+                    <td>${Number(bill[i].product[j].price)}</td>
+                </tr>`;
+            }
+            document.getElementById("showP").innerHTML=`<tr>
+            <th>Số lượng</th>
+            <th>Sản phẩm</th>
+            <th>Đơn giá</th>
+        </tr>` + s;
+            document.getElementById("totalPaid").innerHTML = bill[i].totalAmount;
+            document.getElementById("methodPaid").innerHTML = bill[i].paymentMethod;
+        }
+    }
+}
+
 //hiển thị tình trạng đơn
 function showBill(number){
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
@@ -289,36 +317,30 @@ function showBill(number){
             if(username== bill[i].username){
                 if(bill[i].status== variable){
                         s+=`
-                            <tr>
+                            <tr class="row1" id=${bill[i].receiptId}>
                                 <td>${bill[i].receiptId}</td>
-                                <td class="billname">`;
-                        for(var j=0; j< bill[i].product.length; j++){
-                            s+= `
-                                <div>${bill[i].product[j].quantity} X ${bill[i].product[j].title}</div>
-                            `;      
-                        }
-                        s+= `</td>
-                        <td>${bill[i].orderDate}</td>
-                        <td>${bill[i].totalAmount}</td>
-                        <td>${bill[i].paymentMethod}</td>`
-                        if (number==1)
-                            s+=`<td><button onclick="huy('${bill[i].receiptId}')">Hủy đơn</button></td>`
-                        s+=`</tr>`;
+                                <td>${bill[i].orderDate}</td>
+                                <td>${bill[i].totalAmount}</td>
+                                <td>${bill[i].paymentMethod}</td>
+                                <td><button onclick="showPaid('${bill[i].receiptId}')">Xem chi tiết</button></td>
+                            </tr>`;
                 }
             }
         }
         s= `<table class="status-table">
                 <tr>
                     <th>Mã hóa đơn</th>
-                    <th>Sản phẩm</th>
                     <th>Ngày đặt</th>
                     <th>Tổng tiền</th>
                     <th>Phương thức</th>
-                <tr> `+ s + `
-
-            </table>
-        `
+                <tr>`+s+`</table>`;
         document.getElementById("wrap-cart").innerHTML=s;   
+        if (number==1){
+            var rows= document.getElementsByClassName("row1");
+            for(let i=0; i< rows.length; i++)
+                rows[i].innerHTML+=`
+                <td><button onclick="huy('${rows[i].id}')">Hủy đơn</button></td>`
+            }
     }
 }
 
@@ -398,7 +420,11 @@ function addToBill(){
     }
     bill[length].totalAmount = buy();
     var date= new Date();
-    bill[length].orderDate= `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+    var month= date.getMonth()+1;
+    if (month<=9) month= "0"+month;
+    var day= date.getDate();
+    if (day<=9) day= "0"+day;
+    bill[length].orderDate= `${date.getFullYear()}-${month}-${day}`;
     var radio= document.getElementsByName("payment-method");
     var temp;
     for(var i=0; i<radio.length; i++)
@@ -438,6 +464,76 @@ function openCheckout() {
     }
 };
 
+function cfP(){
+    closeCheckout();
+    document.getElementById("overlay4").style.display = 'block';
+    checkCart();
+    console.log(newInfo);
+    if(newInfo!= null){
+        document.getElementById("customerPay").innerHTML= newInfo.name;
+        document.getElementById("phonePay").innerHTML= newInfo.phone;
+        document.getElementById("addressPay").innerHTML= `Số nhà: ${newInfo.houseNumber}, Đường: ${newInfo.street}, Phường: ${newInfo.ward}, Quận: ${newInfo.district}, Thành phố: ${newInfo.city}`;
+        var s="";
+        for(var i=0; i<carttemp.length; i++){
+            s+=`<tr>
+                <td>${carttemp[i].title}</td>
+                <td>${carttemp[i].size}</td>
+                <td>${carttemp[i].quantity}</td>
+                <td>${carttemp[i].price}</td>
+            </tr>`;
+        }
+        document.getElementById("showP1").innerHTML=`
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Size</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                </tr> 
+            ` +s;
+        document.getElementById("totalPay").innerHTML=buy();
+        var radio= document.getElementsByName("payment-method");
+        var temp;
+        for(var i=0; i<radio.length; i++)
+        if(radio[i].checked) temp=radio[i].value;
+        document.getElementById("methodPay").innerHTML=temp;
+    }
+    else{
+        var profile= JSON.parse(localStorage.getItem("userProfile"));
+        var username= JSON.parse(localStorage.getItem("currentUser")).username;
+        var customer= profile[username];
+        document.getElementById("customerPay").innerHTML= customer.name;
+        document.getElementById("phonePay").innerHTML= customer.phone;
+        document.getElementById("addressPay").innerHTML= customer.address;
+        for(var i=0; i<carttemp.length; i++){
+            s+=`<tr>
+                <td>${carttemp[i].title}</td>
+                <td>${carttemp[i].size}</td>
+                <td>${carttemp[i].quantity}</td>
+                <td>${carttemp[i].price}</td>
+            </tr>`;
+        }
+        document.getElementById("showP1").innerHTML=`
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Size</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                </tr> 
+            ` +s;
+        document.getElementById("totalPay").innerHTML=buy();
+        var radio= document.getElementsByName("payment-method");
+        var temp;
+        for(var i=0; i<radio.length; i++)
+        if(radio[i].checked) temp=radio[i].value;
+        document.getElementById("methodPay").innerHTML=temp;
+    }
+}
+
+function back(){
+    document.getElementById("overlay4").style.display="none";
+    document.getElementById("overlay1").style.display="flex";
+    document.getElementById("payment-method-box").style.display="block";
+}
 function showAddressBox() {
     hideAllBoxes(); 
     addressBox.style.display = 'block';
@@ -446,6 +542,13 @@ function showAddressBox() {
 function closeCheckout() {
     overlay1.style.display = 'none';
 };
+
+function close2(event){
+    if(event.target.id=="overlay2" || event.target.id=="overlay3"){
+        document.getElementById("overlay2").style.display="none";
+        document.getElementById("overlay3").style.display="none";
+    }
+}
 
 function useSavedAddress() {
     //nhàn
@@ -509,7 +612,8 @@ function checkout() {
     overlay1.style.display = 'none';
     toast({ title: 'Thành công', message: 'Sản phẩm đã được thanh toán !', type: 'success', duration: 3000 });
     deleteItems();
-    closeCheckout(); 
+    // closeCheckout(); 
+    document.getElementById("overlay4").style.display = 'none';
 }
 
 function showPaymentMethodBox() {
