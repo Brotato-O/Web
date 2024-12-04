@@ -159,8 +159,11 @@ function tangsl(){
         console.error("Sản phẩm không tồn tại!");
     }
 }
+
 var all = JSON.parse(localStorage.getItem('all'));
 localStorage.setItem('producttmp', JSON.stringify(all));
+localStorage.setItem('producttmp1', JSON.stringify(all));
+localStorage.setItem('producttmp2', JSON.stringify(all));
 
 function hienthitatcasp(){
   var tmp=JSON.parse(localStorage.getItem('producttmp2'));
@@ -532,7 +535,6 @@ function phanloaitheogia(){
           
       }
   }
-
 }
 
 //nhàn
