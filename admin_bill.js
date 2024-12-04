@@ -1,9 +1,4 @@
 
-
-function xoabill(){
-    localStorage.removeItem("bill");
-  }
-  
   
 //BẮT ĐẦU TÌM KIẾM HÓA ĐƠN
 //hiển thị bảng tìm kiếm
@@ -29,6 +24,7 @@ function create(){
                     <option value="id">Mã đơn hàng</option>
                     <option value="username">Tên đăng nhập</option>
                     <option value="phone">Số điện thoại</option>
+                    <option value="address">Địa điểm</option>
                     <option value="price">Khoảng giá</option>
                     <option value="date">Ngày đặt</option>
                   </select>
@@ -56,6 +52,24 @@ function create(){
                       <input type="number" id="priceto"/>
                     </div>
                   </div>
+
+                  <div id="addressMethod">
+                    <label for="city-select-new">Tỉnh/Thành phố:</label>
+                    <select id="city-select-new" onchange="loadDistrictsForNewAddress()" required>
+                        <option value="">Chọn tỉnh/thành phố</option>
+                    </select>
+                    
+                    <label for="district-select-new">Quận/Huyện:</label>
+                    <select id="district-select-new" onchange="loadWardsForNewAddress()" required>
+                        <option value="">Chọn quận/huyện</option>
+                    </select>
+                    
+                    <label for="ward-select-new">Phường/Xã:</label>
+                    <select id="ward-select-new" required>
+                        <option value="">Chọn phường/xã</option>
+                    </select>
+                  </div>
+
                 </div>
                 <div class="detailMethod" style="display:flex"> 
                   <div style="margin-right:20px">Tình trạng hóa đơn</div>
@@ -158,26 +172,37 @@ function lookUpStatus() {
     const billText= document.getElementById("textMethod");
     const billDate= document.getElementById("dateMethod");
     const billPrice= document.getElementById("priceMethod");
+    const billAddress= document.getElementById("addressMethod");
     const method= document.getElementById("method");
     if (method.value== "id" || method.value== "phone" || method.value== "username"){
       billText.style.display="block";
       billDate.style.display="none";
       billPrice.style.display="none";
+      billAddress.style.display="none";
     }
     else if (method.value== "date"){
       billText.style.display="none";
       billDate.style.display="flex";
+      billAddress.style.display="flex";
       billPrice.style.display="none";
     }
     else if (method.value== "all"){
         billText.style.display="none";
         billDate.style.display="none";
         billPrice.style.display="none";
+        billAddress.style.display="none";
+      }
+    else if (method.value== "address"){
+        billText.style.display="none";
+        billDate.style.display="none";
+        billPrice.style.display="none";
+        billAddress.style.display="flex";
       }
     else {
       billText.style.display="none";
       billDate.style.display="none";
       billPrice.style.display="flex";
+      billAddress.style.display="flex";
     }
   }
   
