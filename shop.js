@@ -257,7 +257,6 @@ hienthitatcasp();
 search1();
 
 }
-
 setTimeout(hienthisanpham1, 20);
 setTimeout(hienthitatcasp, 10);
 
@@ -454,7 +453,9 @@ function phanloaitheogia(){
   sx3.classList.remove('active');
   sx4.classList.remove('active');
   if((!gt) && (!gd)){
+    var tmp1 = JSON.parse(localStorage.getItem('all'));
     document.getElementById("h3tieude").innerText = "Tất cả sản phẩm";
+    localStorage.setItem('producttmp2', JSON.stringify(tmp1));
     hienthitatcasp();
     return;
   }
@@ -465,7 +466,7 @@ function phanloaitheogia(){
   else {
     for (var i = 0; i < tmp.length; i++) {
       document.getElementById("h3tieude").innerText="Lọc theo sản phẩm";
-        if ((tmp[i].price>=gt) && (tmp[i].price<=gd) ) {
+        if ((tmp[i].price>=gt && !gd)||(tmp[i].price>=gt) && (tmp[i].price<=gd) ) {
               s += `
                                   <div class="product" onclick="show2(${tmp[i].productId})">
                                     <img src="${tmp[i].img}" alt="${tmp[i].name}">

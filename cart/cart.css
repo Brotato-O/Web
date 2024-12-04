@@ -26,14 +26,58 @@ body{
     margin: 30px 0px;
     
 }
-#overlay2{
+#overlay2, #overlay3, #overlay4{
     display: none;
     position: fixed;
-    background-color: #7170706f;
+    background-color: #545353ac;
     top:0;
     bottom:0;
     left: 0;
     right: 0;
+}
+#detailPaid{
+    padding: 15px;
+    width:40%;
+    background-color: white;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -50%);
+    text-align: center;
+    border-radius: 10px;
+}
+#detailPay{
+    padding: 15px;
+    width:40%;
+    background-color: white;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -50%);
+    text-align: center;
+    border-radius: 10px;
+}
+.chung, .rieng div{
+    padding: 10px;
+    text-align: left;
+}
+.os1{
+    display: flex;
+    justify-content: space-between;
+}
+.os1, .os3{
+    display: flex;
+    padding:10px;
+}
+.os1 .os3{
+    padding: 0;
+}
+#productPaid{
+    display: flex;
+    flex-direction: column;
+}
+.title1{
+    font-weight: bold;
 }
 #reason-wrap{
     padding: 15px;
@@ -44,7 +88,7 @@ body{
     top: 50%;
     transform: translate(0%, -50%);
     text-align: center;
-    
+    border-radius: 10px;
 }
 #reason-wrap textarea{
     width: 80%;

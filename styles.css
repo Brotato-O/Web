@@ -1039,7 +1039,7 @@ input[type="file"] {
   flex-direction: row;
 }
 .col {
-  width: 48%;
+  width: 45%;
   padding: 30px;
 }
 .col label {
@@ -1090,7 +1090,7 @@ input[type="file"] {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 1000px;
+
   height: auto;
   position: fixed;
   padding: 50px 20px 20px;

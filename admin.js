@@ -183,7 +183,7 @@ function addProduct() {
       brand: brand.value,
       img: e.target.result, // Lưu URL của ảnh vào sản phẩm
       name: productname.value,
-      price: price.value,
+      price: parseFloat(price.value),
     };
 
     productArray.push(producttemp);
