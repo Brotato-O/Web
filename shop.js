@@ -163,7 +163,7 @@ var all = JSON.parse(localStorage.getItem('all'));
 localStorage.setItem('producttmp', JSON.stringify(all));
 
 function hienthitatcasp(){
-  var tmp=JSON.parse(localStorage.getItem('producttmp'));
+  var tmp=JSON.parse(localStorage.getItem('producttmp2'));
   var startIndex=(currentPage-1)*productsPerPage;
   var endIndex=startIndex+productsPerPage;
   if(endIndex>tmp.length){
@@ -254,22 +254,20 @@ hienthitatcasp();
 search1();
 
 }
-window.onload = function () {
-createProduct();
-};
 
-setTimeout(hienthisanpham1, 20); 
-setTimeout(hienthitatcasp, 10); 
+setTimeout(hienthisanpham1, 20);
+setTimeout(hienthitatcasp, 10);
 
 function search1() {
 var productsearch = document.getElementById('txtSearch').value.toLowerCase();
-var productArray = JSON.parse(localStorage.getItem('all')); // Lấy danh sách sản phẩm
+var productArray = JSON.parse(localStorage.getItem('producttmp')); // Lấy danh sách sản phẩm
 var s = '';
 if (!productsearch) {
 document.getElementById("h3tieude").innerText="Tất cả sản phẩm";
 hienthitatcasp();
 return;
-}     // Tìm kiếm cơ bản
+}
+    // Tìm kiếm cơ bản
 for (var i = 0; i < productArray.length; i++) {
   document.getElementById("h3tieude").innerText="Lọc theo sản phẩm";
     if ((productArray[i].name.toLowerCase().search(productsearch)!=-1||productArray[i].brand.toLowerCase().search(productsearch) != -1) && productsearch != '' ) {
@@ -280,8 +278,10 @@ for (var i = 0; i < productArray.length; i++) {
                                 <p>${(productArray[i].price).toLocaleString()} VND</p>
                                 </div>
                           `;
+      let tmp2 = productArray.filter(product => product.name.toLowerCase().search(productsearch) != -1 || product.brand.toLowerCase().search(productsearch) != -1);
+      localStorage.setItem('producttmp2', JSON.stringify(tmp2));
     }
-} 
+}
 
 if (s === '') {
 document.getElementById('allsp').innerHTML = '<p>Không tìm thấy sản phẩm nào phù hợp.</p>';
@@ -354,6 +354,7 @@ function kiemtrachon() {
       document.getElementById("h3tieude").innerText = "Tất cả sản phẩm";
       hienthitatcasp();
       localStorage.setItem('producttmp', JSON.stringify(tmp));
+      localStorage.setItem('producttmp2', JSON.stringify(tmp));
       resetSapXep();
       document.getElementById('giatu').value = '';
       document.getElementById('giaden').value = '';
@@ -364,8 +365,8 @@ function kiemtrachon() {
   // Lọc sản phẩm theo phân loại
   if (tmp && Array.isArray(tmp)) {
       tmp1 = tmp.filter(product => product.brand === pl);
-      producttmp = tmp1;
-      localStorage.setItem('producttmp', JSON.stringify(producttmp));
+      localStorage.setItem('producttmp', JSON.stringify(tmp1));
+      localStorage.setItem('producttmp2', JSON.stringify(tmp1));
       resetSapXep();
       document.getElementById('giatu').value = '';
       document.getElementById('giaden').value = '';
@@ -440,9 +441,14 @@ function kiemtrachon() {
 
 function phanloaitheogia(){
   var tmp = JSON.parse(localStorage.getItem('producttmp'));
+  var tmp2 = [];
   var gt = document.getElementById('giatu').value;
   var gd = document.getElementById('giaden').value;
   var s = '';
+  sx1.classList.remove('active');
+  sx2.classList.remove('active');
+  sx3.classList.remove('active');
+  sx4.classList.remove('active');
   if((!gt) && (!gd)){
     document.getElementById("h3tieude").innerText = "Tất cả sản phẩm";
     hienthitatcasp();
@@ -463,8 +469,8 @@ function phanloaitheogia(){
                                     <p>${(tmp[i].price).toLocaleString()} VND</p>
                                     </div>
                               `;
-            tmp = tmp.filter(product => product.price >= gt && product.price <= gd);
-            localStorage.setItem('producttmp', JSON.stringify(tmp));
+            tmp2 = tmp.filter(product => product.price >= gt && product.price <= gd);
+            localStorage.setItem('producttmp2', JSON.stringify(tmp2));
         }
     } 
     
@@ -555,9 +561,9 @@ var sx3 = document.getElementById('sx3');
 var sx4 = document.getElementById('sx4');
 
 function sapXepTheoGiaTangDan() {
-  var tmp = JSON.parse(localStorage.getItem('producttmp'));
-  tmp.sort((a, b) => a.price - b.price);
-  localStorage.setItem('producttmp', JSON.stringify(tmp));
+  let tmps = JSON.parse(localStorage.getItem('producttmp2'));
+  tmps.sort((a, b) => a.price - b.price);
+  localStorage.setItem('producttmp2', JSON.stringify(tmps));
   hienthitatcasp();
   sx1.classList.remove('active');
   sx2.classList.remove('active');
@@ -566,9 +572,9 @@ function sapXepTheoGiaTangDan() {
 }
 
 function sapXepTheoGiaGiamDan() {
-  var tmp = JSON.parse(localStorage.getItem('producttmp'));
-  tmp.sort((a, b) => b.price - a.price);
-  localStorage.setItem('producttmp', JSON.stringify(tmp));
+  let tmps = JSON.parse(localStorage.getItem('producttmp2'));
+  tmps.sort((a, b) => b.price - a.price);
+  localStorage.setItem('producttmp2', JSON.stringify(tmps));
   hienthitatcasp();
   sx1.classList.remove('active');
   sx2.classList.remove('active');
@@ -577,9 +583,9 @@ function sapXepTheoGiaGiamDan() {
 }
 
 function sapXepTheoTen() {
-  var tmp = JSON.parse(localStorage.getItem('producttmp'));
-  tmp.sort((a, b) => a.name.localeCompare(b.name));
-  localStorage.setItem('producttmp', JSON.stringify(tmp));
+  let tmps = JSON.parse(localStorage.getItem('producttmp2'));
+  tmps.sort((a, b) => a.name.localeCompare(b.name));
+  localStorage.setItem('producttmp2', JSON.stringify(tmps));
   hienthitatcasp();
   sx1.classList.add('active');
   sx2.classList.remove('active');
@@ -588,9 +594,9 @@ function sapXepTheoTen() {
 }
 
 function sapXepTheoTen1() {
-  var tmp = JSON.parse(localStorage.getItem('producttmp'));
-  tmp.sort((a, b) => b.name.localeCompare(a.name));
-  localStorage.setItem('producttmp', JSON.stringify(tmp));
+  let tmps = JSON.parse(localStorage.getItem('producttmp2'));
+  tmps.sort((a, b) => b.name.localeCompare(a.name));
+  localStorage.setItem('producttmp2', JSON.stringify(tmps));
   hienthitatcasp();
   sx1.classList.remove('active');
   sx2.classList.add('active');
@@ -599,11 +605,12 @@ function sapXepTheoTen1() {
 }
 
 function resetSapXep() {
-  var tmp = JSON.parse(localStorage.getItem('producttmp'));
-  tmp.sort((a, b) => a.productId - b.productId);
-  localStorage.setItem('producttmp', JSON.stringify(tmp));
+  let tmps = JSON.parse(localStorage.getItem('producttmp'));
+  tmps.sort((a, b) => a.productId - b.productId);
+  localStorage.setItem('producttmp2', JSON.stringify(tmps));
   document.getElementById('giatu').value = '';
   document.getElementById('giaden').value = '';
+  document.getElementById('txtSearch').value = '';
   phanloaitheogia();
   hienthitatcasp();
   sx1.classList.remove('active');
@@ -612,3 +619,6 @@ function resetSapXep() {
   sx4.classList.remove('active');
 }
 
+//Mảng producttmp lưu dữ liệu ảo sau lọc sản phẩm
+//Cần tạo thêm một mảng để lưu dữ liệu sau khi lọc sản phẩm giá từ giá đến và sau đó sẽ săp xếp tiếp theo mảng này
+//Ý tưởng: để mảng producttmp làm mảng để sắp xếp cuối cùng, tạo thêm một mảng ảo để lưu dữ liệu sau khi lọc sản phẩm giá từ giá đến
