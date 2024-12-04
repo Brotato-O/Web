@@ -403,7 +403,8 @@
               <input type="text" id="card-number" placeholder="Số thẻ" required pattern="\d{16}" maxlength="16">
               <input type="text" id="card-holder" placeholder="Tên chủ thẻ" required>
               <input type="tel" id="card-phone" placeholder="Số điện thoại chủ thẻ" required pattern="^[0-9]{10,11}$">
-              <input type="text" id="card-expiry" placeholder="Ngày phát hành (DD/MM/YYYY)" required>
+              <label for="card-expiry">Ngày hết hạn:</label>
+              <input type="date" id="card-expiry" name="card-expiry" min="2024-01-01">
             </form>
           </div>
     

@@ -636,7 +636,7 @@ function validateCard() {
     const cardowner = document.getElementById('card-holder').value.trim();
     const cardnumber = document.getElementById('card-number').value.trim();
     const phonenumber = document.getElementById('card-phone').value.trim();
-    const date = document.getElementById('card-expiry').value.trim();
+    const date = document.getElementById('card-expiry').value;
 
     if (!cardowner || !cardnumber || !phonenumber || !date) {
         toast({ title: 'Thất bại', message: 'Vui lòng nhập đủ thông tin!', type: 'error', duration: 3000 });
@@ -662,11 +662,13 @@ function validateCard() {
         return false;
     }
 
-    const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
-    var temp= date.split("/");
-    if (!dateRegex.test(date) || (0< temp[0] && temp[0]> 31 && temp[1]<1 && temp[1]>12 & temp[2]>2024)) {
-        toast({ title: 'Thất bại', message: 'Vui lòng nhập ngày tháng đúng định dạng (xx/xx/xxxx)!', type: 'error', duration: 3000 });
+    const today = new Date();
+    const selectedDate = new Date(date);
+
+    if (selectedDate <= today) { 
+        toast({ title: 'Thất bại', message: 'Vui lòng chọn ngày hợp lệ và lớn hơn ngày hiện tại!', type: 'error', duration: 3000 });
         return false;
     }
+
     return true;
 }
