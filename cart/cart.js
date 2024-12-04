@@ -9,11 +9,11 @@ var newInfo= null;
 
 let locationData;
 
-fetch('/cart/locationdata.json') // Đường dẫn đến file JSON
+fetch('/locationdata.json')
     .then(response => response.json())
     .then(data => {
-        locationData = data; // Lưu dữ liệu vào biến
-        loadCitiesForNewAddress(); // Gọi hàm để hiển thị tỉnh/thành phố
+        locationData = data; 
+        loadCitiesForNewAddress(); 
     })
     .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
 
@@ -554,7 +554,6 @@ function loadDistrictsForNewAddress() {
     const citySelectNew = document.getElementById("city-select-new");
     const districtSelectNew = document.getElementById("district-select-new");
 
-    // Xóa danh sách cũ
     districtSelectNew.innerHTML = '<option value="">Chọn quận/huyện</option>';
     document.getElementById("ward-select-new").innerHTML = '<option value="">Chọn phường/xã</option>';
 
@@ -574,7 +573,6 @@ function loadWardsForNewAddress() {
     const districtSelectNew = document.getElementById("district-select-new");
     const wardSelectNew = document.getElementById("ward-select-new");
 
-    // Xóa danh sách cũ
     wardSelectNew.innerHTML = '<option value="">Chọn phường/xã</option>';
 
     const selectedCity = citySelectNew.value;
@@ -602,7 +600,6 @@ function checkAddressCompletion() {
         streetInput.style.display = "none"; 
     }
 }
-// Lưu địa chỉ mới
 function saveAddress() {
     newInfo = {
         name: document.getElementById("name").value,
@@ -623,7 +620,7 @@ function saveAddress() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('/cart/locationdata.json')
+    fetch('/locationdata.json')
         .then(response => response.json())
         .then(data => {
             locationData = data;
