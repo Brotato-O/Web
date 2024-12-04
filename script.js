@@ -215,6 +215,7 @@ SignSubmit.addEventListener("click", function (event) {
           SignReS.removeEventListener("click", showSignForm);
           Sign.addEventListener("click", showAfterSignAdmin);
           SignReS.addEventListener("click", showAfterSignAdmin);
+          window.location.href = "admin.html";
           //Cap nhat profile
           loadProfile();
           let accounts = JSON.parse(localStorage.getItem("accounts")) || [];

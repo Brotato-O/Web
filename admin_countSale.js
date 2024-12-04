@@ -43,6 +43,7 @@ window.addEventListener("load", function () {
 
 function showCount(){
     document.getElementById("count-container").style.display="flex";
+    document.getElementById("bill-content").style.display="none";
     document.getElementById("container").style.display="none";
   var count= JSON.parse(localStorage.getItem("count"));
   var detail= document.getElementById("detail-count");
