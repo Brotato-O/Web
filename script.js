@@ -414,7 +414,7 @@ function OpenProfile() {
 document.getElementById("afterSign-infor").addEventListener("click", OpenProfile);
 document.getElementById("afterSign-admin-infor").addEventListener("click", OpenProfile);
 
-const checkGmail = /^[a-z0-9]+([._]?[a-z0-9]+)*@gmail\.com$/i;
+const checkEmail = /^[a-z0-9]+([._]?[a-z0-9]+)*@(gmail\.com|edu\.com|outlook\.com|yahoo\.com|icloud\.com|protonmail\.com|zoho\.com|aol\.com|gmail\.com|edu\.vn|yahoo\.vn)$/i;
 const checkPhone = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
 
 function validateProfile() {
