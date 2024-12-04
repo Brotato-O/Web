@@ -445,6 +445,7 @@ function phanloaitheogia(){
   var gt = document.getElementById('giatu').value;
   var gd = document.getElementById('giaden').value;
   var s = '';
+  document.getElementById('txtSearch').value = '';
   sx1.classList.remove('active');
   sx2.classList.remove('active');
   sx3.classList.remove('active');
