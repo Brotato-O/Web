@@ -482,7 +482,8 @@ function CloseProfile() {
   x.addEventListener("click", function () {
     y.style.display = "none";
     overlay.style.display = "none";
-  });
+    window.location.reload();
+});
 }
 
 function OpenProfile() {
