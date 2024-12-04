@@ -1039,7 +1039,7 @@ input[type="file"] {
   flex-direction: row;
 }
 .col {
-  width: 48%;
+  width: 40%;
   padding: 30px;
 }
 .col label {
