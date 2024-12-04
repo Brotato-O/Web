@@ -5,7 +5,7 @@
 }
 
 body{
-  background-color: #f1f1f1;
+  background-color: #fff;
 }
 
 #mot {
@@ -46,21 +46,86 @@ body{
 
     width: 25%;
     padding: 20px;
-    background-color: pink;
+    background-color: #333333bb;
+    color: white;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     margin-right: 2px;
-    margin-top: 10px;
     height: fit-content;
   }
-  #themsp:hover{
+
+
+  #txtSearch1{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #333333bb;
+    margin-top: 10px;
+    margin-left: 3%;
+  }
+
+  #tablesp{
+    margin-top: 0;
+  }
+
+  #tablesp tbody{
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  #tablesp tbody tr th{
+    background-color: #333333bb;
+    color: white;
+  }
+
+  #tablesp tbody tr{
+    background-color: white;
     color: #333333;
-    /* background-color: #cecece; */
+  }
+
+  #tablesp tbody tr .btn_{
+    display: block;
+    gap: 10px;
+    border-bottom:solid 1px #333333;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  #tablesp tbody tr .btn_ button{
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+
+  #title{
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 5vh;
+  }
+
+  #themsp1 form h3{
+    margin: 10px 0;
+    margin-bottom: 20px;
   }
 
   .item-themsp{
-    margin: 20px;
+    margin-bottom: 20px;
   }
+
+  .item-themsp-action{
+    margin: 20px 0;
+    justify-content: space-evenly;
+    display: flex;
+    width: 100%;
+  }
+
+  .item-themsp-action input{
+    width: 40%;
+    padding: 10px;
+    border: 1px solid #33333357;
+  }
+
   #maintable {
     border:1px solid black;
     /* width: 85%; */
@@ -70,6 +135,7 @@ body{
     margin: 2%;
     box-sizing: border-box;
     width: 70%;
+    min-height: 500px;
 }
 .button{
   border: 1px solid;
@@ -87,7 +153,7 @@ body{
 #nd{
   border: 1px solid;
   background-color: rgb(0, 0, 0);
-  width: fit-content;
+  width: 15%;
   height: 100%;
   position: relative;
 }
@@ -96,7 +162,7 @@ body{
   font-size: 40px;
   position: absolute;
   z-index: 10;
-  left: 300px;
+  left: 250px;
   color: white;
   cursor: pointer;
 }
@@ -106,8 +172,7 @@ body{
 }
 
 #nd ul{
-  margin: 0;
-  padding: 50px;
+  margin: 30% 0;
 }
 
 #hai {
@@ -124,11 +189,12 @@ body{
 
 #nd li{
   list-style: none;
-  margin-top: 30px;;
-  padding: 40px;
+  margin-top: 10px;;
+  padding: 30px 30px;
+  margin: 50px 0;
   font-size: 30px;
   color: white;
-  border-bottom:1px solid ghostwhite ;
+  border-bottom: 1px solid ghostwhite ;
 }
 
 #nd li:hover{
@@ -145,8 +211,26 @@ body{
 #selectbill{
   width: 30%;
 }
+
+#bill-content{
+  min-height: 500px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+#billTable tr th{
+  background-color: #333333bb;
+  color: white;
+}
+
 #billTable tr:hover{
   cursor: pointer;
+}
+
+.chucNang{
+  position: fixed;
+  top: 30%;
+  width: 100%;
 }
 
 /* Khải */

@@ -196,8 +196,10 @@ function addProduct() {
   reader.readAsDataURL(imgInput.files[0]); // Đọc tệp ảnh
 }
 
+
 function search2() {
   var productsearch = document.getElementById('txtSearch1').value.toLowerCase();
+  var productsearch1 = document.getElementById('txtSearch1').value
   var productArrays = JSON.parse(localStorage.getItem('all')); // Lấy danh sách sản phẩm
   var s = '';
   if (!productsearch) {
@@ -213,7 +215,7 @@ function search2() {
               <th>CHỨC NĂNG</th>
             </tr>`;
   for (var i = 0; i < productArrays.length; i++) {
-      if ((productArrays[i].name.toLowerCase().search(productsearch)!=-1||productArrays[i].brand.toLowerCase().search(productsearch) != -1) && productsearch != '' ) {
+      if ((productArrays[i].name.toLowerCase().search(productsearch)!=-1||productArrays[i].productId==productsearch1 ||productArrays[i].brand.toLowerCase().search(productsearch) != -1) && productsearch != '' ) {
         s += `<tr>
               <td style="text-align: center">${productArrays[i].productId}</td>
               <td><img src="${productArrays[i].img}" alt="Ảnh" style="width: 100px; height: auto;"></td>

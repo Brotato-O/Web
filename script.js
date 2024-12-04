@@ -414,8 +414,8 @@ function OpenProfile() {
 document.getElementById("afterSign-infor").addEventListener("click", OpenProfile);
 document.getElementById("afterSign-admin-infor").addEventListener("click", OpenProfile);
 
-const checkGmail = /^[a-z0-9]+([._]?[a-z0-9]+)*@gmail\.com$/i;
 const checkPhone = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
+const checkGmail = /^[a-z0-9]+([._]?[a-z0-9]+)*@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|edu\.vn|sgu\.edu\.vn)$/i;
 
 function validateProfile() {
     let name = document.querySelector('input[name="txtName"]').value;
@@ -464,6 +464,12 @@ function ProfileClear() {
         document.querySelector('input[name="nPhone"]').value = '';
         document.querySelector('input[name="txtAddress"]').value = '';
         document.querySelector('input[name="txtEmail"]').value = '';
+        
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let userProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
+        userProfile[currentUser.username] = {};
+        localStorage.setItem('userProfile', JSON.stringify(userProfile));
+
         e.preventDefault();
         }
     );
@@ -498,9 +504,9 @@ function saveProfileToLocalStorage() {
     let avatar = document.getElementById('avatar').src;
 
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        let userProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
-        userProfile[currentUser.username] = { name, phone, address, email, avatar };
-        localStorage.setItem('userProfile', JSON.stringify(userProfile));
+    let userProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
+    userProfile[currentUser.username] = { name, phone, address, email, avatar };
+    localStorage.setItem('userProfile', JSON.stringify(userProfile));
 }
 
 // <---------------<DANG NHAP/DANG KY>----------------->
