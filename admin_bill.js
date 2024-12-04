@@ -88,7 +88,13 @@ function create(){
     document.getElementById('themsp').innerHTML ="";
     document.getElementById("searchBill").appendChild(temp);
 }
-
+fetch('/locationdata.json')
+    .then(response => response.json())
+    .then(data => {
+        locationData = data;
+        loadCitiesForNewAddress();
+    })
+    .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
 window.addEventListener("load", function () {
   var temp= location.href.split("?");
   if(temp[1]== "bill") {
@@ -98,7 +104,15 @@ window.addEventListener("load", function () {
     lookUpBill();
     }
 })
-
+document.addEventListener("DOMContentLoaded", () => {
+  fetch('/locationdata.json')
+      .then(response => response.json())
+      .then(data => {
+          locationData = data;
+          loadCitiesForNewAddress();
+      })
+      .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
+});
 function change(){
   lookUpStatus();
   lookUpBill();
@@ -183,7 +197,7 @@ function lookUpStatus() {
     else if (method.value== "date"){
       billText.style.display="none";
       billDate.style.display="flex";
-      billAddress.style.display="flex";
+      billAddress.style.display="none";
       billPrice.style.display="none";
     }
     else if (method.value== "all"){
@@ -202,7 +216,7 @@ function lookUpStatus() {
       billText.style.display="none";
       billDate.style.display="none";
       billPrice.style.display="flex";
-      billAddress.style.display="flex";
+      billAddress.style.display="none";
     }
   }
   
@@ -338,3 +352,62 @@ function lookUpStatus() {
   function closeDetail(){
     document.getElementById("detail-container").style.display= "none";
   }
+  function loadCitiesForNewAddress() {
+    const citySelectNew = document.getElementById("city-select-new");
+    for (const city in locationData) {
+        const option = document.createElement("option");
+        option.value = city;
+        option.textContent = city;
+        citySelectNew.appendChild(option);
+    }
+}
+function loadDistrictsForNewAddress() {
+    const citySelectNew = document.getElementById("city-select-new");
+    const districtSelectNew = document.getElementById("district-select-new");
+
+    districtSelectNew.innerHTML = '<option value="">Chọn quận/huyện</option>';
+    document.getElementById("ward-select-new").innerHTML = '<option value="">Chọn phường/xã</option>';
+
+    const selectedCity = citySelectNew.value;
+    if (selectedCity && locationData[selectedCity]) {
+        Object.keys(locationData[selectedCity]).forEach(district => {
+            const option = document.createElement("option");
+            option.value = district;
+            option.textContent = district;
+            districtSelectNew.appendChild(option);
+        });
+    }
+}
+
+function loadWardsForNewAddress() {
+    const citySelectNew = document.getElementById("city-select-new");
+    const districtSelectNew = document.getElementById("district-select-new");
+    const wardSelectNew = document.getElementById("ward-select-new");
+
+    wardSelectNew.innerHTML = '<option value="">Chọn phường/xã</option>';
+
+    const selectedCity = citySelectNew.value;
+    const selectedDistrict = districtSelectNew.value;
+
+    if (selectedCity && selectedDistrict && locationData[selectedCity][selectedDistrict]) {
+        locationData[selectedCity][selectedDistrict].forEach(ward => {
+            const option = document.createElement("option");
+            option.value = ward;
+            option.textContent = ward;
+            wardSelectNew.appendChild(option);
+        });
+    }
+}
+
+function checkAddressCompletion() {
+    const citySelectNew = document.getElementById("city-select-new").value;
+    const districtSelectNew = document.getElementById("district-select-new").value;
+    const wardSelectNew = document.getElementById("ward-select-new").value;
+    const streetInput = document.getElementById("street");
+
+    if (citySelectNew && districtSelectNew && wardSelectNew) {
+        streetInput.style.display = "block"; 
+    } else {
+        streetInput.style.display = "none"; 
+    }
+}
