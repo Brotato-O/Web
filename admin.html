@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="./assets/css/toast-message.css">
+    <link rel="stylesheet" href="../assets/css/toast-message.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -18,7 +18,7 @@
     <div id="admin">
       <div id="hai">
         <div id="nd">
-          <div id="close" onclick="closemenu()">x</div>
+          <div id="close" onclick="closemenu()"><i class="fa-solid fa-bars"></i></div>
           <ul>
             <li>
               <a href="index.html" style="text-decoration: none; color: inherit"
@@ -30,17 +30,24 @@
             <li ><a href="admin.html?khachHang" style="color: inherit; text-decoration: none;">Khách hàng</a></li>
             <li><a href="admin.html?count" style="color: inherit;text-decoration: none;">Thống kê</a></li>
           </ul>
+          <ul>
+            <li><a style="text-decoration: none; color: inherit">
+              <div><i class="fa-solid fa-angles-left"></i></div>
+              <p>Trang chủ</p>
+            </a></li>
+            <li><a style="text-decoration: none; color: inherit">
+              <div><i class="fa-regular fa-user"></i></div>
+              <p id="nameAdmin"></p>
+            <li><a style="text-decoration: none; color: inherit">
+              <div><i class="fa-solid fa-right-from-bracket"></i></div>
+              <p>Đăng xuất</p>
+            </a></li>
+          </ul>
         </div>
       </div>
 
       <div id="mot">
-        <div
-          style="
-            margin-right: 25px;
-            margin-top: 18px;
-            font-size: 30px;
-            cursor: pointer;
-          "
+        <div class="mottitle"
           onclick="showmenu()"
         >
           <i class="fa-solid fa-bars"></i>
@@ -56,8 +63,20 @@
           <h3>DANH SÁCH SẢN PHẨM</h3>
           
         </div>
-        <div  id="SearchBar" style="background-color: inherit; width: 70%; display: none;">
+        <div  id="SearchBar2">
+          <div id="phanloai-container">
+            <form class="phanloai" name="phanloai">
+                <select name="phanloaisp" onchange=" ">
+                <option value="tatcasp">Tất cả sản phẩm</option>
+                <option value="Giày cỏ tự nhiên">Giày cỏ tự nhiên</option>
+                <option value="Giày cỏ nhân tạo">Giày cỏ nhân tạo</option>
+                <option value="Quần áo">Quần áo</option>
+                <option value="Phụ kiện">Phụ kiện</option>
+                </select>
+            </form>
+        </div>
           <input type="text" id="txtSearch1" placeholder="Tìm kiếm " oninput="search2()"/>
+          <button id="btnSearch1" onclick="openAddProduct()"> Thêm sản phẩm mới</button>
         </div>
         <div id="container" style="display: flex;flex-wrap: wrap;">
           <div id="maintable">
@@ -66,7 +85,8 @@
           <div id="themsp">
             <div id="themsp1">
               <form>
-                <h3 style="text-align: center">THÊM SẢN PHẨM</h3>
+                <h3 style="text-align: center">THÊM MỚI SẢN PHẨM</h3>
+                <div id="closeAdd" onclick="closeAddProduct()">x</div>
                 <div class="item-themsp">
                   Tên sản phẩm: <br/>
                   <input type="text" id="txtnamesp" style="font-size: 25px; width: 100%;" />
@@ -94,7 +114,7 @@
                 </div>
                 <div class="item-themsp-action">
                   <input type="reset" value="Xóa"style="font-size: 25px; padding: 10px" />
-                  <input type="button" value="Thêm"style="font-size: 25px; padding: 10px" onclick="addProduct()"/>
+                  <input type="button" value="Thêm"style="font-size: 25px; padding: 10px" onclick="addProduct(),closeAddProduct()" />
                 </div>
               </form>
             </div>
@@ -165,6 +185,8 @@
     <div id="countP-wrap">
       
     </div>
+
+    <div id="overlay"></div>
 
     <div id="toast"></div>
     <button onclick="showSaleProducts(1)">Xem thống kê sp</button>

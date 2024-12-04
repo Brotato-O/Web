@@ -2,7 +2,7 @@
 function toast({
     title = 'Success',
     message = 'Tạo tài khoản thành công',
-    type = 'success', 
+    type = 'success',
     duration = 3000
 }){
     const main = document.getElementById('toast');

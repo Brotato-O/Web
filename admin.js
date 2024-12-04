@@ -8,7 +8,6 @@ function currency(value) {
 var currentPage = 1;
 
 function hienthitatcasp1() {
-  document.getElementById('SearchBar').style.display="block";
   const productsPerPage = 12;
   var productArrays = JSON.parse(localStorage.getItem("all"));
   var startIndex = (currentPage - 1) * productsPerPage;
@@ -86,7 +85,7 @@ window.addEventListener("load", function () {
   }
 });
 function showmenu() {
-  document.getElementById("hai").style.display = "block";
+  document.getElementById("hai").style.display = "flex";
 }
 
 function closemenu() {
@@ -268,3 +267,18 @@ function changeimgadd(input){
   };
   reader.readAsDataURL(input.files[0]);
 }
+
+function openAddProduct(){
+  document.getElementById("themsp").style.display = "block";
+  overlay.style.display = "block";
+}
+
+function closeAddProduct(){
+  document.getElementById("themsp").style.display = "none";
+  overlay.style.display = "none";
+}
+
+var accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+var currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+let nameAdmin = accounts.find(account => account.username === currentUser.username).name;
+document.getElementById("nameAdmin").innerHTML = nameAdmin;
