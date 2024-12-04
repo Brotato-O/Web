@@ -557,17 +557,19 @@ function ProfileSubmit() {
 function ProfileClear() {
   let clear = document.getElementById("xoa");
   clear.addEventListener("click", function (e) {
-    document.querySelector('input[name="txtName"]').value = "";
-    document.querySelector('input[name="nPhone"]').value = "";
-    document.querySelector('input[name="txtAddress"]').value = "";
-    document.querySelector('input[name="txtEmail"]').value = "";
+    if(confirm("Hành động này sẽ trực tiếp xóa tất cả thông tin của bạn. Bạn có chắc chắn muốn tiếp tục?")) {
+        document.querySelector('input[name="txtName"]').value = "";
+        document.querySelector('input[name="nPhone"]').value = "";
+        document.querySelector('input[name="txtAddress"]').value = "";
+        document.querySelector('input[name="txtEmail"]').value = "";
 
-    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    let userProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
-    userProfile[currentUser.username] = {};
-    localStorage.setItem("userProfile", JSON.stringify(userProfile));
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        let userProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
+        userProfile[currentUser.username] = {};
+        localStorage.setItem("userProfile", JSON.stringify(userProfile));
 
-    e.preventDefault();
+        e.preventDefault();
+    } 
   });
 }
 
