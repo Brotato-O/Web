@@ -257,7 +257,9 @@ hienthitatcasp();
 search1();
 
 }
-
+window.onload = function () {
+  createProduct();
+  };
 setTimeout(hienthisanpham1, 20);
 setTimeout(hienthitatcasp, 10);
 
@@ -454,7 +456,9 @@ function phanloaitheogia(){
   sx3.classList.remove('active');
   sx4.classList.remove('active');
   if((!gt) && (!gd)){
+    var tmp1 = JSON.parse(localStorage.getItem('all'));
     document.getElementById("h3tieude").innerText = "Tất cả sản phẩm";
+    localStorage.setItem('producttmp2', JSON.stringify(tmp1));
     hienthitatcasp();
     return;
   }
