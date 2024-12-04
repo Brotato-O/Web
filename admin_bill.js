@@ -183,7 +183,7 @@ function lookUpStatus() {
     else if (method.value== "date"){
       billText.style.display="none";
       billDate.style.display="flex";
-      billAddress.style.display="flex";
+      billAddress.style.display="none";
       billPrice.style.display="none";
     }
     else if (method.value== "all"){
@@ -202,7 +202,7 @@ function lookUpStatus() {
       billText.style.display="none";
       billDate.style.display="none";
       billPrice.style.display="flex";
-      billAddress.style.display="flex";
+      billAddress.style.display="none";
     }
   }
   
