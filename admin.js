@@ -196,6 +196,7 @@ function addProduct() {
   reader.readAsDataURL(imgInput.files[0]); // Đọc tệp ảnh
 }
 
+
 function search2() {
   var productsearch = document.getElementById('txtSearch1').value.toLowerCase();
   var productsearch1 = document.getElementById('txtSearch1').value

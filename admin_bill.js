@@ -308,7 +308,7 @@ function lookUpStatus() {
           `;
             console.log(document.getElementById("changeStatus").value);
             document.getElementById("detail-bill").innerHTML+=`
-              <button onclick="confirm('${billtemp[i].receiptId}')">Xác nhận</button>
+              <button onclick="confirm1('${billtemp[i].receiptId}')">Xác nhận</button>
             `;
             document.getElementById("changeStatus").value=billtemp[i].status;
           }
@@ -327,7 +327,7 @@ function lookUpStatus() {
   function changeText(obj){
     document.getElementById("innerStatus").innerHTML=obj.value;
   }
-  function confirm(id){
+  function confirm1(id){
     var billtemp= JSON.parse(localStorage.getItem("billtemp"));
     var bill= JSON.parse(localStorage.getItem('bill'));
     for(let i=0; i <bill.length; i++){
