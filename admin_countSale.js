@@ -3,8 +3,8 @@ window.addEventListener("load", function () {
     if(temp[1]== "count") {
         onCustomer();
         showCount();
+        SaleProducts();
     }
-    
   })
   
   //THỐNG KÊ
@@ -50,7 +50,7 @@ function showCount(){
   var length= count.length;
   if (length>5) length=5;
   for(let i=0; i<length; i++){
-    s+= `<tr id="${count[i].customerId}" class="row-count" onclick="detailCount(this)" >
+    s+= `<tr id="${count[i].customerId}" class="row-count" onclick="detailCount('${count[i].customerId}', 1)" >
     <td >${count[i].customerId}</td>
       <td>${count[i].totalAmount}</td>
     </div>
@@ -61,14 +61,27 @@ function showCount(){
     <th>Tổng tiền</th>` + s + `</table>`;
 }
 
-function detailCount(obj){
+function detailCount(id, index){
     var bill= JSON.parse(localStorage.getItem("bill"));
     var showBill= document.getElementById("showBill");
+    var div= document.getElementById("pages");
+    div.innerHTML=``;
+    var length= bill.length;
+    const BPP=5;
+    var pages= Math.ceil(length/BPP);
+    var startIndex= (index-1)*BPP;
+    var endIndex= startIndex+BPP;
+    if(endIndex> length) endIndex= length;
+    for(let i=0; i<pages; i++){
+      div.innerHTML +=`
+       <button class="page" onclick="detailCount('${id}', ${i+1})">${i+1}</button>
+      `;
+  }
     var s="";
-    for(let i=0; i<bill.length; i++){
-        if(bill[i].username== obj.id){
+    for(let i=startIndex; i<endIndex; i++){
+        if(bill[i].username== id && bill[i].status=="Đã giao"){
             s+=`
-                <tr onclick=showDetail1(${bill[i].receiptId}) class="billRow">
+                <tr onclick=showDetail1('${bill[i].receiptId}') class="billRow">
                 <td>${bill[i].receiptId}</td>
                 <td>${bill[i].orderDate}</td>
                 <td>${bill[i].totalAmount}</td>

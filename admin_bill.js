@@ -88,13 +88,7 @@ function create(){
     document.getElementById('themsp').innerHTML ="";
     document.getElementById("searchBill").appendChild(temp);
 }
-fetch('/locationdata.json')
-    .then(response => response.json())
-    .then(data => {
-        locationData = data;
-        loadCitiesForNewAddress();
-    })
-    .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
+
 window.addEventListener("load", function () {
   var temp= location.href.split("?");
   if(temp[1]== "bill") {
@@ -102,26 +96,35 @@ window.addEventListener("load", function () {
     lookUpBillDisplay();
     lookUpStatus();
     lookUpBill();
-    }
+    fetch('/locationdata.json')
+    .then(response => response.json())
+    .then(data => {
+        locationData = data;
+        loadCitiesForNewAddress();
+    })
+    .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch('/locationdata.json')
+          .then(response => response.json())
+          .then(data => {
+              locationData = data;
+              loadCitiesForNewAddress();
+          })
+          .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
+    });
+        }
 })
-document.addEventListener("DOMContentLoaded", () => {
-  fetch('/locationdata.json')
-      .then(response => response.json())
-      .then(data => {
-          locationData = data;
-          loadCitiesForNewAddress();
-      })
-      .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
-});
+
 function change(){
   lookUpStatus();
   lookUpBill();
 }
 
+var billtemp=[];
 //lọc trạng thái bill
 function lookUpStatus() {
+  billtemp=[];
   var obj=document.getElementById("status");
-  var billtemp=[];
     var bill= JSON.parse(localStorage.getItem("bill"));
     if(obj.value !="all")
     for (var i = 0; i < bill.length; i++) {
@@ -134,32 +137,16 @@ function lookUpStatus() {
         billtemp.push(bill[i]);
       }
     }
-    localStorage.setItem("billtemp",JSON.stringify(billtemp));
 }
 
 //hiển thị kế quả tìm kiếm dựa trên kq lọc
-  function billDisplay(from, to, n){
+  function billDisplay(from, to, n, index){
     document.getElementById("container").style.display="none";
-    var billtemp= JSON.parse(localStorage.getItem('billtemp'));
-    // var div= document.getElementById("pages");
-    // div.innerHTML=``;
-    // var length= billtemp.length;
-    // const BPP=5;
-    // var pages= length/BPP;
-    // for(let i=0; i<pages; i++){
-    //     div.innerHTML +=`
-    //      <button class="page" onclick="billDisplay('${from}','${to}','${n}', ${i+1})">${i+1}</button>
-    //     `;
-    // }
-    // var startIndex= (index-1)*BPP;
-    // var endIndex= startIndex+BPP;
-    // if(endIndex> length) endIndex= length;
     var s="";
     for(var i=0;i<billtemp.length; i++){
       if((billtemp[i].sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
         || ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) && n=="price") || 
       (from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate) ) || billtemp[i].username.includes(from) && n=="username"||(n=="all")) {
-          // temp.push(billtemp[i]);
           s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
             <td>${billtemp[i].orderDate}</td>
             <td>${billtemp[i].receiptId}</td>
@@ -170,8 +157,6 @@ function lookUpStatus() {
         `;
       }
     }
-    // billtemp= temp;
-    // localStorage.setItem("billtemp",JSON.stringify(billtemp));
     document.getElementById("billTable").innerHTML=`<tr>
             <th>Ngày đặt</th>
             <th>Mã hóa đơn</th>
@@ -242,7 +227,6 @@ function lookUpStatus() {
 
   //SHOW CHI TIẾT HÓA ĐƠN
   function showDetail(obj){
-   var billtemp= JSON.parse(localStorage.getItem("billtemp"));
    var account= JSON.parse(localStorage.getItem("accounts"));
     document.getElementById("detail-container").style.display= "block";
     for(let i=0; i< billtemp.length; i++){
