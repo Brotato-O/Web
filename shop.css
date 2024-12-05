@@ -599,6 +599,7 @@ css của sản phẩm
 }
 .sptieude{
     display: flex;
+    justify-content: center;
     max-width: 100%;
 }
 .sanpham1{
@@ -659,7 +660,7 @@ css của sản phẩm
     all: none;
 }
 .mota-trai img{
-    width: 50%;
+    width: 100%;
 }
 .mota-phai{
     margin-left: 25px;
