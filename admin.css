@@ -1,219 +1,217 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   background-color: #fff;
 }
 
 #mot {
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    display: flex;
-    gap: 20px;
-    border-bottom: 2px solid #333;
-    padding-bottom: 20px;
-    background-color: #333;
-    color: white;
-  }
-
-  .mottitle{
-    margin-top: 20px;
-    font-size: 30px;
-    cursor: pointer;
-    margin-left: 20px;
-  }
-
-  #icon {
-    margin-top: 7px;
-    top: 20px;
-    right: 220px;
-    font-size: 26px;
-    position: absolute;
-    z-index: 10;
-  }
-
-  #themsp{
-    width: 25%;
-    padding: 20px;
-    background-color: #f1f1f1;
-    color: #333;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-right: 2px;
-    height: fit-content;
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    z-index: 11;
-    border: solid 1px #333;
-  }
-
-  #overlay{
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 10;
-  }
-
-  #SearchBar2{
-    display: flex;
-    top: 0;
-    justify-content: space-between;
-    width: 95%;
-    align-items: center;
-    margin: 0px auto;
-  }
-
-  .phanloai label{
-    font-size: 1.2rem;
-    margin-right: 10px;
-  }
-
-  .phanloai select{
-    padding: 10px;
-    border: 1px solid #333333bb;
-    font-size: 1rem;
-    
-  }
-
-  #txtSearch1{
-    width: 70%;
-    padding: 10px;
-    border-radius: 2px;
-    border: none;
-    border-bottom: 1px solid #1f1f1f;
-    margin-top: 10px;
-    font-size: 1rem;
-  }
-
-  #btnSearch1{
-    padding: 20px 20px;
-    display: flex;
-    border: 1px solid #333333bb;
-    background-color: #8b2020;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-
-  #btnSearch1 div{
-    margin-right: 10px;
-  }
-
-  #tablesp{
-    margin-top: 0;
-  }
-
-  #tablesp tbody{
-    margin-top: 0;
-    padding-top: 0;
-  }
-
-  #tablesp tbody tr th{
-    background-color: #333;
-    color: white;
-    border-bottom: none;
-  }
-
-  #tablesp tbody tr td{
-    font-size: 1rem;
-  }
-
-  #tablesp tbody tr{
-    background-color: white;
-    color: #333333;
-  }
-
-  #tablesp tbody tr .btn_{
-    display: block;
-    gap: 10px;
-    border-bottom:none ;
-    border-left: none;
-    border-right: none;
-  }
-
-  #tablesp tbody tr .btn_ button{
-    padding: 10px 0;
-    cursor: pointer;
-    margin: 10px 0;
-    border: solid 1px #333;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-
-  #tablesp tbody tr .btn_ .suaKH{
-    
-  }
-
-  #tablesp tbody tr .btn_ .xoaKH{
-    color: #fff;
-    background-color: #8b2020;
-  }
-
-  #title{
-    font-size: 3rem;
-    font-weight: 600;
-    margin: 5vh;
-  }
-
-  #closeAdd{
-    font-size: 40px;
-    position: absolute;
-    z-index: 10;
-    right: 20px;
-    top: 0px;
-    color: #333;
-    cursor: pointer;
-  }
-
-  #closeAdd:hover{
-    color: red;
-  }
-
-  #themsp1 form h3{
-    margin: 10px 0;
-    margin-bottom: 20px;
-  }
-
-  .item-themsp{
-    margin-bottom: 20px;
-  }
-
-  .item-themsp-action{
-    margin-top: 20px;
-    justify-content: space-evenly;
-    display: flex;
-    width: 100%;
-  }
-
-  .item-themsp-action input{
-    width: 40%;
-    padding: 10px;
-    border: 1px solid #33333357;
-  }
-
-  #maintable {
-    border:none;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin: 2%;
-    box-sizing: border-box;
-    height: auto;
-    width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  gap: 20px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 20px;
+  background-color: #333;
+  color: white;
 }
-.button{
+
+.mottitle {
+  margin-top: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+#icon {
+  margin-top: 7px;
+  top: 20px;
+  right: 220px;
+  font-size: 26px;
+  position: absolute;
+  z-index: 10;
+}
+
+#themsp {
+  width: 25%;
+  padding: 20px;
+  background-color: #f1f1f1;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 2px;
+  height: fit-content;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 11;
+  border: solid 1px #333;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+#SearchBar2 {
+  display: flex;
+  top: 0;
+  justify-content: space-between;
+  width: 95%;
+  align-items: center;
+  margin: 0px auto;
+}
+
+.phanloai label {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.phanloai select {
+  padding: 10px;
+  border: 1px solid #333333bb;
+  font-size: 1rem;
+}
+
+#txtSearch1 {
+  width: 70%;
+  padding: 10px;
+  border-radius: 2px;
+  border: none;
+  border-bottom: 1px solid #1f1f1f;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+#btnSearch1 {
+  padding: 20px 20px;
+  display: flex;
+  border: 1px solid #333333bb;
+  background-color: #8b2020;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#btnSearch1 div {
+  margin-right: 10px;
+}
+
+#tablesp {
+  margin-top: 0;
+}
+
+#tablesp tbody {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+#tablesp tbody tr th {
+  background-color: #333;
+  color: white;
+  border-bottom: none;
+}
+
+#tablesp tbody tr td {
+  font-size: 1rem;
+}
+
+#tablesp tbody tr {
+  background-color: white;
+  color: #333333;
+}
+
+#tablesp tbody tr .btn_ {
+  display: block;
+  gap: 10px;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
+
+#tablesp tbody tr .btn_ button {
+  padding: 10px 0;
+  cursor: pointer;
+  margin: 10px 0;
+  border: solid 1px #333;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* #tablesp tbody tr .btn_ .suaKH {
+} */
+
+#tablesp tbody tr .btn_ .xoaKH {
+  color: #fff;
+  background-color: #8b2020;
+}
+
+#title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 5vh;
+}
+
+#closeAdd {
+  font-size: 40px;
+  position: absolute;
+  z-index: 10;
+  right: 20px;
+  top: 0px;
+  color: #333;
+  cursor: pointer;
+}
+
+#closeAdd:hover {
+  color: red;
+}
+
+#themsp1 form h3 {
+  margin: 10px 0;
+  margin-bottom: 20px;
+}
+
+.item-themsp {
+  margin-bottom: 20px;
+}
+
+.item-themsp-action {
+  margin-top: 20px;
+  justify-content: space-evenly;
+  display: flex;
+  width: 100%;
+}
+
+.item-themsp-action input {
+  width: 40%;
+  padding: 10px;
+  border: 1px solid #33333357;
+}
+
+#maintable {
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 2%;
+  box-sizing: border-box;
+  height: auto;
+  width: 100%;
+}
+.button {
   border: 1px solid;
   min-width: 60px;
   padding: 5px 0px;
@@ -222,12 +220,12 @@ body{
   cursor: pointer;
 }
 
-.productName{
+.productName {
   font-size: 1.2rem;
   font-weight: 600;
 }
 
-.productPrice{
+.productPrice {
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -236,7 +234,7 @@ body{
   color: rgb(164, 56, 5);
 } */
 
-#nd{
+#nd {
   background-color: #1f1f1f;
   width: 15%;
   height: 100%;
@@ -245,7 +243,7 @@ body{
   justify-content: space-between;
 }
 
-#close{
+#close {
   font-size: 35px;
   margin: 20px;
   position: fixed;
@@ -258,153 +256,148 @@ body{
   display: none;
   justify-content: space-between;
   position: fixed;
-  top:0;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 15;
   cursor: pointer;
 }
 
-#nd ul{
+#nd ul {
   padding: 0;
   margin-top: 80px;
 }
 
-#nd li{
+#nd li {
   list-style: none;
   margin-top: 10px;
   font-size: 25px;
   padding: 20px 20px;
   color: white;
-  border-bottom: 1px solid ghostwhite ;
+  border-bottom: 1px solid ghostwhite;
 }
 
-#nd li:hover{
+#nd li:hover {
   color: gold;
 }
 
-#nd li a{
+#nd li a {
   display: flex;
   gap: 20px;
 }
 
-#nd li{
+#nd li {
   display: flex;
   gap: 20px;
 }
 
-#nameAdmin{
+#nameAdmin {
   font-size: 20px;
 }
 
-#nav-logo{
+#nav-logo {
   font-size: 1.5rem;
   font-weight: 600;
   color: #333;
 }
 
 /* nhan */
-#selectbill{
+#selectbill {
   width: 30%;
 }
 
-#bill-content{
+#bill-content {
   min-height: 500px;
   width: 100%;
   margin-top: 50px;
 }
 
-#billTable tr th{
+#billTable tr th {
   background-color: #333;
   color: white;
 }
 
-#billTable tr:hover{
+#billTable tr:hover {
   cursor: pointer;
 }
 
-.chucNang{
-  position: fixed;
+.chucNang {
+  /* position: fixed; */
   top: 30%;
   width: 100%;
 }
 
 /* Khải */
 
-
 #infor {
   width: auto;
-    padding: 5px 20px;
-  
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-right: 2px;
-  
-    height: fit-content;
+  padding: 5px 20px;
+
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 2px;
+
+  height: fit-content;
 }
 
 @media (max-width: 900px) {
-  #container{
+  #container {
     flex-direction: column-reverse;
   }
-  #maintable{
+  #maintable {
     width: 100%;
-
   }
   #themsp {
-    width:50% ;
+    width: 50%;
     margin: auto;
   }
   #themsp {
     width: auto;
-   }
- #SearchBar {
-  margin-left: 50px;
- }
+  }
+  #SearchBar {
+    margin-left: 50px;
+  }
 }
 
 @media (max-width: 630px) {
-  .cot{
-    width: 80px
-  }
-  .cot1{
+  .cot {
     width: 80px;
   }
-  
- 
- #maintable{
-  width: auto;
- }
- #themsp {
-  width: auto;
-  
- }
- #mot {
-  width: auto;
- }
+  .cot1 {
+    width: 80px;
+  }
+
+  #maintable {
+    width: auto;
+  }
+  #themsp {
+    width: auto;
+  }
+  #mot {
+    width: auto;
+  }
 }
 @media (max-width: 440px) {
-  .cot{
-    width: 80px
-  }
-  .cot1{
+  .cot {
     width: 80px;
   }
-  
- #maintable{
-  width:auto;
- }
- #themsp {
-  width: auto;
-  
- }
- #mot {
-  width: 130%;
- }
+  .cot1 {
+    width: 80px;
+  }
 
- #title h3 {
-  text-align: center;
- }
+  #maintable {
+    width: auto;
+  }
+  #themsp {
+    width: auto;
+  }
+  #mot {
+    width: 130%;
+  }
+
+  #title h3 {
+    text-align: center;
+  }
 }

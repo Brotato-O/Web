@@ -72,31 +72,30 @@ function goToPage(pageNumber) {
 
 //Hiển thị form tìm kiếm
 function CreateFormTimKiem() {
-  document.querySelector("#timkiemKH").innerHTML = `<div class="itemForm">
-          <h2>TÌM KIẾM KHÁCH HÀNG</h2>
-          <form action="">
-            <label for="txtTĐN">Tên đăng nhập :</label>
-            <input type="text" name="txtTĐN" />
+  document.querySelector("#timkiemKH").innerHTML = `<div class="itemForm" ">
+          <form action=""style="display:flex;  justify-content: center;align-items: center;">
             <label for="txtName">Tên khách hàng :</label>
             <input type="text" name="txtName" />
-            <label for="txtDC">Ngày tạo :</label>
-            <div style="padding-left:100px">
-              <label for="tuNgay">Từ:</label>
-              <input type="date" name="tuNgay">
-              <label for="denNgay">Đến:</label>
-              <input type="date" name="denNgay">
-            </div>
-            <label for="txtDC">Địa chỉ :</label>
-            <input type="text" name="txtDC" />
-            <div>
-              <label for="checkStatus">Tài khoản bị khóa :</label>
-              <input type="checkbox" name="checkStatus" />
-            </div>
-            <div id="btn">
-              <button type="reset">Xóa</button>
-              <button type="submit" name="timKiem">Tìm</button>
-            </div>
+            
+            
+                <label for="tuNgay">Từ:</label>
+                <input type="date" name="tuNgay">
+                <label for="denNgay">Đến:</label>
+                <input type="date" name="denNgay">
+             
+              <label for="txtDC" style="margin-left:30px;">Địa chỉ :</label>
+              <input type="text" name="txtDC" />
+              <div>
+                <label for="checkStatus">Tài khoản bị khóa :</label>
+                <input type="checkbox" name="checkStatus" />
+              </div>
+              <div id="btn1" >
+                <button type="reset" >Xóa</button>
+                <button type="submit" name="timKiem">Tìm</button>
+              </div>
+            
           </form>
+          
         </div>`;
 }
 //Xóa phần tử
@@ -117,13 +116,14 @@ function XoaKH(index) {
 //
 window.addEventListener("DOMContentLoaded", function () {
   var temp = location.href.split("?");
+
   if (temp[1] == "khachHang") {
-    document.querySelector(".chucNang").style.display = "flex";
+    document.querySelector(".chucNang").style.display = "block";
     document.querySelector(".content div").innerHTML = "DANH SÁCH KHÁCH HÀNG";
+    CreateFormTimKiem();
     document.querySelector("#container").style.display = "none";
     document.getElementById("count-container").style.display = "none";
     goToPage(1);
-    CreateFormTimKiem();
   }
 });
 
@@ -132,7 +132,7 @@ window.addEventListener("load", () => {
   var btnTim = document.querySelector("button[name=timKiem]");
   btnTim.addEventListener("click", (e) => {
     e.preventDefault();
-    var inputTĐN = document.querySelector("input[name=txtTĐN]").value;
+    // var inputTĐN = document.querySelector("input[name=txtTĐN]").value;
     var inputTKH = document.querySelector("input[name=txtName]").value;
     var inputĐC = document.querySelector("input[name=txtDC]").value;
     var inputTuNgay = document.querySelector("input[name=tuNgay]").value;
@@ -161,7 +161,7 @@ window.addEventListener("load", () => {
       }
       console.log(tempNgayTao);
       return (
-        (value.username || "").toUpperCase().includes(inputTĐN.toUpperCase()) &&
+        // (value.username || "").toUpperCase().includes(inputTĐN.toUpperCase()) &&
         (value.name || "").toUpperCase().includes(inputTKH.toUpperCase()) &&
         (value.address || "").toUpperCase().includes(inputĐC.toUpperCase()) &&
         (!tuNgay ||
@@ -183,7 +183,7 @@ function FormSuaKH(index) {
     <div id="suaTTKH">
       <div class="itemForm">
         <h2>SỬA THÔNG TIN KHÁCH HÀNG #${index + 1}</h2>
-        <form id="formSuaKH">
+        <form id="formSuaKH" style="flex-direction:column">
           <label for="txtDC2">Địa chỉ :</label>
           <input type="text" name="txtDC2" value="${customer.address || []}" />
           <label for="txtPhone2">SĐT :</label>
@@ -196,7 +196,7 @@ function FormSuaKH(index) {
               customer.status
             }"/>
           </div>
-          <div id="btn">
+          <div id="btn1" style ="justify-content: center; margin: auto; width:60%">
             <button type="button" onclick="HuySua()">Hủy</button>
             <button type="button" onclick="LuuSua(${index})">Lưu</button>
           </div>
@@ -204,6 +204,7 @@ function FormSuaKH(index) {
       </div>
     </div>`;
   document.querySelector("#formContainer").innerHTML = s;
+  document.querySelector("#suaTTKH").style.display = "block";
 }
 function HuySua() {
   document.querySelector("#formContainer").innerHTML = "";
@@ -232,4 +233,96 @@ function LuuSua(index) {
   alert("Cập nhật thông tin thành công!");
   HuySua();
   hienthiKH(listKH);
+}
+function blockSearch() {
+  var searchBlock = document.querySelector("#timkiemKH");
+  if (
+    searchBlock.style.display === "none" ||
+    searchBlock.style.display === ""
+  ) {
+    searchBlock.style.display = "flex";
+  } else {
+    searchBlock.style.display = "none";
+  }
+}
+
+// function onInputSearch() {
+//   var onInput = document.querySelector("#txtSearch2").value;
+//   var list = JSON.parse(localStorage.getItem("accounts"));
+//   var s;
+//   if (!onInput) {
+//     hienthiKH(list);
+//     return;
+//   }
+//   var s = `<tr>
+//   <th>STT</th>
+//   <th>HỌ TÊN KH</th>
+//   <th>TÊN ĐĂNG NHẬP</th>
+//   <th>NGÀY TẠO</th>
+//   <th>ĐỊA CHỈ</th>
+//   <th>CHỨC NĂNG</th>
+// </tr>`;
+//   for (let i = 0; i < list.length; i++) {
+//     if (onInput == list[i].username) {
+//       s += `<tr>
+//               <td style="text-align: center">${i + 1}</td>
+//               <td>${list[i].name || []}</td>
+//               <td>${list[i].username || []}</td>
+//               <td>${list[i].date || []}</td>
+//               <td>${list[i].address || []}</td>
+//               <td class="btn_">
+//                 <button class = "xoaKH" onclick="XoaKH(${i})">X</button>
+//                 <button class = "suaKH" onclick="FormSuaKH(${i})">Sửa</button>
+//               </td>
+//           </tr>`;
+//     }
+//   }
+
+//   document.querySelector("#chucNang").innerHTML = s;
+// }
+function onInputSearch() {
+  var onInput = document.querySelector("#txtSearch2").value.trim(); // Loại bỏ khoảng trắng thừa
+  var list = JSON.parse(localStorage.getItem("accounts"));
+  var s = `<tr>
+              <th>STT</th>
+              <th>HỌ TÊN KH</th>
+              <th>TÊN ĐĂNG NHẬP</th>
+              <th>NGÀY TẠO</th>
+              <th>ĐỊA CHỈ</th>
+              <th>CHỨC NĂNG</th>
+           </tr>`;
+  console.log(onInput);
+  if (!onInput) {
+    hienthiKH(list); // Hiển thị toàn bộ danh sách nếu không nhập
+    return;
+  }
+
+  // Tìm kiếm username khớp
+  let found = false; // Biến kiểm tra có kết quả hay không
+  for (let i = 0; i < list.length; i++) {
+    if (
+      list[i].username &&
+      list[i].username.toLowerCase().includes(onInput.toLowerCase())
+    ) {
+      found = true; // Đánh dấu tìm thấy kết quả
+      s += `<tr>
+              <td style="text-align: center">${i + 1}</td>
+              <td>${list[i].name || "N/A"}</td>
+              <td>${list[i].username || "N/A"}</td>
+              <td>${list[i].date || "N/A"}</td>
+              <td>${list[i].address || "N/A"}</td>
+              <td class="btn_">
+                <button class="xoaKH" onclick="XoaKH(${i})">X</button>
+                <button class="suaKH" onclick="FormSuaKH(${i})">Sửa</button>
+              </td>
+            </tr>`;
+    }
+  }
+
+  if (!found) {
+    // Không tìm thấy kết quả
+    s += `<tr><td colspan="6" style="text-align: center;">Không tìm thấy kết quả</td></tr>`;
+  }
+
+  document.querySelector("#chucNang").innerHTML = s;
 }
