@@ -656,14 +656,12 @@ css của sản phẩm
     cursor: pointer;
 }
 .mota-sanpham{
-    width: 70%;
+    all: none;
 }
 .mota-trai img{
-    
-    width: 100%;
+    width: 50%;
 }
 .mota-phai{
-    
     margin-left: 25px;
 }
 

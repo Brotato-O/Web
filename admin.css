@@ -258,6 +258,11 @@ body{
   gap: 20px;
 }
 
+#nd li{
+  display: flex;
+  gap: 20px;
+}
+
 #nameAdmin{
   font-size: 20px;
 }
