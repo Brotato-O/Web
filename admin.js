@@ -32,8 +32,8 @@ function hienthitatcasp1() {
               <td>${productArrays[i].brand}</td>
               <td class="productPrice">${productArrays[i].price.toLocaleString()} VNĐ</td>
               <td class="btn_">
-                <button class = "xoaKH" onclick="deleteproduct('${productArrays[i].productId}')"><i class="fa-solid fa-trash"></i></button>
-                <button class = "suaKH" onclick="showsetting('${productArrays[i].productId}')"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class = "suaKH" onclick="showsetting('${productArrays[i].productId}')"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class = "xoaKH" onclick="deleteproduct('${productArrays[i].productId}')"><i class="fa-solid fa-trash"></i></button>
               </td>
           </tr>
           
@@ -241,8 +241,8 @@ function search2() {
               <td>${productArrays[i].brand}</td>
               <td class="productPrice">${productArrays[i].price.toLocaleString()} VNĐ</td>
               <td class="btn_">
-                <button class = "xoaKH" onclick="deleteproduct('${productArrays[i].productId}')"><i class="fa-solid fa-trash"></i></button>
-                <button class = "suaKH" onclick="showsetting('${productArrays[i].productId}')"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class = "suaKH" onclick="showsetting('${productArrays[i].productId}')"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class = "xoaKH" onclick="deleteproduct('${productArrays[i].productId}')"><i class="fa-solid fa-trash"></i></button>
               </td>
           </tr>
     
@@ -339,12 +339,12 @@ for (var i = 0; i < tmp1.length; i++) {
     s += `<tr>
           <td style="text-align: center">${tmp1[i].productId}</td>
           <td><img src="${tmp1[i].img}" alt="Ảnh" style="width: 100px; height: auto;"></td>
-          <td>${tmp1[i].name}</td>
+          <td class="productName">${tmp1[i].name}</td>
           <td>${tmp1[i].brand}</td>
-          <td>${tmp1[i].price.toLocaleString()}</td>
+          <td class="productPrice">${tmp1[i].price.toLocaleString()} VNĐ</td>
           <td class="btn_">
-            <button class = "xoaKH" onclick="deleteproduct('${tmp1[i].productId}')"><i class="fa-solid fa-trash"></i></button>
-            <button class = "suaKH" onclick="showsetting('${tmp1[i].productId}')"><i class="fa-solid fa-pen-to-square"></i></button>
+          <button class = "suaKH" onclick="showsetting('${tmp1[i].productId}')"><i class="fa-solid fa-pen-to-square"></i></button>
+          <button class = "xoaKH" onclick="deleteproduct('${tmp1[i].productId}')"><i class="fa-solid fa-trash"></i></button>
           </td>
       </tr>
 
