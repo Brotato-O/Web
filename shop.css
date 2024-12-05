@@ -658,12 +658,33 @@ css của sản phẩm
 }
 .mota-sanpham{
     all: none;
+    background-color: #fff;
 }
+
+.mota-trai{
+    display: flex;
+}
+
 .mota-trai img{
     width: 100%;
+    height: auto;
 }
 .mota-phai{
     margin-left: 25px;
+}
+
+.mota-phai .row{
+    margin-left: 50px;
+    width: 400px;
+    display: flex;
+    margin-bottom: 40px;
+    padding: 10px 10px;
+}
+
+.mota-phai .row #size{
+    border: 2px solid black;
+    font-size: 16px;
+    padding: 5px 30px;
 }
 
 .mota-phai h6{
@@ -677,20 +698,11 @@ css của sản phẩm
     margin: 30px;
     font-size: 25px;
 }
-.row{
-    width: 400px;
-    display: flex;
-    margin-bottom: 40px;
-    padding: 10px 10px;
-}
-#size{
-    
-    font-size: 16px;
-    padding: 5px 30px;
-}
+
 .kichco{
     width: 50%;
 }
+
 .kichco h4{
     margin: 20px;
 }
@@ -718,18 +730,6 @@ css của sản phẩm
     height: 30px;
     border: 2px solid black;
     cursor: pointer;
-}
-.addtocart{
-   
-    font-size: 26px;
-    color: white;
-background-color: black;
-    padding: 10px 20px;
-    border: 2px solid black;
-    cursor: pointer;
-    width: 80%;
-    margin-bottom: 30px;
-
 }
 
 .buy{

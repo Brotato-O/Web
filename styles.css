@@ -598,7 +598,7 @@ body{
 #sanpham-chitiet .add-to-cart{
   font-size: 26px;
   color: white;
-  background-color: black;
+  background-color: rgb(124, 44, 44);
   padding: 10px 20px;
   border: 2px solid black;
   cursor: pointer;
@@ -1083,6 +1083,7 @@ input[type="file"] {
   background-color: #ccc;
   transform: scale(1.05);
 }
+
 /*Viet*/
 .mota-sanpham{
   border: 1px solid;
