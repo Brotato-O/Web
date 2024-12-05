@@ -342,20 +342,21 @@ for (var i = 0; i < tmp1.length; i++) {
       </tr>
 
         <div id="bao" style=" top:0;bottom:0;left: 0;;right: 0;  background: rgba(0, 0, 0, 0.7);z-index: 5000;position: fixed; display: none;">
-        <div id="bao1" style="width: 60%; margin: 200px auto; border: 1px solid; background-color: white;">
-          <div style="float: right; margin: 5px 10px; font-size: 50px; transform: rotate(45deg);cursor: pointer;" onclick="closesetting()">+</div>
-          <div id="infor">
-              <label for="txtname" style="font-size: 30px; margin-left: 15px ;">Tên sản phẩm</label>
-              <input type="text" id="txtname" value="a" size="30px" style="font-size: 30px;margin:30px 10px 15px 100px ;border: none; border-bottom: 2px solid ;" /> <br/>
-              <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá (VND)</label>
-              <input type="text" id="txtprice" value="b" size="30px" style="font-size: 30px; margin:0px 10px 15px 150px;border: none; border-bottom: 2px solid ;"/><br/>
-              <label style="font-size: 30px; margin-left: 15px;">Ảnh</label>
-              <input type="file" id="imgadd" style="font-size: 20px; margin: 15px 10px 15px 250px;">
-            
-
-          </div>
-          <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct(${tmp1[i].productId})">Xác nhận</div>
-      </div> 
+        <div id="bao1" style="width: 60%; margin:60px auto; border: 1px solid; background-color: white; border-radius: 10px;">
+            <div style="float: right; margin: 5px 10px; font-size: 50px; transform: rotate(45deg);cursor: pointer;" onclick="closesetting()">+</div>
+            <div id="infor">
+            <div style="display:flex; justify-content: center;">
+                <img src="" alt="Ảnh" style="width: 30%; " id="fileimg">
+                </div>
+                <label for="txtname" style="font-size: 30px; margin-left: 15px ;">Tên sản phẩm:</label><br>
+                <input type="text" id="txtname" value="a" size="30px" style="font-size: 25px;width:80%;" /> <br/><br>
+                <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá:</label><br>
+                <input type="text" id="txtprice" value="b" size="30px" style="font-size: 25px; width: 80%;"/>(VND)<br/><br>
+                <label style="font-size: 30px; margin-left: 15px;">Ảnh:</label>
+                <input type="file" id="imgadd" style="font-size: 25px; width: 80%;">
+            </div>
+            <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct()">Xác nhận</div>
+        </div> 
 `;
 } 
 
