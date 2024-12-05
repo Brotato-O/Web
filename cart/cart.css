@@ -144,6 +144,8 @@ body{
 .cancel-button button{
     width: 25%;
     margin: 20px;
+    
+    text-align: center;
 }
 #status-cart ul{
     display: flex;
@@ -502,6 +504,8 @@ input[type="checkbox"]{
     border: none;
     padding: 10px;
     cursor: pointer;
+
+    text-align: center;
   }
   
   button:hover {

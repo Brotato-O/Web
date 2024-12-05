@@ -42,8 +42,25 @@ body{
 .infor-wrap{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 10px 0px;
+}
+#db2{
+    display: flex;
+}
+.hehe th{
+    background-color: black;
+    border: 1px solid white;
+}
+#adminStatus{
+    display: flex;
+    justify-content: space-between;
+}
+#adminStatus p, #adminStatus div p{
+    font-size: 18px;
+}
+.infor-wrap div{
+    text-align: left;
 }
 .chung{
     display: flex;
@@ -110,7 +127,14 @@ body{
   .infor-wrap p{
     font-size: 18px;
     overflow-y: hidden;
-    margin: 10px;
+    margin: 10px 0px;
+  }
+  .chung p{
+    text-align: left;
+    font-size: 18px;
+  }
+  .chung{
+    padding: 10px 0px;
   }
   .title2{
     
@@ -133,6 +157,7 @@ body{
   #detail-bill{
     max-height: 80%;
     overflow-y: scroll;
+    padding: 20px;
   }
   #select-bill div h3{
     font-size: 2.5rem;

@@ -1,24 +1,25 @@
 function SaleProducts(){
     var countP= [];
+    var from= document.getElementById("countPFrom").value;
+    var to= document.getElementById("countPTo").value;
     var products= JSON.parse(localStorage.getItem("products"));
+    checkBill1(from,to);
     for(var i=0; i< products.length; i++){
-        countP.push({productId: products[i].productId, productName: products[i].name ,totalAmount: 0, quantity: 0});
+        countP.push({productId: products[i].productId, bill:[] ,totalAmount: 0, quantity: 0});
     }
-    var bill= JSON.parse(localStorage.getItem("bill"));
-    for(var i=0; i< bill.length; i++){
-        if(bill[i].status=="Đã giao"){
-            for(var j=0; j< bill[i].product.length; j++){
+    for(var i=0; i< billtemp1.length; i++){
+            for(var j=0; j< billtemp1[i].product.length; j++){
                 for(var k=0; k< countP.length; k++){
-                    if(countP[k].productId==bill[i].product[j].id){
-                        countP[k].totalAmount+=Number(bill[i].product[j].price)* Number(bill[i].product[j].quantity);
-                        countP[k].quantity+=Number(bill[i].product[j].quantity);
+                    if(countP[k].productId==billtemp1[i].product[j].id){
+                        countP[k].totalAmount+=Number(billtemp1[i].product[j].price)* Number(billtemp1[i].product[j].quantity);
+                        countP[k].quantity+=Number(billtemp1[i].product[j].quantity);
+                        countP[k].bill.push(billtemp1[i]);
                         break;
                     }
                 }
             }
-        }
+        
     }
-    console.log(countP);
     localStorage.setItem("countP", JSON.stringify(countP));
 }
 
@@ -52,9 +53,10 @@ function onMoney(){
 
 function showSaleProducts(index){
     var countP= JSON.parse(localStorage.getItem("countP"));
-    var div= document.getElementById("pages");
+    var div1= document.getElementById("pages");
+    var div= document.getElementById("countP-container").style.display="flex";
     var s= "";
-    div.innerHTML=``;
+    div1.innerHTML=``;
     var length= countP.length;
     const BPP=5;
     var pages= Math.ceil(length/BPP);
@@ -62,13 +64,14 @@ function showSaleProducts(index){
     var endIndex= startIndex+BPP;
     if(endIndex> length) endIndex= length;
     for(let i=0; i<pages; i++){
-      div.innerHTML +=`
+      div1.innerHTML +=`
        <button class="page" onclick="showSaleProducts('${i+1}')">${i+1}</button>
       `;
   }
+  console.log(div1);
     for(var i=startIndex; i< endIndex; i++){
         s+= `
-            <tr>
+            <tr onclick=showDetail2()>
             <td>${i+1}</td>
             <td>${countP[i].productId}</td>
             <td>${countP[i].quantity}</td>
@@ -76,12 +79,22 @@ function showSaleProducts(index){
             </tr>
         `;
     }
-    document.getElementById("countP-wrap").innerHTML=`<table id="showCountP">
+    document.getElementById("main-countP").innerHTML=`
         <tr>
           <th>Số thứ tự</th>
           <th>Mã sản phẩm</th>
           <th>Số lượng</th>
           <th>Tổng tiền</th>
-        </tr>` + s+ 
-      `</table>`;
+        </tr>` + s
+      ;
+}
+
+var billtemp1=[];
+function checkBill1(from, to){
+    billtemp1=[];
+    var bill= JSON.parse(localStorage.getItem("bill"));
+    for(var i=0; i<bill.length; i++)
+        if((bill[i].orderDate>= from && bill[i].orderDate<=to || from=="" && bill[i].orderDate<=to || to=="" && bill[i].orderDate>=from) && bill[i].status=="Đã giao")
+             billtemp1.push(bill[i]);
+    console.log(billtemp1);
 }

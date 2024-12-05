@@ -1079,12 +1079,16 @@ css của sản phẩm
 .widget-row-col, .widget-row-col-1 {
 width: 100%;
 }
-/**/
+/*tuan*/
 .widget-row-col{
     margin:auto;
-    width:20%
+    /* width:20% */
  }
-
+ #openPhanloai {
+    flex-wrap: wrap;
+    padding: 0px;
+   
+   }
 } 
 @media only screen and (max-width: 425px) {
     .count-quantity button{
@@ -1121,8 +1125,23 @@ width: 100%;
        
        display: block;
     }
-    /**/
+    /*tuan*/
     #sl {
         width: 30px;
     }
+    #openPhanloai {
+        flex-wrap: wrap;
+        padding: 0px;
+       
+       }
+       #giatu{
+        font-size: 20px;
+       }
+            
+        #sapxeptheo {
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 10px;
+        }
 }

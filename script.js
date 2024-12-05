@@ -729,6 +729,16 @@ document.addEventListener("click", function (event) {
       const quantity = document.getElementById("sl").value;
       const size = document.getElementById("size").value;
       let allProducts = JSON.parse(localStorage.getItem("all")) || [];
+      if(quantity<=0){
+        document.getElementById("sl").value = "1";
+        alert("Số lượng sai!");
+        return false;
+      }
+      if (isNaN(quantity) || quantity.trim() === "") {
+        document.getElementById("sl").value = "1";
+        alert("Số lượng phải là một số hợp lệ, vui lòng nhập lại!");
+        return false;
+    }
       allProducts.forEach((product) => {
         if (product.productId == id) {
           image = product.img;

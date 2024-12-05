@@ -44,7 +44,7 @@ function cartDisplay(){
                     <td class="cart-item-name"><label for="${i}">${cartArray[username][i].title}</label></td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
-                            <button class="bot" onclick="adjustQuantity('${i}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
+                            <button class="bot" onclick="adjustQuantity('${i}', -1)"style="display: flex; justify-content: center; align-items: center;margin-left:0px">-</button> 
                             <input type="text" id="sl-${i}" class="quantity" value="${quantity}" onchange="checkNum(this, ${i})" style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
                             <button class="them" onclick="adjustQuantity('${i}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
@@ -93,12 +93,23 @@ function checkNum(obj, id){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var check=/^[1-9][0-9]*$/;
+    const length= cartArray[username].length;
     if(obj.value!= 0 && !check.test(obj.value)) {
         toast({ title: 'Thất bại', message: 'Số lượng không hợp lệ', type: 'error', duration: 3000 });
         obj.value= 1;
     }
-    else if(obj.value==0) checkDelete(id);
-    else cartArray[username][id].quantity= obj.value;
+    else if(obj.value==0){ 
+        checkDelete(id);
+        var cartArray1 = JSON.parse(localStorage.getItem('userCarts'));
+        if (cartArray1[username].length < length) return;
+        else obj.value= 1;
+    }  
+    
+        
+            cartArray[username][id].quantity= obj.value;
+        
+
+        
     localStorage.setItem('userCarts', JSON.stringify(cartArray));
     buy();
 }
@@ -145,11 +156,12 @@ function adjustQuantity(id, change) {
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var newQuantity = Number(cartArray[username][id].quantity) + change;
+    const length= cartArray[username].length;
     if (newQuantity < 1) {
         checkDelete(id);
-    }
-    if (newQuantity < 1) {
-        newQuantity = 1;
+        var cartArray1 = JSON.parse(localStorage.getItem('userCarts'));
+        if (cartArray1[username].length < length) return;
+        else newQuantity = 1;
     }
     var quantityInput = document.getElementById(`sl-${id}`);
     quantityInput.value = newQuantity;
@@ -229,6 +241,7 @@ function deleteCartItem(id){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     cartArray[username].splice(id, 1);
+    console.log(cartArray[username]);
     localStorage.setItem('userCarts',JSON.stringify(cartArray));
     cartDisplay();
 }
@@ -356,13 +369,16 @@ function showBill(number){
                     <th>Ngày đặt</th>
                     <th>Tổng tiền</th>
                     <th>Phương thức</th>
+                    <th id="rong" style="width: 15%; "></th>
                 <tr>`+s+`</table>`;
         document.getElementById("wrap-cart").innerHTML=s;   
         if (number==1){
             var rows= document.getElementsByClassName("row1");
-            for(let i=0; i< rows.length; i++)
+            for(let i=0; i< rows.length; i++){
                 rows[i].innerHTML+=`
-                <td><button onclick="huy('${rows[i].id}')">Hủy đơn</button></td>`
+                <td><button onclick="huy('${rows[i].id}')">Hủy đơn</button></td>`;
+                document.getElementById("rong").setAttribute("colspan", "2");
+                }
             }
     }
 }
@@ -436,8 +452,8 @@ function addToBill(){
     checkCart();
     var length=bill.length;
     bill[length]= {};
-    bill[length].name=profile.name;
-    if(bill[length].name== undefined) 
+    if(profile[username]!= undefined) bill[username]=profile[username].name;
+    else
         for(var i=0; i < account.length; i++)
             if(account[i].username==username) bill[length].name= account[i].name;
     bill[length].receiptId= length;
@@ -508,7 +524,6 @@ function cfP(){
     document.getElementById("overlay4").style.display = 'block';
     checkCart();
     if(cf==1){
-        DocumentTimeline.getElementById("")
         document.getElementById("customerPay").innerHTML= address.name;
         document.getElementById("phonePay").innerHTML= address.phone;
         document.getElementById("addressPay").innerHTML= `Số nhà: ${address.houseNumber}, Đường: ${address.street}, Phường: ${address.ward}, Quận: ${address.district}, Thành phố: ${address.city}`;
@@ -554,6 +569,7 @@ function back(){
     document.getElementById("overlay4").style.display="none";
     document.getElementById("overlay1").style.display="flex";
     document.getElementById("payment-method-box").style.display="block";
+    PaymentMethodSelection();
 }
 function showAddressBox() {
     hideAllBoxes(); 
@@ -575,7 +591,7 @@ function useSavedAddress() {
     //nhàn
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     var profile= JSON.parse(localStorage.getItem("userProfile"));
-    if(profile == null || Object.keys(profile[username]).length ==0) {
+    if(profile == null || profile[username] ==null||  Object.keys(profile[username]).length ==0) {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }

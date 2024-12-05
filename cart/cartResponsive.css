@@ -76,6 +76,16 @@
         max-height: 70%;
         overflow: scroll;
     }
+    /*tuan*/
+#detailPaid {
+    height: 500px;
+    width: 90%;
+    overflow: auto;
+}
+#reason-wrap{
+    height: 300px;
+    width: 300px;
+}
 }
 @media only screen and (max-width: 425px) {
     .count-quantity button{
@@ -100,5 +110,15 @@
     .mota-phai{
         margin-left: 0px !important; 
     }
-
+/*tuan*/
+#detailPaid {
+    height: 500px;
+    width: 90%;
+    overflow: auto;
+}
+#reason-wrap{
+    height: 300px;
+    width: 300px;
+}
+#confirm-payment-button{}
 }

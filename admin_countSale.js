@@ -120,7 +120,7 @@ function checkBill(username){
     billtemp=[];
     var bill= JSON.parse(localStorage.getItem("bill"));
     for(var i=0; i<bill.length; i++)
-        if(bill[i].username== username) billtemp.push(bill[i]);
+        if(bill[i].username== username && bill[i].status=="Đã giao") billtemp.push(bill[i]);
 }
 
 function showDetail1(id){
