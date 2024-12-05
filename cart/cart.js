@@ -93,12 +93,23 @@ function checkNum(obj, id){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var check=/^[1-9][0-9]*$/;
+    const length= cartArray[username].length;
     if(obj.value!= 0 && !check.test(obj.value)) {
         toast({ title: 'Thất bại', message: 'Số lượng không hợp lệ', type: 'error', duration: 3000 });
         obj.value= 1;
     }
-    else if(obj.value==0) checkDelete(id);
-    else cartArray[username][id].quantity= obj.value;
+    else if(obj.value==0){ 
+        checkDelete(id);
+        var cartArray1 = JSON.parse(localStorage.getItem('userCarts'));
+        if (cartArray1[username].length < length) return;
+        else obj.value= 1;
+    }  
+    
+        
+            cartArray[username][id].quantity= obj.value;
+        
+
+        
     localStorage.setItem('userCarts', JSON.stringify(cartArray));
     buy();
 }
@@ -145,11 +156,12 @@ function adjustQuantity(id, change) {
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var newQuantity = Number(cartArray[username][id].quantity) + change;
+    const length= cartArray[username].length;
     if (newQuantity < 1) {
         checkDelete(id);
-    }
-    if (newQuantity < 1) {
-        newQuantity = 1;
+        var cartArray1 = JSON.parse(localStorage.getItem('userCarts'));
+        if (cartArray1[username].length < length) return;
+        else newQuantity = 1;
     }
     var quantityInput = document.getElementById(`sl-${id}`);
     quantityInput.value = newQuantity;
@@ -229,6 +241,7 @@ function deleteCartItem(id){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     cartArray[username].splice(id, 1);
+    console.log(cartArray[username]);
     localStorage.setItem('userCarts',JSON.stringify(cartArray));
     cartDisplay();
 }
@@ -439,10 +452,13 @@ function addToBill(){
     checkCart();
     var length=bill.length;
     bill[length]= {};
-    bill[length].name=profile.name;
-    if(bill[length].name== undefined) 
+    if( profile[username]==undefined || Object.keys(profile[username])== 0 ) {
         for(var i=0; i < account.length; i++)
-            if(account[i].username==username) bill[length].name= account[i].name;
+            if(account[i].username==username) bill[length].name= account[i].name;}
+    else
+        
+
+        bill[username]=profile[username].name;
     bill[length].receiptId= length;
     bill[length].username= username;
     bill[length].product= [];
@@ -578,7 +594,7 @@ function useSavedAddress() {
     //nhàn
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     var profile= JSON.parse(localStorage.getItem("userProfile"));
-    if(profile == null || Object.keys(profile[username]).length ==0) {
+    if(profile == null || profile[username] ==null||  Object.keys(profile[username]).length ==0) {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
