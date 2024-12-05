@@ -241,7 +241,7 @@ function lookUpStatus() {
     for(let i=0; i< billtemp.length; i++){
       if(obj.id== billtemp[i].receiptId){
         var name;
-        for(let j=0; j< account.length; j++)
+        for(let j=0; j< account.length; j++){
             if (billtemp[i].username== account[j].username) name= account[j].name;
           document.getElementById("adminReceipt").innerHTML= billtemp[i].receiptId;
           document.getElementById("adminDate").innerHTML= billtemp[i].orderDate;
@@ -249,7 +249,6 @@ function lookUpStatus() {
           document.getElementById("adminName").innerHTML= billtemp[i].name;
           document.getElementById("adminAddress").innerHTML= billtemp[i].address;
           document.getElementById("adminPhone").innerHTML= billtemp[i].sdt;
-          document.getElementById("adminTotal").innerHTML= billtemp[i].totalAmount;
           document.getElementById("adminMethod").innerHTML= billtemp[i].paymentMethod;
         
           var s="";
@@ -263,13 +262,17 @@ function lookUpStatus() {
                 </tr>
               `;
             }
-          document.getElementById("adminTable").innerHTML= `<tr>
+          document.getElementById("adminTable").innerHTML= `<tr class="hehe">
             <th>Sản phẩm</th>
             <th>Số lượng</th>
             <th>Size</th>
             <th>Đơn giá</th>
-          </tr>`+s;
+          </tr>`+s +  `<tr>
+            <td colspan="3" class="title2" style="font-size: 18px">Tổng tiền</td>
+            <td>${billtemp[i].totalAmount}<t/d>
+          </tr>`;
           if (billtemp[i].status !="Đã hủy"){
+            document.getElementById("adminStatus").style.display="flex";
            document.getElementById("adminStatus").innerHTML= `
            <p>Trạng thái</p>
            <div>
@@ -288,14 +291,16 @@ function lookUpStatus() {
             document.getElementById("changeStatus").value=billtemp[i].status;
           }
           else{
-            document.getElementById("cfB").innerHTML+=`
-              <div class="infor-wrap">
-                <p>Lý do hủy</p>
+            document.getElementById("adminStatus").style.display="none";
+            document.getElementById("cfB").innerHTML=`
+              <div id="db2">
+                <p class="title2" style="font-size: 18px">Lý do hủy: &nbsp;</p>
                 <p>${billtemp[i].reason}</p>
               </div>
             `;
           }
         }
+      }
     }
   }
 
