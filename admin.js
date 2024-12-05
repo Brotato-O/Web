@@ -8,6 +8,7 @@ function currency(value) {
 var currentPage = 1;
 
 function hienthitatcasp1() {
+  document.getElementById('SearchTDN').style.display="none";
   const productsPerPage = 12;
   var productArrays = JSON.parse(localStorage.getItem("all"));
   var startIndex = (currentPage - 1) * productsPerPage;
