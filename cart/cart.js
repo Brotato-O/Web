@@ -452,8 +452,8 @@ function addToBill(){
     checkCart();
     var length=bill.length;
     bill[length]= {};
-    bill[length].name=profile.name;
-    if(bill[length].name== undefined) 
+    if(profile[username]!= undefined) bill[username]=profile[username].name;
+    else
         for(var i=0; i < account.length; i++)
             if(account[i].username==username) bill[length].name= account[i].name;
     bill[length].receiptId= length;
@@ -591,7 +591,7 @@ function useSavedAddress() {
     //nhàn
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
     var profile= JSON.parse(localStorage.getItem("userProfile"));
-    if(profile == null || Object.keys(profile[username]).length ==0) {
+    if(profile == null || profile[username] ==null||  Object.keys(profile[username]).length ==0) {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
