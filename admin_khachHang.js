@@ -246,42 +246,8 @@ function blockSearch() {
   }
 }
 
-// function onInputSearch() {
-//   var onInput = document.querySelector("#txtSearch2").value;
-//   var list = JSON.parse(localStorage.getItem("accounts"));
-//   var s;
-//   if (!onInput) {
-//     hienthiKH(list);
-//     return;
-//   }
-//   var s = `<tr>
-//   <th>STT</th>
-//   <th>HỌ TÊN KH</th>
-//   <th>TÊN ĐĂNG NHẬP</th>
-//   <th>NGÀY TẠO</th>
-//   <th>ĐỊA CHỈ</th>
-//   <th>CHỨC NĂNG</th>
-// </tr>`;
-//   for (let i = 0; i < list.length; i++) {
-//     if (onInput == list[i].username) {
-//       s += `<tr>
-//               <td style="text-align: center">${i + 1}</td>
-//               <td>${list[i].name || []}</td>
-//               <td>${list[i].username || []}</td>
-//               <td>${list[i].date || []}</td>
-//               <td>${list[i].address || []}</td>
-//               <td class="btn_">
-//                 <button class = "xoaKH" onclick="XoaKH(${i})">X</button>
-//                 <button class = "suaKH" onclick="FormSuaKH(${i})">Sửa</button>
-//               </td>
-//           </tr>`;
-//     }
-//   }
-
-//   document.querySelector("#chucNang").innerHTML = s;
-// }
 function onInputSearch() {
-  var onInput = document.querySelector("#txtSearch2").value.trim(); // Loại bỏ khoảng trắng thừa
+  var onInput = document.querySelector("#txtSearch2").value.trim();
   var list = JSON.parse(localStorage.getItem("accounts"));
   var s = `<tr>
               <th>STT</th>
@@ -291,14 +257,14 @@ function onInputSearch() {
               <th>ĐỊA CHỈ</th>
               <th>CHỨC NĂNG</th>
            </tr>`;
-  console.log(onInput);
+  // console.log(onInput);
   if (!onInput) {
     hienthiKH(list); // Hiển thị toàn bộ danh sách nếu không nhập
     return;
   }
 
   // Tìm kiếm username khớp
-  let found = false; // Biến kiểm tra có kết quả hay không
+  var found = false; // Biến kiểm tra có kết quả hay không
   for (let i = 0; i < list.length; i++) {
     if (
       list[i].username &&
@@ -307,10 +273,10 @@ function onInputSearch() {
       found = true; // Đánh dấu tìm thấy kết quả
       s += `<tr>
               <td style="text-align: center">${i + 1}</td>
-              <td>${list[i].name || "N/A"}</td>
-              <td>${list[i].username || "N/A"}</td>
-              <td>${list[i].date || "N/A"}</td>
-              <td>${list[i].address || "N/A"}</td>
+              <td>${list[i].name || ""}</td>
+              <td>${list[i].username || ""}</td>
+              <td>${list[i].date || ""}</td>
+              <td>${list[i].address || ""}</td>
               <td class="btn_">
                 <button class="xoaKH" onclick="XoaKH(${i})">X</button>
                 <button class="suaKH" onclick="FormSuaKH(${i})">Sửa</button>
@@ -323,6 +289,5 @@ function onInputSearch() {
     // Không tìm thấy kết quả
     s += `<tr><td colspan="6" style="text-align: center;">Không tìm thấy kết quả</td></tr>`;
   }
-
-  document.querySelector("#chucNang").innerHTML = s;
+  document.querySelector("#tableKH").innerHTML = s;
 }
