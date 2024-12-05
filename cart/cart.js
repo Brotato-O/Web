@@ -356,13 +356,16 @@ function showBill(number){
                     <th>Ngày đặt</th>
                     <th>Tổng tiền</th>
                     <th>Phương thức</th>
+                    <th id="rong" style="width: 15%; "></th>
                 <tr>`+s+`</table>`;
         document.getElementById("wrap-cart").innerHTML=s;   
         if (number==1){
             var rows= document.getElementsByClassName("row1");
-            for(let i=0; i< rows.length; i++)
+            for(let i=0; i< rows.length; i++){
                 rows[i].innerHTML+=`
-                <td><button onclick="huy('${rows[i].id}')">Hủy đơn</button></td>`
+                <td><button onclick="huy('${rows[i].id}')">Hủy đơn</button></td>`;
+                document.getElementById("rong").setAttribute("colspan", "2");
+                }
             }
     }
 }
@@ -508,7 +511,6 @@ function cfP(){
     document.getElementById("overlay4").style.display = 'block';
     checkCart();
     if(cf==1){
-        DocumentTimeline.getElementById("")
         document.getElementById("customerPay").innerHTML= address.name;
         document.getElementById("phonePay").innerHTML= address.phone;
         document.getElementById("addressPay").innerHTML= `Số nhà: ${address.houseNumber}, Đường: ${address.street}, Phường: ${address.ward}, Quận: ${address.district}, Thành phố: ${address.city}`;
@@ -554,6 +556,7 @@ function back(){
     document.getElementById("overlay4").style.display="none";
     document.getElementById("overlay1").style.display="flex";
     document.getElementById("payment-method-box").style.display="block";
+    PaymentMethodSelection();
 }
 function showAddressBox() {
     hideAllBoxes(); 
