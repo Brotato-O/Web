@@ -995,6 +995,9 @@ background-color: black;
         
         padding: 10px 0; 
     }
+
+    /**/
+    
    
 }
 
@@ -1076,6 +1079,12 @@ background-color: black;
 .widget-row-col, .widget-row-col-1 {
 width: 100%;
 }
+/**/
+.widget-row-col{
+    margin:auto;
+    width:20%
+ }
+
 } 
 @media only screen and (max-width: 425px) {
     .count-quantity button{
@@ -1111,5 +1120,9 @@ width: 100%;
     #phanloaigia {
        
        display: block;
+    }
+    /**/
+    #sl {
+        width: 30px;
     }
 }
