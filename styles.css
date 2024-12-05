@@ -1159,6 +1159,8 @@ input[type="file"] {
   height: 30px;
   border: 2px solid black;
   cursor: pointer;
+
+  text-align: center;
 }
 .them{
   font-size: 16px;
@@ -1166,6 +1168,8 @@ input[type="file"] {
   height: 30px;
   border: 2px solid black;
   cursor: pointer;
+
+  text-align: center;
 }
 
 .buy{
