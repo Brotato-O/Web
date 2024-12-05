@@ -153,7 +153,7 @@ function tangsl(){
         document.getElementById("img-sp").src = product.img;
         document.getElementById("name-sp").innerHTML = product.name;
         document.getElementById("ma-sp").innerHTML = `${product.productId || "N/A"}`;
-        document.getElementById("price").innerHTML = `${product.price}`;
+        document.getElementById("price").innerHTML = `${(product.price).toLocaleString()} VNĐ`;
         document.getElementById("sanpham-chitiet").style.display = "block";
     } else {
         console.error("Sản phẩm không tồn tại!");

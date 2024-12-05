@@ -281,26 +281,33 @@ function notLogin(){
 function showPaid(id){
     var bill= JSON.parse(localStorage.getItem('bill'));
     document.getElementById("overlay3").style.display="block";
+    document.getElementById("ava1").src="img/logo.png";
     for(var i=0; i< bill.length; i++){
         if(bill[i].receiptId == id){
             document.getElementById("keyPaid").innerHTML = bill[i].receiptId;
             document.getElementById("datePaid").innerHTML = bill[i].orderDate;
             document.getElementById("statusPaid").innerHTML = bill[i].status;
             document.getElementById("addressPaid").innerHTML = bill[i].address;
+            document.getElementById("customerPaid").innerHTML = bill[i].username;
+            document.getElementById("phonePaid").innerHTML = bill[i].sdt;
             var s="";
             for(var j=0; j< bill[i].product.length; j++){
                 s+=`<tr>
-                    <td>${Number(bill[i].product[j].quantity)}</td>
                     <td>${bill[i].product[j].title}</td>
-                    <td>${Number(bill[i].product[j].price)}</td>
+                    <td>${bill[i].product[j].size}</td>
+                    <td>${(Number(bill[i].product[j].quantity)).toLocaleString()}</td>
+                    <td>${(Number(bill[i].product[j].price)).toLocaleString()}</td>
                 </tr>`;
             }
-            document.getElementById("showP").innerHTML=`<tr>
-            <th>Số lượng</th>
+            document.getElementById("showP").innerHTML=`<tr id="dong1"> 
             <th>Sản phẩm</th>
+            <th>Size</th>
+            <th>Số lượng</th>
             <th>Đơn giá</th>
-        </tr>` + s;
-            document.getElementById("totalPaid").innerHTML = bill[i].totalAmount;
+        </tr>` + s + `<tr>
+            <td colspan="3" class="title1">Tổng tiền</td>
+            <td>${(bill[i].totalAmount).toLocaleString()} VNĐ</td>
+        </tr>`;
             document.getElementById("methodPaid").innerHTML = bill[i].paymentMethod;
         }
     }
@@ -501,56 +508,46 @@ function cfP(){
     document.getElementById("overlay4").style.display = 'block';
     checkCart();
     if(cf==1){
+        DocumentTimeline.getElementById("")
         document.getElementById("customerPay").innerHTML= address.name;
         document.getElementById("phonePay").innerHTML= address.phone;
         document.getElementById("addressPay").innerHTML= `Số nhà: ${address.houseNumber}, Đường: ${address.street}, Phường: ${address.ward}, Quận: ${address.district}, Thành phố: ${address.city}`;
-        var s="";
-        for(var i=0; i<carttemp.length; i++){
-            s+=`<tr>
-                <td>${carttemp[i].title}</td>
-                <td>${carttemp[i].size}</td>
-                <td>${carttemp[i].quantity}</td>
-                <td>${carttemp[i].price}</td>
-            </tr>`;
-        }
-        document.getElementById("showP1").innerHTML=`
-                <tr>
-                    <th>Sản phẩm</th>
-                    <th>Size</th>
-                    <th>Số lượng</th>
-                    <th>Đơn giá</th>
-                </tr> 
-            ` +s;
-        document.getElementById("totalPay").innerHTML=buy();
-        document.getElementById("methodPay").innerHTML=selectedMethod.value;
-    }
+    } 
     else{
         var profile= JSON.parse(localStorage.getItem("userProfile"));
-        var username= JSON.parse(localStorage.getItem("currentUser")).username;
-        var customer= profile[username];
+    var username= JSON.parse(localStorage.getItem("currentUser")).username;
+    var customer= profile[username];
         document.getElementById("customerPay").innerHTML= customer.name;
         document.getElementById("phonePay").innerHTML= customer.phone;
         document.getElementById("addressPay").innerHTML= customer.address;
-        for(var i=0; i<carttemp.length; i++){
-            s+=`<tr>
-                <td>${carttemp[i].title}</td>
-                <td>${carttemp[i].size}</td>
-                <td>${carttemp[i].quantity}</td>
-                <td>${carttemp[i].price}</td>
-                <tr>AA</tr>
-            </tr>`;
-        }
-        document.getElementById("showP1").innerHTML=`
-                <tr>
-                    <th>Sản phẩm</th>
-                    <th>Size</th>
-                    <th>Số lượng</th>
-                    <th>Đơn giá</th>
-                </tr> 
-            ` +s;
-        document.getElementById("totalPay").innerHTML=buy();
-        document.getElementById("methodPay").innerHTML=selectedMethod.value;
     }
+    var s="";
+    var date= new Date();
+    var month= date.getMonth()+1;
+    if (month<=9) month= "0"+month;
+    var day= date.getDate();
+    if (day<=9) day= "0"+day;
+    document.getElementById("datePay").innerHTML=`${date.getFullYear()}-${month}-${day}`;
+    document.getElementById("ava").src="img/logo.png";
+    document.getElementById("methodPay").innerHTML= selectedMethod.value;
+      for(var i=0; i< carttemp.length; i++){
+                s+=`<tr>
+                    <td>${carttemp[i].title}</td>
+                    <td>${carttemp[i].size}</td>
+                    <td>${(Number(carttemp[i].quantity)).toLocaleString()}</td>
+                    <td>${(Number(carttemp[i].price)).toLocaleString()}</td>
+                </tr>`;
+            }
+            document.getElementById("showP1").innerHTML=`<tr id="dong1"> 
+            <th>Sản phẩm</th>
+            <th>Size</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+        </tr>` + s + `<tr>
+            <td colspan="3" class="title1">Tổng tiền</td>
+            <td>${buy().toLocaleString()} VNĐ</td>
+        </tr>`;
+    
 }
 
 function back(){

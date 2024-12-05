@@ -21,7 +21,33 @@ body{
     position: relative;
     top: -300px;
 }
-
+.flex1{
+  display: flex;
+  padding: 20px 0px;
+}
+.flex1 .os3{
+  padding-right: 0px;;
+}
+.flex1 h3{
+  display: flex;
+  align-items: end;
+  font-size: 35px;
+  font-weight: bolder;
+}
+#showP td, #showP1 td{
+  border: 1px solid black;
+}
+#showP, #showP1{
+  box-sizing: border-box;
+}
+#dong1 th{
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}
+#dong1{
+  border: 1px solid black;
+}
 #status-cart{
     margin: 30px 0px;
     
@@ -35,7 +61,7 @@ body{
     left: 0;
     right: 0;
 }
-#detailPaid{
+#detailPaid, #detailPay{
     padding: 15px;
     width:40%;
     background-color: white;
@@ -45,6 +71,17 @@ body{
     transform: translate(0%, -50%);
     text-align: center;
     border-radius: 10px;
+    border-top: 15px solid #c82333;
+    border-bottom: 15px solid #000000;
+    height:70%;
+    overflow-y: scroll;
+}
+.db .os3{
+  justify-content: space-between;
+}
+#ava{
+  width: 15%;
+  height: 15%;
 }
 #detailPay{
     padding: 15px;
@@ -67,17 +104,20 @@ body{
 }
 .os1, .os3{
     display: flex;
-    padding:10px;
 }
-.os1 .os3{
-    padding: 0;
+.os1, .os3{
+    padding: 10px 0px;
 }
-#productPaid{
+#productPaid, #productPay{
     display: flex;
     flex-direction: column;
 }
 .title1{
     font-weight: bold;
+    
+}
+.os3 div{
+  text-align: left;
 }
 #reason-wrap{
     padding: 15px;

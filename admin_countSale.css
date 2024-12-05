@@ -2,21 +2,23 @@
     display: flex;
     flex-wrap: nowrap;
     align-items: flex-start;
+    flex-direction: column;
 }
-
-#detail-count{
-    width: calc(30% - 30px);
+#countTop, #countBottom{
+    width: 100%;
+    text-align: center;
     padding: 15px;
+}
+#countBottom{
+    display: flex;
 }
 #totalBill{
-    width: 70%;
-    padding: 15px;
+    width:70%;
+    padding-right: 15px;
 }
-.row-count{
-    cursor: pointer;
-}
-.row-count:hover{
-    background-color: #a9a8a8;
+#detail-count{
+    width: 30%;
+    padding: 0px 15px;
 }
 @media only screen and (max-width: 767px){
     #count-container{

@@ -644,7 +644,7 @@ function show2(ID) {
     document.getElementById("ma-sp").innerHTML = `${
       product.productId || "N/A"
     }`;
-    document.getElementById("price").innerHTML = `${product.price}`;
+    document.getElementById("price").innerHTML = `${(product.price).toLocaleString()} VNĐ`;
     document.getElementById("sanpham-chitiet").style.display = "block";
   } else {
     console.error("Sản phẩm không tồn tại!");
