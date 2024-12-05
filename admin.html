@@ -157,7 +157,30 @@
             </table>
           </div>
         </div>
-       </div>
+      </div>
+
+      <div id="countP-container" style="display: none;">
+        <div id="countPTop">
+          <h3>Thống kê theo thời gian</h3>
+          <div class="chartContainer">
+            <div>Từ ngày</div>  
+            <input type="date" id="countPFrom" onchange="SaleProducts(1)">  
+          </div>
+          <div class="chartContainer">
+            <div>Đến ngày</div>  
+            <input type="date" id="countPTo" onchange="SaleProducts(1)">  
+          </div>
+        </div>
+        <div id="countPBottom">
+          <table id="showBill1">
+
+          </table>
+            <table id="main-countP">
+              
+            </table>
+          
+        </div>
+      </div>
 
     </div>
           
@@ -188,9 +211,6 @@
       </div>
     </div>
 
-    <div id="countP-wrap">
-      
-    </div>
     <div id="overlay5" style="display: none;" onclick="an(event)">
       <div id="detail-bill">
         <div>
@@ -244,9 +264,9 @@
     <div id="overlay"></div>
 
     <div id="toast"></div>
-    <!-- <button onclick="showSaleProducts(1)">Xem thống kê sp</button>
+    <button onclick="showSaleProducts(1)">Xem thống kê sp</button>
     <button onclick="onMoney()">Xem thống kê theo tien</button>
-    <button onclick="onQuantity()">Xem thống kê theo sl</button> -->
+    <button onclick="onQuantity()">Xem thống kê theo sl</button>
     <div id="showpage">
       <div id="pages"></div>
     </div>
