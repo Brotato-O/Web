@@ -452,7 +452,7 @@ function addToBill(){
     checkCart();
     var length=bill.length;
     bill[length]= {};
-    if( profile[username]==undefined || Object.keys(profile[username])== 0 ) {
+    if( profile== undefined || profile[username]==undefined ) {
         for(var i=0; i < account.length; i++)
             if(account[i].username==username) bill[length].name= account[i].name;}
     else

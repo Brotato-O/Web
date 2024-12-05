@@ -124,13 +124,12 @@ function checkBill(username){
 }
 
 function showDetail1(id){
-    console.log(id, billtemp);
     var account= JSON.parse(localStorage.getItem("accounts"));
      document.getElementById("overlay5").style.display= "block";
      for(let i=0; i< billtemp.length; i++){
        if(id== billtemp[i].receiptId){
          var name;
-         for(let j=0; j< account.length; j++)
+         for(let j=0; j< account.length; j++){
              if (billtemp[i].username== account[j].username) name= account[j].name;
            document.getElementById("adminReceipt").innerHTML= billtemp[i].receiptId;
            document.getElementById("adminDate").innerHTML= billtemp[i].orderDate;
@@ -138,7 +137,6 @@ function showDetail1(id){
            document.getElementById("adminName").innerHTML= billtemp[i].name;
            document.getElementById("adminAddress").innerHTML= billtemp[i].address;
            document.getElementById("adminPhone").innerHTML= billtemp[i].sdt;
-           document.getElementById("adminTotal").innerHTML= billtemp[i].totalAmount;
            document.getElementById("adminMethod").innerHTML= billtemp[i].paymentMethod;
          
            var s="";
@@ -152,21 +150,24 @@ function showDetail1(id){
                  </tr>
                `;
              }
-           document.getElementById("adminTable").innerHTML= `<tr>
+           document.getElementById("adminTable").innerHTML= `<tr class="hehe">
              <th>Sản phẩm</th>
              <th>Số lượng</th>
              <th>Size</th>
              <th>Đơn giá</th>
-           </tr>`+s;
-           if (billtemp[i].status !="Đã hủy"){
+           </tr>`+s +  `<tr>
+             <td colspan="3" class="title2" style="font-size: 18px">Tổng tiền</td>
+             <td>${billtemp[i].totalAmount}<t/d>
+           </tr>`;
+             document.getElementById("adminStatus").style.display="flex";
             document.getElementById("adminStatus").innerHTML= `
             <p>Trạng thái</p>
-            
+            <div>
              <p id="showStatus">${billtemp[i].status}</p>
              
-           `;
-             
-           } 
+             </div>
+           `
          }
+       }
      }
    }

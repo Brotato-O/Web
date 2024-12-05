@@ -187,7 +187,7 @@
 
     #CartForm{
         width: 90%;
-        transform: translate(50%,0%); /*SỬA  50% THÀNH 0%*/
+        transform: translate(50%,50%);
         top: 0%;
         left: -42%;
     }
@@ -211,6 +211,7 @@
         padding-right: 50px;
     }
 }
+
 
 /* Mobile(425px) styles */
 @media (max-width: 425px){
@@ -320,16 +321,7 @@
     .widget-social-item a {
         margin-right: 40px;
     }
-    /*tuan*/
-    #SearchBar {
-        margin-left: 5vh;
-    }
-    #address-box h4{
-        text-align: center;
-    }
-    #address-box{
-        text-align: center;
-    }
+}
   
 /* nhàn */
 .poster{
@@ -369,7 +361,7 @@
     .poster{
         margin-top: 100px;
     }
-    /**/
+   
    
 }
 @media only screen and (max-width:768px){
@@ -492,35 +484,16 @@
         max-height: 90%;
     }
 
-    /**/
-    #size{
-        padding: 5px 20px;
+    /*tuan*/
+    .kichco #size {
+        width: 100px;
     }
-    #sl {
+    .soluong #sl {
         width: 30px;
     }
-    .bot{
-        margin-left: 10px;
-    }
-    .services-item p {
-        text-align: center;
-     }
-     .widget-row-col-1{
-       width: auto;
-       text-align: center;
-     }
-     .widget-social{
-    margin-left: 36%;
-        
-     }
-     .widget-row-col{
-        margin:auto;
-        width:20%
-     }
-     .widget-title::after{
-        display: none;
-     }
+
 }
+
 
 @media only screen and (max-width: 500px){
     
@@ -620,38 +593,27 @@
     width: fit-content;
 }
 
-/**/
-#size{
-    padding: 5px 20px;
 }
-#sl {
-    width: 30px;
-}
-.bot{
-    margin-left: 10px;
-}
-.widget-row-col-1{
-    width: auto;
-    text-align: center;
-  }
-  .widget-social{
- margin-left: 0px
-     
-  }
-  .widget-row-col{
-     margin:3px;
-     width:250px
-  }
-.widget-title::after{
-    display: inline;
- }
- .add-to-cart {
-    text-align: center;
- }
- 
-/*tuan*/
- #CartForm-view {
-    margin-top: -50px;
-}
+
+@media only screen and (max-width: 380px){
+   
+    .kichco #size {
+        width: 70px;
+        padding: 5px 10px;
+       
+    }
+    .soluong h4 {
+        width: 100%;
+    }
+    .soluong #sl {
+        width: 30px;
+    }
+    #sanpham-chitiet .add-to-cart{
+        width: 70%;
+        text-align: center;
+    }
+    #CartForm-view{
+        margin-top: -50px;
+    }
 
 }

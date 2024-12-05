@@ -831,6 +831,7 @@ css của sản phẩm
     padding: 0 40px;
     padding-right: 80px;
     transition: all 0.5s ease;
+    flex-wrap: wrap;
 }
 
 #sapxeptheo button{
@@ -969,6 +970,8 @@ css của sản phẩm
 #phanloaigia{
     display: flex;
     margin-left: 46px;
+
+    flex-wrap: wrap;
 }
 /*tuấn*/
 
@@ -994,7 +997,7 @@ css của sản phẩm
         padding: 10px 0; 
     }
 
-    /**/
+    
     
    
 }
@@ -1078,15 +1081,14 @@ css của sản phẩm
 width: 100%;
 }
 /*tuan*/
-.widget-row-col{
-    margin:auto;
-    /* width:20% */
- }
- #openPhanloai {
-    flex-wrap: wrap;
-    padding: 0px;
-   
-   }
+.mota-phai .row{
+    margin-left: 0px;
+    width: auto;
+}
+#sanpham-chitiet .add-to-cart{
+    text-align: center;
+}
+
 } 
 @media only screen and (max-width: 425px) {
     .count-quantity button{
@@ -1123,7 +1125,14 @@ width: 100%;
        
        display: block;
     }
-    /*tuan*/
+    
+    
+}
+/*tuan*/
+@media only screen and (max-width: 380px){
+    .mota-phai .row #size {
+        padding: 5px;
+    }
     #sl {
         width: 30px;
     }
