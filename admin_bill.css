@@ -83,7 +83,7 @@ body{
 }
 
 #bill-content{
-    display: flex;
+    display: block;
     flex-wrap: nowrap;
     align-items: flex-start;
 }
@@ -173,7 +173,7 @@ body{
   }
 
   #status{
-    width: 50%;
+    width: 20%;
   }
   #changeStatus{
     width: 50%;
@@ -185,10 +185,26 @@ body{
     
     justify-content: space-evenly;
   }
+
+  #searchBill{
+    width: 100%;
+  }
+
+  #select-bill div h3{
+    text-align: center;
+  }
+
   #select-bill div form span{
     font-size: 1.7rem;
     margin-right: 20px;
     font-weight: bold;
+  }
+
+  .form-tkhd{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin: 20px 0px;
   }
 
   #select-bill div{
@@ -200,6 +216,23 @@ body{
     }
     #addressMethod{
         flex-direction: column;
+    }
+
+    .form-tkhd div div div{
+        font-size: 0.5rem;
+        width: 100%;
+    }
+
+    .detailMethod div{
+        font-size: 0.5rem;
+        margin-right: 100px;
+    }
+
+    #billTable{
+        width: 90%;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0%);
     }
 
 @media only screen and (max-width: 1200px){
