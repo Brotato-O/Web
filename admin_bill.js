@@ -14,7 +14,7 @@ function create(){
             <div><h3>TÌM KIẾM HÓA ĐƠN</h3></div>
 
             <div>
-              <form oninput=change() onchange=change()>
+              <form class="form-tkhd" oninput=change() onchange=change()>
                 
                 <div>
                   <div style="display: flex; margin: 20px 0px;">
@@ -73,7 +73,7 @@ function create(){
 
                 </div>
                 <div class="detailMethod" style="display:flex"> 
-                  <div style="margin-right:20px">Tình trạng hóa đơn</div>
+                  <div>Tình trạng hóa đơn</div>
                   <select id="status">
                       <option value="Chờ xác nhận">Chờ xác nhận</option>
                       <option value="Đã xác nhận">Đã xác nhận</option>

@@ -575,16 +575,16 @@ function saveProfileToLocalStorage() {
   let userProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
   userProfile[currentUser.username] = { name, phone, address, email, avatar };
   localStorage.setItem("userProfile", JSON.stringify(userProfile));
-  // let listAcount = JSON.parse(localStorage.getItem("accounts"));
-  // for (let i = 0; i < listAcount.length; i++) {
-  //   if (listAcount[i].username == currentUser.username) {
-  //     //Sao chép tất cả giá trị thuộc tính
-  //     Object.assign(listAcount[i], userProfile[currentUser.username]);
-  //     localStorage.setItem("accounts", JSON.stringify(listAcount));
-  //     console.log("hello");
-  //     break;
-  //   }
-  // }
+  let listAcount = JSON.parse(localStorage.getItem("accounts"));
+  for (let i = 0; i < listAcount.length; i++) {
+    if (listAcount[i].username == currentUser.username) {
+      //Sao chép tất cả giá trị thuộc tính
+      Object.assign(listAcount[i], userProfile[currentUser.username]);
+      localStorage.setItem("accounts", JSON.stringify(listAcount));
+      console.log("hello");
+      break;
+    }
+  }
 }
 
 // <---------------<DANG NHAP/DANG KY>----------------->
