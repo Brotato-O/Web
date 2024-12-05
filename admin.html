@@ -31,7 +31,7 @@
               <div><i class="fa-regular fa-user"></i></div>
               <p id="nameAdmin"></p>
             </li></a>
-            <a style="text-decoration: none; color: inherit"><li>
+            <a href="index.html" style="text-decoration: none; color: inherit" onclick="logOutAll()"><li>
               <div><i class="fa-solid fa-right-from-bracket"></i></div>
               <p>Đăng xuất</p>
             </li></a>
@@ -69,7 +69,10 @@
             </form>
         </div>
           <input type="text" id="txtSearch1" placeholder="Tìm kiếm " oninput="search2()"/>
-          <button id="btnSearch1" onclick="openAddProduct()"> Thêm sản phẩm mới</button>
+          <button id="btnSearch1" onclick="openAddProduct()">
+            <div><i class="fa-solid fa-plus"></i></div>
+            <p>Thêm sản phẩm mới</p>
+          </button>
         </div>
         <div id="container" style="display: flex;flex-wrap: wrap;">
           <div id="maintable">
