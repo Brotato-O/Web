@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="../assets/css/toast-message.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <link rel="stylesheet" href="admin.css" />
     <link rel="stylesheet" href="admin_bill.css" />
@@ -118,6 +119,35 @@
 
       </div>
 
+    </div>
+    <div id="SearchTDN" style="display: flex; align-items: center; gap: 10px;">
+      <input type="text" id="txtSearch2" placeholder="Tìm kiếm tên đăng nhập" oninput="onInputSearch()"/>
+      <i class='bx bx-filter' style="font-size: 30px;" onclick="blockSearch()"></i>
+    </div>
+     <!-- test -->
+     <div id="timkiemKH">
+      <!-- Form tìm kiếm -->
+    </div>
+     
+     <div class="chucNang" style="display: none;">
+     
+      <div id="DS_KH">
+        <div id="mainTable">
+          <!-- <h2>DANH SÁCH KHÁCH HÀNG</h2> -->
+          <table id="tableKH">
+            <!-- Hiển thị danh sách khách hàng -->
+          </table>
+          <div class="phantrang"></div>
+        </div>
+      </div>
+    </div>
+    <div id="formContainer">
+      <!-- Form sửa -->
+    </div>
+    <!--  -->
+
+  </div>
+
       <!-- Quản lý đơn hàng -->
       <div id="bill-content">
         <table id="billTable">
@@ -182,34 +212,7 @@
         </div>
       </div>
 
-    </div>
-          
-        
-         
-         
-
-         <!-- test -->
-         <div class="chucNang" style="display: none;">
-          <div id="DS_KH">
-            <div id="mainTable">
-              <!-- <h2>DANH SÁCH KHÁCH HÀNG</h2> -->
-              <table id="tableKH">
-                <!-- Hiển thị danh sách khách hàng -->
-              </table>
-              <div class="phantrang"></div>
-            </div>
-          </div>
-          <div id="timkiemKH">
-            <!-- Form tìm kiếm -->
-          </div>
-          <div id="formContainer">
-            <!-- Form sửa -->
-          </div>
-        </div>
-        <!--  -->
-
-      </div>
-    </div>
+    
 
     <div id="overlay5" style="display: none;" onclick="an(event)">
       <div id="detail-bill">
