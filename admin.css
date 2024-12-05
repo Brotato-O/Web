@@ -101,6 +101,7 @@ body {
   display: flex;
   border: 1px solid #333333bb;
   background-color: #8b2020;
+  border-radius: 10px;
   color: white;
   font-size: 1rem;
   cursor: pointer;

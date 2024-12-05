@@ -20,7 +20,26 @@ function dsKH(startIndex, endIndex, list) {
               </td>
           </tr>`;
   }
+
   document.querySelector("#tableKH").innerHTML = s;
+  // Kiểm tra kích thước màn hình và ẩn cột thứ 4 nếu nhỏ hơn 600px
+  if (window.innerWidth <= 600) {
+    // Sử dụng JavaScript để ẩn cột "Ngày Tạo" khi màn hình nhỏ
+    var cells = document.querySelectorAll(
+      "#tableKH td:nth-child(4), #tableKH th:nth-child(4)"
+    );
+    cells.forEach((cell) => {
+      cell.style.display = "none"; // Ẩn cột thứ 4 (Ngày Tạo)
+    });
+  } else {
+    // Nếu màn hình lớn hơn 600px, đảm bảo cột "Ngày Tạo" hiển thị
+    var cells = document.querySelectorAll(
+      "#tableKH td:nth-child(4), #tableKH th:nth-child(4)"
+    );
+    cells.forEach((cell) => {
+      cell.style.display = ""; // Hiển thị cột thứ 4
+    });
+  }
 }
 
 var currentPage1 = 1;
@@ -73,20 +92,25 @@ function goToPage(pageNumber) {
 //Hiển thị form tìm kiếm
 function CreateFormTimKiem() {
   document.querySelector("#timkiemKH").innerHTML = `<div class="itemForm" >
-          <form action=""style="display:flex;  justify-content: center;align-items: center;">
-            <label for="txtName">Tên khách hàng :</label>
+          <form action=""id="form100">
+          <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+            <label for="txtName" style="white-space: nowrap;">Tên khách hàng :</label>
             <input type="text" name="txtName" />
-            
-            
+          </div>
+
+             
+              <div id="formdiachi">
+              <label for="txtDC" style="white-space:nowrap;">Địa chỉ :</label>
+              <input type="text" name="txtDC" />
+              </div>
+              <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
                 <label for="tuNgay">Từ:</label>
                 <input type="date" name="tuNgay">
                 <label for="denNgay">Đến:</label>
                 <input type="date" name="denNgay">
-             
-              <label for="txtDC" style="margin-left:30px;">Địa chỉ :</label>
-              <input type="text" name="txtDC" />
-              <div>
-                <label for="checkStatus">Tài khoản bị khóa :</label>
+              </div>  
+              <div id="formTKBK" style="display: flex; gap: 10px; align-items: center;">
+                <label for="checkStatus"style="white-space:nowrap;">Tài khoản khóa :</label>
                 <input type="checkbox" name="checkStatus" />
               </div>
               <div id="btn1" >

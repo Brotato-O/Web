@@ -57,6 +57,9 @@ td {
 .btn_ {
   display: flex;
   width: 100%;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
 }
 .btn_ button {
   width: 70%;
@@ -109,7 +112,8 @@ td {
 #btn1 {
   display: flex;
   justify-content: flex-end;
-  width: 20%;
+  gap: 10px;
+  width: 250px;
 }
 #btn1 button {
   width: 100%;
@@ -163,7 +167,15 @@ td {
   width: 50%;
   z-index: 10;
 }
-
+#form100 {
+  display: flex;
+}
+#formdiachi {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
 /*TUAN*/
 @media (max-width: 900px) {
   .chucNang {
@@ -192,6 +204,23 @@ td {
   #timkiemKH {
     margin: auto;
     width: auto;
+    width: fit-content;
+  }
+  .itemForm form {
+    flex-direction: column;
+  }
+  #formdiachi {
+    margin-left: 70px;
+  }
+  #formTKBK {
+    margin-left: 5px;
+  }
+  #btn1 {
+    margin-left: 100px;
+  }
+  #tableKH tr td:nth-child(4),
+  #tableKH tr th:nth-child(4) {
+    display: none !important;
   }
 }
 @media (max-width: 400px) {
