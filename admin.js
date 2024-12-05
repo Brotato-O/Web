@@ -27,12 +27,12 @@ function hienthitatcasp1() {
     s += `<tr>
               <td style="text-align: center">${productArrays[i].productId}</td>
               <td><img src="${productArrays[i].img}" alt="Ảnh" style="width: 100px; height: auto;"></td>
-              <td>${productArrays[i].name}</td>
+              <td class="productName">${productArrays[i].name}</td>
               <td>${productArrays[i].brand}</td>
-              <td>${productArrays[i].price.toLocaleString()}</td>
+              <td class="productPrice">${productArrays[i].price.toLocaleString()} VNĐ</td>
               <td class="btn_">
-                <button class = "xoaKH" onclick="deleteproduct('${productArrays[i].productId}')">X</button>
-                <button class = "suaKH" onclick="showsetting('${productArrays[i].productId}')">Sửa</button>
+                <button class = "xoaKH" onclick="deleteproduct('${productArrays[i].productId}')"><i class="fa-solid fa-trash"></i></button>
+                <button class = "suaKH" onclick="showsetting('${productArrays[i].productId}')"><i class="fa-solid fa-pen-to-square"></i></button>
               </td>
           </tr>
           
@@ -236,12 +236,12 @@ function search2() {
         s += `<tr>
               <td style="text-align: center">${productArrays[i].productId}</td>
               <td><img src="${productArrays[i].img}" alt="Ảnh" style="width: 100px; height: auto;"></td>
-              <td>${productArrays[i].name}</td>
+              <td class="productName">${productArrays[i].name}</td>
               <td>${productArrays[i].brand}</td>
-              <td>${productArrays[i].price.toLocaleString()}</td>
+              <td class="productPrice">${productArrays[i].price.toLocaleString()} VNĐ</td>
               <td class="btn_">
-                <button class = "xoaKH" onclick="deleteproduct('${productArrays[i].productId}')">X</button>
-                <button class = "suaKH" onclick="showsetting('${productArrays[i].productId}')">Sửa</button>
+                <button class = "xoaKH" onclick="deleteproduct('${productArrays[i].productId}')"><i class="fa-solid fa-trash"></i></button>
+                <button class = "suaKH" onclick="showsetting('${productArrays[i].productId}')"><i class="fa-solid fa-pen-to-square"></i></button>
               </td>
           </tr>
     
@@ -342,8 +342,8 @@ for (var i = 0; i < tmp1.length; i++) {
           <td>${tmp1[i].brand}</td>
           <td>${tmp1[i].price.toLocaleString()}</td>
           <td class="btn_">
-            <button class = "xoaKH" onclick="deleteproduct('${tmp1[i].productId}')">X</button>
-            <button class = "suaKH" onclick="showsetting('${tmp1[i].productId}')">Sửa</button>
+            <button class = "xoaKH" onclick="deleteproduct('${tmp1[i].productId}')"><i class="fa-solid fa-trash"></i></button>
+            <button class = "suaKH" onclick="showsetting('${tmp1[i].productId}')"><i class="fa-solid fa-pen-to-square"></i></button>
           </td>
       </tr>
 
@@ -368,3 +368,17 @@ for (var i = 0; i < tmp1.length; i++) {
 
 document.getElementById('maintable').innerHTML = ` <table id="tablesp"> ${s}</table> `; 
 }
+
+function logOutAll() {
+  localStorage.removeItem("currentUser");
+  afterSign.style.display = "none";
+  afterSignAdmin.style.display = "none";
+  overlay.style.display = "none";
+  CartForm.style.display = "none";
+  Sign.removeEventListener("click", showAfterSign);
+  SignReS.removeEventListener("click", showAfterSign);
+  Sign.removeEventListener("click", showAfterSignAdmin);
+  SignReS.removeEventListener("click", showAfterSignAdmin);
+  Sign.addEventListener("click", showSignForm);
+  SignReS.addEventListener("click", showSignForm);
+};

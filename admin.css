@@ -98,12 +98,17 @@ body{
   }
 
   #btnSearch1{
-    padding: 20px 30px;
+    padding: 20px 20px;
+    display: flex;
     border: 1px solid #333333bb;
-    background-color: #770f0fbb;
+    background-color: #8b2020;
     color: white;
     font-size: 1rem;
     cursor: pointer;
+  }
+
+  #btnSearch1 div{
+    margin-right: 10px;
   }
 
   #tablesp{
@@ -116,9 +121,13 @@ body{
   }
 
   #tablesp tbody tr th{
-    background-color: #333333bb;
+    background-color: #333;
     color: white;
     border-bottom: none;
+  }
+
+  #tablesp tbody tr td{
+    font-size: 1rem;
   }
 
   #tablesp tbody tr{
@@ -135,9 +144,21 @@ body{
   }
 
   #tablesp tbody tr .btn_ button{
-    padding: 10px;
+    padding: 10px 0;
     cursor: pointer;
     margin: 10px 0;
+    border: solid 1px #333;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  #tablesp tbody tr .btn_ .suaKH{
+    
+  }
+
+  #tablesp tbody tr .btn_ .xoaKH{
+    color: #fff;
+    background-color: #8b2020;
   }
 
   #title{
@@ -183,13 +204,13 @@ body{
   }
 
   #maintable {
-    border:1px solid black;
+    border:none;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 2%;
     box-sizing: border-box;
-    height: 100%;
+    height: auto;
     width: 100%;
 }
 .button{
@@ -201,9 +222,19 @@ body{
   cursor: pointer;
 }
 
-.button:hover{
-  color: rgb(164, 56, 5);
+.productName{
+  font-size: 1.2rem;
+  font-weight: 600;
 }
+
+.productPrice{
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* .button:hover{
+  color: rgb(164, 56, 5);
+} */
 
 #nd{
   background-color: #1f1f1f;
@@ -286,7 +317,7 @@ body{
 }
 
 #billTable tr th{
-  background-color: #333333bb;
+  background-color: #333;
   color: white;
 }
 

@@ -7,7 +7,7 @@ function create(){
     document.getElementById("mot").style.margin="0";
     document.getElementById("txtSearch1").style.display = "none";
     document.getElementById("SearchBar2").style.display = "none";
-  document.getElementById("title").innerHTML = "<h3>Danh sách đơn hàng</h3>"
+  document.getElementById("title").innerHTML = "<h3>DANH SÁCH ĐƠN HÀNG</h3>"
     var temp= document.createElement("div");
       temp.setAttribute("id", "select-bill");
       temp.innerHTML= `

@@ -659,11 +659,10 @@ css của sản phẩm
 .mota-sanpham{
     all: none;
     background-color: #fff;
+    width: 70%;
 }
 
-.mota-trai{
-    display: flex;
-}
+
 
 .mota-trai img{
     width: 100%;

@@ -353,38 +353,14 @@ function setCurrentUser(username, password, role) {
 }
 
 //Nút đăng xuất
-let logOut = document.getElementById("afterSign-logout");
-logOut.addEventListener("click", function () {
+function logOutAll() {
   localStorage.removeItem("currentUser");
   afterSign.style.display = "none";
+  afterSignAdmin.style.display = "none";
   overlay.style.display = "none";
   CartForm.style.display = "none";
   Sign.removeEventListener("click", showAfterSign);
   SignReS.removeEventListener("click", showAfterSign);
-  Sign.addEventListener("click", showSignForm);
-  SignReS.addEventListener("click", showSignForm);
-  toast({
-    title: "Thành công",
-    message: "Đã đăng xuất !",
-    type: "info",
-    duration: 3000,
-  });
-  setTimeout(function () {
-    var path = location.pathname; // Chỉ lấy đường dẫn (vd: /cart/cart.html)
-    if (path.search("/cart") == 0) {
-      location.href = "../index.html";
-    } else {
-      window.location.href = "index.html";
-    }
-  }, 1000);
-});
-
-let logOutAdmin = document.getElementById("afterSign-admin-logout");
-logOutAdmin.addEventListener("click", function () {
-  localStorage.removeItem("currentUser");
-  afterSignAdmin.style.display = "none";
-  overlay.style.display = "none";
-  CartForm.style.display = "none";
   Sign.removeEventListener("click", showAfterSignAdmin);
   SignReS.removeEventListener("click", showAfterSignAdmin);
   Sign.addEventListener("click", showSignForm);
@@ -403,7 +379,7 @@ logOutAdmin.addEventListener("click", function () {
       window.location.href = "index.html";
     }
   }, 1000);
-});
+};
 
 function loadProfile() {
   let currentUser = JSON.parse(localStorage.getItem("currentUser"));

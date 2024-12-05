@@ -98,7 +98,7 @@
             <div id="afterSign-title">Xin chào, <span id="afterSign-username"></span></div>
             <div id="afterSign-infor">Thông tin tài khoản</div>
             <a href="cart/cart.html?1"><div id="afterSign-orders">Đơn hàng của tôi</div></a>
-            <div id="afterSign-logout">Đăng xuất</div>
+            <div id="afterSign-logout" onclick="logOutAll()">Đăng xuất</div>
             <div id="afterSign-close">Thoát</i></div>
         </div>
     </div>
@@ -109,7 +109,7 @@
             <div id="afterSign-admin-infor">Thông tin tài khoản</div>
             <a href="admin.html"><div id="afterSign-admin">Quản lý cửa hàng</div></a>
             <a href="cart/cart.html?1"><div id="afterSign-admin-orders">Đơn hàng của tôi</div></a>
-            <div id="afterSign-admin-logout">Đăng xuất</div>
+            <div id="afterSign-admin-logout" onclick="logOutAll()">Đăng xuất</div>
             <div id="afterSign-admin-close">Thoát</i></div>
         </div>
     </div>
@@ -344,7 +344,8 @@
     <div id="toast"></div>
 
     <div id="sanpham-chitiet" onclick="hide(event)">
-        <div class="mota-sanpham">
+        <div class="mota-sanpham" style="width: 70%;">
+            
                 <button type="button" class="exit" onclick="closesp();">x</button>
             <div class="mota-trai">
                 <img id="img-sp" src="img/1000.jpg" />
