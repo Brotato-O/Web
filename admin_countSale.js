@@ -7,17 +7,42 @@ window.addEventListener("load", function () {
     }
   })
   
+  var counttemp=[];
+function onTime(from, to){
+    counttemp=[];
+    var count= JSON.parse(localStorage.getItem("count"));
+    if(from=="" && to==""){
+        for(var i=0; i<count.length; i++){
+                counttemp.push(count[i]);
+        }
+    }
+    else for(var i=0; i<count.length; i++){
+        if ((count[i].orderDate>= from && count[i].orderDate<= to) || (from=="" && count[i].orderDate<=to) || (to=="" && count[i].orderDate>=from)){
+            counttemp.push(count[i]);
+        }
+    }
+    for(let i=0; i< counttemp.length; i++){
+        for(let j=0; j < counttemp.length-1;j++)
+            if (counttemp[j].totalAmount < counttemp[j+1].totalAmount) {
+                var temp = count[j];
+                counttemp[j] = counttemp[j+1];
+                counttemp[j+1] = temp;
+            }
+    }
+    detailCount(-1, 1);
+ }
   //THỐNG KÊ
   function onCustomer(){
     document.getElementById("mot").style.width="100%";
     document.getElementById("mot").style.margin="0";
     document.getElementById("txtSearch1").style.display = "none";
+    document.getElementById("SearchBar2").style.display = "none";
     document.getElementById("title").innerHTML = "<h3>Thống kê theo khách</h3>"
     var bill= JSON.parse(localStorage.getItem('bill'));
     var accounts= JSON.parse(localStorage.getItem('accounts'));
     var count= [];
     for(let i=0; i< accounts.length; i++){
-            count.push({customerId: accounts[i].username, billId:[], totalAmount: 0});
+            count.push({customerId: accounts[i].username, orderDate:"", billId:[], totalAmount: 0});
         
     }
     for(let i=0; i< count.length; i++){
@@ -25,41 +50,36 @@ window.addEventListener("load", function () {
         if(bill[j].username== count[i].customerId && bill[j].status=="Đã giao"){
           count[i].billId.push(bill[j].receiptId);
           count[i].totalAmount+= bill[j].totalAmount;
+          count[i].orderDate= bill[j].orderDate;
         }
       }
     }
-    for(let i=0; i< count.length; i++){
-        for(let j=0; j < count.length-1;j++)
-            if (count[j].totalAmount < count[j+1].totalAmount) {
-                var temp = count[j];
-                count[j] = count[j+1];
-                count[j+1] = temp;
-            }
-    
-    }
-    console.log(count);
     localStorage.setItem('count', JSON.stringify(count));
 }
 
 function showCount(){
+    var from = document.getElementById("countFrom").value;
+    var to = document.getElementById("countTo").value;
+    onTime(from, to);
     document.getElementById("count-container").style.display="flex";
     document.getElementById("bill-content").style.display="none";
     document.getElementById("container").style.display="none";
-  var count= JSON.parse(localStorage.getItem("count"));
-  var detail= document.getElementById("detail-count");
+  var detail= document.getElementById("main-count");
   var s="";
-  var length= count.length;
+  var length= counttemp.length;
   if (length>5) length=5;
   for(let i=0; i<length; i++){
-    s+= `<tr id="${count[i].customerId}" class="row-count" onclick="detailCount('${count[i].customerId}', 1)" >
-    <td >${count[i].customerId}</td>
-      <td>${count[i].totalAmount}</td>
+    if (counttemp[i].totalAmount==0) break;
+    s+= `<tr id="${counttemp[i].customerId}" class="row-count" onclick="detailCount('${counttemp[i].customerId}', 1)" >
+    <td >${counttemp[i].customerId}</td>
+      <td>${counttemp[i].totalAmount}</td>
     </div>
       `;
   }
-  detail.innerHTML+=`<table id="main-count">
-    <th>Id khách</th>
-    <th>Tổng tiền</th>` + s + `</table>`;
+  detail.innerHTML=`<tr>
+                <th>Id khách</th>
+                <th>Tổng tiền</th>
+              </tr>` + s ;
 }
 
 function detailCount(id, index){
@@ -100,7 +120,7 @@ function checkBill(username){
     billtemp=[];
     var bill= JSON.parse(localStorage.getItem("bill"));
     for(var i=0; i<bill.length; i++)
-        if(bill[i].status=="Đã giao" && bill[i].username== username) billtemp.push(bill[i]);
+        if(bill[i].username== username) billtemp.push(bill[i]);
 }
 
 function showDetail1(id){

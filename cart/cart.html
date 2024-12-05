@@ -333,38 +333,51 @@
 
   <div id="overlay3" onclick="close2(event)">
     <div id="detailPaid">
-        <h3>Chi tiết đơn hàng</h3>
+        
         <div class="os1">
-            <div class="os3">
-                <div class="title1">Mã đơn hàng: &nbsp</div>
-                <div id="keyPaid"></div>
-            </div>
-            <div class="os3">
-                <div class="title1">Ngày đặt: &nbsp</div>
-                <div id="datePaid"></div>
+            <img id="ava1">
+            <div>
+                <div class="os3">
+                    <div class="title1" >Mã đơn hàng: &nbsp</div>
+                    <div id="keyPaid"></div>
+                </div>
+                <div class="os3">
+                    <div class="title1">Ngày đặt: &nbsp</div>
+                    <div id="datePaid"></div>
+                </div>
             </div>
         </div>
-        <div class="os3">
-            <div class="title1">Trạng thái:&nbsp</div>
-            <div id="statusPaid"></div>
-        </div>
-        <div class="os3">
-            <div class="title1" style="text-align: left;">Địa chỉ giao hàng: &nbsp;</div>
-            <div id="addressPaid"></div>
+        <div class="flex1">
+            <div style="width:70%">
+                <div class="os3">
+                    <div class="title1" style="width: 30%;">Địa chỉ &nbsp</div>
+                    <div id="addressPaid"></div>
+                </div>
+                <div class="os3">
+                    <div class="title1">Số điện thoại &nbsp</div>
+                    <div id="phonePaid"></div>
+                </div>
+                <div class="os3">
+                    <div class="title1">Người mua &nbsp</div>
+                    <div id="customerPaid"></div>
+                </div>
+                
+            </div>
+            <h3>HÓA ĐƠN</h3>
         </div>
         <div id="productPaid">
-            <table id="showP">
+            <table id="showP" style="border-collapse: collapse;">
                 
             </table>
         </div>        
-        <div class="os1">
-            <div class="os3">
-                <div class="title1">Tổng tiền: &nbsp</div>
-                <div id="totalPaid"></div>
-            </div>
+        <div class="db">
             <div class="os3">
                 <div class="title1">Phương thức thanh toán: &nbsp</div>
                 <div id="methodPaid"></div>
+            </div>
+            <div class="os3">
+                <div class="title1">Trạng thái: &nbsp</div>
+                <div id="statusPaid"></div>
             </div>
         </div>
     </div>
@@ -372,34 +385,51 @@
 
   <div id="overlay4">
     <div id="detailPay">
-        <h3>Xác nhận đơn hàng</h3>
-        <div style="display: flex; justify-content: space-between" class="chung">
-            <div style="display: flex;">
-                <div>Người nhận: &nbsp;</div>
-                <div id="customerPay"></div>
+        
+        <div class="os1">
+            <img id="ava">
+            <div>
+                
+                <div class="os3">
+                    <div class="title1">Ngày đặt: &nbsp</div>
+                    <div id="datePay"></div>
+                </div>
             </div>
-            <div style="display: flex;">
-                <div>Số điện thoại: &nbsp;</div>
-                <div id="phonePay"></div>
+        </div>
+        <div class="flex1">
+            <div style="width:70%">
+                <div class="os3">
+                    <div class="title1">Địa chỉ &nbsp</div>
+                    <div id="addressPay"></div>
+                </div>
+                <div class="os3">
+                    <div class="title1">Số điện thoại &nbsp</div>
+                    <div id="phonePay"></div>
+                </div>
+                <div class="os3">
+                    <div class="title1">Người mua &nbsp</div>
+                    <div id="customerPay"></div>
+                </div>
+                
             </div>
+            <h3>HÓA ĐƠN</h3>
         </div>
-        <div style="display: flex;" class="rieng">
-            <div>Địa chỉ nhận hàng: &nbsp;</div>
-            <div id="addressPay"></div>
+        <div class="productPay">
+            <table id="showP1" style="border-collapse: collapse;">
+                
+            </table>
+        </div>        
+        <div class="db">
+            <div class="os3">
+                <div class="title1">Phương thức thanh toán: &nbsp</div>
+                <div id="methodPay"></div>
+            </div>
+            
         </div>
-        <table id="showP1">
-
-        </table>      
-        <div style="display: flex; justify-content: space-between " class="chung">
-            <div>Tổng tiền: &nbsp;</div>
-            <div id="totalPay"></div>
+        <div id="bttn">
+            <button onclick="back()">Quay lại</button>
+            <button onclick="checkout()">Đặt hàng</button>
         </div>
-        <div style="display: flex; justify-content: space-between;" class="chung">
-            <div>Phương thức: &nbsp;</div>
-            <div id="methodPay"></div>
-        </div>
-        <button onclick="back()">Quay lại</button>
-        <button onclick="checkout()">Xác nhận</button>
     </div>
   </div>
   <div id="toast"></div>
