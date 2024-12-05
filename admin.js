@@ -282,3 +282,69 @@ var accounts = JSON.parse(localStorage.getItem("accounts")) || [];
 var currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
 let nameAdmin = accounts.find(account => account.username === currentUser.username).name;
 document.getElementById("nameAdmin").innerHTML = nameAdmin;
+
+function kiemtrachon() {
+  var pl = document.forms["phanloai"].elements["phanloaisp"].value;// Lấy giá trị phân loại
+  var tmp = JSON.parse(localStorage.getItem('all'));
+ 
+  var s = '';
+  var tmp1 = [];
+
+  // Nếu không chọn phân loại (mặc định "tất cả sản phẩm")
+  if (pl === "tatcasp") {
+     
+    hienthitatcasp1()
+      
+      return;
+  }
+
+  // Lọc sản phẩm theo phân loại
+  if (tmp && Array.isArray(tmp)) {
+      tmp1 = tmp.filter(product => product.brand === pl);
+  }
+  console.log("Phân loại được chọn:", pl);
+console.log("Dữ liệu sản phẩm:", tmp);
+console.log("Danh sách lọc:", tmp1);
+  var s = `<tr>
+  <th>ID</th>
+  <th>ẢNH</th>
+  <th>TÊN SẢN PHẨM</th>
+  <th>LOẠI</th>
+  <th>GIÁ</th>
+  <th>CHỨC NĂNG</th>
+</tr>`;
+
+for (var i = 0; i < tmp1.length; i++) {
+ 
+    s += `<tr>
+          <td style="text-align: center">${tmp1[i].productId}</td>
+          <td><img src="${tmp1[i].img}" alt="Ảnh" style="width: 100px; height: auto;"></td>
+          <td>${tmp1[i].name}</td>
+          <td>${tmp1[i].brand}</td>
+          <td>${tmp1[i].price.toLocaleString()}</td>
+          <td class="btn_">
+            <button class = "xoaKH" onclick="deleteproduct('${tmp1[i].productId}')">X</button>
+            <button class = "suaKH" onclick="showsetting('${tmp1[i].productId}')">Sửa</button>
+          </td>
+      </tr>
+
+        <div id="bao" style=" top:0;bottom:0;left: 0;;right: 0;  background: rgba(0, 0, 0, 0.7);z-index: 5000;position: fixed; display: none;">
+        <div id="bao1" style="width: 60%; margin: 200px auto; border: 1px solid; background-color: white;">
+          <div style="float: right; margin: 5px 10px; font-size: 50px; transform: rotate(45deg);cursor: pointer;" onclick="closesetting()">+</div>
+          <div id="infor">
+              <label for="txtname" style="font-size: 30px; margin-left: 15px ;">Tên sản phẩm</label>
+              <input type="text" id="txtname" value="a" size="30px" style="font-size: 30px;margin:30px 10px 15px 100px ;border: none; border-bottom: 2px solid ;" /> <br/>
+              <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá (VND)</label>
+              <input type="text" id="txtprice" value="b" size="30px" style="font-size: 30px; margin:0px 10px 15px 150px;border: none; border-bottom: 2px solid ;"/><br/>
+              <label style="font-size: 30px; margin-left: 15px;">Ảnh</label>
+              <input type="file" id="imgadd" style="font-size: 20px; margin: 15px 10px 15px 250px;">
+            
+
+          </div>
+          <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct(${tmp1[i].productId})">Xác nhận</div>
+      </div> 
+`;
+} 
+
+document.getElementById('maintable').innerHTML = ` <table id="tablesp"> ${s}</table> `; 
+}
