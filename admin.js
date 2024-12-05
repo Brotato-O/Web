@@ -180,14 +180,18 @@ function addProduct() {
   var imgInput = document.getElementById("imgUpload");
 
   if (!brand.value || !productname.value || !price.value || !imgInput.files.length) {
-    toast({ title: 'Lỗi', message: 'Vui lòng điền đầy đủ thông tin và tải ảnh!', type: 'error', duration: 3000 });
+    alert("Vui lòng điền đầy đủ thông tin!");
     return false;
   }
   
   if (price.value < 0) {
-    toast({ title: 'Lỗi', message: 'Giá không hợp lệ!', type: 'error', duration: 3000 });
+    alert("Giá không đúng, Vui lòng nhập lại!");
     return false;
   }
+  if (isNaN(price.value) || price.value.trim() === "") {
+    alert("Giá phải là một số hợp lệ, vui lòng nhập lại!");
+    return false;
+}
 
   var reader = new FileReader();
   reader.onload = function (e) {
@@ -202,7 +206,8 @@ function addProduct() {
     productArray.push(producttemp);
     localStorage.setItem("all", JSON.stringify(productArray));
     hienthitatcasp1();
-    toast({ title: 'Thành công', message: 'Thêm thành công sản phẩm!', type: 'success', duration: 3000 });
+  alert("Thêm sản phẩm thành công!");
+  closeAddProduct();
   };
 
   reader.readAsDataURL(imgInput.files[0]); // Đọc tệp ảnh
