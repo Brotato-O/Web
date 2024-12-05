@@ -72,7 +72,7 @@ function goToPage(pageNumber) {
 
 //Hiển thị form tìm kiếm
 function CreateFormTimKiem() {
-  document.querySelector("#timkiemKH").innerHTML = `<div class="itemForm" ">
+  document.querySelector("#timkiemKH").innerHTML = `<div class="itemForm" >
           <form action=""style="display:flex;  justify-content: center;align-items: center;">
             <label for="txtName">Tên khách hàng :</label>
             <input type="text" name="txtName" />
@@ -132,41 +132,35 @@ window.addEventListener("load", () => {
   var btnTim = document.querySelector("button[name=timKiem]");
   btnTim.addEventListener("click", (e) => {
     e.preventDefault();
-    // var inputTĐN = document.querySelector("input[name=txtTĐN]").value;
-    var inputTKH = document.querySelector("input[name=txtName]").value;
-    var inputĐC = document.querySelector("input[name=txtDC]").value;
+
+    var inputTKH = document.querySelector("input[name=txtName]").value.trim();
+    var inputĐC = document.querySelector("input[name=txtDC]").value.trim();
     var inputTuNgay = document.querySelector("input[name=tuNgay]").value;
     var inputDenNgay = document.querySelector("input[name=denNgay]").value;
-
     var inputStatus = document.querySelector(
       ".itemForm input[name=checkStatus]"
     ).checked;
 
-    var listKH = JSON.parse(localStorage.getItem("accounts"));
+    var listKH = JSON.parse(localStorage.getItem("accounts")) || [];
     var listSearch = listKH.filter((value) => {
-      var temp = true;
-      var tempNgayTao;
-      var tuNgay;
-      var denNgay;
+      var tempNgayTao = new Date(value.date);
+      var tuNgay = new Date(inputTuNgay);
+      var denNgay = new Date(inputDenNgay);
 
-      if (inputStatus) {
-        temp = value.status === "block";
-      } else {
-        temp = value.status === "active";
+      // Kiểm tra trạng thái
+      var temp = inputStatus
+        ? value.status === "block"
+        : value.status === "active";
+
+      // Kiểm tra ngày
+      if (tuNgay && denNgay && tempNgayTao) {
+        if (tempNgayTao < tuNgay || tempNgayTao > denNgay) return false;
       }
-      if (value.date || inputTuNgay || inputDenNgay) {
-        tempNgayTao = new Date(value.date);
-        tuNgay = new Date(inputTuNgay);
-        denNgay = new Date(inputDenNgay);
-      }
-      console.log(tempNgayTao);
+
+      // Kết hợp các điều kiện
       return (
-        // (value.username || "").toUpperCase().includes(inputTĐN.toUpperCase()) &&
         (value.name || "").toUpperCase().includes(inputTKH.toUpperCase()) &&
         (value.address || "").toUpperCase().includes(inputĐC.toUpperCase()) &&
-        (!tuNgay ||
-          !denNgay ||
-          (tuNgay <= tempNgayTao && tempNgayTao <= denNgay)) &&
         temp
       );
     });
