@@ -474,7 +474,7 @@ function phanloaitheogia(){
                                     <p>${(tmp[i].price).toLocaleString()} VND</p>
                                     </div>
                               `;
-            tmp2 = tmp.filter(product => product.price >= gt && product.price <= gd);
+            tmp2 = tmp.filter(product => ((product.price>=gt && !gd)||(product.price >= gt && product.price <= gd)));
             localStorage.setItem('producttmp2', JSON.stringify(tmp2));
         }
     } 

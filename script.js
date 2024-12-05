@@ -429,7 +429,7 @@ function loadProfile() {
     phone = "";
     address = "";
     email = "";
-    avatar = "default-avatar.png";
+    avatar = "";
   }
   var s = "";
   s = `<div id="top-profile">
@@ -440,8 +440,8 @@ function loadProfile() {
         </div>
         <div id="content">
         <div id="img-user1">
-            <img src="${avatar}" alt="" id="avatar" />
             <i class="bx bxs-user"></i>
+            <img src="${avatar}" alt="" id="avatar" style="z-index:10"/>
         </div>
         <input type="file" style="display: none"/>
         <form id="form">
@@ -558,23 +558,13 @@ function ProfileSubmit() {
 function ProfileClear() {
   let clear = document.getElementById("xoa");
   clear.addEventListener("click", function (e) {
-    if (
-      confirm(
-        "Hành động này sẽ trực tiếp xóa tất cả thông tin của bạn. Bạn có chắc chắn muốn tiếp tục?"
-      )
-    ) {
+      document.getElementById("avatar").src = "";
       document.querySelector('input[name="txtName"]').value = "";
       document.querySelector('input[name="nPhone"]').value = "";
       document.querySelector('input[name="txtAddress"]').value = "";
       document.querySelector('input[name="txtEmail"]').value = "";
-
-      let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      let userProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
-      userProfile[currentUser.username] = {};
-      localStorage.setItem("userProfile", JSON.stringify(userProfile));
-
       e.preventDefault();
-    }
+    
   });
 }
 
@@ -609,16 +599,16 @@ function saveProfileToLocalStorage() {
   let userProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
   userProfile[currentUser.username] = { name, phone, address, email, avatar };
   localStorage.setItem("userProfile", JSON.stringify(userProfile));
-  let listAcount = JSON.parse(localStorage.getItem("accounts"));
-  for (let i = 0; i < listAcount.length; i++) {
-    if (listAcount[i].username == currentUser.username) {
-      //Sao chép tất cả giá trị thuộc tính
-      Object.assign(listAcount[i], userProfile[currentUser.username]);
-      localStorage.setItem("accounts", JSON.stringify(listAcount));
-      console.log("hello");
-      break;
-    }
-  }
+  // let listAcount = JSON.parse(localStorage.getItem("accounts"));
+  // for (let i = 0; i < listAcount.length; i++) {
+  //   if (listAcount[i].username == currentUser.username) {
+  //     //Sao chép tất cả giá trị thuộc tính
+  //     Object.assign(listAcount[i], userProfile[currentUser.username]);
+  //     localStorage.setItem("accounts", JSON.stringify(listAcount));
+  //     console.log("hello");
+  //     break;
+  //   }
+  // }
 }
 
 // <---------------<DANG NHAP/DANG KY>----------------->
@@ -685,6 +675,8 @@ function show2(ID) {
   }
 }
 function closesp() {
+  document.getElementById("size").value = "31";
+  document.getElementById("sl").value = 1;
   document.getElementById("sanpham-chitiet").style.display = "none";
 }
 function giamsl() {
@@ -778,6 +770,8 @@ document.addEventListener("click", function (event) {
         duration: 3000,
       });
       displayCart(currentUser.username);
+      document.getElementById("size").value = "31";
+      document.getElementById("sl").value = 1;
     } else {
       toast({
         title: "Thất bại",

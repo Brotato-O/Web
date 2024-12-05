@@ -37,17 +37,18 @@ function hienthitatcasp1() {
           </tr>
           
           <div id="bao" style=" top:0;bottom:0;left: 0;;right: 0;  background: rgba(0, 0, 0, 0.7);z-index: 5000;position: fixed; display: none;">
-        <div id="bao1" style="width: 60%; margin: 200px auto; border: 1px solid; background-color: white;">
+        <div id="bao1" style="width: 60%; margin:60px auto; border: 1px solid; background-color: white; border-radius: 10px;">
             <div style="float: right; margin: 5px 10px; font-size: 50px; transform: rotate(45deg);cursor: pointer;" onclick="closesetting()">+</div>
             <div id="infor">
+            <div style="display:flex; justify-content: center;">
+                <img src="" alt="Ảnh" style="width: 30%; " id="fileimg">
+                </div>
                 <label for="txtname" style="font-size: 30px; margin-left: 15px ;">Tên sản phẩm:</label><br>
                 <input type="text" id="txtname" value="a" size="30px" style="font-size: 25px;width:80%;" /> <br/><br>
                 <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá:</label><br>
                 <input type="text" id="txtprice" value="b" size="30px" style="font-size: 25px; width: 80%;"/>(VND)<br/><br>
                 <label style="font-size: 30px; margin-left: 15px;">Ảnh:</label>
                 <input type="file" id="imgadd" style="font-size: 25px; width: 80%;">
-               
-
             </div>
             <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct()">Xác nhận</div>
         </div> 
@@ -96,14 +97,26 @@ function showsetting(productid) {
   document.getElementById("bao").style.display = "block";
   var productArray = JSON.parse(localStorage.getItem("all"));
   for (var i = 0; i < productArray.length; i++) {
-    if (productArray[i].productId == productid) {
-      document.getElementById("txtname").value = productArray[i].name;
-      document.getElementById("txtprice").value = productArray[i].price;
-      document.getElementById("xacnhan").setAttribute("data-id", productid); // Gắn productId
-      break;
-    }
+      if (productArray[i].productId == productid) {
+          document.getElementById("txtname").value = productArray[i].name;
+          document.getElementById("txtprice").value = productArray[i].price;
+          document.getElementById("fileimg").src = productArray[i].img;
+          document.getElementById("xacnhan").setAttribute("data-id", productid); // Gắn productId
+
+          // Thêm sự kiện thay đổi ảnh
+          document.getElementById("imgadd").addEventListener("change", function (event) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                  document.getElementById("fileimg").src = e.target.result; // Cập nhật ảnh hiện tại
+              };
+              reader.readAsDataURL(event.target.files[0]);
+          });
+
+          break;
+      }
   }
 }
+
 function changeproduct() {
   var productId = document.getElementById("xacnhan").getAttribute("data-id"); // Lấy ID từ data-id
   var productArray = JSON.parse(localStorage.getItem("all"));
@@ -167,14 +180,18 @@ function addProduct() {
   var imgInput = document.getElementById("imgUpload");
 
   if (!brand.value || !productname.value || !price.value || !imgInput.files.length) {
-    toast({ title: 'Lỗi', message: 'Vui lòng điền đầy đủ thông tin và tải ảnh!', type: 'error', duration: 3000 });
+    alert("Vui lòng điền đầy đủ thông tin!");
     return false;
   }
   
   if (price.value < 0) {
-    toast({ title: 'Lỗi', message: 'Giá không hợp lệ!', type: 'error', duration: 3000 });
+    alert("Giá không đúng, Vui lòng nhập lại!");
     return false;
   }
+  if (isNaN(price.value) || price.value.trim() === "") {
+    alert("Giá phải là một số hợp lệ, vui lòng nhập lại!");
+    return false;
+}
 
   var reader = new FileReader();
   reader.onload = function (e) {
@@ -189,7 +206,8 @@ function addProduct() {
     productArray.push(producttemp);
     localStorage.setItem("all", JSON.stringify(productArray));
     hienthitatcasp1();
-    toast({ title: 'Thành công', message: 'Thêm thành công sản phẩm!', type: 'success', duration: 3000 });
+  alert("Thêm sản phẩm thành công!");
+  closeAddProduct();
   };
 
   reader.readAsDataURL(imgInput.files[0]); // Đọc tệp ảnh
@@ -228,20 +246,21 @@ function search2() {
           </tr>
     
             <div id="bao" style=" top:0;bottom:0;left: 0;;right: 0;  background: rgba(0, 0, 0, 0.7);z-index: 5000;position: fixed; display: none;">
-            <div id="bao1" style="width: 60%; margin: 200px auto; border: 1px solid; background-color: white;">
-              <div style="float: right; margin: 5px 10px; font-size: 50px; transform: rotate(45deg);cursor: pointer;" onclick="closesetting()">+</div>
-              <div id="infor">
-                  <label for="txtname" style="font-size: 30px; margin-left: 15px ;">Tên sản phẩm</label>
-                  <input type="text" id="txtname" value="a" size="30px" style="font-size: 30px;margin:30px 10px 15px 100px ;border: none; border-bottom: 2px solid ;" /> <br/>
-                  <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá (VND)</label>
-                  <input type="text" id="txtprice" value="b" size="30px" style="font-size: 30px; margin:0px 10px 15px 150px;border: none; border-bottom: 2px solid ;"/><br/>
-                  <label style="font-size: 30px; margin-left: 15px;">Ảnh</label>
-                  <input type="file" id="imgadd" style="font-size: 20px; margin: 15px 10px 15px 250px;">
-                
-
-              </div>
-              <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct(${productArrays[i].productId})">Xác nhận</div>
-          </div> 
+        <div id="bao1" style="width: 60%; margin:60px auto; border: 1px solid; background-color: white; border-radius: 10px;">
+            <div style="float: right; margin: 5px 10px; font-size: 50px; transform: rotate(45deg);cursor: pointer;" onclick="closesetting()">+</div>
+            <div id="infor">
+            <div style="display:flex; justify-content: center;">
+                <img src="" alt="Ảnh" style="width: 30%; " id="fileimg">
+                </div>
+                <label for="txtname" style="font-size: 30px; margin-left: 15px ;">Tên sản phẩm:</label><br>
+                <input type="text" id="txtname" value="a" size="30px" style="font-size: 25px;width:80%;" /> <br/><br>
+                <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá:</label><br>
+                <input type="text" id="txtprice" value="b" size="30px" style="font-size: 25px; width: 80%;"/>(VND)<br/><br>
+                <label style="font-size: 30px; margin-left: 15px;">Ảnh:</label>
+                <input type="file" id="imgadd" style="font-size: 25px; width: 80%;">
+            </div>
+            <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct()">Xác nhận</div>
+        </div> 
 `;
       }
   } 
@@ -282,3 +301,70 @@ var accounts = JSON.parse(localStorage.getItem("accounts")) || [];
 var currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
 let nameAdmin = accounts.find(account => account.username === currentUser.username).name;
 document.getElementById("nameAdmin").innerHTML = nameAdmin;
+
+function kiemtrachon() {
+  var pl = document.forms["phanloai"].elements["phanloaisp"].value;// Lấy giá trị phân loại
+  var tmp = JSON.parse(localStorage.getItem('all'));
+ 
+  var s = '';
+  var tmp1 = [];
+
+  // Nếu không chọn phân loại (mặc định "tất cả sản phẩm")
+  if (pl === "tatcasp") {
+     
+    hienthitatcasp1()
+      
+      return;
+  }
+
+  // Lọc sản phẩm theo phân loại
+  if (tmp && Array.isArray(tmp)) {
+      tmp1 = tmp.filter(product => product.brand === pl);
+  }
+  console.log("Phân loại được chọn:", pl);
+console.log("Dữ liệu sản phẩm:", tmp);
+console.log("Danh sách lọc:", tmp1);
+  var s = `<tr>
+  <th>ID</th>
+  <th>ẢNH</th>
+  <th>TÊN SẢN PHẨM</th>
+  <th>LOẠI</th>
+  <th>GIÁ</th>
+  <th>CHỨC NĂNG</th>
+</tr>`;
+
+for (var i = 0; i < tmp1.length; i++) {
+ 
+    s += `<tr>
+          <td style="text-align: center">${tmp1[i].productId}</td>
+          <td><img src="${tmp1[i].img}" alt="Ảnh" style="width: 100px; height: auto;"></td>
+          <td>${tmp1[i].name}</td>
+          <td>${tmp1[i].brand}</td>
+          <td>${tmp1[i].price.toLocaleString()}</td>
+          <td class="btn_">
+            <button class = "xoaKH" onclick="deleteproduct('${tmp1[i].productId}')">X</button>
+            <button class = "suaKH" onclick="showsetting('${tmp1[i].productId}')">Sửa</button>
+          </td>
+      </tr>
+
+        <div id="bao" style=" top:0;bottom:0;left: 0;;right: 0;  background: rgba(0, 0, 0, 0.7);z-index: 5000;position: fixed; display: none;">
+        <div id="bao1" style="width: 60%; margin:60px auto; border: 1px solid; background-color: white; border-radius: 10px;">
+            <div style="float: right; margin: 5px 10px; font-size: 50px; transform: rotate(45deg);cursor: pointer;" onclick="closesetting()">+</div>
+            <div id="infor">
+            <div style="display:flex; justify-content: center;">
+                <img src="" alt="Ảnh" style="width: 30%; " id="fileimg">
+                </div>
+                <label for="txtname" style="font-size: 30px; margin-left: 15px ;">Tên sản phẩm:</label><br>
+                <input type="text" id="txtname" value="a" size="30px" style="font-size: 25px;width:80%;" /> <br/><br>
+                <label for="txtprice" style="font-size: 30px; margin-left: 15px;">Giá:</label><br>
+                <input type="text" id="txtprice" value="b" size="30px" style="font-size: 25px; width: 80%;"/>(VND)<br/><br>
+                <label style="font-size: 30px; margin-left: 15px;">Ảnh:</label>
+                <input type="file" id="imgadd" style="font-size: 25px; width: 80%;">
+            </div>
+            <div id="xacnhan" style=" background-color: orangered; width: fit-content; padding: 10px; font-size: 36px;margin: 20px auto; cursor: pointer;"onclick="changeproduct()">Xác nhận</div>
+        </div> 
+`;
+} 
+
+document.getElementById('maintable').innerHTML = ` <table id="tablesp"> ${s}</table> `; 
+}
