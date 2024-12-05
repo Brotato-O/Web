@@ -2,7 +2,7 @@
 body{
     width: 100%;
 }
-#detail-container{
+#detail-container, #overlay5{
     position: fixed;
     top: 0px;
     left: 0px;
@@ -25,7 +25,6 @@ body{
 }
 #detail-bill p{
     display: inline-block;
-    width: 50%;
 }
 .detailMethod{
     display: flex;
@@ -43,10 +42,14 @@ body{
 .infor-wrap{
     display: flex;
     align-items: center;
+    justify-content: space-around;
     margin: 10px 0px;
 }
+.chung{
+    display: flex;
+}
 .infor-wrap div{
-    flex-grow: 1;
+    display: flex;
 }
 #billTable{
     width: 70%;
@@ -107,8 +110,11 @@ body{
   .infor-wrap p{
     font-size: 18px;
     overflow-y: hidden;
-    font-weight: bold;
     margin: 10px;
+  }
+  .title2{
+    
+    font-weight: bold;
   }
   
   #detail-bill button{

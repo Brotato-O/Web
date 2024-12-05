@@ -6,6 +6,7 @@ function create(){
   document.getElementById("mot").style.width="100%";
     document.getElementById("mot").style.margin="0";
     document.getElementById("txtSearch1").style.display = "none";
+    document.getElementById("SearchBar2").style.display = "none";
   document.getElementById("title").innerHTML = "<h3>Danh sách đơn hàng</h3>"
     var temp= document.createElement("div");
       temp.setAttribute("id", "select-bill");
@@ -146,8 +147,9 @@ function lookUpStatus() {
     console.log((from));
     for(var i=0;i<billtemp.length; i++){
       if((billtemp[i].sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
-        || ( ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) || (billtemp[i].totalAmount>=Number(from) && Number(to)==0) || (Number(from)==0 && billtemp[i].totalAmount<=Number(to))) && n=="price") || 
-      (((from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate)) || from<= new Date(billtemp[i].orderDate) && to==="" || from==="" && to>= new Date(billtemp[i].orderDate)) && n=="date") 
+        || ( ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) || (billtemp[i].totalAmount>=Number(from) && Number(to)==0) || 
+      (Number(from)==0 && billtemp[i].totalAmount<=Number(to))) && n=="price") || (((from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate)) 
+      || from<= new Date(billtemp[i].orderDate) && to==="" || from==="" && to>= new Date(billtemp[i].orderDate)) && n=="date") || billtemp[i].address.includes(from) && n=="address"
       || billtemp[i].username.includes(from) && n=="username"||(n=="all")) {
           s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
             <td>${billtemp[i].orderDate}</td>
@@ -214,6 +216,10 @@ function lookUpStatus() {
       var to = document.getElementById("priceto").value;
       var dateFrom = document.getElementById("dateFrom").value;
       var dateTo = document.getElementById("dateTo").value;
+      var city= document.getElementById("city-select-new").value;
+      var district= document.getElementById("district-select-new").value;
+      var ward= document.getElementById("ward-select-new").value;
+      var combine= "Phường: " + ward+ ", Quận: " + district + ", Thành phố: " + city;
       var billFrom= new Date(dateFrom);
       var billTo= new Date(dateTo);
       var method= document.getElementById("method");
@@ -222,84 +228,69 @@ function lookUpStatus() {
       if(method.value== "id") billDisplay(billText, 0, "id");
       if(method.value== "price") billDisplay(from, to, "price");
       if(method.value== "date") billDisplay(billFrom, billTo, "date");
+      if(method.value== "address") billDisplay(combine, 0, "address");
       if(method.value== "all") billDisplay(0, 0, "all"); 
   }
   //KẾT THÚC TÌM KIẾM HÓA ĐƠN
-
+  function closeDetail(){
+    document.getElementById("overlay5").style.display="none";
+  }
 
   //SHOW CHI TIẾT HÓA ĐƠN
   function showDetail(obj){
    var account= JSON.parse(localStorage.getItem("accounts"));
-    document.getElementById("detail-container").style.display= "block";
+    document.getElementById("overlay5").style.display= "block";
     for(let i=0; i< billtemp.length; i++){
       if(obj.id== billtemp[i].receiptId){
         var name;
         for(let j=0; j< account.length; j++)
             if (billtemp[i].username== account[j].username) name= account[j].name;
-        document.getElementById("detail-bill").innerHTML=`
-          <div>
-            <h2 >Thông tin hóa đơn</h2>
-            <button id="closeDetail" onclick="closeDetail()">X</button>
-          </div>
-          <div class="infor-wrap">
-            <p>Mã hóa đơn</p>
-            <p>${obj.id}</p>
-          </div>
-          <div class="infor-wrap">
-            <p>Ngày lập hóa đơn</p>
-            <p>${billtemp[i].orderDate}</p>
-          </div>
-          
-          `;
+          document.getElementById("adminReceipt").innerHTML= billtemp[i].receiptId;
+          document.getElementById("adminDate").innerHTML= billtemp[i].orderDate;
+          document.getElementById("adminKey").innerHTML= billtemp[i].username;
+          document.getElementById("adminName").innerHTML= billtemp[i].name;
+          document.getElementById("adminAddress").innerHTML= billtemp[i].address;
+          document.getElementById("adminPhone").innerHTML= billtemp[i].sdt;
+          document.getElementById("adminTotal").innerHTML= billtemp[i].totalAmount;
+          document.getElementById("adminMethod").innerHTML= billtemp[i].paymentMethod;
+        
           var s="";
             for(let j=0; j< billtemp[i].product.length; j++){
-              s+=`<p class="bill-product">${billtemp[i].product[j].quantity} X Size ${billtemp[i].product[j].size}: ${billtemp[i].product[j].title}</p>`;
-              
+              s+=`
+                <tr>
+                  <td>${billtemp[i].product[j].title}</td>
+                  <td>${billtemp[i].product[j].quantity}</td>
+                  <td>${billtemp[i].product[j].size}</td>
+                  <td>${billtemp[i].product[j].price}</td>
+                </tr>
+              `;
             }
-          document.getElementById("detail-bill").innerHTML+= `
-            <div class="infor-wrap">
-             <p>Sản phẩm</p>
-             <div>` + s + `</div>
-            </div>
-          <div class="infor-wrap">
-            <p>Mã khách hàng</p>
-            <p>${billtemp[i].username}</p>
-          </div>
-          <div class="infor-wrap">
-            <p>Tên khách hàng</p>
-            <p>${name}</p>
-          </div>
-          <div class="infor-wrap">
-            <p>Địa chỉ giao hàng</p>
-            <p>${billtemp[i].address}</p>
-          </div>
-          <div class="infor-wrap">
-            <p>Số điện thoại</p>
-            <p>${billtemp[i].sdt}</p>
-          </div>
-          <div class="infor-wrap">
-            <p>Trạng thái</p>
-            <div id="outsideStatus">
-              <p id="innerStatus">${billtemp[i].status}</p>
-            </div>
-          </div>`
+          document.getElementById("adminTable").innerHTML= `<tr>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Size</th>
+            <th>Đơn giá</th>
+          </tr>`+s;
           if (billtemp[i].status !="Đã hủy"){
-           document.getElementById("outsideStatus").innerHTML+= `
+           document.getElementById("adminStatus").innerHTML= `
+           <p>Trạng thái</p>
+           <div>
+            <p id="showStatus">${billtemp[i].status}</p>
             <select id="changeStatus" onchange="changeText(this)">
               <option value="Chờ xác nhận">Chờ xác nhận</option>
               <option value="Đã xác nhận">Đã xác nhận</option>
               <option value="Đang giao">Đang giao</option>
               <option value="Đã giao">Đã giao</option>
             </select>
+            </div>
           `;
-            console.log(document.getElementById("changeStatus").value);
-            document.getElementById("detail-bill").innerHTML+=`
+            document.getElementById("cfB").innerHTML=`
               <button onclick="confirm1('${billtemp[i].receiptId}')">Xác nhận</button>
             `;
             document.getElementById("changeStatus").value=billtemp[i].status;
           }
           else{
-            document.getElementById("detail-bill").innerHTML+=`
+            document.getElementById("cfB").innerHTML+=`
               <div class="infor-wrap">
                 <p>Lý do hủy</p>
                 <p>${billtemp[i].reason}</p>
@@ -311,10 +302,9 @@ function lookUpStatus() {
   }
 
   function changeText(obj){
-    document.getElementById("innerStatus").innerHTML=obj.value;
+    document.getElementById("showStatus").innerHTML=obj.value;
   }
   function confirm1(id){
-    var billtemp= JSON.parse(localStorage.getItem("billtemp"));
     var bill= JSON.parse(localStorage.getItem('bill'));
     for(let i=0; i <bill.length; i++){
       
@@ -331,13 +321,11 @@ function lookUpStatus() {
 
   function an(event){
     var obj= event.target;
-    if (obj.id== "detail-container")
+    if (obj.id== "overlay5"){
       obj.style.display="none";
+    }
   }
 
-  function closeDetail(){
-    document.getElementById("detail-container").style.display= "none";
-  }
   function loadCitiesForNewAddress() {
     const citySelectNew = document.getElementById("city-select-new");
     for (const city in locationData) {

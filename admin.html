@@ -151,12 +151,7 @@
     </div>
           
         
-         <div id="detail-container" onclick="an(event)" style="display: none;">
-          <div id="detail-bill">
-            
-          </div>
-         </div> 
-        
+         
          
 
          <!-- test -->
@@ -184,6 +179,59 @@
 
     <div id="countP-wrap">
       
+    </div>
+    <div id="overlay5" style="display: none;" onclick="an(event)">
+      <div id="detail-bill">
+        <div>
+          <h2 >Thông tin hóa đơn</h2>
+          <button id="closeDetail" onclick="closeDetail()">X</button>
+        </div>
+        <div class="infor-wrap">
+          <div>
+            <p class="title2">Mã hóa đơn</p>
+            <p id="adminReceipt"></p>
+          </div>
+          <div>
+            <p class="title2">Ngày lập hóa đơn</p>
+            <p id="adminDate"></p>
+          </div>
+        </div>
+        <div class="infor-wrap">
+          <div>
+            <p class="title2">Mã khách hàng</p>
+            <p id="adminKey"></p>
+          </div>
+          <div>
+            <p class="title2">Tên khách hàng</p>
+            <p id="adminName"></p>
+          </div>
+        </div>
+        <div class="chung">
+          <p class="title2">Địa chỉ</p>
+          <p id="adminAddress"></p>
+        </div>
+        <div class="chung">
+          <p class="title2">Số điện thoại</p>
+          <p id="adminPhone"></p>
+        </div>
+        <table id="adminTable">
+          
+        </table>
+        <div class="chung">
+          <p class="title2">Tổng tiền</p>
+          <p id="adminTotal"></p>
+        </div>
+        <div class="chung">
+          <p class="title2">Phương thức thanh toán</p>
+          <p id="adminMethod"></p>
+        </div>
+        <div id="adminStatus">
+          
+        </div>
+        <div id="cfB">
+          
+        </div>
+      </div>
     </div>
 
     <div id="overlay"></div>
