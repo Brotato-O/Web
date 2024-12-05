@@ -5,7 +5,8 @@ const newAddressBox = document.getElementById('new-address-box');
 const addressBox = document.getElementById('address-box');
 const cardInfoBox = document.getElementById('card-info-box');
 const paymentImageContainer = document.getElementById('payment-image-container');
-var newInfo= null;
+var cf=0; 
+var address= null;
 
 let locationData;
 
@@ -431,16 +432,16 @@ function addToBill(){
         if(radio[i].checked) temp=radio[i].value;
     bill[length].paymentMethod=temp;
     bill[length].status = "Chờ xác nhận";
-    console.log(newInfo);
-    if(newInfo!= null){
-        bill[length].address= `Số nhà: ${newInfo.houseNumber}, Đường: ${newInfo.street}, Phường: ${newInfo.ward}, Quận: ${newInfo.district}, Thành phố: ${newInfo.city}`;
-        bill[length].sdt= newInfo.phone;
+    if(cf==1){
+        bill[length].address= `Số nhà: ${address.houseNumber}, Đường: ${address.street}, Phường: ${address.ward}, Quận: ${address.district}, Thành phố: ${address.city}`;
+        bill[length].sdt= address.phone;
     }   
      else {
         bill[length].address= profile[username].address;
         bill[length].sdt=  profile[username].phone;
     }
     localStorage.setItem('bill',JSON.stringify(bill));
+    deleteItems();
 }
 
 //Code của Tài
@@ -465,14 +466,22 @@ function openCheckout() {
 };
 
 function cfP(){
+    const selectedMethod = document.querySelector('input[name="payment-method"]:checked');  
+    if (!selectedMethod) {
+      alert('Vui lòng chọn phương thức thanh toán!');
+      return; 
+    }
+    else if(selectedMethod.value === 'Thẻ ngân hàng' && validateCard()== false){
+        return;
+    }
     closeCheckout();
     document.getElementById("overlay4").style.display = 'block';
     checkCart();
-    console.log(newInfo);
-    if(newInfo!= null){
-        document.getElementById("customerPay").innerHTML= newInfo.name;
-        document.getElementById("phonePay").innerHTML= newInfo.phone;
-        document.getElementById("addressPay").innerHTML= `Số nhà: ${newInfo.houseNumber}, Đường: ${newInfo.street}, Phường: ${newInfo.ward}, Quận: ${newInfo.district}, Thành phố: ${newInfo.city}`;
+    console.log(cf);
+    if(cf==1){
+        document.getElementById("customerPay").innerHTML= address.name;
+        document.getElementById("phonePay").innerHTML= address.phone;
+        document.getElementById("addressPay").innerHTML= `Số nhà: ${address.houseNumber}, Đường: ${address.street}, Phường: ${address.ward}, Quận: ${address.district}, Thành phố: ${address.city}`;
         var s="";
         for(var i=0; i<carttemp.length; i++){
             s+=`<tr>
@@ -510,6 +519,7 @@ function cfP(){
                 <td>${carttemp[i].size}</td>
                 <td>${carttemp[i].quantity}</td>
                 <td>${carttemp[i].price}</td>
+                <tr>AA</tr>
             </tr>`;
         }
         document.getElementById("showP1").innerHTML=`
@@ -562,6 +572,7 @@ function useSavedAddress() {
         toast({ title: 'Thất bại', message: 'Bạn chưa cập nhật địa chỉ !', type: 'error', duration: 3000 });
         return;
     }
+    cf=0;
     //nhàn
     hideAllBoxes();
     paymentMethodBox.style.display = 'block';
@@ -600,19 +611,19 @@ function PaymentMethodSelection() {
 }
 
 function checkout() {
-    const selectedMethod = document.querySelector('input[name="payment-method"]:checked');  
-    if (!selectedMethod) {
-      alert('Vui lòng chọn phương thức thanh toán!');
-      return; 
-    }
-    addToBill();
+    // const selectedMethod = document.querySelector('input[name="payment-method"]:checked');  
+    // if (!selectedMethod) {
+    //   alert('Vui lòng chọn phương thức thanh toán!');
+    //   return; 
+    // }
     const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
     paymentMethods.forEach((method) => method.checked = false);
+    addToBill();
     hideAllBoxes();  
     overlay1.style.display = 'none';
     toast({ title: 'Thành công', message: 'Sản phẩm đã được thanh toán !', type: 'success', duration: 3000 });
-    deleteItems();
-    // closeCheckout(); 
+    
+    closeCheckout(); 
     document.getElementById("overlay4").style.display = 'none';
 }
 
@@ -705,7 +716,7 @@ function checkAddressCompletion() {
     }
 }
 function saveAddress() {
-    newInfo = {
+    address = {
         name: document.getElementById("name").value,
         phone: document.getElementById("phone").value,
         houseNumber: document.getElementById("house-number").value,
@@ -716,9 +727,10 @@ function saveAddress() {
     };
 
     if (!validateNewAddress()) {
-        newInfo= null;
+        cf=0;
         return;
     }
+    cf=1;
     newAddressBox.style.display = "none";
     showPaymentMethodBox();
 }
