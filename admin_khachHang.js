@@ -26,6 +26,7 @@ function dsKH(startIndex, endIndex, list) {
 var currentPage1 = 1;
 const productsPerPage1 = 8;
 function hienthiKH(list) {
+  document.getElementById("SearchBar2").style.display = "none";
   // Lọc chỉ những khách hàng có trạng thái active nếu checkbox chưa được chọn
   var checkElement = document.querySelector("[name='checkStatus']");
   //checkElement.checked: true -> có check , false -> chưa check
@@ -153,19 +154,19 @@ window.addEventListener("load", () => {
       } else {
         temp = value.status === "active";
       }
-
-      if (value.ngayTao || inputTuNgay || inputDenNgay) {
-        tempNgayTao = new Date(value.ngayTao);
+      if (value.date || inputTuNgay || inputDenNgay) {
+        tempNgayTao = new Date(value.date);
         tuNgay = new Date(inputTuNgay);
         denNgay = new Date(inputDenNgay);
       }
-
+      console.log(tempNgayTao);
       return (
-        value.username.toUpperCase().includes(inputTĐN.toUpperCase()) &&
-        value.hoTen.toUpperCase().includes(inputTKH.toUpperCase()) &&
-        value.address.toUpperCase().includes(inputĐC.toUpperCase()) &&
-        tuNgay <= tempNgayTao &&
-        tempNgayTao <= denNgay &&
+        (value.username || "").toUpperCase().includes(inputTĐN.toUpperCase()) &&
+        (value.name || "").toUpperCase().includes(inputTKH.toUpperCase()) &&
+        (value.address || "").toUpperCase().includes(inputĐC.toUpperCase()) &&
+        (!tuNgay ||
+          !denNgay ||
+          (tuNgay <= tempNgayTao && tempNgayTao <= denNgay)) &&
         temp
       );
     });
