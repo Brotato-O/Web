@@ -330,7 +330,7 @@ body{
   position: fixed;
   top: 68px;
   right: 0;
-  height: 60%;
+  height: 70%;   /*SỬA 60 LÊN 70*/
   width: 800px;
   background: #fff;
   border-radius: 10px;

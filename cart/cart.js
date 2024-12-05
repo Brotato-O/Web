@@ -44,7 +44,7 @@ function cartDisplay(){
                     <td class="cart-item-name"><label for="${i}">${cartArray[username][i].title}</label></td>
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
-                            <button class="bot" onclick="adjustQuantity('${i}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
+                            <button class="bot" onclick="adjustQuantity('${i}', -1)"style="display: flex; justify-content: center; align-items: center;margin-left:0px">-</button> 
                             <input type="text" id="sl-${i}" class="quantity" value="${quantity}" onchange="checkNum(this, ${i})" style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
                             <button class="them" onclick="adjustQuantity('${i}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>

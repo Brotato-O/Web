@@ -187,7 +187,7 @@
 
     #CartForm{
         width: 90%;
-        transform: translate(50%,50%);
+        transform: translate(50%,0%); /*SỬA  50% THÀNH 0%*/
         top: 0%;
         left: -42%;
     }
@@ -320,7 +320,17 @@
     .widget-social-item a {
         margin-right: 40px;
     }
-}
+    /*tuan*/
+    #SearchBar {
+        margin-left: 5vh;
+    }
+    #address-box h4{
+        text-align: center;
+    }
+    #address-box{
+        text-align: center;
+    }
+  
 /* nhàn */
 .poster{
     margin-top: 50px;
@@ -639,4 +649,9 @@
     text-align: center;
  }
  
+/*tuan*/
+ #CartForm-view {
+    margin-top: -50px;
+}
+
 }
