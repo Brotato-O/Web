@@ -45,7 +45,7 @@ function cartDisplay(){
                     <td class="cart-item-quantity">
                         <div class="count-quantity">
                             <button class="bot" onclick="adjustQuantity('${i}', -1)"style="display: flex; justify-content: center; align-items: center;">-</button>
-                            <input type="text" id="sl-${i}" class="quantity" value="${quantity}" readonly style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
+                            <input type="text" id="sl-${i}" class="quantity" value="${quantity}" onchange="checkNum(this, ${i})" style="width: 40px; font-size: 14px; padding: 5px; text-align: center; border-width:2px 0px">
                             <button class="them" onclick="adjustQuantity('${i}', 1)"style="display: flex; justify-content: center; align-items: center;">+</button>
                         </div>
                     </td>
@@ -88,6 +88,21 @@ function cartDisplay(){
     }
 }
 
+function checkNum(obj, id){
+    document.getElementById(id).checked = true;
+    var cartArray = JSON.parse(localStorage.getItem('userCarts'));
+    var username = JSON.parse(localStorage.getItem('currentUser')).username;
+    var check=/^[1-9][0-9]*$/;
+    if(obj.value!= 0 && !check.test(obj.value)) {
+        toast({ title: 'Thất bại', message: 'Số lượng không hợp lệ', type: 'error', duration: 3000 });
+        obj.value= 1;
+    }
+    else if(obj.value==0) checkDelete(id);
+    else cartArray[username][id].quantity= obj.value;
+    localStorage.setItem('userCarts', JSON.stringify(cartArray));
+    buy();
+}
+
 function cartDisplayMobile(){    
     cartDisplay();
     var table = document.getElementById('cart-table');
@@ -116,8 +131,7 @@ function cartDisplayMobile(){
 function adjustSize(obj, id){
     var cartArray = JSON.parse(localStorage.getItem('userCarts'));
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
-
-            Number(cartArray[username][id].size)= Number(obj.value);
+            cartArray[username][id].size= Number(obj.value);
       
     document.getElementById(id).checked = true;
     localStorage.setItem('userCarts', JSON.stringify(cartArray));
@@ -132,9 +146,11 @@ function adjustQuantity(id, change) {
     var username = JSON.parse(localStorage.getItem('currentUser')).username;
     var newQuantity = Number(cartArray[username][id].quantity) + change;
     if (newQuantity < 1) {
+        checkDelete(id);
+    }
+    if (newQuantity < 1) {
         newQuantity = 1;
     }
-
     var quantityInput = document.getElementById(`sl-${id}`);
     quantityInput.value = newQuantity;
     
@@ -187,7 +203,7 @@ function warning() {
 function deleteCheckedItems(){
     checkCart();
     if(carttemp.length==0 || carttemp== undefined) {
-        alert("Bạn chưa chọn sản phẩm để xóa!");
+        toast({ title: 'Thất bại', message: 'Bạn chưa chọn sản phẩm để xóa', type: 'error', duration: 3000 });
         return;
     };
     if(warning()== false) return;
@@ -474,7 +490,7 @@ function cfP(){
     //check phương thức thanh toán
     const selectedMethod = document.querySelector('input[name="payment-method"]:checked');  
     if (!selectedMethod) {
-      alert('Vui lòng chọn phương thức thanh toán!');
+        toast({ title: 'Thất bại', message: 'Vui lòng chọn sản phẩm', type: 'error', duration: 3000 });
       return; 
     }
     else if(selectedMethod.value === 'Thẻ ngân hàng' && validateCard()== false){
