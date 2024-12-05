@@ -149,13 +149,12 @@ function checkCart(){
     carttemp=[];  
     var cartArray= JSON.parse(localStorage.getItem('userCarts'));
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
-    console.log(cartArray[username]);
+    
     for(var i=0; i<cartArray[username].length; i++){
         var check= document.getElementById(i);
         if(check.checked== true) {
             carttemp.push(cartArray[username][i]);
             carttemp[carttemp.length-1].cartId= check.id;
-            console.log(carttemp);
         }
     }
 }
@@ -408,11 +407,16 @@ function addCSS(){
 
 function addToBill(){
     var username= JSON.parse(localStorage.getItem('currentUser')).username;
+    var account= JSON.parse(localStorage.getItem('accounts'));
     var bill= JSON.parse(localStorage.getItem('bill')) || [];
     var profile= JSON.parse(localStorage.getItem('userProfile'));
     checkCart();
     var length=bill.length;
     bill[length]= {};
+    bill[length].name=profile.name;
+    if(bill[length].name== undefined) 
+        for(var i=0; i < account.length; i++)
+            if(account[i].username==username) bill[length].name= account[i].name;
     bill[length].receiptId= length;
     bill[length].username= username;
     bill[length].product= [];
@@ -441,6 +445,7 @@ function addToBill(){
         bill[length].sdt=  profile[username].phone;
     }
     localStorage.setItem('bill',JSON.stringify(bill));
+
     deleteItems();
 }
 
@@ -466,6 +471,7 @@ function openCheckout() {
 };
 
 function cfP(){
+    //check phương thức thanh toán
     const selectedMethod = document.querySelector('input[name="payment-method"]:checked');  
     if (!selectedMethod) {
       alert('Vui lòng chọn phương thức thanh toán!');
@@ -474,10 +480,10 @@ function cfP(){
     else if(selectedMethod.value === 'Thẻ ngân hàng' && validateCard()== false){
         return;
     }
+    //ket thuc
     closeCheckout();
     document.getElementById("overlay4").style.display = 'block';
     checkCart();
-    console.log(cf);
     if(cf==1){
         document.getElementById("customerPay").innerHTML= address.name;
         document.getElementById("phonePay").innerHTML= address.phone;
@@ -500,11 +506,7 @@ function cfP(){
                 </tr> 
             ` +s;
         document.getElementById("totalPay").innerHTML=buy();
-        var radio= document.getElementsByName("payment-method");
-        var temp;
-        for(var i=0; i<radio.length; i++)
-        if(radio[i].checked) temp=radio[i].value;
-        document.getElementById("methodPay").innerHTML=temp;
+        document.getElementById("methodPay").innerHTML=selectedMethod.value;
     }
     else{
         var profile= JSON.parse(localStorage.getItem("userProfile"));
@@ -531,11 +533,7 @@ function cfP(){
                 </tr> 
             ` +s;
         document.getElementById("totalPay").innerHTML=buy();
-        var radio= document.getElementsByName("payment-method");
-        var temp;
-        for(var i=0; i<radio.length; i++)
-        if(radio[i].checked) temp=radio[i].value;
-        document.getElementById("methodPay").innerHTML=temp;
+        document.getElementById("methodPay").innerHTML=selectedMethod.value;
     }
 }
 
@@ -616,9 +614,10 @@ function checkout() {
     //   alert('Vui lòng chọn phương thức thanh toán!');
     //   return; 
     // }
+    
+    addToBill();
     const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
     paymentMethods.forEach((method) => method.checked = false);
-    addToBill();
     hideAllBoxes();  
     overlay1.style.display = 'none';
     toast({ title: 'Thành công', message: 'Sản phẩm đã được thanh toán !', type: 'success', duration: 3000 });

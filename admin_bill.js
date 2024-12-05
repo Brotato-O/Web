@@ -148,8 +148,8 @@ function lookUpStatus() {
     for(var i=0;i<billtemp.length; i++){
       if((billtemp[i].sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
         || ( ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) || (billtemp[i].totalAmount>=Number(from) && Number(to)==0) || 
-      (Number(from)==0 && billtemp[i].totalAmount<=Number(to))) && n=="price") || (((from<= new Date(billtemp[i].orderDate) && to>= new Date(billtemp[i].orderDate)) 
-      || from<= new Date(billtemp[i].orderDate) && to==="" || from==="" && to>= new Date(billtemp[i].orderDate)) && n=="date") || billtemp[i].address.includes(from) && n=="address"
+      (Number(from)==0 && billtemp[i].totalAmount<=Number(to))) && n=="price") || (((new Date(from)<= new Date(billtemp[i].orderDate) && new Date(to)>= new Date(billtemp[i].orderDate)) 
+      || new Date(from)<= new Date(billtemp[i].orderDate) && to=="" || from=="" && new Date(billtemp[i].orderDate) <= new Date(to)) && n=="date") || billtemp[i].address.includes(from) && n=="address"
       || billtemp[i].username.includes(from) && n=="username"||(n=="all")) {
           s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
             <td>${billtemp[i].orderDate}</td>
@@ -214,14 +214,12 @@ function lookUpStatus() {
       var billText= document.getElementById("textMethod").value;
       var from = document.getElementById("pricefrom").value;
       var to = document.getElementById("priceto").value;
-      var dateFrom = document.getElementById("dateFrom").value;
-      var dateTo = document.getElementById("dateTo").value;
+      var billFrom = document.getElementById("dateFrom").value;
+      var billTo = document.getElementById("dateTo").value;
       var city= document.getElementById("city-select-new").value;
       var district= document.getElementById("district-select-new").value;
       var ward= document.getElementById("ward-select-new").value;
       var combine= "Phường: " + ward+ ", Quận: " + district + ", Thành phố: " + city;
-      var billFrom= new Date(dateFrom);
-      var billTo= new Date(dateTo);
       var method= document.getElementById("method");
       if(method.value== "phone") billDisplay(billText, 0, "phone");
       if(method.value== "username") billDisplay(billText, 0, "username");

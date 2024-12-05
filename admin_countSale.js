@@ -63,11 +63,11 @@ function showCount(){
 }
 
 function detailCount(id, index){
-    var bill= JSON.parse(localStorage.getItem("bill"));
+    checkBill(id);
     var showBill= document.getElementById("showBill");
     var div= document.getElementById("pages");
     div.innerHTML=``;
-    var length= bill.length;
+    var length= billtemp.length;
     const BPP=5;
     var pages= Math.ceil(length/BPP);
     var startIndex= (index-1)*BPP;
@@ -80,12 +80,12 @@ function detailCount(id, index){
   }
     var s="";
     for(let i=startIndex; i<endIndex; i++){
-        if(bill[i].username== id && bill[i].status=="Đã giao"){
+        if(billtemp[i].username== id){
             s+=`
-                <tr onclick=showDetail1('${bill[i].receiptId}') class="billRow">
-                <td>${bill[i].receiptId}</td>
-                <td>${bill[i].orderDate}</td>
-                <td>${bill[i].totalAmount}</td>
+                <tr onclick=showDetail1('${billtemp[i].receiptId}') class="billRow">
+                <td>${billtemp[i].receiptId}</td>
+                <td>${billtemp[i].orderDate}</td>
+                <td>${billtemp[i].totalAmount}</td>
                 </tr>
             `
         }
@@ -95,62 +95,58 @@ function detailCount(id, index){
     <th>Ngày đặt</th>
     <th>Tổng tiền</th>` + s ;
 }
-function showDetail1(id){
+var billtemp=[];
+function checkBill(username){
+    billtemp=[];
     var bill= JSON.parse(localStorage.getItem("bill"));
+    for(var i=0; i<bill.length; i++)
+        if(bill[i].status=="Đã giao" && bill[i].username== username) billtemp.push(bill[i]);
+}
+
+function showDetail1(id){
+    console.log(id, billtemp);
     var account= JSON.parse(localStorage.getItem("accounts"));
-     document.getElementById("detail-container").style.display= "block";
-     for(let i=0; i< bill.length; i++){
-       if(id== bill[i].receiptId){
+     document.getElementById("overlay5").style.display= "block";
+     for(let i=0; i< billtemp.length; i++){
+       if(id== billtemp[i].receiptId){
          var name;
          for(let j=0; j< account.length; j++)
-             if (bill[i].username== account[j].username) name= account[j].name;
-         document.getElementById("detail-bill").innerHTML=`
-           <div>
-             <h2 >Thông tin hóa đơn</h2>
-             <button id="closeDetail" onclick="closeDetail()">X</button>
-           </div>
-           <div class="infor-wrap">
-             <p>Mã hóa đơn</p>
-             <p>${bill[i].receiptId}</p>
-           </div>
-           <div class="infor-wrap">
-             <p>Ngày lập hóa đơn</p>
-             <p>${bill[i].orderDate}</p>
-           </div>
-           
-           `;
+             if (billtemp[i].username== account[j].username) name= account[j].name;
+           document.getElementById("adminReceipt").innerHTML= billtemp[i].receiptId;
+           document.getElementById("adminDate").innerHTML= billtemp[i].orderDate;
+           document.getElementById("adminKey").innerHTML= billtemp[i].username;
+           document.getElementById("adminName").innerHTML= billtemp[i].name;
+           document.getElementById("adminAddress").innerHTML= billtemp[i].address;
+           document.getElementById("adminPhone").innerHTML= billtemp[i].sdt;
+           document.getElementById("adminTotal").innerHTML= billtemp[i].totalAmount;
+           document.getElementById("adminMethod").innerHTML= billtemp[i].paymentMethod;
+         
            var s="";
-             for(let j=0; j< bill[i].product.length; j++){
-               s+=`<p class="bill-product">${bill[i].product[j].quantity} X Size ${bill[i].product[j].size}: ${bill[i].product[j].title}</p>`;
-               
+             for(let j=0; j< billtemp[i].product.length; j++){
+               s+=`
+                 <tr>
+                   <td>${billtemp[i].product[j].title}</td>
+                   <td>${billtemp[i].product[j].quantity}</td>
+                   <td>${billtemp[i].product[j].size}</td>
+                   <td>${billtemp[i].product[j].price}</td>
+                 </tr>
+               `;
              }
-           document.getElementById("detail-bill").innerHTML+= `
-             <div class="infor-wrap">
-              <p>Sản phẩm</p>
-              <div>` + s + `</div>
-             </div>
-           <div class="infor-wrap">
-             <p>Mã khách hàng</p>
-             <p>${bill[i].username}</p>
-           </div>
-           <div class="infor-wrap">
-             <p>Tên khách hàng</p>
-             <p>${name}</p>
-           </div>
-           <div class="infor-wrap">
-             <p>Địa chỉ giao hàng</p>
-             <p>${bill[i].address}</p>
-           </div>
-           <div class="infor-wrap">
-             <p>Số điện thoại</p>
-             <p>${bill[i].sdt}</p>
-           </div>
-           <div class="infor-wrap">
-             <p>Trạng thái</p>
-             <div id="outsideStatus">
-               <p id="innerStatus">${bill[i].status}</p>
-             </div>
-           </div>`
+           document.getElementById("adminTable").innerHTML= `<tr>
+             <th>Sản phẩm</th>
+             <th>Số lượng</th>
+             <th>Size</th>
+             <th>Đơn giá</th>
+           </tr>`+s;
+           if (billtemp[i].status !="Đã hủy"){
+            document.getElementById("adminStatus").innerHTML= `
+            <p>Trạng thái</p>
+            
+             <p id="showStatus">${billtemp[i].status}</p>
+             
+           `;
+             
+           } 
          }
      }
    }
