@@ -15,8 +15,8 @@ function dsKH(startIndex, endIndex, list) {
               <td>${list[i].date || []}</td>
               <td>${list[i].address || []}</td>
               <td class="btn_">
-                <button class = "xoaKH" onclick="XoaKH(${i})">X</button>
-                <button class = "suaKH" onclick="FormSuaKH(${i})">Sửa</button>
+                <button class = "suaKH" onclick="FormSuaKH(${i})"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class = "xoaKH" onclick="XoaKH(${i})"><i class="fa-solid fa-trash"></i></button>
               </td>
           </tr>`;
   }
@@ -92,9 +92,7 @@ function goToPage(pageNumber) {
 //Hiển thị form tìm kiếm
 function CreateFormTimKiem() {
   document.querySelector("#timkiemKH").innerHTML = `<div class="itemForm" >
-          <form action=""id="form100">
-          <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
-            <label for="txtName" style="white-space: nowrap;">Tên khách hàng :</label>
+          <div>Tên khách hàng :</label>
             <input type="text" name="txtName" />
           </div>
 
@@ -103,13 +101,13 @@ function CreateFormTimKiem() {
               <label for="txtDC" style="white-space:nowrap;">Địa chỉ :</label>
               <input type="text" name="txtDC" />
               </div>
-              <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+              <div id="formGiaTuDen">
                 <label for="tuNgay">Từ:</label>
                 <input type="date" name="tuNgay">
                 <label for="denNgay">Đến:</label>
                 <input type="date" name="denNgay">
               </div>  
-              <div id="formTKBK" style="display: flex; gap: 10px; align-items: center;">
+              <div id="formTKBK">
                 <label for="checkStatus"style="white-space:nowrap;">Tài khoản khóa :</label>
                 <input type="checkbox" name="checkStatus" />
               </div>
@@ -118,7 +116,6 @@ function CreateFormTimKiem() {
                 <button type="submit" name="timKiem">Tìm</button>
               </div>
             
-          </form>
           
         </div>`;
 }
@@ -194,6 +191,7 @@ window.addEventListener("load", () => {
 });
 //Sủa thông tin
 function FormSuaKH(index) {
+  document.getElementById("overlay").style.display = "block";
   var listKH = JSON.parse(localStorage.getItem("accounts"));
   var customer = listKH[index];
 
@@ -226,6 +224,7 @@ function FormSuaKH(index) {
 }
 function HuySua() {
   document.querySelector("#formContainer").innerHTML = "";
+  document.getElementById("overlay").style.display = "none";
 }
 
 function LuuSua(index) {
@@ -296,8 +295,8 @@ function onInputSearch() {
               <td>${list[i].date || ""}</td>
               <td>${list[i].address || ""}</td>
               <td class="btn_">
-                <button class="xoaKH" onclick="XoaKH(${i})">X</button>
-                <button class="suaKH" onclick="FormSuaKH(${i})">Sửa</button>
+                <button class="suaKH" onclick="FormSuaKH(${i})"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="xoaKH" onclick="XoaKH(${i})"><i class="fa-solid fa-trash"></i></button>
               </td>
             </tr>`;
     }

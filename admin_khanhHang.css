@@ -39,6 +39,7 @@ table {
   width: 100%;
   padding: 5px;
   margin-bottom: 30px;
+  
 }
 th {
   border-collapse: collapse;
@@ -47,39 +48,64 @@ th {
   font-weight: bold;
   padding: 5px;
   margin-bottom: 30px;
+  height: 61.16px;
+
 }
 table,
 th,
 td {
   border: 1px solid black;
   padding: 10px;
+  height: 62px;
 }
 .btn_ {
   display: flex;
   width: 100%;
+  border-bottom: none;
   border-left: none;
   border-right: none;
-  border-bottom: none;
+  
 }
+
 .btn_ button {
   width: 70%;
-  margin: 5%;
-  padding: 2px;
+  border: none;
+  margin: 0 5%;
+  border-radius: 10px;
+}
+
+
+.xoaKH {
+  color: #fff;
+  background-color: #8b2020;
+}
+
+#title{
+  text-align: center;
 }
 
 /*  */
 #timkiemKH {
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
   padding: 20px;
   background-color: #333333bb;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-right: 2px;
-  margin-top: 10px;
+  margin-top: 20px;
   height: auto;
   color: white;
   display: none;
 }
+
+#timkiemKH div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
 
 .itemForm h2 {
   margin-bottom: 20px;
@@ -90,6 +116,17 @@ td {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+#tableKH{
+  margin-top: 50px;
+  width: 80%;
+  margin-left: 10%;
+}
+
+#tableKH th{
+  background-color: #333;
+  border-bottom: none;
 }
 
 /* .itemForm1 form {
@@ -122,7 +159,8 @@ td {
   font-weight: bold;
 }
 #btn1 button:hover {
-  background-color: red;
+  background-color: #333;
+  color: white;
 }
 /*  */
 .phantrang {
@@ -160,16 +198,14 @@ td {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background-color: #333333bb;
-  color: white;
+  background-color: #fff;
+  color: #333;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   width: 50%;
-  z-index: 10;
+  z-index: 2000;
 }
-#form100 {
-  display: flex;
-}
+
 #formdiachi {
   display: flex;
   gap: 10px;

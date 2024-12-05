@@ -3,6 +3,8 @@
 //BẮT ĐẦU TÌM KIẾM HÓA ĐƠN
 //hiển thị bảng tìm kiếm
 function create(){
+  document.getElementById("button-function").style.display="none";
+  document.getElementById("SearchTDN").style.display="none";
   document.getElementById("mot").style.width="100%";
     document.getElementById("mot").style.margin="0";
     document.getElementById("txtSearch1").style.display = "none";
@@ -19,7 +21,6 @@ function create(){
                 <div>
                   <div style="display: flex; margin: 20px 0px;">
                     <div style="margin-right: 100px">Tìm kiếm theo</div>
-
                   <select style="width:50%" id="method" onchange="lookUpBillDisplay()">
                     <option value="all" selected>Tất cả</option>
                     <option value="id">Mã đơn hàng</option>
@@ -237,6 +238,7 @@ function lookUpStatus() {
   //SHOW CHI TIẾT HÓA ĐƠN
   function showDetail(obj){
    var account= JSON.parse(localStorage.getItem("accounts"));
+    document.getElementById("detail-bill").style.display="block";
     document.getElementById("overlay5").style.display= "block";
     for(let i=0; i< billtemp.length; i++){
       if(obj.id== billtemp[i].receiptId){
@@ -320,6 +322,8 @@ function lookUpStatus() {
     toast({ title: 'Thành công', message: 'Đã cập nhật trạng thái đơn!', type: 'success', duration: 3000 });
     change();
     if (p != null) showDetail(id);
+    document.getElementById("detail-bill").style.display="none";
+    document.getElementById("overlay5").style.display="none";
   }
 
   function an(event){
