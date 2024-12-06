@@ -39,7 +39,6 @@ table {
   width: 100%;
   padding: 5px;
   margin-bottom: 30px;
-  
 }
 th {
   border-collapse: collapse;
@@ -49,7 +48,6 @@ th {
   padding: 5px;
   margin-bottom: 30px;
   height: 61.16px;
-
 }
 table,
 th,
@@ -64,7 +62,6 @@ td {
   border-bottom: none;
   border-left: none;
   border-right: none;
-  
 }
 
 .btn_ button {
@@ -74,20 +71,19 @@ td {
   border-radius: 10px;
 }
 
-
 .xoaKH {
   color: #fff;
   background-color: #8b2020;
 }
 
-#title{
+#title {
   text-align: center;
 }
 
 /*  */
 #timkiemKH {
-  width: 100%;/*sua 80 thanh 100*/
-  margin-left: 0px;/*sua 20 ve 0*/
+  width: 100%; /*sua 80 thanh 100*/
+  margin-left: 0px; /*sua 20 ve 0*/
   padding: 20px;
   background-color: #333333bb;
   border-radius: 10px;
@@ -106,7 +102,6 @@ td {
   gap: 10px;
 }
 
-
 .itemForm h2 {
   margin-bottom: 20px;
   text-align: center;
@@ -118,13 +113,13 @@ td {
   gap: 10px;
 }
 
-#tableKH{
+#tableKH {
   margin-top: 50px;
   width: 80%;
   margin-left: 10%;
 }
 
-#tableKH th{
+#tableKH th {
   background-color: #333;
   border-bottom: none;
 }
@@ -206,14 +201,18 @@ td {
   z-index: 2000;
 }
 
-.itemForm{
+.itemForm {
   width: 100%;
   padding: 0 20px;
 }
 
 .itemForm div {
   font-weight: 600;
+}
 
+.rowKH:hover {
+  background-color: rgba(126, 125, 125, 0.332);
+  cursor: pointer;
 }
 
 #formdiachi {
@@ -223,7 +222,7 @@ td {
   align-items: center;
 }
 /*TUAN*/
-.itemForm{
+.itemForm {
   flex-wrap: wrap;
 }
 @media (max-width: 900px) {
@@ -272,11 +271,11 @@ td {
     display: none !important;
   }
   #tablesp tr th:nth-child(4),
-  #tablesp tr td:nth-child(4){
+  #tablesp tr td:nth-child(4) {
     display: none !important;
   }
   /*tuan*/
-  .itemForm{
+  .itemForm {
     flex-direction: column;
     margin: auto;
   }
@@ -301,4 +300,3 @@ td {
     width: 200px;
   }
 }
-

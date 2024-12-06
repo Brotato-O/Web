@@ -8,7 +8,7 @@ function dsKH(startIndex, endIndex, list) {
               <th>CHỨC NĂNG</th>
             </tr>`;
   for (var i = startIndex; i < endIndex; i++) {
-    s += `<tr>
+    s += `<tr class="rowKH">
               <td style="text-align: center">${i + 1}</td>
               <td>${list[i].name || []}</td>
               <td>${list[i].username || []}</td>
@@ -155,10 +155,10 @@ window.addEventListener("DOMContentLoaded", function () {
     CreateFormTimKiem();
     document.querySelector("#container").style.display = "none";
     document.getElementById("count-container").style.display = "none";
-    document.getElementById('countTop').style.display="none";
-    document.getElementById('countBottom').style.display="none";
-    document.getElementById('countPBottom').style.display="none";
-    document.getElementById('bill-content').style.display="none";
+    document.getElementById("countTop").style.display = "none";
+    document.getElementById("countBottom").style.display = "none";
+    document.getElementById("countPBottom").style.display = "none";
+    document.getElementById("bill-content").style.display = "none";
     goToPage(1);
   }
 });
