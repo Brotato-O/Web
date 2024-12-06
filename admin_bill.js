@@ -3,7 +3,6 @@
 //BẮT ĐẦU TÌM KIẾM HÓA ĐƠN
 //hiển thị bảng tìm kiếm
 function create(){
-  document.getElementById("button-function").style.display="none";
   document.getElementById("SearchTDN").style.display="none";
   document.getElementById("mot").style.width="100%";
     document.getElementById("mot").style.margin="0";
@@ -142,16 +141,18 @@ function lookUpStatus() {
 }
 
 //hiển thị kế quả tìm kiếm dựa trên kq lọc
-  function billDisplay(from, to, n){
+  function billDisplay(from, to, special, n){
     document.getElementById("container").style.display="none";
     var s="";
-    console.log((from));
+    console.log(from, to, special );
     for(var i=0;i<billtemp.length; i++){
       if((billtemp[i].sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
         || ( ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) || (billtemp[i].totalAmount>=Number(from) && Number(to)==0) || 
       (Number(from)==0 && billtemp[i].totalAmount<=Number(to))) && n=="price") || (((new Date(from)<= new Date(billtemp[i].orderDate) && new Date(to)>= new Date(billtemp[i].orderDate)) 
-      || new Date(from)<= new Date(billtemp[i].orderDate) && to=="" || from=="" && new Date(billtemp[i].orderDate) <= new Date(to)) && n=="date") || billtemp[i].address.includes(from) && n=="address"
-      || billtemp[i].username.includes(from) && n=="username"||(n=="all")) {
+      || new Date(from)<= new Date(billtemp[i].orderDate) && to=="" || from=="" && new Date(billtemp[i].orderDate) <= new Date(to)) && n=="date")
+      || ((billtemp[i].address.toLowerCase().includes(from.toLowerCase()) && to=="" && special== "") || billtemp[i].address.toLowerCase().includes(from.toLowerCase()) && billtemp[i].address.toLowerCase().includes(to.toLowerCase()) && special== "" 
+      || (billtemp[i].address.toLowerCase()).includes(from.toLowerCase()) && billtemp[i].address.toLowerCase().includes(to.toLowerCase()) && billtemp[i].address.toLowerCase().includes(special)  && n=="address")
+      || (from != 0 && (billtemp[i].username.toLowerCase()).includes(from.toLowerCase() && n=="username"))||(n=="all")) {
           s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
             <td>${billtemp[i].orderDate}</td>
             <td>${billtemp[i].receiptId}</td>
@@ -220,15 +221,15 @@ function lookUpStatus() {
       var city= document.getElementById("city-select-new").value;
       var district= document.getElementById("district-select-new").value;
       var ward= document.getElementById("ward-select-new").value;
-      var combine= "Phường: " + ward+ ", Quận: " + district + ", Thành phố: " + city;
       var method= document.getElementById("method");
-      if(method.value== "phone") billDisplay(billText, 0, "phone");
-      if(method.value== "username") billDisplay(billText, 0, "username");
-      if(method.value== "id") billDisplay(billText, 0, "id");
-      if(method.value== "price") billDisplay(from, to, "price");
-      if(method.value== "date") billDisplay(billFrom, billTo, "date");
-      if(method.value== "address") billDisplay(combine, 0, "address");
-      if(method.value== "all") billDisplay(0, 0, "all"); 
+      var a="a";
+      if(method.value== "phone") billDisplay(billText, a, a, "phone");
+      if(method.value== "username") billDisplay(billText, a, a, "username");
+      if(method.value== "id") billDisplay(billText, a, a, "id");
+      if(method.value== "price") billDisplay(from, to, a, "price");
+      if(method.value== "date") billDisplay(billFrom, billTo, a, "date");
+      if(method.value== "address") billDisplay(city, district, ward, "address");
+      if(method.value== "all") billDisplay(a, a, a, "all"); 
   }
   //KẾT THÚC TÌM KIẾM HÓA ĐƠN
   function closeDetail(){
