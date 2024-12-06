@@ -296,6 +296,28 @@ body{
         overflow: scroll;
     }
 }
+#method {
+  width: 50%;
+}
+#status{
+  width: 50%;
+}
+@media only screen and  (max-width: 600px) {
+  .form-tkhd {
+      width: auto;
+  }
+  #method {
+    width: 100%;
+  }
+  #status {
+    width: 100%;
+    
+  }
+
+  .form-tkhd {
+    margin: auto;
+  }
+}
 
 
 

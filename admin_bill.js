@@ -19,8 +19,8 @@ function create(){
                 
                 <div>
                   <div style="display: flex; margin: 20px 0px;">
-                    <div style="margin-right: 100px">Tìm kiếm theo</div>
-                  <select style="width:50%" id="method" onchange="lookUpBillDisplay()">
+                    <div style="margin-right: 10px">Tìm kiếm theo</div>
+                  <select  id="method" onchange="lookUpBillDisplay()">
                     <option value="all" selected>Tất cả</option>
                     <option value="id">Mã đơn hàng</option>
                     <option value="username">Tên đăng nhập</option>
@@ -73,7 +73,7 @@ function create(){
 
                 </div>
                 <div class="detailMethod" style="display:flex"> 
-                  <div>Tình trạng hóa đơn</div>
+                  <div style="white-space: nowrap">Tình trạng</div>
                   <select id="status">
                       <option value="Chờ xác nhận">Chờ xác nhận</option>
                       <option value="Đã xác nhận">Đã xác nhận</option>
@@ -148,6 +148,7 @@ function lookUpStatus() {
     document.getElementById("container").style.display="none";
     var s="";
     console.log(from, to, special );
+    console.log(billtemp[6]);
     for(var i=0;i<billtemp.length; i++){
       if((billtemp[i].sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
         || ( ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) || (billtemp[i].totalAmount>=Number(from) && Number(to)==0) || 
