@@ -47,6 +47,7 @@
     display: flex;
     padding: 20px;
     justify-content: space-evenly;
+    gap: 5px;
 }
 .heh1 button, .heh2 button{
     width: 380px;

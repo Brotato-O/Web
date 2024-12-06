@@ -82,6 +82,5 @@
     cursor: pointer;
 }
 #countTop{
-    top:-10px;
-    right: 50px;
+    z-index: 0 !important;
 }
