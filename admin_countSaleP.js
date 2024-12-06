@@ -49,7 +49,20 @@ function onQuantity(){
     localStorage.setItem("countP", JSON.stringify(countP));
     showSaleProducts(1);
 }
-
+function onQuantity1(){
+  var countP= JSON.parse(localStorage.getItem("countP"));
+  for(var i=0; i< countP.length; i++){
+      for(var j=0; j<countP.length-1; j++){
+          if(Number(countP[j].quantity) > Number(countP[j+1].quantity)){
+              var temp = countP[j];
+              countP[j] = countP[j + 1];
+              countP[j + 1] = temp;
+          }
+      }
+  }
+  localStorage.setItem("countP", JSON.stringify(countP));
+  showSaleProducts(1);
+}
 function onMoney(){
     var countP= JSON.parse(localStorage.getItem("countP"));
     for(var i=0; i< countP.length; i++){
@@ -63,6 +76,20 @@ function onMoney(){
     }
     localStorage.setItem("countP", JSON.stringify(countP));
     showSaleProducts(1);
+}
+function onMoney1(){
+  var countP= JSON.parse(localStorage.getItem("countP"));
+  for(var i=0; i< countP.length; i++){
+      for(var j=0; j<countP.length-1; j++){
+          if(Number(countP[j].totalAmount) > Number(countP[j+1].totalAmount)){
+              var temp = countP[j];
+              countP[j] = countP[j + 1];
+              countP[j + 1] = temp;
+          }
+      }
+  }
+  localStorage.setItem("countP", JSON.stringify(countP));
+  showSaleProducts(1);
 }
 
 function showSaleProducts(index){
