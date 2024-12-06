@@ -125,12 +125,18 @@ function checkBill(username){
 
 function showDetail1(id){
     var account= JSON.parse(localStorage.getItem("accounts"));
-     document.getElementById("overlay5").style.display= "block";
-     for(let i=0; i< billtemp.length; i++){
-       if(id== billtemp[i].receiptId){
-         var name;
-         for(let j=0; j< account.length; j++){
-             if (billtemp[i].username== account[j].username) name= account[j].name;
+   var profile= JSON.parse(localStorage.getItem("userProfile"));
+    document.getElementById("overlay5").style.display= "block";
+    for(let i=0; i< billtemp.length; i++){
+      if(id== billtemp[i].receiptId){
+        var name;
+        if (profile== undefined || profile[billtemp[i].username]== undefined)
+          for(let j=0; j< account.length; j++){
+            if (billtemp[i].username== account[j].username) name= account[j].name;
+          }
+        else name= profile[billtemp[i].username].name;
+        for(let j=0; j< account.length; j++){
+            if (billtemp[i].username== account[j].username) name= account[j].name;
            document.getElementById("adminReceipt").innerHTML= billtemp[i].receiptId;
            document.getElementById("adminDate").innerHTML= billtemp[i].orderDate;
            document.getElementById("adminKey").innerHTML= billtemp[i].username;

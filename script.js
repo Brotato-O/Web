@@ -433,6 +433,9 @@ function loadProfile() {
             <div class="col">
                 <label for="txtAddress">Địa chỉ:</label>
                 <input type="text" name="txtAddress" value="${address}">
+                <div style="color: red; display: none;">
+                    Địa chỉ phải có dạng: Tỉnh/Thành phố,Quận/Huyện,Phường/Xã
+                </div>
                 <label for="txtEmail">Email :</label>
                 <input type="text" name="txtEmail" value="${email}">
                 <div style="color: red; display: none">
@@ -478,13 +481,13 @@ document
   .addEventListener("click", OpenProfile);
 
 const checkPhone = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
-const checkGmail =
-  /^[a-z0-9]+([._]?[a-z0-9]+)*@(gmail\.com|gmail\.edu|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|edu.vn|sgu\.edu\.vn)$/i;
+const checkGmail =/^[a-z0-9]+([._]?[a-z0-9]+)*@(gmail\.com|gmail\.edu|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|edu.vn|sgu\.edu\.vn)$/i;
+const checkAddress = /^[^,]+,\s*[^,]+,\s*[^,]+$/;
 
 function validateProfile() {
   let name = document.querySelector('input[name="txtName"]').value;
   let phone = document.querySelector('input[name="nPhone"]');
-  let address = document.querySelector('input[name="txtAddress"]').value;
+  let address = document.querySelector('input[name="txtAddress"]');
   let email = document.querySelector('input[name="txtEmail"]');
 
   if (name == "" || phone == "" || address == "" || email == "") {
@@ -496,6 +499,13 @@ function validateProfile() {
     });
     return false;
   }
+
+  if (!checkAddress.test(address.value)) {
+    address.nextElementSibling.style.display = "block";
+    return false;
+  }
+  address.nextElementSibling.style.display = "none";
+
   if (!checkPhone.test(phone.value)) {
     phone.nextElementSibling.style.display = "block";
     return false;
@@ -568,7 +578,7 @@ function setupImageUpload(par1, par2, par3, par4) {
 function saveProfileToLocalStorage() {
   let name = document.querySelector('input[name="txtName"]').value;
   let phone = document.querySelector('input[name="nPhone"]').value;
-  let address = document.querySelector('input[name="txtAddress"]').value;
+  let address = document.querySelector('input[name="txtAddress"]').value.toString();
   let email = document.querySelector('input[name="txtEmail"]').value;
   let avatar = document.getElementById("avatar").src;
 
