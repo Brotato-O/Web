@@ -206,6 +206,10 @@ td {
   z-index: 2000;
 }
 
+.itemForm div {
+  font-weight: 600;
+}
+
 #formdiachi {
   display: flex;
   gap: 10px;
