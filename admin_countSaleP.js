@@ -1,9 +1,21 @@
+window.addEventListener("load", function(){
+    if (window.location.href.split("?")[1]=="countP"){
+        showSaleProducts(1);
+    }
+})
+
 function SaleProducts(){
     var countP= [];
     var from= document.getElementById("countPFrom").value;
     var to= document.getElementById("countPTo").value;
     var products= JSON.parse(localStorage.getItem("products"));
     checkBill1(from,to);
+    console.log(billtemp1.length);
+    if (billtemp1.length== 0) {
+        countP=[];
+        localStorage.setItem("countP", JSON.stringify(countP));
+        return;
+    }
     for(var i=0; i< products.length; i++){
         countP.push({productId: products[i].productId, bill:[] ,totalAmount: 0, quantity: 0});
     }
@@ -35,6 +47,7 @@ function onQuantity(){
         }
     }
     localStorage.setItem("countP", JSON.stringify(countP));
+    showSaleProducts(1);
 }
 
 function onMoney(){
@@ -49,12 +62,16 @@ function onMoney(){
         }
     }
     localStorage.setItem("countP", JSON.stringify(countP));
+    showSaleProducts(1);
 }
 
 function showSaleProducts(index){
     var countP= JSON.parse(localStorage.getItem("countP"));
     var div1= document.getElementById("pages");
-    var div= document.getElementById("countP-container").style.display="flex";
+    document.getElementById("countP-container").style.display="flex";
+    document.getElementById("count-container").style.display="none";
+    document.getElementById("SearchTDN").style.display="none";
+    document.getElementById("bill-content").style.display="none";
     var s= "";
     div1.innerHTML=``;
     var length= countP.length;
@@ -68,10 +85,9 @@ function showSaleProducts(index){
        <button class="page" onclick="showSaleProducts('${i+1}')">${i+1}</button>
       `;
   }
-  console.log(div1);
     for(var i=startIndex; i< endIndex; i++){
         s+= `
-            <tr onclick=showDetail2()>
+            <tr onclick=showBill2(${i})>
             <td>${i+1}</td>
             <td>${countP[i].productId}</td>
             <td>${countP[i].quantity}</td>
@@ -87,6 +103,93 @@ function showSaleProducts(index){
           <th>Tổng tiền</th>
         </tr>` + s
       ;
+}
+
+function showBill2(id){
+    var countP= JSON.parse(localStorage.getItem("countP"));
+    var s="";
+    for(var i=0; i< countP[id].bill.length; i++){
+        s+= `
+            <tr onclick="showDetail2('${countP[id].bill[i].receiptId}')">
+                <td>${countP[id].bill[i].receiptId}</td>
+                <td>${countP[id].bill[i].totalAmount}</td>
+                <td>${countP[id].bill[i].orderDate}</td>
+        `;
+    }
+    document.getElementById("showBill2").innerHTML=`
+        <tr>
+          <th>Id đơn</th>
+          <th>Tổng tiền</th>
+          <th>Ngày đặt</th>` + s;
+}
+
+function showDetail2(id){
+    var account= JSON.parse(localStorage.getItem("accounts"));
+    document.getElementById("overlay5").style.display= "block";
+    for(let i=0; i< billtemp1.length; i++){
+      if(id== billtemp1[i].receiptId){
+        var name;
+        for(let j=0; j< account.length; j++){
+            if (billtemp1[i].username== account[j].username) name= account[j].name;
+          document.getElementById("adminReceipt").innerHTML= billtemp1[i].receiptId;
+          document.getElementById("adminDate").innerHTML= billtemp1[i].orderDate;
+          document.getElementById("adminKey").innerHTML= billtemp1[i].username;
+          document.getElementById("adminName").innerHTML= billtemp1[i].name;
+          document.getElementById("adminAddress").innerHTML= billtemp1[i].address;
+          document.getElementById("adminPhone").innerHTML= billtemp1[i].sdt;
+          document.getElementById("adminMethod").innerHTML= billtemp1[i].paymentMethod;
+        
+          var s="";
+            for(let j=0; j< billtemp1[i].product.length; j++){
+              s+=`
+                <tr>
+                  <td>${billtemp1[i].product[j].title}</td>
+                  <td>${billtemp1[i].product[j].quantity}</td>
+                  <td>${billtemp1[i].product[j].size}</td>
+                  <td>${billtemp1[i].product[j].price}</td>
+                </tr>
+              `;
+            }
+          document.getElementById("adminTable").innerHTML= `<tr class="hehe">
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Size</th>
+            <th>Đơn giá</th>
+          </tr>`+s +  `<tr>
+            <td colspan="3" class="title2" style="font-size: 18px">Tổng tiền</td>
+            <td>${billtemp1[i].totalAmount}<t/d>
+          </tr>`;
+          if (billtemp1[i].status !="Đã hủy"){
+            document.getElementById("adminStatus").style.display="flex";
+           document.getElementById("adminStatus").innerHTML= `
+           <p>Trạng thái</p>
+           <div>
+            <p id="showStatus">${billtemp1[i].status}</p>
+            <select id="changeStatus" onchange="changeText(this)">
+              <option value="Chờ xác nhận">Chờ xác nhận</option>
+              <option value="Đã xác nhận">Đã xác nhận</option>
+              <option value="Đang giao">Đang giao</option>
+              <option value="Đã giao">Đã giao</option>
+            </select>
+            </div>
+          `;
+            document.getElementById("cfB").innerHTML=`
+              <button onclick="confirm1('${billtemp1[i].receiptId}')">Xác nhận</button>
+            `;
+            document.getElementById("changeStatus").value=billtemp1[i].status;
+          }
+          else{
+            document.getElementById("adminStatus").style.display="none";
+            document.getElementById("cfB").innerHTML=`
+              <div id="db2">
+                <p class="title2" style="font-size: 18px">Lý do hủy: &nbsp;</p>
+                <p>${billtemp1[i].reason}</p>
+              </div>
+            `;
+          }
+        }
+      }
+    }
 }
 
 var billtemp1=[];
