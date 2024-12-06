@@ -479,7 +479,7 @@ document
 
 const checkPhone = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
 const checkGmail =
-  /^[a-z0-9]+([._]?[a-z0-9]+)*@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|edu\.vn|sgu\.edu\.vn)$/i;
+  /^[a-z0-9]+([._]?[a-z0-9]+)*@(gmail\.com|gmail\.edu|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|edu.vn|sgu\.edu\.vn)$/i;
 
 function validateProfile() {
   let name = document.querySelector('input[name="txtName"]').value;
@@ -515,6 +515,7 @@ function validateProfile() {
     type: "success",
     duration: 3000,
   });
+  
   overlay.style.display = "none";
   document.getElementById("account-profile").style.display = "none";
   window.location.reload();

@@ -643,5 +643,11 @@ input[type="checkbox"]{
     #new-address-box label {
         font-size: 12px;
     }
+    #reason-wrap {
+      width: 80%;
+    }
+    #reason-wrap h2 {
+      text-align: center;
+    }
 }
  
