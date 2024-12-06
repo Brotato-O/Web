@@ -68,9 +68,11 @@ function onMoney(){
 function showSaleProducts(index){
     var countP= JSON.parse(localStorage.getItem("countP"));
     var div1= document.getElementById("pages");
+    div1.parentElement.style.display="flex";
     document.getElementById("countP-container").style.display="flex";
     document.getElementById("count-container").style.display="none";
     document.getElementById("SearchTDN").style.display="none";
+    document.getElementById("SearchBar2").style.display="none";
     document.getElementById("bill-content").style.display="none";
     var s= "";
     div1.innerHTML=``;
