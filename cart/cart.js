@@ -294,7 +294,7 @@ function notLogin(){
 function showPaid(id){
     var bill= JSON.parse(localStorage.getItem('bill'));
     document.getElementById("overlay3").style.display="block";
-    document.getElementById("ava1").src="img/logo.png";
+    document.getElementById("ava1").src="img/logo.jpg";
     for(var i=0; i< bill.length; i++){
         if(bill[i].receiptId == id){
             document.getElementById("keyPaid").innerHTML = bill[i].receiptId;
@@ -483,7 +483,8 @@ function addToBill(){
         bill[length].sdt= address.phone;
     }   
      else {
-        bill[length].address= profile[username].address;
+        var temp= profile[username].address.trim().split(",");
+        bill[length].address= "Phường: " + temp[2] + ", Quận: " + temp[1] + ", Thành phố: " + temp[0];
         bill[length].sdt=  profile[username].phone;
     }
     localStorage.setItem('bill',JSON.stringify(bill));
@@ -546,7 +547,7 @@ function cfP(){
     var day= date.getDate();
     if (day<=9) day= "0"+day;
     document.getElementById("datePay").innerHTML=`${date.getFullYear()}-${month}-${day}`;
-    document.getElementById("ava").src="img/logo.png";
+    document.getElementById("ava").src="img/logo.jpg";
     document.getElementById("methodPay").innerHTML= selectedMethod.value;
       for(var i=0; i< carttemp.length; i++){
                 s+=`<tr>

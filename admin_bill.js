@@ -3,6 +3,7 @@
 //BẮT ĐẦU TÌM KIẾM HÓA ĐƠN
 //hiển thị bảng tìm kiếm
 function create(){
+  document.getElementById("SearchTDN").style.display="none";
   document.getElementById("mot").style.width="100%";
     document.getElementById("mot").style.margin="0";
     document.getElementById("txtSearch1").style.display = "none";
@@ -19,7 +20,6 @@ function create(){
                 <div>
                   <div style="display: flex; margin: 20px 0px;">
                     <div style="margin-right: 100px">Tìm kiếm theo</div>
-
                   <select style="width:50%" id="method" onchange="lookUpBillDisplay()">
                     <option value="all" selected>Tất cả</option>
                     <option value="id">Mã đơn hàng</option>
@@ -141,16 +141,18 @@ function lookUpStatus() {
 }
 
 //hiển thị kế quả tìm kiếm dựa trên kq lọc
-  function billDisplay(from, to, n){
+  function billDisplay(from, to, special, n){
     document.getElementById("container").style.display="none";
     var s="";
-    console.log((from));
+    console.log(from, to, special );
     for(var i=0;i<billtemp.length; i++){
       if((billtemp[i].sdt.includes(from) && n=="phone") || (String(billtemp[i].receiptId).includes(from) && n=="id") 
         || ( ((billtemp[i].totalAmount>=from && billtemp[i].totalAmount<=to) || (billtemp[i].totalAmount>=Number(from) && Number(to)==0) || 
       (Number(from)==0 && billtemp[i].totalAmount<=Number(to))) && n=="price") || (((new Date(from)<= new Date(billtemp[i].orderDate) && new Date(to)>= new Date(billtemp[i].orderDate)) 
-      || new Date(from)<= new Date(billtemp[i].orderDate) && to=="" || from=="" && new Date(billtemp[i].orderDate) <= new Date(to)) && n=="date") || billtemp[i].address.includes(from) && n=="address"
-      || billtemp[i].username.includes(from) && n=="username"||(n=="all")) {
+      || new Date(from)<= new Date(billtemp[i].orderDate) && to=="" || from=="" && new Date(billtemp[i].orderDate) <= new Date(to)) && n=="date")
+      || ((billtemp[i].address.toLowerCase().includes(from.toLowerCase()) && to=="" && special== "") || billtemp[i].address.toLowerCase().includes(from.toLowerCase()) && billtemp[i].address.toLowerCase().includes(to.toLowerCase()) && special== "" 
+      || (billtemp[i].address.toLowerCase()).includes(from.toLowerCase()) && billtemp[i].address.toLowerCase().includes(to.toLowerCase()) && billtemp[i].address.toLowerCase().includes(special)  && n=="address")
+      || (from != 0 && (billtemp[i].username.toLowerCase()).includes(from.toLowerCase() && n=="username"))||(n=="all")) {
           s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
             <td>${billtemp[i].orderDate}</td>
             <td>${billtemp[i].receiptId}</td>
@@ -219,15 +221,15 @@ function lookUpStatus() {
       var city= document.getElementById("city-select-new").value;
       var district= document.getElementById("district-select-new").value;
       var ward= document.getElementById("ward-select-new").value;
-      var combine= "Phường: " + ward+ ", Quận: " + district + ", Thành phố: " + city;
       var method= document.getElementById("method");
-      if(method.value== "phone") billDisplay(billText, 0, "phone");
-      if(method.value== "username") billDisplay(billText, 0, "username");
-      if(method.value== "id") billDisplay(billText, 0, "id");
-      if(method.value== "price") billDisplay(from, to, "price");
-      if(method.value== "date") billDisplay(billFrom, billTo, "date");
-      if(method.value== "address") billDisplay(combine, 0, "address");
-      if(method.value== "all") billDisplay(0, 0, "all"); 
+      var a="a";
+      if(method.value== "phone") billDisplay(billText, a, a, "phone");
+      if(method.value== "username") billDisplay(billText, a, a, "username");
+      if(method.value== "id") billDisplay(billText, a, a, "id");
+      if(method.value== "price") billDisplay(from, to, a, "price");
+      if(method.value== "date") billDisplay(billFrom, billTo, a, "date");
+      if(method.value== "address") billDisplay(city, district, ward, "address");
+      if(method.value== "all") billDisplay(a, a, a, "all"); 
   }
   //KẾT THÚC TÌM KIẾM HÓA ĐƠN
   function closeDetail(){
@@ -237,16 +239,21 @@ function lookUpStatus() {
   //SHOW CHI TIẾT HÓA ĐƠN
   function showDetail(obj){
    var account= JSON.parse(localStorage.getItem("accounts"));
+   var profile= JSON.parse(localStorage.getItem("userProfile"));
+    document.getElementById("detail-bill").style.display="block";
     document.getElementById("overlay5").style.display= "block";
     for(let i=0; i< billtemp.length; i++){
       if(obj.id== billtemp[i].receiptId){
         var name;
-        for(let j=0; j< account.length; j++){
+        if (profile== undefined || profile[billtemp[i].username]== undefined)
+          for(let j=0; j< account.length; j++){
             if (billtemp[i].username== account[j].username) name= account[j].name;
+          }
+        else name= profile[billtemp[i].username].name;
           document.getElementById("adminReceipt").innerHTML= billtemp[i].receiptId;
           document.getElementById("adminDate").innerHTML= billtemp[i].orderDate;
           document.getElementById("adminKey").innerHTML= billtemp[i].username;
-          document.getElementById("adminName").innerHTML= billtemp[i].name;
+          document.getElementById("adminName").innerHTML= name ;
           document.getElementById("adminAddress").innerHTML= billtemp[i].address;
           document.getElementById("adminPhone").innerHTML= billtemp[i].sdt;
           document.getElementById("adminMethod").innerHTML= billtemp[i].paymentMethod;
@@ -299,7 +306,7 @@ function lookUpStatus() {
               </div>
             `;
           }
-        }
+        
       }
     }
   }
@@ -320,6 +327,8 @@ function lookUpStatus() {
     toast({ title: 'Thành công', message: 'Đã cập nhật trạng thái đơn!', type: 'success', duration: 3000 });
     change();
     if (p != null) showDetail(id);
+    document.getElementById("detail-bill").style.display="none";
+    document.getElementById("overlay5").style.display="none";
   }
 
   function an(event){

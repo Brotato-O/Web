@@ -114,7 +114,6 @@ body{
 }
 .title1{
     font-weight: bold;
-    
 }
 .os3 div{
   text-align: left;
@@ -299,6 +298,30 @@ select{
 input[type="checkbox"]{
     width: 30px;
     height: 30px;
+}
+
+#bttn{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 0px 0px 10px 10px;
+}
+
+#bttn button{
+    width: 40%;
+    padding: 15px;
+    font-size: 20px;
+    margin-top: 20px;
+    border: none;
+    background-color: #c82333;
+    color: white;
+    cursor: pointer;
+    border-radius: 0px 0px 10px 10px;
+}
+
+#bttn button:hover{
+    background-color: #10912cb7;
 }
 
 @keyframes highlight {
@@ -629,6 +652,11 @@ input[type="checkbox"]{
     margin-bottom: 5px;
 }
 
+#ava1{
+    width: 100px;
+    height: 80px;
+}
+
 @media (max-width: 768px) {
     #new-address-box {
         padding: 15px;
@@ -642,6 +670,12 @@ input[type="checkbox"]{
 
     #new-address-box label {
         font-size: 12px;
+    }
+    #reason-wrap {
+      width: 80%;
+    }
+    #reason-wrap h2 {
+      text-align: center;
     }
 }
  

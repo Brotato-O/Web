@@ -22,7 +22,7 @@
 }
 @media only screen and (max-width: 767px){
     #count-container{
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
     #showBill{
         width: 100%;
