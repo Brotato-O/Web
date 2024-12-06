@@ -3,19 +3,66 @@
 }
 #countPTop{
     text-align: center;
+    font-size: 1.5rem;
+    color: #33333357;
 }
+
+#countPTop h3{
+    font-size: 1.5rem;
+    color: #333;
+}
+
+#countPTop h2{
+    font-size: 3.5rem;
+    color: #333;
+    margin:  30px 0;
+}
+
 .hehe1{
     display: flex;
+    color: #333;
+    font-weight: 600;
+    justify-content: space-between;
+    padding: 20px;
+    width: 50%;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.chartContainer input{
+    width: 150px;
+    height: 34px;
+    padding: 10px;
+    border: 1px solid #33333357;
+}
+
+.chartContainer div{
+    display: flex;
+    align-items: center;
     justify-content: space-evenly;
     padding: 20px;
 }
+
 .heh1, .heh2{
     display: flex;
     padding: 20px;
     justify-content: space-evenly;
 }
 .heh1 button, .heh2 button{
-    width: 20%;
+    width: 380px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #830101c5;
+    color: #fff;
+    border: solid 1px #333333;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.heh1 button:hover, .heh2 button:hover{
+    background-color: #660000;
+    color: #fff;
 }
 #countPBottom{
     display: flex;
@@ -26,14 +73,25 @@
 }
 #showpage{
     justify-content: space-around;
-   
+    margin-bottom: 50px;
 }
 #pages{
     display: flex;
     flex-wrap: nowrap;
 }
 #pages button{
-    width: 20%;
-    padding: 10px;
+    width: 30px;
+    height: 30px;
     margin: 0px 10px;
+    border: 1px solid #33333357;
+    background-color: #fff;
+    color: #333;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#pages button:hover{
+    background-color: #007bff;
+    color: #fff;
 }

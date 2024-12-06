@@ -1,6 +1,8 @@
 window.addEventListener("load", function(){
     if (window.location.href.split("?")[1]=="countP"){
         SaleProducts();
+        document.getElementById("title").style.display="none";
+        document.getElementById("container").style.display="none";
     }
 })
 

@@ -25,7 +25,7 @@
             <a href="admin.html?bill" style="color: inherit; text-decoration: none;"><li>Đơn hàng</li></a>
             <a href="admin.html?khachHang" style="color: inherit; text-decoration: none;"><li>Khách hàng</li></a>
             <a href="admin.html?count" style="color: inherit;text-decoration: none;"><li>Thống kê theo khách</li></a>
-            <a href="admin.html?countP" style="color: inherit;text-decoration: none;"><li>Thống kê theo sp</li></a>
+            <a href="admin.html?countP" style="color: inherit;text-decoration: none;"><li>Thống kê theo sản phẩm</li></a>
           </ul>
           <ul>
             <a href="index.html" style="text-decoration: none; color: inherit"><li>
@@ -195,28 +195,22 @@
 
       <div id="countP-container" style="display: none;">
         <div id="countPTop">
+          <h2>THỐNG KÊ SẢN PHẨM</h2>
           <h3>Thống kê theo thời gian</h3>
           <div class="chartContainer">
-            <div class="hehe1">
-              <div>
-                <div>Từ ngày</div>  
-                <input type="date" id="countPFrom" onchange="SaleProducts()"> 
-              </div>
-              <div class="chartContainer">
-                <div>Đến ngày</div>  
-                <input type="date" id="countPTo" onchange="SaleProducts()">  
-              </div>
-            </div>
             <div>
+              <div>Từ ngày</div>  
+              <input type="date" id="countPFrom" onchange="SaleProducts()"> 
+              <div>Đến ngày</div>  
+              <input type="date" id="countPTo" onchange="SaleProducts()">  
+            </div>
+          </div>
               <div class="heh1">
                 <button onclick="onMoney()">Xem sản phẩm bán chạy nhất</button>
                 <button onclick="onMoney1()">Xem sản phẩm bán ế nhất</button>
-              </div>
-              <div class="heh2">
                 <button onclick="onQuantity()">Xem sản phẩm đem lại doanh thu nhất</button>
               <button onclick="onQuantity1()">Xem sản phẩm đem lại ít doanh thu nhất</button>
-            </div>
-            </div> 
+              </div>
           </div>
           
         </div>
