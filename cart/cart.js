@@ -294,7 +294,7 @@ function notLogin(){
 function showPaid(id){
     var bill= JSON.parse(localStorage.getItem('bill'));
     document.getElementById("overlay3").style.display="block";
-    document.getElementById("ava1").src="img/logo.png";
+    document.getElementById("ava1").src="img/logo.jpg";
     for(var i=0; i< bill.length; i++){
         if(bill[i].receiptId == id){
             document.getElementById("keyPaid").innerHTML = bill[i].receiptId;
@@ -546,7 +546,7 @@ function cfP(){
     var day= date.getDate();
     if (day<=9) day= "0"+day;
     document.getElementById("datePay").innerHTML=`${date.getFullYear()}-${month}-${day}`;
-    document.getElementById("ava").src="img/logo.png";
+    document.getElementById("ava").src="img/logo.jpg";
     document.getElementById("methodPay").innerHTML= selectedMethod.value;
       for(var i=0; i< carttemp.length; i++){
                 s+=`<tr>
