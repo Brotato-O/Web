@@ -3,8 +3,8 @@
     align-items: center;
     background: #fff;
     border-radius: 2px;
-    /* margin-top: 50px; */
-    /* padding: 20px 0; */
+    margin-top: 50px;
+    padding: 20px 0;
     min-width: 400px;
     max-width: 450px;
     border-left: 4px solid;
@@ -37,11 +37,14 @@
 
 #toast {
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 32px;
+    right: 32px;
     z-index: 2009;
 }
 
+.toast+.toast {
+    margin-top: 24px;
+}
 
 .toast__icon {
     font-size: 24px;
