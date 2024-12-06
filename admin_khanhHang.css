@@ -271,6 +271,10 @@ td {
   #tableKH tr th:nth-child(4) {
     display: none !important;
   }
+  #tablesp tr th:nth-child(4),
+  #tablesp tr td:nth-child(4){
+    display: none !important;
+  }
   /*tuan*/
   .itemForm{
     flex-direction: column;
