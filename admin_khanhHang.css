@@ -206,8 +206,14 @@ td {
   z-index: 2000;
 }
 
+.itemForm{
+  width: 100%;
+  padding: 0 20px;
+}
+
 .itemForm div {
   font-weight: 600;
+
 }
 
 #formdiachi {
