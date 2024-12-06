@@ -58,8 +58,30 @@
     #detail-count, #totalBill{
         width: 100%;
     }
-    #countTop{
-        top:-10px;
-        right: 50px;
-    }
+}
+
+#showpage1{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.pages1{
+    display: flex;
+    flex-wrap: nowrap;
+}
+#pages1 button {
+    width: 30px;
+    height: 30px;
+    margin: 0px 10px;
+    border: 1px solid #33333357;
+    background-color: #fff;
+    color: #333;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#countTop{
+    top:-10px;
+    right: 50px;
 }
