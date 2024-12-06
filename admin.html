@@ -165,19 +165,19 @@
       <!-- Thống kê -->
       <div id="count-container" style="display: none;">
         <div id="countTop">
-          <h3>Thống kê theo thời gian</h3>
-          <div class="chartContainer">
-            <div>Từ ngày</div>  
-            <input type="date" id="countFrom" onchange="showCount()">  
+          <!-- <h3>Thống kê theo thời gian</h3> -->
+          <div class="chartContainer" style="display: flex; align-items: center; ">
+            <div style="font-weight: bold;">Từ:</div>  
+            <input type="date" id="countFrom" onchange="showCount()" style="border: none;">  
           </div>
-          <div class="chartContainer">
-            <div>Đến ngày</div>  
-            <input type="date" id="countTo" onchange="showCount()">  
+          <div class="chartContainer"style="display: flex; align-items: center;">
+            <div  style="font-weight: bold;">Đến:</div>  
+            <input type="date" id="countTo" onchange="showCount()"style="border: none;">  
           </div>
-        </div>
+      </div>
         <div id="countBottom">
           <div id="totalBill">
-            <h3>Thông tin</h3>
+          
             <table id="showBill">
               <th>Id đơn</th>
               <th>Ngày đặt</th>
@@ -185,7 +185,7 @@
             </table>
           </div> 
           <div id="detail-count">
-            <h3>Top 5 khách donate</h3>
+            
             <table id="main-count">
               
             </table>
@@ -290,6 +290,9 @@
 
     <div id="showpage" style="display: none;">
       <div id="pages"></div>
+    </div>
+    <div id="showpage1" style="display: none;">
+      <div id="pages1"></div>
     </div>
     <script src="khoitao.js"></script>
     <script src="admin.js"></script>
