@@ -83,6 +83,7 @@ function goToPage1(pageNumber) {
 window.addEventListener("load", function () {
   var temp = location.href.split("?");
   if (temp[1] == undefined) {
+    document.getElementById("bill-content").style.display = "none";
     hienthitatcasp1();
   }
 });

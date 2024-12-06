@@ -139,6 +139,8 @@ window.addEventListener("DOMContentLoaded", function () {
   var temp = location.href.split("?");
 
   if (temp[1] == "khachHang") {
+    //nhàn 
+    document.getElementById("bill-content").style.display = "none";
     document.querySelector(".chucNang").style.display = "block";
     document.querySelector(".content div").innerHTML = "DANH SÁCH KHÁCH HÀNG";
     CreateFormTimKiem();
