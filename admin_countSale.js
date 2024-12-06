@@ -90,7 +90,8 @@ function showCount(){
 function detailCount(id, index){
     checkBill(id);
     var showBill= document.getElementById("showBill");
-    var div= document.getElementById("pages");
+    var div= document.getElementById("pages1");
+    document.getElementById("showpage1").style.display="flex";
     div.innerHTML=``;
     var length= billtemp.length;
     const BPP=5;
@@ -103,6 +104,7 @@ function detailCount(id, index){
        <button class="page" onclick="detailCount('${id}', ${i+1})">${i+1}</button>
       `;
   }
+  if(length==1) document.getElementById("showpage1").style.display="none";
     var s="";
     for(let i=startIndex; i<endIndex; i++){
         if(billtemp[i].username== id){

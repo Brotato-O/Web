@@ -120,6 +120,10 @@ function showSaleProducts(index){
       div1.innerHTML +=`
        <button class="page" onclick="showSaleProducts('${i+1}')">${i+1}</button>
       `;
+      
+  }
+  if (document.getElementsByClassName("page").length<= 1){
+    document.getElementById("showpage").style.display="none";
   }
     for(var i=startIndex; i< endIndex; i++){
         s+= `
