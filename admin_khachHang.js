@@ -112,13 +112,24 @@ function CreateFormTimKiem() {
                 <input type="checkbox" name="checkStatus" />
               </div>
               <div id="btn1" >
-                <button type="reset" >Xóa</button>
+                <button type="reset" onclick="clickXoaSearch()">Xóa</button>
                 <button type="submit" name="timKiem">Tìm</button>
               </div>
             
           
         </div>`;
 }
+
+function clickXoaSearch() {
+  document.querySelector("input[name=txtName]").value = "";
+  document.querySelector("input[name=txtDC]").value = "";
+  document.querySelector("input[name=tuNgay]").value = "";
+  document.querySelector("input[name=denNgay]").value = "";
+  document.querySelector("input[name=checkStatus]").checked = false;
+  var listKH = JSON.parse(localStorage.getItem("accounts"));
+  hienthiKH(listKH);
+}
+
 //Xóa phần tử
 function XoaKH(index) {
   if (confirm("Bạn có chắc chắn muốn xóa khách hàng này?")) {
