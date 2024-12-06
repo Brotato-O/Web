@@ -227,6 +227,8 @@ function lookUpStatus() {
       var ward= document.getElementById("ward-select-new").value;
       var method= document.getElementById("method");
       var a="a";
+      if(billFrom=="" && billTo=="" && method.value=="date") billDisplay(a, a, a, "all"); 
+      if(billText=="" && method.value=="username") billDisplay(a, a, a, "all"); 
       if(method.value== "phone") billDisplay(billText, a, a, "phone");
       if(method.value== "username") billDisplay(billText, a, a, "username");
       if(method.value== "id") billDisplay(billText, a, a, "id");
