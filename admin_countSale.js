@@ -28,7 +28,7 @@ function onTime(from, to){
     for(let i=0; i< counttemp.length; i++){
         for(let j=0; j < counttemp.length-1;j++)
             if (counttemp[j].totalAmount < counttemp[j+1].totalAmount) {
-                var temp = count[j];
+                var temp = counttemp[j];
                 counttemp[j] = counttemp[j+1];
                 counttemp[j+1] = temp;
             }
@@ -49,6 +49,7 @@ function onTime(from, to){
             count.push({customerId: accounts[i].username, orderDate:"", billId:[], totalAmount: 0});
         
     }
+    console.log(count);
     for(let i=0; i< count.length; i++){
       for(let j=0; j< bill.length; j++){
         if(bill[j].username== count[i].customerId && bill[j].status=="Đã giao"){
@@ -139,12 +140,10 @@ function showDetail1(id){
             if (billtemp[i].username== account[j].username) name= account[j].name;
           }
         else name= profile[billtemp[i].username].name;
-        for(let j=0; j< account.length; j++){
-            if (billtemp[i].username== account[j].username) name= account[j].name;
            document.getElementById("adminReceipt").innerHTML= billtemp[i].receiptId;
            document.getElementById("adminDate").innerHTML= billtemp[i].orderDate;
            document.getElementById("adminKey").innerHTML= billtemp[i].username;
-           document.getElementById("adminName").innerHTML= billtemp[i].name;
+           document.getElementById("adminName").innerHTML= name;
            document.getElementById("adminAddress").innerHTML= billtemp[i].address;
            document.getElementById("adminPhone").innerHTML= billtemp[i].sdt;
            document.getElementById("adminMethod").innerHTML= billtemp[i].paymentMethod;
@@ -180,4 +179,4 @@ function showDetail1(id){
          }
        }
      }
-   }
+   
