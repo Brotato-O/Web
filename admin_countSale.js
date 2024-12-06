@@ -1,6 +1,10 @@
 window.addEventListener("load", function () {
     var temp= location.href.split("?");
     if(temp[1]== "count") {
+        document.getElementById("countPTop").style.display="none";
+        document.getElementById("countPBottom").style.display="none";
+        document.getElementById("pages").style.display="none";
+        document.getElementById("showpage").style.marginBottom="0px";
         onCustomer();
         showCount();
         SaleProducts();

@@ -3,6 +3,8 @@ window.addEventListener("load", function(){
         SaleProducts();
         document.getElementById("title").style.display="none";
         document.getElementById("container").style.display="none";
+        document.getElementById("countTop").style.display="none";
+        document.getElementById("countBottom").style.display="none";
     }
 })
 
