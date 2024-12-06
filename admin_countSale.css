@@ -1,5 +1,5 @@
 #count-container{
-    display: flex !important; 
+    display: flex !important;
     flex-wrap: nowrap;
     align-items: flex-start;
     flex-direction: column;
@@ -25,6 +25,20 @@
 #countBottom{
     display: flex;
 }
+
+#countTop{
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
+}
+
+#totalBill h3,
+#detail-count h3{
+    font-size: 1.5rem;
+    color: #333;
+    margin: 20px;
+}
+
 #totalBill{
     width:70%;
     padding-right: 15px;
@@ -44,8 +58,29 @@
     #detail-count, #totalBill{
         width: 100%;
     }
-    #countTop{
-        top:-10px;
-        right: 50px;
-    }
+}
+
+#showpage1{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.pages1{
+    display: flex;
+    flex-wrap: nowrap;
+}
+#pages1 button {
+    width: 30px;
+    height: 30px;
+    margin: 0px 10px;
+    border: 1px solid #33333357;
+    background-color: #fff;
+    color: #333;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#countTop{
+    z-index: 0 !important;
 }
