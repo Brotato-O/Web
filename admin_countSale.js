@@ -1,6 +1,9 @@
 window.addEventListener("load", function () {
     var temp= location.href.split("?");
     if(temp[1]== "count") {
+        document.getElementById("countContainer").style.display="flex";
+        document.getElementById("bill-content").style.display="none";
+        document.getElementById("SearchTDN").style.display="none";
         onCustomer();
         showCount();
         SaleProducts();
@@ -37,6 +40,7 @@ function onTime(from, to){
     document.getElementById("mot").style.margin="0";
     document.getElementById("txtSearch1").style.display = "none";
     document.getElementById("SearchBar2").style.display = "none";
+    document.getElementById("countP-container").style.display = "none";
     document.getElementById("title").innerHTML = "<h3>Thống kê theo khách</h3>"
     var bill= JSON.parse(localStorage.getItem('bill'));
     var accounts= JSON.parse(localStorage.getItem('accounts'));
@@ -61,8 +65,9 @@ function showCount(){
     var from = document.getElementById("countFrom").value;
     var to = document.getElementById("countTo").value;
     onTime(from, to);
-    document.getElementById("count-container").style.display="flex";
+    document.getElementById("countContainer").style.display="flex";
     document.getElementById("bill-content").style.display="none";
+    document.getElementById("showpage").style.display="none";
     document.getElementById("container").style.display="none";
   var detail= document.getElementById("main-count");
   var s="";
