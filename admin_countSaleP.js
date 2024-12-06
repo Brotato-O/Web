@@ -1,6 +1,6 @@
 window.addEventListener("load", function(){
     if (window.location.href.split("?")[1]=="countP"){
-        showSaleProducts(1);
+        SaleProducts();
     }
 })
 
@@ -14,6 +14,8 @@ function SaleProducts(){
     if (billtemp1.length== 0) {
         countP=[];
         localStorage.setItem("countP", JSON.stringify(countP));
+        showSaleProducts(1);
+        document.getElementById("showBill2").innerHTML=``;
         return;
     }
     for(var i=0; i< products.length; i++){
@@ -33,6 +35,7 @@ function SaleProducts(){
         
     }
     localStorage.setItem("countP", JSON.stringify(countP));
+    showSaleProducts(1);
 }
 
 function onQuantity(){
@@ -218,8 +221,17 @@ var billtemp1=[];
 function checkBill1(from, to){
     billtemp1=[];
     var bill= JSON.parse(localStorage.getItem("bill"));
-    for(var i=0; i<bill.length; i++)
+    if(from=="" && to==""){
+      for(var i=0; i<bill.length; i++)
+        if(bill[i].status=="Đã giao")
+             {billtemp1.push(bill[i])};
+      return;
+    }
+    else {
+      for(var i=0; i<bill.length; i++)
         if((bill[i].orderDate>= from && bill[i].orderDate<=to || from=="" && bill[i].orderDate<=to || to=="" && bill[i].orderDate>=from) && bill[i].status=="Đã giao")
-             billtemp1.push(bill[i]);
+             {billtemp1.push(bill[i])};
+    }
+    
     console.log(billtemp1);
 }
