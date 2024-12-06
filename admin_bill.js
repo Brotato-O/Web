@@ -239,17 +239,21 @@ function lookUpStatus() {
   //SHOW CHI TIẾT HÓA ĐƠN
   function showDetail(obj){
    var account= JSON.parse(localStorage.getItem("accounts"));
+   var profile= JSON.parse(localStorage.getItem("userProfile"));
     document.getElementById("detail-bill").style.display="block";
     document.getElementById("overlay5").style.display= "block";
     for(let i=0; i< billtemp.length; i++){
       if(obj.id== billtemp[i].receiptId){
         var name;
-        for(let j=0; j< account.length; j++){
+        if (profile== undefined || profile[billtemp[i].username]== undefined)
+          for(let j=0; j< account.length; j++){
             if (billtemp[i].username== account[j].username) name= account[j].name;
+          }
+        else name= profile[billtemp[i].username].name;
           document.getElementById("adminReceipt").innerHTML= billtemp[i].receiptId;
           document.getElementById("adminDate").innerHTML= billtemp[i].orderDate;
           document.getElementById("adminKey").innerHTML= billtemp[i].username;
-          document.getElementById("adminName").innerHTML= billtemp[i].name;
+          document.getElementById("adminName").innerHTML= name ;
           document.getElementById("adminAddress").innerHTML= billtemp[i].address;
           document.getElementById("adminPhone").innerHTML= billtemp[i].sdt;
           document.getElementById("adminMethod").innerHTML= billtemp[i].paymentMethod;
@@ -302,7 +306,7 @@ function lookUpStatus() {
               </div>
             `;
           }
-        }
+        
       }
     }
   }
