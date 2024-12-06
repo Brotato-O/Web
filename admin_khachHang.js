@@ -144,6 +144,10 @@ window.addEventListener("DOMContentLoaded", function () {
     CreateFormTimKiem();
     document.querySelector("#container").style.display = "none";
     document.getElementById("count-container").style.display = "none";
+    document.getElementById('countTop').style.display="none";
+    document.getElementById('countBottom').style.display="none";
+    document.getElementById('countPBottom').style.display="none";
+    document.getElementById('bill-content').style.display="none";
     goToPage(1);
   }
 });

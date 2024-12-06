@@ -93,6 +93,9 @@ function create(){
 window.addEventListener("load", function () {
   var temp= location.href.split("?");
   if(temp[1]== "bill") {
+    document.getElementById('countTop').style.display="none";
+    document.getElementById('countBottom').style.display="none";
+    document.getElementById('countPBottom').style.display="none";
     create();
     lookUpBillDisplay();
     lookUpStatus();

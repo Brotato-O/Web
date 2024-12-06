@@ -261,13 +261,6 @@ function createProduct() {
         brand: "Phụ kiện",
       },
       {
-        name: "Chai phủ nano kháng nước NMS Protector 75ml",
-        price: 99000,
-        img: "img/1039.jpg",
-        productId: 1039,
-        brand: "Phụ kiện",
-      },
-      {
         name: "Găng Tay Thủ Môn Tập Luyện Predator",
         price: 800000,
         img: "img/1040.jpg",

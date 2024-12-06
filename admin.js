@@ -9,6 +9,10 @@ var currentPage = 1;
 
 function hienthitatcasp1() {
   document.getElementById('SearchTDN').style.display="none";
+  document.getElementById('bill-content').style.display="none";
+  document.getElementById('countTop').style.display="none";
+  document.getElementById('countBottom').style.display="none";
+  document.getElementById('countPBottom').style.display="none";
   const productsPerPage = 12;
   var productArrays = JSON.parse(localStorage.getItem("all"));
   var startIndex = (currentPage - 1) * productsPerPage;
