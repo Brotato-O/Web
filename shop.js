@@ -72,7 +72,7 @@ function hienthisanpham1(){
 
   for (var i = 1; i <= totalPages; i++) {
     pageNumbers += `
-                <div class="sotrang" onclick="goToPage(${i})">
+                <div id="phanTrang(${i})" class="sotrang" onclick="goToPage(${i})">
                     ${i}
                 </div>
             `;
@@ -188,7 +188,7 @@ var pageNumbers = "";
 
 for (var i = 1; i <= totalPages; i++) {
   pageNumbers += `
-              <div class="sotrang" onclick="goToPage(${i})">
+              <div id="phanTrang(${i})" class="sotrang" onclick="goToPage(${i})">
                   ${i}
               </div>
           `;
@@ -252,6 +252,8 @@ document.getElementById("allsp").innerHTML = `
 }
 function goToPage(pageNumber) {
 currentPage = pageNumber;
+document.getElementById(`phanTrang(${pageNumber})`).classList.add('active');
+
 hienthisanpham1();
 hienthitatcasp();
 search1();

@@ -176,25 +176,30 @@ function deleteproduct(productIddelete) {
   localStorage.setItem("all", JSON.stringify(productArrays));
   hienthitatcasp1();
 }
+var price = document.getElementById("txtprice1");
 function addProduct() {
   var productArray = JSON.parse(localStorage.getItem("all")) || [];
   var productid = productArray.length+1;
   var productname = document.getElementById("txtnamesp");
   var brand = document.getElementById("brand");
-  var price = document.getElementById("txtprice1");
+  
   var imgInput = document.getElementById("imgUpload");
 
   if (!brand.value || !productname.value || !price.value || !imgInput.files.length) {
     alert("Vui lòng điền đầy đủ thông tin!");
+   
     return false;
   }
   
   if (price.value < 0) {
     alert("Giá không đúng, Vui lòng nhập lại!");
+    price.focus();
     return false;
   }
   if (isNaN(price.value) || price.value.trim() === "") {
     alert("Giá phải là một số hợp lệ, vui lòng nhập lại!");
+    price.focus();
+    // price.value.select();
     return false;
 }
 

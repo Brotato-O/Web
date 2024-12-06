@@ -408,12 +408,7 @@ window.addEventListener("load", function(){
     if(temp ==undefined || temp=="") {
         if(window.innerWidth< 768) cartDisplayMobile();
         else cartDisplay();
-        if(temp!= undefined && temp!="" && temp.search("focus")==0 ) {
-            var temp1= temp.split("&")[1];
-            var tr= document.getElementById(temp1).parentNode.parentNode;
-            tr.scrollIntoView();
-            tr.style.animation="highlight 2s ease-in-out";
-        };
+        
     }
     else{
         if(temp== 1) showBill(1); 

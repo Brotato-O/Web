@@ -84,3 +84,7 @@
 #countTop{
     z-index: 0 !important;
 }
+.row-count:hover{
+    background-color: #333333bb;
+    cursor: pointer;
+}
