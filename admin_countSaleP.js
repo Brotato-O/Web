@@ -68,9 +68,11 @@ function onMoney(){
 function showSaleProducts(index){
     var countP= JSON.parse(localStorage.getItem("countP"));
     var div1= document.getElementById("pages");
+    div1.parentElement.style.display="flex";
     document.getElementById("countP-container").style.display="flex";
     document.getElementById("count-container").style.display="none";
     document.getElementById("SearchTDN").style.display="none";
+    document.getElementById("SearchBar2").style.display="none";
     document.getElementById("bill-content").style.display="none";
     var s= "";
     div1.innerHTML=``;
@@ -110,12 +112,13 @@ function showBill2(id){
     var s="";
     for(var i=0; i< countP[id].bill.length; i++){
         s+= `
-            <tr onclick="showDetail2('${countP[id].bill[i].receiptId}')">
+            <tr onclick="showDetail2(${countP[id].bill[i].receiptId})">
                 <td>${countP[id].bill[i].receiptId}</td>
                 <td>${countP[id].bill[i].totalAmount}</td>
                 <td>${countP[id].bill[i].orderDate}</td>
         `;
     }
+    
     document.getElementById("showBill2").innerHTML=`
         <tr>
           <th>Id đơn</th>
@@ -125,28 +128,36 @@ function showBill2(id){
 
 function showDetail2(id){
     var account= JSON.parse(localStorage.getItem("accounts"));
+   var profile= JSON.parse(localStorage.getItem("userProfile"));
     document.getElementById("overlay5").style.display= "block";
-    for(let i=0; i< billtemp1.length; i++){
-      if(id== billtemp1[i].receiptId){
+    var bill= JSON.parse(localStorage.getItem("bill"));
+    console.log(bill);
+    for(let i=0; i< bill.length; i++){
+      if(id== bill[i].receiptId){
         var name;
+        if (profile== undefined || profile[bill[i].username]== undefined)
+          for(let j=0; j< account.length; j++){
+            if (bill[i].username== account[j].username) name= account[j].name;
+          }
+        else name= profile[bill[i].username].name;
         for(let j=0; j< account.length; j++){
-            if (billtemp1[i].username== account[j].username) name= account[j].name;
-          document.getElementById("adminReceipt").innerHTML= billtemp1[i].receiptId;
-          document.getElementById("adminDate").innerHTML= billtemp1[i].orderDate;
-          document.getElementById("adminKey").innerHTML= billtemp1[i].username;
-          document.getElementById("adminName").innerHTML= billtemp1[i].name;
-          document.getElementById("adminAddress").innerHTML= billtemp1[i].address;
-          document.getElementById("adminPhone").innerHTML= billtemp1[i].sdt;
-          document.getElementById("adminMethod").innerHTML= billtemp1[i].paymentMethod;
+            if (bill[i].username== account[j].username) name= account[j].name;
+          document.getElementById("adminReceipt").innerHTML= bill[i].receiptId;
+          document.getElementById("adminDate").innerHTML= bill[i].orderDate;
+          document.getElementById("adminKey").innerHTML= bill[i].username;
+          document.getElementById("adminName").innerHTML= name;
+          document.getElementById("adminAddress").innerHTML= bill[i].address;
+          document.getElementById("adminPhone").innerHTML= bill[i].sdt;
+          document.getElementById("adminMethod").innerHTML= bill[i].paymentMethod;
         
           var s="";
-            for(let j=0; j< billtemp1[i].product.length; j++){
+            for(let j=0; j< bill[i].product.length; j++){
               s+=`
                 <tr>
-                  <td>${billtemp1[i].product[j].title}</td>
-                  <td>${billtemp1[i].product[j].quantity}</td>
-                  <td>${billtemp1[i].product[j].size}</td>
-                  <td>${billtemp1[i].product[j].price}</td>
+                  <td>${bill[i].product[j].title}</td>
+                  <td>${bill[i].product[j].quantity}</td>
+                  <td>${bill[i].product[j].size}</td>
+                  <td>${bill[i].product[j].price}</td>
                 </tr>
               `;
             }
@@ -157,35 +168,19 @@ function showDetail2(id){
             <th>Đơn giá</th>
           </tr>`+s +  `<tr>
             <td colspan="3" class="title2" style="font-size: 18px">Tổng tiền</td>
-            <td>${billtemp1[i].totalAmount}<t/d>
+            <td>${bill[i].totalAmount}<t/d>
           </tr>`;
-          if (billtemp1[i].status !="Đã hủy"){
+          if (bill[i].status !="Đã hủy"){
             document.getElementById("adminStatus").style.display="flex";
            document.getElementById("adminStatus").innerHTML= `
            <p>Trạng thái</p>
            <div>
-            <p id="showStatus">${billtemp1[i].status}</p>
-            <select id="changeStatus" onchange="changeText(this)">
-              <option value="Chờ xác nhận">Chờ xác nhận</option>
-              <option value="Đã xác nhận">Đã xác nhận</option>
-              <option value="Đang giao">Đang giao</option>
-              <option value="Đã giao">Đã giao</option>
-            </select>
+            <p id="showStatus">${bill[i].status}</p>
+            
             </div>
           `;
-            document.getElementById("cfB").innerHTML=`
-              <button onclick="confirm1('${billtemp1[i].receiptId}')">Xác nhận</button>
-            `;
-            document.getElementById("changeStatus").value=billtemp1[i].status;
-          }
-          else{
-            document.getElementById("adminStatus").style.display="none";
-            document.getElementById("cfB").innerHTML=`
-              <div id="db2">
-                <p class="title2" style="font-size: 18px">Lý do hủy: &nbsp;</p>
-                <p>${billtemp1[i].reason}</p>
-              </div>
-            `;
+           
+            
           }
         }
       }

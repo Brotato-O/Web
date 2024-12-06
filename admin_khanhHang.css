@@ -86,8 +86,8 @@ td {
 
 /*  */
 #timkiemKH {
-  width: 80%;
-  margin-left: 10%;
+  width: 100%;/*sua 80 thanh 100*/
+  margin-left: 0px;/*sua 20 ve 0*/
   padding: 20px;
   background-color: #333333bb;
   border-radius: 10px;
@@ -217,6 +217,9 @@ td {
   align-items: center;
 }
 /*TUAN*/
+.itemForm{
+  flex-wrap: wrap;
+}
 @media (max-width: 900px) {
   .chucNang {
     flex-direction: column-reverse;
@@ -262,6 +265,14 @@ td {
   #tableKH tr th:nth-child(4) {
     display: none !important;
   }
+  /*tuan*/
+  .itemForm{
+    flex-direction: column;
+    margin: auto;
+  }
+  #btn1 {
+    margin: auto;
+  }
 }
 @media (max-width: 400px) {
   #tableKH {
@@ -280,3 +291,4 @@ td {
     width: 200px;
   }
 }
+
