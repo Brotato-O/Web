@@ -261,14 +261,14 @@ SignSubmit.addEventListener("click", function (event) {
   }
 });
 
-//Hàm kiểm tra role của tài khoản khi đăng nhập
+//Hàm check role
 function getAccountRole(username) {
   let accounts = JSON.parse(localStorage.getItem("accounts")) || [];
   let account = accounts.find((account) => account.username === username);
   return account ? account.role : null;
 }
 
-//Hàm status làm để check tài khoản hoạt động hay bị khóa
+//Hàm check status
 function getAccountStatus(username) {
   let accounts = JSON.parse(localStorage.getItem("accounts")) || [];
   let account = accounts.find((account) => account.username === username);
