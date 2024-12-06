@@ -483,7 +483,8 @@ function addToBill(){
         bill[length].sdt= address.phone;
     }   
      else {
-        bill[length].address= profile[username].address;
+        var temp= profile[username].address.trim().split(",");
+        bill[length].address= "Phường: " + temp[2] + ", Quận: " + temp[1] + ", Thành phố: " + temp[0];
         bill[length].sdt=  profile[username].phone;
     }
     localStorage.setItem('bill',JSON.stringify(bill));

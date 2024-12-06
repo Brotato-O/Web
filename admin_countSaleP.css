@@ -1,0 +1,39 @@
+#countP-container{
+    flex-direction: column;
+}
+#countPTop{
+    text-align: center;
+}
+.hehe1{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+.heh1, .heh2{
+    display: flex;
+    padding: 20px;
+    justify-content: space-evenly;
+}
+.heh1 button, .heh2 button{
+    width: 20%;
+}
+#countPBottom{
+    display: flex;
+}
+#countPBottom div{
+    width: 50%;
+    padding: 20px;
+}
+#showpage{
+    justify-content: space-around;
+   
+}
+#pages{
+    display: flex;
+    flex-wrap: nowrap;
+}
+#pages button{
+    width: 20%;
+    padding: 10px;
+    margin: 0px 10px;
+}

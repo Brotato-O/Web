@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="admin.css" />
     <link rel="stylesheet" href="admin_bill.css" />
     <link rel="stylesheet" href="admin_countSale.css" />
+    <link rel="stylesheet" href="admin_countSaleP.css" />
     <link rel="stylesheet" href="admin_khanhHang.css">
   </head>
   <body>
@@ -193,28 +194,44 @@
         <div id="countPTop">
           <h3>Thống kê theo thời gian</h3>
           <div class="chartContainer">
-            <div>
-              <div>Từ ngày</div>  
-              <input type="date" id="countPFrom" onchange="SaleProducts(1)"> 
+            <div class="hehe1">
+              <div>
+                <div>Từ ngày</div>  
+                <input type="date" id="countPFrom" onchange="SaleProducts(1)"> 
+              </div>
+              <div class="chartContainer">
+                <div>Đến ngày</div>  
+                <input type="date" id="countPTo" onchange="SaleProducts(1)">  
+              </div>
             </div>
             <div>
-              <button onclick="onMoney()">Xem thống kê theo tien</button>
-              <button onclick="onQuantity()">Xem thống kê theo sl</button>
+              <div class="heh1">
+                <button onclick="onMoney()">Xem sản phẩm bán chạy nhất</button>
+                <button onclick="onMoney1()">Xem sản phẩm bán ế nhất</button>
+              </div>
+              <div class="heh2">
+                <button onclick="onQuantity()">Xem sản phẩm đem lại doanh thu nhất</button>
+              <button onclick="onQuantity1()">Xem sản phẩm đem lại ít doanh thu nhất</button>
+            </div>
             </div> 
           </div>
-          <div class="chartContainer">
-            <div>Đến ngày</div>  
-            <input type="date" id="countPTo" onchange="SaleProducts(1)">  
-          </div>
+          
         </div>
         <div id="countPBottom">
-          <table id="showBill2">
-
-          </table>
+          
+        <div>
+          <h2>THỐNG KÊ SẢN PHẨM</h2>
+          
             <table id="main-countP">
               
             </table>
-          
+          </div>
+          <div>
+            <h2>HÓA ĐƠN ĐÃ MUA</h2>
+          <table id="showBill2">
+
+          </table>
+        </div>
         </div>
       </div>
 
