@@ -156,7 +156,7 @@ function lookUpStatus() {
       || new Date(from)<= new Date(billtemp[i].orderDate) && to=="" || from=="" && new Date(billtemp[i].orderDate) <= new Date(to)) && n=="date")
       || ((billtemp[i].address.toLowerCase().includes(from.toLowerCase()) && to=="" && special== "") || billtemp[i].address.toLowerCase().includes(from.toLowerCase()) && billtemp[i].address.toLowerCase().includes(to.toLowerCase()) && special== "" 
       || (billtemp[i].address.toLowerCase()).includes(from.toLowerCase()) && billtemp[i].address.toLowerCase().includes(to.toLowerCase()) && billtemp[i].address.toLowerCase().includes(special)  && n=="address")
-      || (from != 0 && (billtemp[i].username.toLowerCase()).includes(from.toLowerCase() && n=="username"))||(n=="all")) {
+      || (from != 0 && (billtemp[i].username.toLowerCase()).includes(from.toLowerCase() && n=="username"))|| (billtemp[i].username.includes(from) && n=="username") ||(n=="all")) {
           s+=`<tr id="${billtemp[i].receiptId}" onclick="showDetail(this)" class="billRow">
             <td>${billtemp[i].orderDate}</td>
             <td>${billtemp[i].receiptId}</td>
@@ -228,14 +228,14 @@ function lookUpStatus() {
       var method= document.getElementById("method");
       var a="a";
       if(billFrom=="" && billTo=="" && method.value=="date") billDisplay(a, a, a, "all"); 
-      if(billText=="" && method.value=="username") billDisplay(a, a, a, "all"); 
-      if(method.value== "phone") billDisplay(billText, a, a, "phone");
-      if(method.value== "username") billDisplay(billText, a, a, "username");
-      if(method.value== "id") billDisplay(billText, a, a, "id");
-      if(method.value== "price") billDisplay(from, to, a, "price");
-      if(method.value== "date") billDisplay(billFrom, billTo, a, "date");
-      if(method.value== "address") billDisplay(city, district, ward, "address");
-      if(method.value== "all") billDisplay(a, a, a, "all"); 
+      else if(billText=="" && method.value=="username") billDisplay(a, a, a, "all"); 
+      else if(method.value== "phone") billDisplay(billText, a, a, "phone");
+      else if(method.value== "username") billDisplay(billText, a, a, "username");
+      else if(method.value== "id") billDisplay(billText, a, a, "id");
+      else if(method.value== "price") billDisplay(from, to, a, "price");
+      else if(method.value== "date") billDisplay(billFrom, billTo, a, "date");
+      else if(method.value== "address") billDisplay(city, district, ward, "address");
+      else if(method.value== "all") billDisplay(a, a, a, "all"); 
   }
   //KẾT THÚC TÌM KIẾM HÓA ĐƠN
   function closeDetail(){
